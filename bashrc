@@ -10,22 +10,22 @@ function parse_git_branch () {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-source .bash/config.bash
+source ~/.bash/config.bash
 
 # aliases
-source .bash/aliases.bash
+source ~/.bash/aliases.bash
 
 # completetions
-source .bash/git-completion.bash
-source .bash/gem-completion.bash
-source .bash/pip-completion.bash
-source .bash/rake-completion.bash
-source .bash/brew-completion.bash
+source ~/.bash/git-completion.bash
+source ~/.bash/gem-completion.bash
+source ~/.bash/pip-completion.bash
+source ~/.bash/rake-completion.bash
+source ~/.bash/brew-completion.bash
 
 # scripts
-source .bash/git-prompt.sh
-source .bash/colored_man.bash
-source .bash/history.bash
+source ~/.bash/git-prompt.sh
+source ~/.bash/colored_man.bash
+source ~/.bash/history.bash
 
 # Shopify
-source .bash/shopify.bash
+source ~/.bash/shopify.bash
