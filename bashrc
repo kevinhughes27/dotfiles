@@ -24,4 +24,4 @@ source ~/.bash/colored_man.bash
 source ~/.bash/history.bash
 
 # Shopify
-source /opt/boxen/env.sh
+#source /opt/boxen/env.sh
