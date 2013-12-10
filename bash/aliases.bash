@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# eg. alias e=echo
+
 # Bundler Commands
 alias be='bundle exec'
 alias bi='bundle install'
@@ -15,6 +17,7 @@ alias rt='rake test'
 alias rtp='PARALLEL=1 PRIDE=1 rake test'
 
 # Git Commands
+alias gitfix='git rebase -i HEAD~2'
 function gp {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
@@ -39,6 +42,3 @@ function gp {
     echo 'Not a git repo'
   fi
 }
-
-# eg. alias e=echo
-alias gitfix='git rebase -i HEAD~2'
