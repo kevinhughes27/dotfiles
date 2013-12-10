@@ -3,12 +3,8 @@
 # prompt
 #PS1="$GREEN\u@\h$NO_COLOR:\w$YELLOW\$(parse_git_branch)$NO_COLOR\$
 #export PS1="\[$(tput bold)\]\[$(tput setaf 1)\]\u@\H\\$\[$(tput sgr0)\] " 
-export PS1="\[\e[32m\]\u@\h:\[\033[0;33m\]\$(parse_git_branch) \[\e[31m\][\w]$\[\e[0m\] "
+export PS1="\[\e[32m\]\u@\h:\[\033[0;33m\]\$(__git_ps1) \[\e[31m\][\w]$\[\e[0m\] "
 export CLICOLOR=1
-
-function parse_git_branch () {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
 
 source ~/.bash/config.bash
 
@@ -28,4 +24,4 @@ source ~/.bash/colored_man.bash
 source ~/.bash/history.bash
 
 # Shopify
-source ~/.bash/shopify.bash
+source /opt/boxen/env.sh
