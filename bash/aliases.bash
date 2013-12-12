@@ -14,6 +14,7 @@ alias bez='bundle exec zeus'
 
 # Git Commands
 alias gitfix='git rebase -i HEAD~2'
+alias gs='git status'
 function gp {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
