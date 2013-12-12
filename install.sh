@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
 echo "Backup the old files"
-mv ~/.bashrc ~/.bashrc.old
-mv ~/.bash_profile ~/.bash_profile.old
-mv ~/.bash ~/.bash.old
-mv ~/.tmux.conf ~/.tmux.conf.old
-mv ~/.gitconfig ~/.gitconfig.old
-mv ~/.gitignore ~/.gitignore.old 
-mv ~/.vimrc ~/.vimrc.old
+# if present then backup to '*.old'
+if [ -f ~/.bashrc ]; then mv ~/.bashrc ~/.bashrc.old; fi
+if [ -f ~/.bash_profile ]; then mv ~/.bash_profile ~/.bash_profile.old; fi
+if [ -f ~/.tmux.conf ]; then mv ~/.tmux.conf ~/.tmux.conf.old; fi
+if [ -f ~/.gitconfig ]; then mv ~/.gitconfig ~/.gitconfig.old; fi
+if [ -f ~/.gitignore ]; then mv ~/.gitignore ~/.gitignore.old; fi
+if [ -f ~/.vimrc ]; then mv ~/.vimrc ~/.vimrc.old; fi
 
+echo "Backup the old folders"
+# if '*.old' present then remove it, then backup to '*.old'
+if [ -d ~/.bash.old ]; then rm -r ~/.bash.old; fi
+if [ -d ~/.bash ]; then mv ~/.bash ~/.bash.old; fi
 
 echo "Symlinking files"
 ln -s ~/dotfiles/bashrc ~/.bashrc
