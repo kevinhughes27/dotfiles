@@ -23,8 +23,9 @@ function gp {
           echo
           echo 'git push aborted.'
         fi  
+      # branch is not master
       else
-        echo "$(git push origin) $branch"
+        echo "$(git push origin) $branch $@"
       fi
     else
       echo 'not on a branch'
