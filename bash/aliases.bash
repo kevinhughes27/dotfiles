@@ -3,14 +3,18 @@
 # eg. alias e=echo
 
 # Bundler Commands
-alias be='bundle exec'
 alias bi='bundle install'
-alias bl='bundle list'
-alias bu='bundle update'
-alias bp='bundle package'
+function bx () {
+  bundle exec $@
+}
 
-alias ber='bundle exec rake'
-alias bez='bundle exec zeus'
+# Rake
+alias rt='rake test'
+alias rtp='rake test PARRALLEL=1 PRIDE=1'
+
+# Zeus
+alias zs='zeus start'
+alias zt='zeus test'
 
 # Git Commands
 alias gitfix='git rebase -i HEAD~2'
