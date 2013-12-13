@@ -4,17 +4,7 @@
 
 # Bundler Commands
 alias bi='bundle install'
-function bx () {
-  bundle exec $@
-}
-
-# Rake
-alias rt='rake test'
-alias rtp='rake test PARRALLEL=1 PRIDE=1'
-
-# Zeus
-alias zs='zeus start'
-alias zt='zeus test'
+alias bx='bundle exec'
 
 # Git Commands
 alias gitfix='git rebase -i HEAD~2'
