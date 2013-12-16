@@ -2,6 +2,9 @@
 name = Kevin Hughes
 email = kevin.hughes@shopify.com
 
+[core]
+ excludesfile = ~/.gitignore
+
 [push]
 default = current
 
