@@ -28,16 +28,14 @@ function gp {
         read -p "push master, Are you sure? " -n 1 -r
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo
-          echo "git push origin $branch"
-          echo "$(git push origin) $branch"
+          git push origin $branch
         else
           echo
           echo 'git push aborted.'
         fi  
       # branch is not master
       else
-        echo "git push origin $branch $@"
-        echo "$(git push origin) $branch $@"
+        git push origin $branch $@
       fi
     else
       echo 'not on a branch'

@@ -5,6 +5,8 @@ export EDITOR="vim"
 export HISTCONTROL="ignoredups"
 export HISTCONTROL=erasedups
 
+bind 'set completion-ignore-case on'
+
 export CLICOLOR=1
 source ~/.bash/colors.bash
 
