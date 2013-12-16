@@ -6,9 +6,19 @@
 alias bi='bundle install'
 alias bx='bundle exec'
 
+# Use Zeus if available otherwise Ruby
+function rt {
+  if [ -e .zeus.sock ]; then
+    bundle exec zeus test $1
+  else
+    bundle exec ruby -Itest $1
+  fi
+}
+
 # Git Commands
-alias gitfix='git rebase -i HEAD~2'
 alias gs='git status'
+alias checkout='git checkout'
+alias branch='git branch'
 function gp {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# usage: \[$GREEN\] ... \[$NORMAL\]
+
 # Normal Colors
 GREEN=$'\e[0;32m'
 RED=$'\e[0;31m'
