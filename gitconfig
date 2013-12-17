@@ -8,6 +8,9 @@ email = kevin.hughes@shopify.com
 [push]
 default = current
 
+[pull]
+rebase = true
+
 [color]
 branch = auto
 diff = auto
