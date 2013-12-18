@@ -9,14 +9,15 @@ alias bx='bundle exec'
 # Use Zeus if available otherwise Ruby
 function rt {
   if [ -e .zeus.sock ]; then
-    bundle exec zeus test $1
+    bundle exec zeus test $@
   else
-    bundle exec ruby -Itest $1
+    bundle exec ruby -Itest $@
   fi
 }
 
 # Git Commands
 alias gs='git status'
+alias gca='git commit --amend'
 alias checkout='git checkout'
 alias branch='git branch'
 function gp {
