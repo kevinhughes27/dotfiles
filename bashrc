@@ -3,13 +3,20 @@
 export EDITOR="vim"
 
 # add line number to LESS prompt
-export LESS='-i-P%f (%i/%m) Line %lt/%L'
+export LESS='-RS#3NM~g'
 
+# history
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
 export HISTCONTROL="ignoredups"
 export HISTCONTROL=erasedups
 
+# help with case in completion
 bind 'set completion-ignore-case on'
 
+# colors
 export CLICOLOR=1
 source ~/.bash/colors.bash
 
