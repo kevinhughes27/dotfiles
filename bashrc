@@ -2,6 +2,9 @@
 
 export EDITOR="vim"
 
+# add line number to LESS prompt
+export LESS='-i-P%f (%i/%m) Line %lt/%L'
+
 export HISTCONTROL="ignoredups"
 export HISTCONTROL=erasedups
 
