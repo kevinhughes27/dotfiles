@@ -36,5 +36,3 @@ source ~/.bash/rake-completion.bash
 source ~/.bash/git-prompt.sh
 source ~/.bash/colored_man.bash
 
-# Shopify
-#source /opt/boxen/env.sh
