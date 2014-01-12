@@ -21,7 +21,7 @@ export CLICOLOR=1
 source ~/.bash/colors.bash
 
 # prompt
-export  PS1="\[$ORANGE\]\u@\h:\[$YELLOW\]\$(__git_ps1)\[$RED\][\w]\[$NORMAL\] "
+export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\$(__git_ps1)\[$RED\][\w]\[$NORMAL\] "
 
 # aliases
 source ~/.bash/aliases.bash
