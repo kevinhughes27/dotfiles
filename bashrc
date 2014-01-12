@@ -35,4 +35,3 @@ source ~/.bash/rake-completion.bash
 # scripts
 source ~/.bash/git-prompt.sh
 source ~/.bash/colored_man.bash
-
