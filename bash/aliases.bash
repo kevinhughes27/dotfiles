@@ -10,6 +10,8 @@ alias bx='bundle exec'
 function rt {
   if [ -e .zeus.sock ]; then
     bundle exec zeus test $@
+  elif grep -q "spring-commands-testunit" Gemfile; then
+    bundle exec spring testunit $@
   else
     bundle exec ruby -Itest $@
   fi
