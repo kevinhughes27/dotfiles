@@ -3,13 +3,16 @@ name = Kevin Hughes
 email = kevin.hughes@shopify.com
 
 [core]
- excludesfile = ~/.gitignore
+excludesfile = ~/.gitignore
 
 [push]
 default = current
 
 [pull]
 rebase = true
+
+[help]
+autocorrect = 1
 
 [color]
 branch = auto
