@@ -30,7 +30,6 @@ source ~/.bash/aliases.bash
 source ~/.bash/git-completion.bash
 source ~/.bash/pip-completion.bash
 source ~/.bash/gem-completion.bash
-source ~/.bash/rake-completion.bash
 
 # scripts
 source ~/.bash/git-prompt.sh
