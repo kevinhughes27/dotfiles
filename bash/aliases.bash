@@ -19,9 +19,10 @@ function rt {
 
 # Git Commands
 alias gs='git status'
-alias gca='git commit --amend'
-alias checkout='git checkout'
-alias branch='git branch'
+alias ga='git add'
+alias gc='git commit'
+alias gb='git branch'
+alias gl='git log'
 function gp {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
