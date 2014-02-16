@@ -18,7 +18,10 @@ backup() {
 backup ~/.bashrc
 backup ~/.bash_profile
 backup ~/.bash
+
 backup ~/.zshrc
+backup ~/.zsh
+
 backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
@@ -54,7 +57,10 @@ link() {
 link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bash ~/.bash
+
 link ~/dotfiles/zshrc ~/.zshrc
+link ~/dotfiles/zsh ~/.zsh
+
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
@@ -62,3 +68,7 @@ link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path"
 
 echo "All done."
+
+echo "Reloading"
+. ~/.bash_profile
+. ~/.zshrc

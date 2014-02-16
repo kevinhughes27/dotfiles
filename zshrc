@@ -37,7 +37,7 @@ ZSH_THEME="kennethreitz"
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment following line if you want to  shown in the command execution time stamp 
+# Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
@@ -45,25 +45,13 @@ ZSH_THEME="kennethreitz"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git ruby bundler rails)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+. ~/.zsh/config
+. ~/.zsh/aliases
 
-export PATH="/usr/local/heroku/bin:/home/kevin/.rvm/gems/ruby-2.0.0-p353/bin:/home/kevin/.rvm/gems/ruby-2.0.0-p353@global/bin:/home/kevin/.rvm/rubies/ruby-2.0.0-p353/bin:/usr/local/heroku/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/kevin/.rvm/bin:/home/kevin/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
+# use .localrc for settings specific to one system
+[[ -f ~/.localrc ]] && . ~/.localrc

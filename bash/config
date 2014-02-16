@@ -1,0 +1,22 @@
+export EDITOR="vim"
+
+# add line number to LESS prompt
+export LESS='-RS#3NM~g'
+
+# colors
+export CLICOLOR=1
+source ~/.bash/colors
+
+# prompt
+export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\$(__git_ps1)\[$RED\][\w]\[$NORMAL\] "
+
+# history
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+export HISTCONTROL="ignoredups"
+export HISTCONTROL=erasedups
+
+# help with case in completion
+bind 'set completion-ignore-case on'
