@@ -21,8 +21,6 @@ function rt {
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-alias gb='git branch'
-alias gl='git log'
 function gp {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
@@ -36,7 +34,7 @@ function gp {
         else
           echo
           echo 'git push aborted.'
-        fi  
+        fi
       # branch is not master
       else
         git push origin $branch $@

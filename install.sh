@@ -18,6 +18,7 @@ backup() {
 backup ~/.bashrc
 backup ~/.bash_profile
 backup ~/.bash
+backup ~/.zshrc
 backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
@@ -29,6 +30,17 @@ if [[ `uname` == 'Darwin' ]]; then
 fi
 
 backup $sublime_path
+
+# oh-my-zsh
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo "Installing oh-my-zsh"
+  curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+else
+  echo "updating oh-my-zsh"
+  cd ~/.oh-my-zsh
+  git pull
+  cd ~
+fi
 
 echo "Symlinking files:"
 link() {
@@ -42,6 +54,7 @@ link() {
 link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bash ~/.bash
+link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
@@ -49,6 +62,3 @@ link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path"
 
 echo "All done."
-
-echo "Reloading"
-exec bash

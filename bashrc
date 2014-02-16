@@ -26,11 +26,13 @@ export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\$(__git_ps1)\[$RED\][\w]\[$NORMAL\] "
 # aliases
 source ~/.bash/aliases.bash
 
-# completetions
-source ~/.bash/git-completion.bash
-source ~/.bash/pip-completion.bash
-source ~/.bash/gem-completion.bash
-
 # scripts
+source ~/.bash/git-completion.bash
 source ~/.bash/git-prompt.sh
 source ~/.bash/colored_man.bash
+
+# RVM
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
