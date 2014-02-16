@@ -20,11 +20,9 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 function gp {
-  emulate -L ksh
-  local git_status="`git status -unormal 2>&1`"
-  if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
-    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-      local branch=${BASH_REMATCH[1]}
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ "$branch" != "HEAD" ]]; then
       if [[ "$branch" =~ "master" ]]; then
         read -p "push master, Are you sure? " -n 1 -r
         if [[ $REPLY =~ ^[Yy]$ ]]; then
