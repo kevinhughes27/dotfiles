@@ -20,6 +20,7 @@ alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
 function gp {
+  emulate -L ksh
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
     if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
