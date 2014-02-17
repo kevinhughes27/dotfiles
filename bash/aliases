@@ -20,7 +20,6 @@ function rt {
 # Git Commands
 alias gs='git status'
 alias ga='git add'
-alias gc='git commit'
 function git_push {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
