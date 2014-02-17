@@ -23,7 +23,7 @@ alias ga='git add'
 alias gc='git commit'
 function gp {
   if git rev-parse --git-dir > /dev/null 2>&1; then
-    local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
     if [[ "$branch" != "HEAD" ]]; then
       if [[ "$branch" =~ "master" ]]; then
         echo "push master, Are you sure? (y/n)"
