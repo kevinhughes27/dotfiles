@@ -21,33 +21,8 @@ function rt {
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-function gp {
-  if git rev-parse --git-dir > /dev/null 2>&1; then
-    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
-    if [[ "$branch" != "HEAD" ]]; then
-      if [[ "$branch" =~ "master" ]]; then
-        echo "push master, Are you sure? (y/n)"
-        read REPLY
-        if [[ $REPLY =~ ^[Yy]$ ]]; then
-          echo
-          git push origin $branch
-        else
-          echo
-          echo 'git push aborted.'
-        fi
-      # branch is not master, allow force option if passed
-      else
-        git push origin $branch $@
-      fi
-    else
-      echo 'not on a branch'
-    fi
-  else
-    echo 'Not a git repo'
-  fi
-}
 
-function test_gp {
+function gp {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
     if [[ "$branch" != "HEAD" ]]; then
