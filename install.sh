@@ -16,7 +16,6 @@ backup() {
 }
 
 backup ~/.bashrc
-backup ~/.bash_profile
 backup ~/.bash
 
 backup ~/.zshrc
@@ -55,7 +54,6 @@ link() {
 }
 
 link ~/dotfiles/bashrc ~/.bashrc
-link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bash ~/.bash
 
 link ~/dotfiles/zshrc ~/.zshrc
