@@ -21,8 +21,7 @@ function rt {
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
-
-function gp {
+function git_push {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
     if [[ "$branch" != "HEAD" ]]; then
@@ -45,3 +44,4 @@ function gp {
     echo 'Not a git repo'
   fi
 }
+alias gp='git_push'
