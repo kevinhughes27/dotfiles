@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # eg. alias e=echo
 
 # Bundler Commands
@@ -24,7 +26,8 @@ function gp {
     local branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
     if [[ "$branch" != "HEAD" ]]; then
       if [[ "$branch" =~ "master" ]]; then
-        read -p "push master, Are you sure? " -n 1 -r
+        echo "push master, Are you sure? (y/n)"
+        read REPLY
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           echo
           git push origin $branch
@@ -32,7 +35,7 @@ function gp {
           echo
           echo 'git push aborted.'
         fi
-      # branch is not master
+      # branch is not master, allow force option if passed
       else
         git push origin $branch $@
       fi

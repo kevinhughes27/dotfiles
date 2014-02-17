@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export EDITOR="vim"
 
 # add line number to LESS prompt
