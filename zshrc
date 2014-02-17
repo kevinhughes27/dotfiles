@@ -50,8 +50,8 @@ plugins=(git ruby bundler rails)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-. ~/.zsh/config
-. ~/.zsh/aliases
+source ~/.zsh/config
+source ~/.zsh/aliases
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc

@@ -1,1 +1,1 @@
-. ~/.bash/aliases
+source ~/.bash/aliases
