@@ -41,7 +41,7 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
 else
   echo "updating oh-my-zsh"
   cd ~/.oh-my-zsh
-  git pull
+  #git pull
   cd ~
 fi
 
