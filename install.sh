@@ -39,11 +39,6 @@ backup $sublime_path
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing oh-my-zsh"
   curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-else
-  echo "updating oh-my-zsh"
-  cd ~/.oh-my-zsh
-  git pull
-  cd ~
 fi
 
 echo "Symlinking files:"
@@ -67,5 +62,10 @@ link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path"
+
+# gnome-terminal
+if [[ `uname` == 'Linux' ]]; then
+  gconftool-2 load ~/dotfiles/gnome-terminal
+fi
 
 echo "All done."
