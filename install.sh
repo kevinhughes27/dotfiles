@@ -15,6 +15,8 @@ backup() {
   fi
 }
 
+backup ~/.bash_profile
+
 backup ~/.bashrc
 backup ~/.bash
 
@@ -53,6 +55,7 @@ link() {
   ln -s "$from" "$to"
 }
 
+link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/bash ~/.bash
 
@@ -66,7 +69,3 @@ link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path"
 
 echo "All done."
-
-echo "Reloading"
-. ~/.bash_profile
-. ~/.zshrc
