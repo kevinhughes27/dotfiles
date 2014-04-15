@@ -12,5 +12,7 @@
 	],
 	"scroll_past_end": true,
 	"tab_size": 2,
-	"translate_tabs_to_spaces": true
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"trailing_spaces_include_current_line": false
 }
