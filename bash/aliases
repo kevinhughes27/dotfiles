@@ -16,7 +16,6 @@ function rt {
     bundle exec ruby -Itest $@
   fi
 }
-alias rit='ruby -Itest'
 
 # Git Commands
 alias gs='git status'
