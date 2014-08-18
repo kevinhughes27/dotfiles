@@ -10,7 +10,7 @@ export CLICOLOR=1
 source ~/.bash/colors
 
 # prompt
-export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\$(__git_ps1)\[$RED\][\w]\[$NORMAL\] "
+export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\[$RED\][\w]\[$NORMAL\] "
 
 # history
 export HISTSIZE=10000
