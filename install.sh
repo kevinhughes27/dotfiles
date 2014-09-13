@@ -1,39 +1,44 @@
 #!/usr/bin/env bash
 
+# changes the internal field separator to a newline only
+IFS='
+'
+
 echo "Backup the original files"
+
 backup() {
   # backs up the file/folder the first time only
   file="$1"
   if [[ -f $file ]]; then
     if [[ ! -f "$file.old" ]]; then
+      echo "Backup '$file' to '$file.old'"
       mv $file "$file.old"
     fi
   elif [[ -d $file ]]; then
     if [[ ! -d "$file.old" ]]; then
+      echo "Backup '$file' to '$file.old'"
       mv $file "$file.old"
     fi
   fi
 }
 
 backup ~/.bash_profile
-
 backup ~/.bashrc
 backup ~/.bash
-
 backup ~/.zshrc
 backup ~/.zsh
-
 backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
 backup ~/.vimrc
 
-sublime_path="$HOME/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+sublime_path="$HOME/.config/sublime-text-3/Packages/User"
 if [[ `uname` == 'Darwin' ]]; then
-  sublime_path="$HOME/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+  sublime_path="$HOME/Library/Application Support/Sublime Text 2/Packages/User"
 fi
 
-backup $sublime_path
+backup "$sublime_path/Preferences.sublime-settings"
+backup "$sublime_path/Package Control.sublime-settings"
 
 # oh-my-zsh
 if [[ ! -d ~/.oh-my-zsh ]]; then
@@ -61,7 +66,8 @@ link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 link ~/dotfiles/vimrc ~/.vimrc
-link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path"
+link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path/Preferences.sublime-settings"
+link ~/dotfiles/sublime/Packages/User/Package\ Control.sublime-settings "$sublime_path/Package Control.sublime-settings"
 
 # gnome-terminal
 if [[ `uname` == 'Linux' ]]; then
