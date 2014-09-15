@@ -34,7 +34,7 @@ backup ~/.vimrc
 
 sublime_path="$HOME/.config/sublime-text-3/Packages/User"
 if [[ `uname` == 'Darwin' ]]; then
-  sublime_path="$HOME/Library/Application Support/Sublime Text 2/Packages/User"
+  sublime_path="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
 fi
 
 backup "$sublime_path/Preferences.sublime-settings"
