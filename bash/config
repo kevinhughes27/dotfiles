@@ -9,9 +9,6 @@ export LESS='-RS#3NM~g'
 export CLICOLOR=1
 source ~/.bash/colors
 
-# prompt
-export  PS1="\[$PURPLE\]\u@\h:\[$YELLOW\]\[$RED\][\w]\[$NORMAL\] "
-
 # history
 export HISTSIZE=10000
 export HISTFILESIZE=10000
