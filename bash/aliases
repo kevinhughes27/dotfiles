@@ -44,3 +44,7 @@ function git_push {
   fi
 }
 alias gp='git_push'
+
+function clean_nfs {
+  find | grep "\._" | xargs rm
+}
