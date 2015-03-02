@@ -45,6 +45,13 @@ function git_push {
 }
 alias gp='git_push'
 
+# Shopify Vagrant Commands
+alias vup='VAGRANT_CWD=/Users/kevin/vagrant vagrant up'
+alias vssh='VAGRANT_CWD=/Users/kevin/vagrant vagrant ssh'
+
 function clean_nfs {
   find | grep "\._" | xargs rm
 }
+
+# Coffeescript
+alias cw='coffee -bcw *.coffee'
