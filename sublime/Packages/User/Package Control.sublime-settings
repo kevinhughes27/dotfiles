@@ -1,9 +1,13 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Better CoffeeScript",
 		"Git",
 		"GitGutter",
+		"Package Control",
 		"Ruby Hash Converter",
 		"sublime-github"
 	]
