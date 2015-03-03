@@ -67,6 +67,7 @@ link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path/Preferences.sublime-settings"
+link ~/dotfiles/sublime/Packages/User/Default\ \(OSX\).sublime-keymap "$sublime_path/Default (OSX).sublime-keymap"
 link ~/dotfiles/sublime/Packages/User/Package\ Control.sublime-settings "$sublime_path/Package Control.sublime-settings"
 
 # gnome-terminal
