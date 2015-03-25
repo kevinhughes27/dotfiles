@@ -28,7 +28,11 @@ function git_push {
         echo "push master, Are you sure? (y/n)"
         read REPLY
         if [[ $REPLY =~ ^[Yy]$ ]]; then
-          git push origin $branch
+          if [[ -n "$@"  ]]; then
+            echo 'no force push master'
+          else
+            git push origin $branch
+          fi
         else
           echo 'git push aborted.'
         fi
