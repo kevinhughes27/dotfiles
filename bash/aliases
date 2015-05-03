@@ -49,6 +49,20 @@ function git_push {
 }
 alias gp='git_push'
 
+# Heroku Commands
+function creds2heroku {
+  if [[ -f ".env" ]]; then
+    cat .env | while read line
+    do
+      echo $line
+      heroku config:set $line
+      echo ""
+    done
+  else
+    echo "no .env file in current directory"
+  fi
+}
+
 # Shopify Vagrant Commands
 alias vup='VAGRANT_CWD=/Users/kevin/vagrant vagrant up'
 alias vssh='VAGRANT_CWD=/Users/kevin/vagrant vagrant ssh'
