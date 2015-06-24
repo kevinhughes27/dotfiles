@@ -83,11 +83,5 @@ link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_pat
 link ~/dotfiles/sublime/Packages/User/Default\ \(OSX\).sublime-keymap "$sublime_path/Default (OSX).sublime-keymap"
 link ~/dotfiles/sublime/Packages/User/Package\ Control.sublime-settings "$sublime_path/Package Control.sublime-settings"
 
-# gnome-terminal
-if [[ `uname` == 'Linux' ]] && [ hash gconftool-2 2>/dev/null ]; then
-  echo "loading gnome terminal settings"
-  gconftool-2 load ~/dotfiles/gnome-terminal
-fi
-
 echo ""
 echo "All done."
