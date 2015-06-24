@@ -24,7 +24,7 @@ l = log
 branch = auto
 diff = auto
 status = auto
-	ui = true
+ui = true
 
 [color "branch"]
 current = yellow reverse
