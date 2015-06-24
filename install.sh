@@ -1,5 +1,18 @@
 #!/usr/bin/env bash
 
+# Install script for my dotfiles
+# ------------------------------
+# Has 2 components - backing up existing files
+# and then simlinking the files in the dotfiles
+# folder to the home directory. The script is
+# idempotent and can be run many times safely.
+#
+# On the first run it will backup any existing
+# files - this makes sure you don't remove something
+# system specific etc. On subsequent runs it will
+# detect that the file is a symlink to dotfiles and
+# ignore it.
+
 # changes the internal field separator to a newline only
 IFS='
 '
