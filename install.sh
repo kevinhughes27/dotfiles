@@ -4,16 +4,25 @@
 IFS='
 '
 
+echo ""
 echo "Backup the original files"
+echo "-------------------------"
+echo ""
 
 backup() {
   # backs up the file/folder the first time only
   file="$1"
-  if [[ -f $file ]]; then
+
+  # simlink already exists
+  if [[ -L $file ]] && [[ "`readlink $file`" == *"dotfiles"* ]]; then
+    echo "Simlink already exists for '$file'"
+  # file exists
+  elif [[ -f $file ]]; then
     if [[ ! -f "$file.old" ]]; then
       echo "Backup '$file' to '$file.old'"
       mv $file "$file.old"
     fi
+  # folder exists
   elif [[ -d $file ]]; then
     if [[ ! -d "$file.old" ]]; then
       echo "Backup '$file' to '$file.old'"
@@ -46,7 +55,11 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
 
+echo ""
 echo "Symlinking files:"
+echo "-----------------"
+echo ""
+
 link() {
   from="$1"
   to="$2"
@@ -75,4 +88,5 @@ if [[ `uname` == 'Linux' ]]; then
   gconftool-2 load ~/dotfiles/gnome-terminal
 fi
 
+echo ""
 echo "All done."
