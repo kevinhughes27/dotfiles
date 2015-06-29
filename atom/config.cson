@@ -1,0 +1,22 @@
+"*":
+  "exception-reporting":
+    userId: "5ea1f452-8144-666f-8142-b28a96dbe538"
+  welcome:
+    showOnStartup: false
+  "one-dark-ui": {}
+  core:
+    themes: [
+      "atom-dark-ui"
+      "monokai"
+    ]
+    projectHome: "/Users/kevin/Dropbox/Projects"
+  editor:
+    invisibles:
+      eol: " "
+      tab: "-"
+    autoIndentOnPaste: false
+    scrollPastEnd: true
+    preferredLineLength: 120
+    showInvisibles: true
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
