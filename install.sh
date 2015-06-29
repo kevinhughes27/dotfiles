@@ -62,6 +62,8 @@ fi
 backup "$sublime_path/Preferences.sublime-settings"
 backup "$sublime_path/Package Control.sublime-settings"
 
+backup ~/.atom
+
 # oh-my-zsh
 if [[ ! -d ~/.oh-my-zsh ]]; then
   echo "Installing oh-my-zsh"
@@ -95,6 +97,7 @@ link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path/Preferences.sublime-settings"
 link ~/dotfiles/sublime/Packages/User/Default\ \(OSX\).sublime-keymap "$sublime_path/Default (OSX).sublime-keymap"
 link ~/dotfiles/sublime/Packages/User/Package\ Control.sublime-settings "$sublime_path/Package Control.sublime-settings"
+link ~/dotfiles/atom ~/.atom
 
 echo ""
 echo "All done."
