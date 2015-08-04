@@ -63,6 +63,36 @@ function creds2heroku {
   fi
 }
 
+# Coffeescript
+alias cw='coffee -bcw *.coffee'
+
+# Shopify release script
+# expects a version number
+function s_release {
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
+    if [[ "$branch" =~ "master" ]]; then
+      if [[ -z "$1" ]]; then
+        echo 'No version given'
+      else
+        echo "have you updated the version file and changelog? (y/n)"
+        read REPLY
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+          git add .
+          git commit -m "Release v$1"
+          git push origin master
+          git tag -m "Release $1" "v$1"
+          git push --tags origin master
+        fi
+      fi
+    else
+      echo 'Can only release on Master branch'
+    fi
+  else
+    echo 'Not a git repo'
+  fi
+}
+
 # Shopify Vagrant Commands
 alias vup='VAGRANT_CWD=/Users/kevin/vagrant vagrant up'
 alias vssh='VAGRANT_CWD=/Users/kevin/vagrant vagrant ssh'
@@ -70,6 +100,3 @@ alias vssh='VAGRANT_CWD=/Users/kevin/vagrant vagrant ssh'
 function clean_nfs {
   find | grep "\._" | xargs rm
 }
-
-# Coffeescript
-alias cw='coffee -bcw *.coffee'
