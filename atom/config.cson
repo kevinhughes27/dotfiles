@@ -10,6 +10,7 @@
       "monokai"
     ]
     projectHome: "/Users/kevin/Dropbox/Projects"
+    destroyEmptyPanes: false
   editor:
     invisibles:
       eol: " "
