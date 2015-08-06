@@ -95,6 +95,7 @@ function s_release {
 
 # Shopify Vagrant Commands
 alias vup='VAGRANT_CWD=/Users/kevin/vagrant vagrant up'
+alias vdown='VAGRANT_CWD=/Users/kevin/vagrant vagrant halt'
 alias vssh='VAGRANT_CWD=/Users/kevin/vagrant vagrant ssh'
 
 function clean_nfs {
