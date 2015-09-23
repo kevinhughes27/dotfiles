@@ -21,3 +21,8 @@
     showInvisibles: true
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
+  linter:
+    showErrorPanel: false
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+  minimap: {}

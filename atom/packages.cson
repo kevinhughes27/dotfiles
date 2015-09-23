@@ -1,0 +1,10 @@
+packages: [
+  "file-icons"
+  "highlight-line"
+  "linter"
+  "linter-eslint"
+  "minimap"
+  "monokai"
+  "package-sync"
+  "rails-latest-migration"
+]
