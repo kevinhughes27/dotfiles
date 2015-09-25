@@ -47,21 +47,15 @@ backup() {
 backup ~/.bash_profile
 backup ~/.bashrc
 backup ~/.bash
+
 backup ~/.zshrc
 backup ~/.zsh
 backup ~/.tmux.conf
+
 backup ~/.gitconfig
 backup ~/.gitignore
+
 backup ~/.vimrc
-
-sublime_path="$HOME/.config/sublime-text-3/Packages/User"
-if [[ `uname` == 'Darwin' ]]; then
-  sublime_path="$HOME/Library/Application Support/Sublime Text 3/Packages/User"
-fi
-
-backup "$sublime_path/Preferences.sublime-settings"
-backup "$sublime_path/Package Control.sublime-settings"
-
 backup ~/.atom
 
 # oh-my-zsh
@@ -89,14 +83,12 @@ link ~/dotfiles/bash ~/.bash
 
 link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/zsh ~/.zsh
-
 link ~/dotfiles/tmux.conf ~/.tmux.conf
+
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
+
 link ~/dotfiles/vimrc ~/.vimrc
-link ~/dotfiles/sublime/Packages/User/Preferences.sublime-settings "$sublime_path/Preferences.sublime-settings"
-link ~/dotfiles/sublime/Packages/User/Default\ \(OSX\).sublime-keymap "$sublime_path/Default (OSX).sublime-keymap"
-link ~/dotfiles/sublime/Packages/User/Package\ Control.sublime-settings "$sublime_path/Package Control.sublime-settings"
 link ~/dotfiles/atom ~/.atom
 
 echo ""
