@@ -26,3 +26,7 @@
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
   minimap: {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
+  "atom-beautify":
+    _analyticsUserId: "b27c8254-2d77-4c04-8c77-a885e625675f"
