@@ -55,6 +55,7 @@ backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
 
+backup ~/.vim
 backup ~/.vimrc
 backup ~/.atom
 
@@ -88,6 +89,7 @@ link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 
+link ~/dotfiles/vim ~/.vim
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/atom ~/.atom
 

@@ -1,10 +1,12 @@
-filetype plugin on
-filetype plugin indent on
+colorscheme molokai
 syntax enable
-set number
-set autoindent
-set tabstop=2
-set expandtab                " use spaces, not tabs (optional)
+
 set encoding=utf-8
+set number               " show line numbers
+set showmatch            " highlight matching [{()}]
+set autoindent           " auto indent on newline
+set tabstop=2            " number of visual spaces per TAB
+set softtabstop=4        " number of spaces in tab when editing
+set expandtab            " tabs are spaces
 
 inoremap jk <ESC>
