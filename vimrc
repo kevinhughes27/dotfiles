@@ -1,5 +1,6 @@
 colorscheme molokai
 syntax enable
+autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 
 set encoding=utf-8
 set number               " show line numbers
