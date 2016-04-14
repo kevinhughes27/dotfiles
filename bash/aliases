@@ -38,7 +38,7 @@ function git_push {
         fi
       # branch is not master, allow force option if passed
       else
-        git push --force-with-lease origin $branch $@
+        git push origin $branch $@
       fi
     else
       echo 'not on a branch'
