@@ -47,14 +47,12 @@ backup() {
 backup ~/.bash_profile
 backup ~/.bashrc
 backup ~/.bash
-
+backup ~/.railsrc
 backup ~/.zshrc
 backup ~/.zsh
 backup ~/.tmux.conf
-
 backup ~/.gitconfig
 backup ~/.gitignore
-
 backup ~/.vim
 backup ~/.vimrc
 backup ~/.atom
@@ -81,14 +79,12 @@ link() {
 link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/bash ~/.bash
-
+link ~/dotfiles/railsrc ~/.railsrc
 link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/zsh ~/.zsh
 link ~/dotfiles/tmux.conf ~/.tmux.conf
-
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
-
 link ~/dotfiles/vim ~/.vim
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/atom ~/.atom
