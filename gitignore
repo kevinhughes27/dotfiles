@@ -2,6 +2,7 @@
 *~
 *.rbc
 *.pyc
+*.byebug_history
 ToDo.txt
 ToDo.md
 ngrok
