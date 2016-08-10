@@ -1,4 +1,3 @@
-colorscheme molokai
 syntax enable
 autocmd BufNewFile,BufRead Gemfile set filetype=ruby
 
