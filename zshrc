@@ -41,7 +41,7 @@ ZSH_THEME="candy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git colored-man-pages heroku jsontools rake-fast)
+plugins=(git colored-man-pages heroku jsontools rake-fast mix)
 
 source $ZSH/oh-my-zsh.sh
 
