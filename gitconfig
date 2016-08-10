@@ -1,9 +1,16 @@
 [user]
 name = Kevin Hughes
 email = kevin.hughes@shopify.com
+signingkey = ABDAFEE7
 
 [core]
 excludesfile = ~/.gitignore
+
+[commit]
+gpgsign = true
+
+[gpg]
+program = /usr/local/bin/gpg2
 
 [push]
 default = current
