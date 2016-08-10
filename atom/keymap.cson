@@ -26,3 +26,7 @@
 'body':
   'cmd-a \\': 'pane:split-right'
   'ctrl-a \\': 'pane:split-right'
+
+'atom-text-editor':
+  'cmd-left': 'editor:move-to-beginning-of-line'
+  'cmd-right': 'editor:move-to-end-of-line'

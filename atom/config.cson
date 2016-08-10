@@ -18,8 +18,6 @@
     showInvisibles: true
   "exception-reporting":
     userId: "5ea1f452-8144-666f-8142-b28a96dbe538"
-  linter:
-    showErrorPanel: false
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
   minimap: {}
