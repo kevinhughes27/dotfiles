@@ -9,9 +9,6 @@ excludesfile = ~/.gitignore
 [commit]
 gpgsign = true
 
-[gpg]
-program = /usr/local/bin/gpg2
-
 [push]
 default = current
 
