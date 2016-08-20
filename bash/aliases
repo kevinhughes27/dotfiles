@@ -6,10 +6,10 @@
 alias bi='bundle install'
 alias bx='bundle exec'
 
-# Use Zeus if available otherwise Sping otherwise Ruby
+# Use rails test if available otherwise Sping otherwise Ruby
 function rt {
-  if [ -e .zeus.sock ]; then
-    bundle exec zeus test $@
+  if grep -q "rails', '5" Gemfile; then
+    rails test $@
   elif grep -q "spring-commands-testunit" Gemfile; then
     bundle exec spring testunit $@
   else
@@ -138,4 +138,3 @@ function s_release {
     echo 'Not a git repo'
   fi
 }
-
