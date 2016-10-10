@@ -17,6 +17,11 @@ function rt {
   fi
 }
 
+# return PID for a port
+function pid_for_port {
+  sudo lsof -i :$@
+}
+
 # Git Commands
 alias gs='git status'
 alias ga='git add'
