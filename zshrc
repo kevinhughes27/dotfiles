@@ -46,8 +46,11 @@ plugins=(git colored-man-pages heroku jsontools rake-fast mix)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-source ~/.zsh/config
-source ~/.zsh/aliases
+source ~/dotfiles/zsh/config
+
+# aliases
+source ~/dotfiles/shell/macros
+source ~/dotfiles/shell/aliases
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc

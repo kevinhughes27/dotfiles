@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-source ~/.bash/config
+source ~/dotfiles/bash/config
 
 # aliases
-source ~/.bash/aliases
+source ~/dotfiles/shell/macros
+source ~/dotfiles/shell/aliases
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc

@@ -1,5 +1,8 @@
 export EDITOR='vim'
 
+# add line number to LESS prompt
+export LESS='-RS#3NM~g'
+
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000

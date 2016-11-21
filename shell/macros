@@ -1,13 +1,5 @@
-#!/bin/bash
-
-# eg. alias e=echo
-
-# Bundler Commands
-alias bi='bundle install'
-alias bx='bundle exec'
-
 # Use rails test if available otherwise Sping otherwise Ruby
-function rt {
+function ruby_test {
   if grep -q "rails', '5" Gemfile; then
     rails test $@
   elif grep -q "spring-commands-testunit" Gemfile; then
@@ -21,10 +13,6 @@ function rt {
 function pid_for_port {
   sudo lsof -i :$@
 }
-
-# Git Commands
-alias gs='git status'
-alias ga='git add'
 function git_push {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
@@ -59,9 +47,8 @@ function git_push {
     echo 'Not a git repo'
   fi
 }
-alias gp='git_push'
 
-function rebase {
+function git_rebase {
   curbranch=`git rev-parse --abbrev-ref HEAD`
   git checkout master
   git pull origin master
@@ -82,9 +69,6 @@ function creds2heroku {
     echo "no .env file in current directory"
   fi
 }
-
-# Coffeescript
-alias cw='coffee -bcw *.coffee'
 
 # Top Hat ShopifyApp
 function tophat_shopify_app {
