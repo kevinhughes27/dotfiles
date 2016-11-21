@@ -61,6 +61,14 @@ function git_push {
 }
 alias gp='git_push'
 
+function rebase {
+  curbranch=`git rev-parse --abbrev-ref HEAD`
+  git checkout master
+  git pull origin master
+  git checkout $curbranch
+  git rebase master
+}
+
 # Heroku Commands
 function creds2heroku {
   if [[ -f ".env" ]]; then
