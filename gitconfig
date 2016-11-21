@@ -3,11 +3,11 @@ name = Kevin Hughes
 email = kevinhughes27@gmail.com
 signingkey = ABDAFEE7
 
-[core]
-excludesfile = ~/.gitignore
-
 [commit]
 gpgsign = true
+
+[core]
+excludesfile = ~/.gitignore
 
 [push]
 default = current
