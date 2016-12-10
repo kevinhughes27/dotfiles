@@ -80,6 +80,7 @@ link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/railsrc ~/.railsrc
 link ~/dotfiles/zprofile ~/.zprofile
 link ~/dotfiles/zshrc ~/.zshrc
+link ~/dotfiles/xsession.rc ~/.xsession.rc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
