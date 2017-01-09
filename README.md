@@ -9,4 +9,23 @@ Installation
     cd ~
     git clone https://github.com/pickle27/dotfiles
     cd dotfiles
-    ./install.sh 
+    ./install.sh
+
+localrc
+-------
+
+My setup will read a `.localrc` for any system specific settings. Here is an example of what I have for my OSX machine which has some specific settings for work:
+
+```
+export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$PATH"
+
+source /usr/local/share/chruby/chruby.sh
+chruby 2.3.1
+
+source /opt/dev/dev.sh
+
+git config --system gpg.program "/usr/local/bin/gpg2"
+```
