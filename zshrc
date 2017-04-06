@@ -49,8 +49,8 @@ source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/config
 
 # aliases
-source ~/dotfiles/shell/macros
-source ~/dotfiles/shell/aliases
+source ~/dotfiles/shell/macros.sh
+source ~/dotfiles/shell/aliases.sh
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
