@@ -11,9 +11,17 @@ excludesfile = ~/.gitignore
 
 [push]
 default = current
+followTags = true
 
 [pull]
 rebase = true
+
+[merge]
+ff = only
+conflictstyle = diff3
+
+[status]
+showUntrackedFiles = all
 
 [help]
 autocorrect = 1
@@ -23,7 +31,8 @@ ci = commit
 cia = commit --amend --reuse-message=HEAD
 co = checkout
 br = branch
-l = log
+l = log --graph
+st = stash --include-untracked
 
 [color]
 branch = auto
