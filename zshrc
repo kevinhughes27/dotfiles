@@ -52,5 +52,8 @@ source ~/dotfiles/zsh/config
 source ~/dotfiles/shell/macros.sh
 source ~/dotfiles/shell/aliases.sh
 
+# custom plugins
+source ~/dotfiles/zsh/zsh-better-npm-completion.plugin.zsh
+
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
