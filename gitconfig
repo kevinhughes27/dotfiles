@@ -31,7 +31,7 @@ ci = commit
 cia = commit --amend --reuse-message=HEAD
 co = checkout
 br = branch
-l = log --graph
+l = log
 st = stash --include-untracked
 
 [color]
