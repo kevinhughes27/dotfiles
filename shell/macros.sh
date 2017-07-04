@@ -1,6 +1,12 @@
-# Use rails test if available otherwise Sping otherwise Ruby
+#!/bin/bash
+
+# Use the right test command based on certain conditions
 function ruby_test {
-  if grep -q "rails', '5" Gemfile; then
+  if [[ -f "dev.yml" ]]; then
+    dev test $@
+  elif grep -q "rspec" Gemfile; then
+    rspec $@
+  elif grep -q "rails', '5" Gemfile; then
     rails test $@
   elif grep -q "spring-commands-testunit" Gemfile; then
     bundle exec spring testunit $@
