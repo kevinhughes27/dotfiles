@@ -83,7 +83,7 @@ function tophat_shopify_app {
     return
   fi
 
-  usage='usage: tophat_shopify_app <api_key> <api_secret> <redirect_uri>'
+  usage='usage: tophat_shopify_app <api_key> <api_secret>'
 
   if [[ -z "$1" ]]; then
     echo $usage
@@ -91,11 +91,6 @@ function tophat_shopify_app {
   fi
 
   if [[ -z "$2" ]]; then
-    echo $usage
-    return
-  fi
-
-  if [[ -z "$3" ]]; then
     echo $usage
     return
   fi
@@ -113,13 +108,13 @@ function tophat_shopify_app {
 
   echo 'run shopify_app generator'
   spring stop
-  rails g shopify_app --api_key $1 --secret $2 --redirect_uri $3
+  rails g shopify_app --api_key $1 --secret $2
 
   echo 'migrate db'
   bundle exec rake db:migrate
 
   echo 'start server'
-  bundle exec rails server
+  bundle exec rails server -b localhost
 }
 
 # Shopify release script
