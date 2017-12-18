@@ -84,7 +84,6 @@ link ~/dotfiles/xsession.rc ~/.xsession.rc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
-link ~/dotfiles/pryrc ~/.pryrc
 link ~/dotfiles/vim ~/.vim
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/atom ~/.atom

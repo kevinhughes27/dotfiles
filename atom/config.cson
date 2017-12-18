@@ -4,6 +4,7 @@
   core:
     destroyEmptyPanes: false
     projectHome: "/Users/kevin/Dropbox/Projects"
+    telemetryConsent: "limited"
     themes: [
       "atom-dark-ui"
       "monokai"

@@ -6,3 +6,5 @@ dev
 packages*
 .apm*
 storage*
+github.cson
+recovery*
