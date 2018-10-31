@@ -2,7 +2,5 @@ packages: [
   "file-icons"
   "highlight-line"
   "minimap"
-  "monokai"
   "package-sync"
-  "rails-latest-migration"
 ]

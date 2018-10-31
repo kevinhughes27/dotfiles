@@ -3,11 +3,11 @@
     _analyticsUserId: "b27c8254-2d77-4c04-8c77-a885e625675f"
   core:
     destroyEmptyPanes: false
-    projectHome: "/Users/kevin/Dropbox/Projects"
+    projectHome: "/Users/kevin/Projects"
     telemetryConsent: "limited"
     themes: [
       "atom-dark-ui"
-      "monokai"
+      "atom-dark-syntax"
     ]
   editor:
     autoIndentOnPaste: false
@@ -23,8 +23,6 @@
     disableWhenNoEslintrcFileInPath: true
   minimap: {}
   "one-dark-ui": {}
-  "ruby-test":
-    specFramework: "minitest"
   "tree-view":
     hideVcsIgnoredFiles: true
   welcome:
