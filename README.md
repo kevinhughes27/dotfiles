@@ -6,13 +6,21 @@ I finally started my own proper set of dotfiles. I've been collecting bits and p
 Installation
 ------------
 
-    cd ~
-    git clone https://github.com/pickle27/dotfiles
-    cd dotfiles
-    ./install.sh
+```
+cd ~
+git clone https://github.com/kevinhughes27/dotfiles
+cd dotfiles
+./install.sh
+```
 
-localrc
--------
+Atom
+----
+
+Installing the dotfiles only copies and links my configuration files. For most programs this is enough but Atom takes a bit more work. First install `package-sync` by running `apm install package-sync` then open Atom and run the `package-sync` command.
+
+
+.localrc
+--------
 
 My setup will read a `.localrc` for any system specific settings. Here is an example of what I have for my OSX machine which has some specific settings for work:
 
