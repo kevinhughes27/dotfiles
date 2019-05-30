@@ -50,3 +50,9 @@ function git_rebase {
   git checkout $curbranch
   git rebase master
 }
+
+# switch to master and pull
+function git_fresh {
+  git checkout master
+  git pull origin master
+}
