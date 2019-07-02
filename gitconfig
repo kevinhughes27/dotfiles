@@ -6,6 +6,9 @@ signingkey = ABDAFEE7
 [commit]
 gpgsign = true
 
+[gpg]
+program = gpg
+
 [core]
 excludesfile = ~/.gitignore
 
@@ -55,3 +58,6 @@ new = cyan
 added = yellow
 changed = green
 untracked = cyan
+
+[pager]
+branch = false
