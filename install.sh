@@ -44,7 +44,6 @@ backup() {
   fi
 }
 
-backup ~/.bash_profile
 backup ~/.bashrc
 backup ~/.railsrc
 backup ~/.zprofile
@@ -75,7 +74,6 @@ link() {
   ln -s "$from" "$to"
 }
 
-link ~/dotfiles/bash_profile ~/.bash_profile
 link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/railsrc ~/.railsrc
 link ~/dotfiles/zprofile ~/.zprofile
