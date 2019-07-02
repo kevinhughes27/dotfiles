@@ -56,3 +56,14 @@ function git_fresh {
   git checkout master
   git pull origin master
 }
+
+# rails test or rspec
+function ruby_test {
+  if grep -q "rspec" Gemfile; then
+    bundle exec rspec $@
+  elif grep -q "rails', '5" Gemfile; then
+    rails test $@
+  else
+    bundle exec rake test $@
+  fi
+}
