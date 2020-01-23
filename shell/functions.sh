@@ -67,3 +67,8 @@ function ruby_test {
     bundle exec rake test $@
   fi
 }
+
+# start python simple http server in the working directory
+function server() {
+  python -m SimpleHTTPServer 8000
+}
