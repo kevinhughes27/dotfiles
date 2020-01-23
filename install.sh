@@ -45,8 +45,6 @@ backup() {
 }
 
 backup ~/.bashrc
-backup ~/.railsrc
-backup ~/.zprofile
 backup ~/.zshrc
 backup ~/.tmux.conf
 backup ~/.gitconfig
@@ -75,10 +73,7 @@ link() {
 }
 
 link ~/dotfiles/bashrc ~/.bashrc
-link ~/dotfiles/railsrc ~/.railsrc
-link ~/dotfiles/zprofile ~/.zprofile
 link ~/dotfiles/zshrc ~/.zshrc
-link ~/dotfiles/xsession.rc ~/.xsession.rc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore

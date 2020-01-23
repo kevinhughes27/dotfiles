@@ -1,6 +1,21 @@
-#!/usr/bin/env bash
+# editor
+export EDITOR="vim"
 
-source ~/dotfiles/bash/config
+# add line number to LESS prompt
+export LESS='-RS#3NM~g'
+
+# don't put duplicate lines or lines starting with space in the his
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# history size
+export HISTSIZE=1000
+export HISTFILESIZE=2000
+
+# help with case in completion
+bind 'set completion-ignore-case on'
 
 # aliases
 source ~/dotfiles/shell/functions.sh

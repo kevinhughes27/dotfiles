@@ -32,18 +32,33 @@ ZSH_THEME="candy"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=( 
+plugins=(
     colored-man-pages
     docker
     docker-compose
-    heroku 
+    heroku
     jsontools
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # user configuration
-source ~/dotfiles/zsh/config
+
+# editor
+export EDITOR='vim'
+
+# add line number to LESS prompt
+export LESS='-RS#3NM~g'
+
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=1000
+
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
 
 # aliases
 source ~/dotfiles/shell/functions.sh
