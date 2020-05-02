@@ -1,6 +1,0 @@
-packages: [
-  "file-icons"
-  "highlight-line"
-  "minimap"
-  "package-sync"
-]

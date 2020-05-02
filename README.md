@@ -13,11 +13,6 @@ cd dotfiles
 ./install.sh
 ```
 
-Atom
-----
-
-Installing the dotfiles only copies and links my configuration files. For most programs this is enough but Atom takes a bit more work. First install `package-sync` by running `apm install package-sync` then open Atom and run the `package-sync` command.
-
 
 .localrc
 --------
