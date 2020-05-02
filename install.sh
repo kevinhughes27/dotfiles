@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # Install script for my dotfiles
 # ------------------------------
