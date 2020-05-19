@@ -35,7 +35,16 @@ cia = commit --amend --reuse-message=HEAD
 co = checkout
 br = branch
 l = log
-st = stash --include-untracked
+
+# less typing to set upstream
+set-upstream = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+
+# word diff, effectively ignore whitespace
+wdiff = diff -w --word-diff=color
+
+# e.g. `git whatadded src/some/file`
+whatadded = log --diff-filter=A
+whattouched = log --diff-filter=M
 
 [color]
 branch = auto
