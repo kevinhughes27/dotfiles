@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # return PID for a port
 function pid_for_port {
   sudo lsof -i :$@
@@ -42,9 +40,16 @@ function git_push {
   fi
 }
 
+# interactive rebase from the branch point
+function git_rebase_i {
+  local currbranch=`git rev-parse --abbrev-ref HEAD`
+  local branchpoint=`git merge-base master $currbranch`
+  git rebase -i $branchpoint $currbranch
+}
+
 # rebase the current branch against fresh master
 function git_rebase {
-  curbranch=`git rev-parse --abbrev-ref HEAD`
+  local curbranch=`git rev-parse --abbrev-ref HEAD`
   git checkout master
   git pull origin master
   git checkout $curbranch
