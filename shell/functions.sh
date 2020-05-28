@@ -62,6 +62,32 @@ function git_fresh {
   git pull origin master
 }
 
+# cleanup git branches that don't exist on origin
+# if the branch isn't on origin it usually means I've merged and deleted it
+# aka I don't need it anymore. However this check will also find branches that
+# have never been pushed so it is important to read the output before proceeding.
+function cleanup_git_branches () {
+  git checkout master > /dev/null 2>&1;
+  git fetch --all > /dev/null
+
+  local remote_branches=`git remote prune origin --dry-run | sed "s/^.*origin\///g"`
+  local local_branches=`git branch | sed "s/ *//g"`
+  local removable_branches=`comm -12 <(echo "$local_branches") <(echo "$remote_branches")`
+
+  echo "The following branches have no remote and will be removed:"
+  echo
+  echo $removable_branches | tr ' ' '\n'
+  echo
+  echo "Remove branches? (y/n)"
+  read REPLY
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo $removable_branches | while read -r branch; do
+      git branch -D $branch
+    done
+    echo "done"
+  fi
+}
+
 # rails test or rspec
 function ruby_test {
   if grep -q "rspec" Gemfile; then
