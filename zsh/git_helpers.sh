@@ -53,7 +53,7 @@ function git_rebase {
 
 # switch to master and pull
 function git_fresh {
-  git checkout master
+  git checkout master --autostash
   git pull origin master
 }
 

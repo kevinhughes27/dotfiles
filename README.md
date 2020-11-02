@@ -5,9 +5,8 @@ Installation
 ------------
 
 ```
-cd ~
-git clone https://github.com/kevinhughes27/dotfiles
-cd dotfiles
+git clone https://github.com/kevinhughes27/dotfiles ~/dotfiles
+cd ~/dotfiles
 ./install.sh
 ```
 
