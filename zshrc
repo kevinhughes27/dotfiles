@@ -5,8 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="candy"
-# ZSH_THEME="random"
+ZSH_THEME="refined"
 
 # Uncomment this to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
@@ -61,8 +60,8 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 
 # aliases
-source ~/dotfiles/shell/functions.sh
-source ~/dotfiles/shell/aliases.sh
+source ~/dotfiles/zsh/helpers.sh
+source ~/dotfiles/zsh/aliases.sh
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc

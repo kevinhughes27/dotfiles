@@ -1,8 +1,3 @@
-# return PID for a port
-function pid_for_port {
-  sudo lsof -i :$@
-}
-
 # push the current branch, confirm master push.
 # allow force push unless master
 function git_push {
@@ -66,7 +61,7 @@ function git_fresh {
 # if the branch isn't on origin it usually means I've merged and deleted it
 # aka I don't need it anymore. However this check will also find branches that
 # have never been pushed so it is important to read the output before proceeding.
-function cleanup_git_branches () {
+function git_clean () {
   git checkout master > /dev/null 2>&1;
   git fetch --all > /dev/null
 
@@ -86,33 +81,4 @@ function cleanup_git_branches () {
     done
     echo "done"
   fi
-}
-
-# rails test or rspec
-function ruby_test {
-  if grep -q "rspec" Gemfile; then
-    bundle exec rspec $@
-  elif grep -q "rails', '5" Gemfile; then
-    rails test $@
-  else
-    bundle exec rake test $@
-  fi
-}
-
-# serve files from current directory
-function server() {
-  python -m SimpleHTTPServer 8000
-}
-
-# print timing for various stages of an HTTP connection to a domain
-function curl_time() {
-  curl -so /dev/null -w "\
-   namelookup:  %{time_namelookup}s\n\
-      connect:  %{time_connect}s\n\
-   appconnect:  %{time_appconnect}s\n\
-  pretransfer:  %{time_pretransfer}s\n\
-     redirect:  %{time_redirect}s\n\
-starttransfer:  %{time_starttransfer}s\n\
--------------------------\n\
-        total:  %{time_total}s\n" "$@"
 }

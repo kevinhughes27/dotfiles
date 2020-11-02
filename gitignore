@@ -4,6 +4,4 @@
 *.pyc
 *.byebug_history
 *.rake_tasks
-ToDo.txt
-ToDo.md
 ngrok
