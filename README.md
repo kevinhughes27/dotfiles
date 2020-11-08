@@ -35,3 +35,4 @@ I've been collecting bits and pieces for a while and unfortunately I haven't alw
 
 * https://github.com/ohmyzsh/ohmyzsh
 * https://thoughtbot.com/blog/powerful-git-macros-for-automating-everyday-workflows
+* https://gist.github.com/fimmtiu/263192ba21534a63057a034edc218c0b
