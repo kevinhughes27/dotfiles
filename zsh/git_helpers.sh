@@ -53,8 +53,8 @@ function git_rebase {
 
 # switch to master and pull
 function git_fresh {
-  git checkout master --autostash
-  git pull origin master
+  git checkout master
+  git pull origin master --autostash
 }
 
 # cleanup git branches that don't exist on origin
