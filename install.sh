@@ -20,9 +20,8 @@ IFS='
 echo ""
 echo "Backup the original files"
 echo "-------------------------"
-echo ""
 
-backup() {
+function backup() {
   # backs up the file/folder the first time only
   file="$1"
 
@@ -48,21 +47,29 @@ backup ~/.zshrc
 backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
-backup ~/.vim
 backup ~/.vimrc
 
 # oh-my-zsh
 if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo ""
   echo "Installing oh-my-zsh"
   curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+fi
+
+# vim-plug
+# https://github.com/junegunn/dotfiles/blob/master/install-vim
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+  echo ""
+  echo "Installing vim-plug"
+  mkdir -p ~/.vim/autoload
+  curl -sLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
 fi
 
 echo ""
 echo "Symlinking files:"
 echo "-----------------"
-echo ""
 
-link() {
+function link() {
   from="$1"
   to="$2"
   echo "Linking '$from' to '$to'"
@@ -74,7 +81,6 @@ link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
-link ~/dotfiles/vim ~/.vim
 link ~/dotfiles/vimrc ~/.vimrc
 
 echo ""

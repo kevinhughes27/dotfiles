@@ -2,6 +2,7 @@
 *~
 *.rbc
 *.pyc
+*.swp
 *.byebug_history
 *.rake_tasks
 ngrok
