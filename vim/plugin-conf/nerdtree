@@ -1,0 +1,12 @@
+" toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" open NERDTree by default
+autocmd vimenter * NERDTree
+
+" for mouse click in 
+let g:NERDTreeMouseMode=3 
+
+" show hidden files
+let g:NERDTreeShowHidden=1
+

@@ -1,0 +1,6 @@
+" open fzf
+map <C-p> :FZF<CR>
+
+" fzf window and preview
+let g:fzf_layout = { 'up': '50%' }
+let g:fzf_preview_window = ['down:60%', 'ctrl-/']
