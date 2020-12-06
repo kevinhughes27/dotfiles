@@ -53,6 +53,9 @@ export LESS='-RS#3NM~g'
 # overmind tmux conf
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
+# bat theme
+export BAT_THEME="OneHalfDark"
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=1000
