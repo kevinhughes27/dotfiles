@@ -13,10 +13,6 @@
 # detect that the file is a symlink to dotfiles and
 # ignore it.
 
-# changes the internal field separator to a newline only
-IFS='
-'
-
 echo ""
 echo "Backup the original files"
 echo "-------------------------"
@@ -31,12 +27,6 @@ function backup() {
   # file exists
   elif [[ -f $file ]]; then
     if [[ ! -f "$file.old" ]]; then
-      echo "Backup '$file' to '$file.old'"
-      mv $file "$file.old"
-    fi
-  # folder exists
-  elif [[ -d $file ]]; then
-    if [[ ! -d "$file.old" ]]; then
       echo "Backup '$file' to '$file.old'"
       mv $file "$file.old"
     fi
