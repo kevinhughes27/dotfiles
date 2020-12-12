@@ -71,3 +71,5 @@ setopt HIST_REDUCE_BLANKS
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
+
+tmuxify
