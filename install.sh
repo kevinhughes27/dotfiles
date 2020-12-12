@@ -56,15 +56,6 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
 
-# vim-plug
-# https://github.com/junegunn/dotfiles/blob/master/install-vim
-if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
-  echo ""
-  echo "Installing vim-plug"
-  mkdir -p ~/.vim/autoload
-  curl -sLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim
-fi
-
 echo ""
 echo "Symlinking files:"
 echo "-----------------"
