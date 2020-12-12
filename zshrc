@@ -30,6 +30,9 @@ ZSH_THEME="candy"
 # yyyy-mm-dd
 # HIST_STAMPS="mm/dd/yyyy"
 
+# Plugin configuration
+export ZSH_TMUX_AUTOSTART=true
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
@@ -38,6 +41,7 @@ plugins=(
   docker-compose
   heroku
   jsontools
+  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -72,5 +76,3 @@ setopt HIST_REDUCE_BLANKS
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
-
-tmuxify
