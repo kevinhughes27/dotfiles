@@ -1,3 +1,10 @@
+# Init
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo ""
+  echo "Installing oh-my-zsh"
+  curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
@@ -31,7 +38,9 @@ ZSH_THEME="candy"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Plugin configuration
-export ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
+ZSH_TMUX_CONFIG=~/dotfiles/tmux.conf
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/

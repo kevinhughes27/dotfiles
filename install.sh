@@ -44,17 +44,9 @@ function backup() {
 }
 
 backup ~/.zshrc
-backup ~/.tmux.conf
+backup ~/.vimrc
 backup ~/.gitconfig
 backup ~/.gitignore
-backup ~/.vimrc
-
-# oh-my-zsh
-if [[ ! -d ~/.oh-my-zsh ]]; then
-  echo ""
-  echo "Installing oh-my-zsh"
-  curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-fi
 
 echo ""
 echo "Symlinking files:"
@@ -69,10 +61,9 @@ function link() {
 }
 
 link ~/dotfiles/zshrc ~/.zshrc
-link ~/dotfiles/tmux.conf ~/.tmux.conf
+link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
-link ~/dotfiles/vimrc ~/.vimrc
 
 echo ""
 echo "All done."
