@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+# mnemonic: [G]it [F]resh
+
+# switch to master and pull
+function git_fresh {
+  git checkout master
+  git pull origin master --autostash
+}
+
+alias gf='git_fresh'

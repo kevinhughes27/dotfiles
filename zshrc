@@ -33,28 +33,31 @@ ZSH_THEME="candy"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
-    colored-man-pages
-    docker
-    docker-compose
-    heroku
-    jsontools
+  colored-man-pages
+  docker
+  docker-compose
+  heroku
+  jsontools
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # user configuration
-
-# editor
 export EDITOR='vim'
-
-# add line number to LESS prompt
-export LESS='-RS#3NM~g'
-
-# overmind tmux conf
+export LESS='-RS#3NM~g' # add line number to LESS prompt
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
-
-# bat theme
 export BAT_THEME="OneHalfDark"
+
+# autoload
+for file in ~/dotfiles/zsh/*; do
+  source "$file"
+done
+
+# aliases
+alias gs='git status'
+alias ga='git add'
+alias bi='bundle install'
+alias bx='bundle exec'
 
 # history
 HISTFILE=~/.zsh_history
@@ -65,10 +68,6 @@ setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-
-# aliases
-source ~/dotfiles/zsh/helpers.sh
-source ~/dotfiles/zsh/aliases.sh
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc

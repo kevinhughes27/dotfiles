@@ -16,7 +16,7 @@ Afterwards I need to update the remote to use ssh: `git remote set-url origin gi
 .localrc
 --------
 
-My setup will read a `.localrc` for any system specific settings. This lets me maintain one set of common dotfiles while still having flexability. It is pretty common for programs to manually add config to your dotfiles and when that happens I will see the changes and git and usually move the new code to localrc. 
+My setup will read a `.localrc` for any system specific settings. This lets me maintain one set of common dotfiles while still having flexability. It is pretty common for programs to manually add config to your dotfiles and when that happens I will see the changes and git and usually move the new code to localrc.
 
 Here is an example of what I have for my OSX machine which has some specific settings for work:
 
@@ -36,3 +36,4 @@ I've been collecting bits and pieces for a while and unfortunately I haven't alw
 * https://github.com/ohmyzsh/ohmyzsh
 * https://thoughtbot.com/blog/powerful-git-macros-for-automating-everyday-workflows
 * https://gist.github.com/fimmtiu/263192ba21534a63057a034edc218c0b
+* https://github.com/SidOfc/dotfiles

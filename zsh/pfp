@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+# mnemonic: [P]id [F]or [P]ort
+
+# return PID for a port
+# useful for killing stray webservers
+function pid_for_port {
+  sudo lsof -i :$@
+}
+
+alias pfp='pid_for_port'

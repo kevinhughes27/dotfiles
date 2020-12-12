@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+# mnemonic: [S]imple [S]erver
+
+# serve files from current directory
+# useful for prototyping JS things
+function simple_server() {
+  python3 -m http.server
+}
+
+alias ss='simple_server'

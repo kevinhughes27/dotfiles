@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+# mnemonic: [G]it [R]ebase [I]nteractive
+
+# interactive rebase from the branch point
+function git_rebase_i {
+  local currbranch=`git rev-parse --abbrev-ref HEAD`
+  local branchpoint=`git merge-base master $currbranch`
+  git rebase -i $branchpoint $currbranch
+}
+
+alias gri='git_rebase_i'

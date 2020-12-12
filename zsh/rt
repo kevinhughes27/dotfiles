@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+# mnemonic: [R]ails [T]est
+
+# rspec or rails tests
+# based on Gemfile contents
+function rails_test {
+  if grep -q "rspec" Gemfile; then
+    bundle exec rspec $@
+  elif grep -q "rails', '5" Gemfile; then
+    rails test $@
+  else
+    echo "couldn't infer test command";
+  fi
+}
+
+alias rt='rails_test'
