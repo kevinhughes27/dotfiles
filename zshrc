@@ -47,6 +47,7 @@ export EDITOR='vim'
 export LESS='-RS#3NM~g' # add line number to LESS prompt
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 export BAT_THEME="OneHalfDark"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 # autoload
 for file in ~/dotfiles/zsh/*; do
