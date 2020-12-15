@@ -12,11 +12,6 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="candy" # candy, refined, fox
 
-# Plugin configuration
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-ZSH_TMUX_CONFIG=~/dotfiles/tmux.conf
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
@@ -60,3 +55,6 @@ setopt HIST_REDUCE_BLANKS
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && . ~/.localrc
+
+# start tmux once
+tmuxify
