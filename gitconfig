@@ -16,6 +16,9 @@ excludesfile = ~/.gitignore
 default = current
 followTags = true
 
+[fetch]
+prune = true
+
 [pull]
 rebase = true
 
@@ -30,24 +33,28 @@ showUntrackedFiles = all
 autocorrect = 1
 
 [alias]
+
+# commit
 ci = commit
+
+# commit amend
 cia = commit --amend --reuse-message=HEAD
+
+# checkout
 co = checkout
-br = branch
-l = log
 
-# `git ri 2` does an interactive rebase on the last two commits.
-ri = "!f() { git rebase --interactive head~$1; }; f"
-
-# Stands for "new branch". `git nb foo` will create a new branch named `foo` based off the latest master.
-nb = "!f() { git checkout master && git pull && git checkout -b $1; }; f"
-
-# Switch between recently-used branches in a sweet interactive fashion. (Courtesy of Tim Uruski!)
-# Requires you to install `fzf` first (available in most package managers).
+# switch between recently-used branches in a sweet interactive fashion. (Courtesy of Tim Uruski!)
+# requires you to install `fzf` first (available in most package managers).
 sw = "!f() { git branch --sort='-committerdate' | fzf --height=10 | xargs git checkout; }; f"
+
+# shorten branch commmands
+br = branch
 
 # stands for "set upstream". less typing to set upstream
 su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+
+# shorten log commands
+l = log
 
 # word diff, effectively ignore whitespace
 wdiff = diff -w --word-diff=color
@@ -55,6 +62,29 @@ wdiff = diff -w --word-diff=color
 # e.g. `git whatadded src/some/file`
 whatadded = log --diff-filter=A
 whattouched = log --diff-filter=M
+
+# stands for "fresh". switch to master and pull
+fr = "!f() { git checkout master && git pull --autostash; }; f"
+
+# stands for "new branch". `git nb foo` will create a new branch named `foo` based off the latest master.
+nb = "!f() { git checkout master && git pull && git checkout -b $1; }; f"
+
+# rebase the current branch against fresh master
+r = "!git_rebase() { \
+  local curbranch=`git rev-parse --abbrev-ref HEAD`; \
+  git checkout master; \
+  git pull origin master; \
+  git checkout $curbranch; \
+  git rebase master; \
+}; git_rebase"
+
+# `git ri` does an interactive rebase from the branch point
+ri = "!git_rebase_i() { \
+  local currbranch=`git rev-parse --abbrev-ref HEAD`; \
+  local branchpoint=`git merge-base master $currbranch`; \
+  git rebase -i $branchpoint $currbranch; \
+}; git_rebase_i"
+
 
 [color]
 branch = auto
@@ -72,6 +102,7 @@ meta = yellow bold
 frag = magenta bold
 old = red
 new = cyan
+moved = zebra
 
 [color "status"]
 added = yellow

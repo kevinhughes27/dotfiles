@@ -25,6 +25,7 @@ plugins=(
   docker-compose
   heroku
   jsontools
+  direnv
   tmux
 )
 
