@@ -1,20 +1,11 @@
 " toggle NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
-" open NERDTree by default
-autocmd VimEnter * call StartUp()
-
-function! StartUp()
-  if 0 == argc()
-    NERDTree
-  end
-endfunction
-
 " close NERDTree if it is the last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" for mouse click in 
-let g:NERDTreeMouseMode=3 
+" for mouse click in
+let g:NERDTreeMouseMode=3
 
 " show hidden files
 let g:NERDTreeShowHidden=1
