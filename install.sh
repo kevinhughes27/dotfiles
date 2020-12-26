@@ -51,7 +51,7 @@ function link() {
 }
 
 link ~/dotfiles/zshrc ~/.zshrc
-link ~/dotfiles/vimrc ~/.vimrc
+link ~/dotfiles/vimrc.vim ~/.vimrc
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 
