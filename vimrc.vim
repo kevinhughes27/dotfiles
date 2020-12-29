@@ -10,15 +10,21 @@ endif
 " Plugins
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible'
-Plug 'sheerun/vim-polyglot'
-Plug 'rakr/vim-one'
 Plug 'wincent/terminus'
+Plug 'rakr/vim-one'
+
 Plug 'airblade/vim-gitgutter'
-Plug 'preservim/nerdtree', { 'on':  'NERDTreeToggle' }
+
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'vim-ruby/vim-ruby'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " colors
@@ -30,6 +36,7 @@ colorscheme one
 set background=dark
 
 " settings
+set encoding=UTF-8
 set mouse=a          " allow mouse
 set number           " show line numbers
 set showmatch        " highlight matching [{()}]

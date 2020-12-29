@@ -1,32 +1,9 @@
-function! FZFOpen(command_str)
-  if (expand('%') =~# 'NERD_tree' && winnr('$') > 1)
-    exe "normal! \<c-w>\<c-w>"
-  endif
-  exe 'normal! ' . a:command_str . "\<cr>"
-endfunction
+" start fzf from the top. opens in a terminal buffer
+let g:fzf_layout = { 'down': '100%' }
 
-" :Files
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
-
-" ctrl p fuzzy open files
-nnoremap <C-p> :call FZFOpen(':Files')<CR>
-
-" ctrl g ripgrep search
-nnoremap <C-g> :Rg<Cr>
-
-" fzf window and preview
-let g:fzf_layout = { 'up': '50%' }
-let g:fzf_preview_window = ['down:60%', 'ctrl-/']
+" configure the preview for default commands
+" needs to be passed in to anything I override
+let g:fzf_preview_window = ['down:60%']
 
 let g:fzf_colors = {
  \ 'fg':      ['fg', 'Normal'],
@@ -43,3 +20,15 @@ let g:fzf_colors = {
  \ 'spinner': ['fg', 'Label'],
  \ 'header':  ['fg', 'Comment'] }
 
+" ctrl p fuzzy open files
+nnoremap <C-p> :Files<CR>
+
+command! -bang -nargs=? -complete=dir Files
+   \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({}, 'down:70%'), <bang>0)
+
+" ctrl g ripgrep search
+nnoremap <C-g> :Rg<Cr>
+
+command! -bang -nargs=* Rg
+   \ call fzf#vim#grep("rg --line-number --no-heading --smart-case -- ".shellescape(<q-args>),
+   \ 1, fzf#vim#with_preview({}, 'down:70%'), <bang>0)
