@@ -12,9 +12,10 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible'
 Plug 'wincent/terminus'
 Plug 'rakr/vim-one'
-Plug 'sheerun/vim-polyglot'
 
 Plug 'airblade/vim-gitgutter'
+
+Plug 'vim-test/vim-test'
 
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -25,7 +26,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'vim-ruby/vim-ruby'
-Plug 'thoughtbot/vim-rspec'
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " colors
@@ -70,4 +71,9 @@ nnoremap <leader><leader> <c-^>
 " Plugin Conf
 source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim
-source ~/dotfiles/vim/plugin-conf/rspec.vim
+
+" vim-test bindings
+map <C-t> :TestFile<CR>
+map <C-s> :TestNearest<CR>
+map <C-l> :TestLast<CR>
+
