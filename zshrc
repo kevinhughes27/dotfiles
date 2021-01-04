@@ -28,6 +28,11 @@ source $ZSH/oh-my-zsh.sh
 
 # user configuration
 export EDITOR='vim'
+
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+fi
+
 export LESS='-RS#3NM~g' # add line number to LESS prompt
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 export BAT_THEME="OneHalfDark"

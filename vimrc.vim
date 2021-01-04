@@ -12,6 +12,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible'
 Plug 'wincent/terminus'
 Plug 'rakr/vim-one'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -24,7 +25,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'vim-ruby/vim-ruby'
-Plug 'sheerun/vim-polyglot'
+Plug 'thoughtbot/vim-rspec'
 call plug#end()
 
 " colors
@@ -66,9 +67,7 @@ set hlsearch
 " switch between the last 2 files https://www.destroyallsoftware.com/file-navigation-in-vim.html
 nnoremap <leader><leader> <c-^>
 
-" rspec config
-source ~/dotfiles/vim/rspec.vim
-
 " Plugin Conf
 source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim
+source ~/dotfiles/vim/plugin-conf/rspec.vim
