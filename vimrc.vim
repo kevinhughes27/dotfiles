@@ -16,6 +16,7 @@ Plug 'rakr/vim-one'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'vim-test/vim-test'
+Plug 'benmills/vimux'
 
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -77,3 +78,6 @@ map <C-t> :TestFile<CR>
 map <C-s> :TestNearest<CR>
 map <C-l> :TestLast<CR>
 
+" make test commands execute using vimux
+let test#strategy = "vimux"
+let g:VimuxUseNearest = 0

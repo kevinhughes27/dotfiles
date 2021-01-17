@@ -45,6 +45,8 @@ done
 # aliases
 alias gs='git status'
 alias ga='git add'
+alias gr='git r'
+alias gf='git fr'
 alias bi='bundle install'
 alias bx='bundle exec'
 
