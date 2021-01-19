@@ -1,5 +1,5 @@
 " start fzf from the top. opens in a terminal buffer
-let g:fzf_layout = { 'down': '100%' }
+let g:fzf_layout = { 'up': '100%' }
 
 " configure the preview for default commands
 " needs to be passed in to anything I override

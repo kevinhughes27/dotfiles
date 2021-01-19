@@ -63,13 +63,16 @@ set incsearch
 set showmatch
 set hlsearch
 
+" strip trailing spaces on save
+autocmd BufWritePre * :%s/\s\+$//e
+
 " key bindings
 " <C-w> then arrows to switch between panes. 'w' again cycles
 
 " switch between the last 2 files https://www.destroyallsoftware.com/file-navigation-in-vim.html
 nnoremap <leader><leader> <c-^>
 
-" Plugin Conf
+" plugin conf
 source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim
 
@@ -80,4 +83,7 @@ map <C-l> :TestLast<CR>
 
 " make test commands execute using vimux
 let test#strategy = "vimux"
-let g:VimuxUseNearest = 0
+
+" vimux conf
+let g:VimuxUseNearest = 0 " always open a new pane
+map <C-d> :VimuxCloseRunner<CR>
