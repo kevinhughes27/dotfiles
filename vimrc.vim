@@ -78,8 +78,8 @@ source ~/dotfiles/vim/plugin-conf/fzf.vim
 
 " vim-test bindings
 map <C-t> :TestFile<CR>
-map <C-s> :TestNearest<CR>
-map <C-l> :TestLast<CR>
+map <C-l> :TestNearest<CR>
+map <C-s> :TestLast<CR>
 
 " make test commands execute using vimux
 let test#strategy = "vimux"
