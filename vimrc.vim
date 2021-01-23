@@ -73,9 +73,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 inoremap jk <ESC>
 let mapleader = "'"
 
-" switch between the last 2 files https://www.destroyallsoftware.com/file-navigation-in-vim.html
-nnoremap <leader><leader> <c-^>
-
 " plugin conf
 source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim

@@ -23,5 +23,8 @@ let g:fzf_colors = {
 " ctrl p fuzzy open files
 nnoremap <C-p> :Files<CR>
 
+" ctrl h fuzzy open files
+nnoremap <C-h> :History<CR>
+
 command! -bang -nargs=? -complete=dir Files
    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({}, 'down:70%'), <bang>0)
