@@ -69,6 +69,10 @@ autocmd BufWritePre * :%s/\s\+$//e
 " key bindings
 " <C-w> then arrows to switch between panes. 'w' again cycles
 
+" https://danielmiessler.com/study/vim/
+inoremap jk <ESC>
+let mapleader = "'"
+
 " switch between the last 2 files https://www.destroyallsoftware.com/file-navigation-in-vim.html
 nnoremap <leader><leader> <c-^>
 

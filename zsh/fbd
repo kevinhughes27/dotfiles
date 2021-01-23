@@ -1,12 +1,10 @@
 #!/usr/bin/env zsh
 # mnemonic: [F]uzzy [B]ranch [D]elete
 
-# toggle fzf multi with tab and shift tab
+# use [tab] to select one or branches to delete
 
 function fuzzy_branch_delete() {
-  local branches=$(git for-each-ref refs/heads/ --format="%(refname:short)") &&
-  local branch=$(echo "$branches" | fzf --multi ) &&
-  git branch -D $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+  git branch | fzf --multi --header='[branch:delete]' | xargs git branch -D
 }
 
 alias fbd='fuzzy_branch_delete'

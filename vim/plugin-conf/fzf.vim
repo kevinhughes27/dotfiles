@@ -25,10 +25,3 @@ nnoremap <C-p> :Files<CR>
 
 command! -bang -nargs=? -complete=dir Files
    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({}, 'down:70%'), <bang>0)
-
-" ctrl g ripgrep search
-nnoremap <C-g> :Rg<Cr>
-
-command! -bang -nargs=* Rg
-   \ call fzf#vim#grep("rg --line-number --no-heading --smart-case -- ".shellescape(<q-args>),
-   \ 1, fzf#vim#with_preview({}, 'down:70%'), <bang>0)

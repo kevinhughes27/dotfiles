@@ -15,6 +15,8 @@ function! CheckIfCurrentBufferIsFile()
   return strlen(expand('%')) > 0
 endfunction
 
+
+
 " Call NERDTreeFind if NERDTree is active, current window contains a modifiable
 " file, and we're not in
 function! SyncTree()
@@ -26,6 +28,8 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufRead * call SyncTree()
+
+
 
 " Toggle NERDTree
 function! ToggleTree()
