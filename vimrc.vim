@@ -81,9 +81,9 @@ source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim
 
 " vim-test bindings
-map <C-t> :TestFile<CR>
-map <C-l> :TestNearest<CR>
-map <C-s> :TestLast<CR>
+nmap <C-t> :w<CR> :TestFile<CR>
+nmap <C-l> :w<CR> :TestNearest<CR>
+nmap <C-s> :w<CR> :TestLast<CR>
 
 " make test commands execute using vimux
 let test#strategy = "vimux"
