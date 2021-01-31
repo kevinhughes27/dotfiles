@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+# mnemonic: [F]uzzy [G]rep [E]dit
+
+# uses ripgrep to search a codebase for a regex (can also pass -g with a glob to restrict to
+# certain files, e.g. `-g "*.rb"`). The output is passed to fzf to further filter and
+# to generate a preview. Enter drops into the file in vim.
+
+# thanks to this article! https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
+
+fzf_grep_edit(){
+  local match=$(
+    rg --color=never --line-number $@ | cut -d':' -f1 -f2 |
+      fzf --no-multi --delimiter : \
+      --preview "bat --color=always --highlight-line {2} {1}" \
+      --preview-window down:80%:noborder:+{2}-/6 \
+    )
+
+  local file=$(echo "$match" | cut -d':' -f1)
+
+  if [[ -n $file ]]; then
+    $EDITOR "$file" +$(echo "$match" | cut -d':' -f2)
+  fi
+}
+
+alias fge='fzf_grep_edit'
