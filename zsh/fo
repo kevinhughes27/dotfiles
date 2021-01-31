@@ -13,7 +13,7 @@ fzf_grep_edit(){
   fi
 
   local match=$(
-    rg --color=never --line-number $@ | cut -d':' -f1 -f2 |
+    rg --color=never --no-heading --line-number --smart-case $@ | cut -d':' -f1 -f2 |
       fzf --no-multi --delimiter : \
       --preview "bat --color=always --highlight-line {2} {1}" \
       --preview-window down:80%:noborder:+{2}-/6 \

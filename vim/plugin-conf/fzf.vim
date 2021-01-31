@@ -20,11 +20,15 @@ let g:fzf_colors = {
  \ 'spinner': ['fg', 'Label'],
  \ 'header':  ['fg', 'Comment'] }
 
-" ctrl p fuzzy open files
+" ctrl p fuzzy open all files
 nnoremap <C-p> :Files<CR>
 
-" ctrl h fuzzy open files
+" ctrl h fuzzy open recent files
 nnoremap <C-h> :History<CR>
+
+command! -bang -nargs=* Rg
+   \ call fzf#vim#grep("rg --line-number --no-heading --smart-case -- ".shellescape(<q-args>),
+   \ 1, fzf#vim#with_preview({}, 'down:80%:noborder:+{2}-/6'), <bang>0)
 
 command! -bang -nargs=? -complete=dir Files
    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({}, 'down:70%'), <bang>0)
