@@ -1,0 +1,17 @@
+#!/usr/bin/env zsh
+# mnemonic: [F]uzzy [G]it [L]og
+
+fzf_git_log() {
+  local selections=$(
+    git log --color=always --format="%C(yellow)%h%C(red)%d%C(reset) - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)" "$@" |
+      fzf --ansi --no-sort --no-height --reverse --multi \
+          --preview "echo {} | grep -o '[a-f0-9]\{7\}' | head -1 |
+                      xargs -I@ sh -c 'git show --color=always @'"
+    )
+
+  if [[ -n $selections ]]; then
+    echo "$selections" | sed 's/^[* |]*//' | cut -d' ' -f1
+  fi
+}
+
+alias fgl='fzf_git_log'
