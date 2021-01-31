@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# mnemonic: [G]it [P]ush
 
 # push the current branch, confirm master push.
 # allow force push unless master

@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# mnemonic: [F]uzzy [G]it [L]og
 
 fzf_git_log() {
   local selections=$(
@@ -14,4 +13,4 @@ fzf_git_log() {
   fi
 }
 
-alias fgl='fzf_git_log'
+alias gl='fzf_git_log'

@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# mnemonic: [F]uzzy [G]rep [E]dit
 
 # uses ripgrep to search a codebase for a regex (can also pass -g with a glob to restrict to
 # certain files, e.g. `-g "*.rb"`). The output is passed to fzf to further filter and
@@ -8,6 +7,11 @@
 # thanks to this article! https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
 
 fzf_grep_edit(){
+  if [[ $# == 0 ]]; then
+    echo 'Error: search term was not provided.'
+    return
+  fi
+
   local match=$(
     rg --color=never --line-number $@ | cut -d':' -f1 -f2 |
       fzf --no-multi --delimiter : \
@@ -22,4 +26,4 @@ fzf_grep_edit(){
   fi
 }
 
-alias fge='fzf_grep_edit'
+alias fo='fzf_grep_edit'
