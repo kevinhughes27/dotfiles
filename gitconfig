@@ -73,7 +73,7 @@ co = checkout
 sw = "!f() { git branch --sort='-committerdate' | fzf --height=10 | xargs git checkout; }; f"
 
 # shorten branch commmands
-br = branch --pager false
+br = branch
 
 # stands for "set upstream". less typing to set upstream
 su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
