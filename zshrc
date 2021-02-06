@@ -18,10 +18,6 @@ plugins=(
   colored-man-pages
   docker
   docker-compose
-  heroku
-  jsontools
-  direnv
-  tmux
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -34,8 +30,8 @@ if type nvim > /dev/null 2>&1; then
 fi
 
 export LESS='-RS#3NM~g' # add line number to LESS prompt
-export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 export BAT_THEME="OneHalfDark"
+export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
 # autoload
 for file in ~/dotfiles/zsh/*; do
