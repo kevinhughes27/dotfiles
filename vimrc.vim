@@ -11,7 +11,7 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible'
 Plug 'wincent/terminus'
-Plug 'rakr/vim-one'
+Plug 'joshdick/onedark.vim'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -35,7 +35,7 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 
-colorscheme one
+colorscheme onedark
 set background=dark
 
 " settings
@@ -56,7 +56,7 @@ set backspace=2      " make backspace work like most other programs
 set updatetime=100
 
 " copy into osx clipboard by default
-set clipboard+=unnamedplus
+set clipboard=unnamed
 
 " search as you type, highlight results
 set incsearch
