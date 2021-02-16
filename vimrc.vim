@@ -58,6 +58,9 @@ set updatetime=100
 " copy into osx clipboard by default
 set clipboard=unnamed
 
+" copy into x11 clipboard by default
+set clipboard=unnamedplus
+
 " search as you type, highlight results
 set incsearch
 set showmatch
