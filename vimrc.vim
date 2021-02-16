@@ -55,11 +55,13 @@ set backspace=2      " make backspace work like most other programs
 " otherwise git status is super delayed
 set updatetime=100
 
-" copy into osx clipboard by default
-set clipboard=unnamed
-
-" copy into x11 clipboard by default
-set clipboard=unnamedplus
+" copy into clipboard by default
+let g:os = substitute(system('uname'), '\n', '', '')
+if g:os == 'Darwin'
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus
+endif
 
 " search as you type, highlight results
 set incsearch
