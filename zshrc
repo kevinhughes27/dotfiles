@@ -16,6 +16,7 @@ ZSH_THEME="candy" # candy, refined, fox
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
   colored-man-pages
+  fzf
   docker
   docker-compose
 )

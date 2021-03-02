@@ -9,8 +9,10 @@ endif
 
 " Plugins
 call plug#begin('~/.vim/bundle')
-Plug 'tpope/vim-sensible'
-Plug 'wincent/terminus'
+Plug 'tpope/vim-sensible' " improved defaults
+Plug 'wincent/terminus' " make vim nicer to use in tmux
+Plug 'djoshea/vim-autoread' " reload files changed outside of vim
+
 Plug 'joshdick/onedark.vim'
 
 Plug 'airblade/vim-gitgutter'
