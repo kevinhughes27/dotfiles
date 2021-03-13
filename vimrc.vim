@@ -33,6 +33,8 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'vim-ruby/vim-ruby'
 Plug 'sheerun/vim-polyglot'
+Plug 'tpope/vim-commentary' " gcc and gc + motion to comment
+Plug 'mg979/vim-visual-multi' " sublime style multiple cursors
 call plug#end()
 
 " colors

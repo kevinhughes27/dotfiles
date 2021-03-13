@@ -45,4 +45,4 @@ function! ToggleTree()
 endfunction
 
 " Ctrl-n to toggle the tree on and off sync'd to the current file location
-map <C-n> :call ToggleTree()<CR>
+map <C-b> :call ToggleTree()<CR>
