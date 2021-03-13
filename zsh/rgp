@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+function ripgrep_preview() {
+  if command -v batcat > /dev/null; then
+    BATNAME="batcat"
+  elif command -v bat > /dev/null; then
+    BATNAME="bat"
+  fi
+
+  rg --color=never --no-heading --line-number --smart-case $@ \
+    | awk -F':' '{print $1 ":" $2}' \
+    | fzf \
+    --delimiter : \
+    --preview "$BATNAME --color=always --highlight-line {2} {1}" \
+    --preview-window "down:80%:noborder"
+}
+
+alias rgp='ripgrep_preview'
