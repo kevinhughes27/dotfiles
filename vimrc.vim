@@ -11,6 +11,7 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'tpope/vim-sensible' " improved defaults
 Plug 'wincent/terminus' " make vim nicer to use in tmux
+Plug 'christoomey/vim-tmux-navigator' " seamless split navigation
 Plug 'djoshea/vim-autoread' " reload files changed outside of vim
 
 Plug 'joshdick/onedark.vim'
@@ -73,8 +74,13 @@ set hlsearch
 " strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
-" key bindings
-" <C-w> then arrows to switch between panes. 'w' again cycles
+" navigate vim splits and tmux with arrow keys seamlessly
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-Left>  :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-Down>  :TmuxNavigateDown<cr>
+nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
+nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
+let g:tmux_navigator_save_on_switch = 2
 
 " https://danielmiessler.com/study/vim/
 inoremap jk <ESC>
