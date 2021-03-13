@@ -54,9 +54,12 @@ set ignorecase       " ignore case in search
 set smartcase        " case-sensitive only with capital letters
 set noswapfile       " no more swapfiles
 set backspace=2      " make backspace work like most other programs
+set updatetime=100   " otherwise git status is super delayed
 
-" otherwise git status is super delayed
-set updatetime=100
+" search as you type, highlight results
+set incsearch
+set showmatch
+set hlsearch
 
 " copy into clipboard by default
 let g:os = substitute(system('uname'), '\n', '', '')
@@ -66,10 +69,8 @@ else
   set clipboard=unnamedplus
 endif
 
-" search as you type, highlight results
-set incsearch
-set showmatch
-set hlsearch
+" https://danielmiessler.com/study/vim/
+inoremap jk <ESC>
 
 " strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
@@ -82,10 +83,6 @@ nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
 nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
 let g:tmux_navigator_save_on_switch = 2
 
-" https://danielmiessler.com/study/vim/
-inoremap jk <ESC>
-let mapleader = "'"
-
 " plugin conf
 source ~/dotfiles/vim/plugin-conf/nerdtree.vim
 source ~/dotfiles/vim/plugin-conf/fzf.vim
@@ -94,10 +91,8 @@ source ~/dotfiles/vim/plugin-conf/fzf.vim
 nmap <C-t> :w<CR> :TestFile<CR>
 nmap <C-l> :w<CR> :TestNearest<CR>
 nmap <C-s> :w<CR> :TestLast<CR>
-
-" make test commands execute using vimux
-let test#strategy = "vimux"
+let test#strategy = "vimux" " make test commands execute using vimux
 
 " vimux conf
-let g:VimuxUseNearest = 0 " always open a new pane
 map <C-d> :VimuxCloseRunner<CR>
+let g:VimuxUseNearest = 0 " always open a new pane
