@@ -15,10 +15,8 @@ function! CheckIfCurrentBufferIsFile()
   return strlen(expand('%')) > 0
 endfunction
 
-
-
 " Call NERDTreeFind if NERDTree is active, current window contains a modifiable
-" file, and we're not in
+" file, and we're not in NERDTree
 function! SyncTree()
   if &modifiable && IsNERDTreeOpen() && CheckIfCurrentBufferIsFile() && !&diff
     NERDTreeFind
@@ -28,8 +26,6 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufRead * call SyncTree()
-
-
 
 " Toggle NERDTree
 function! ToggleTree()
@@ -44,5 +40,5 @@ function! ToggleTree()
   endif
 endfunction
 
-" Ctrl-n to toggle the tree on and off sync'd to the current file location
+" Ctrl-b to toggle the tree on and off sync'd to the current file location
 map <C-b> :call ToggleTree()<CR>

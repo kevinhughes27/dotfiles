@@ -25,7 +25,7 @@ source $ZSH/oh-my-zsh.sh
 
 # user configuration
 export EDITOR='vim'
-export LESS='-RS#3NM~g' # add line number to LESS prompt
+# export LESS='-RS#3NM~g' # add line number to LESS prompt
 export BAT_THEME="OneHalfDark"
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
@@ -44,8 +44,8 @@ alias bx='bundle exec'
 
 # history
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
