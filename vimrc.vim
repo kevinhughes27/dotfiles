@@ -15,6 +15,8 @@ Plug 'christoomey/vim-tmux-navigator' " seamless split navigation
 Plug 'djoshea/vim-autoread' " reload files changed outside of vim
 
 Plug 'joshdick/onedark.vim'
+Plug 'itchyny/lightline.vim'
+" Plug 'vim-airline/vim-airline'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -39,6 +41,8 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 
 colorscheme onedark
+let g:lightline = { 'colorscheme': 'onedark' }
+" let g:airline_theme='onedark'
 set background=dark
 
 " settings
