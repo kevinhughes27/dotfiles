@@ -75,6 +75,10 @@ inoremap jk <ESC>
 " strip trailing spaces on save
 autocmd BufWritePre * :%s/\s\+$//e
 
+" plugin conf
+source ~/dotfiles/vim/plugin-conf/nerdtree.vim
+source ~/dotfiles/vim/plugin-conf/fzf.vim
+
 " navigate vim splits and tmux with arrow keys seamlessly
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <C-Left>  :TmuxNavigateLeft<cr>
@@ -82,10 +86,6 @@ nnoremap <silent> <C-Down>  :TmuxNavigateDown<cr>
 nnoremap <silent> <C-Up>    :TmuxNavigateUp<cr>
 nnoremap <silent> <C-Right> :TmuxNavigateRight<cr>
 let g:tmux_navigator_save_on_switch = 2
-
-" plugin conf
-source ~/dotfiles/vim/plugin-conf/nerdtree.vim
-source ~/dotfiles/vim/plugin-conf/fzf.vim
 
 " vim-test bindings
 nmap <C-t> :w<CR> :TestFile<CR>
