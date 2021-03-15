@@ -53,6 +53,7 @@ function link() {
 
 link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/vimrc.vim ~/.vimrc
+link ~/dotfiles/nvim ~/.config/nvim
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
