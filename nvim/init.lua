@@ -34,20 +34,13 @@ paq {'joshdick/onedark.vim'}
 paq {'kyazdani42/nvim-web-devicons'}
 -- statusline
 paq {'hoob3rt/lualine.nvim'}
--- buffer/tab theme
-paq {'romgrk/barbar.nvim'}
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
 -- seamless split/tmux navigation
 paq {'christoomey/vim-tmux-navigator'}
 -- gitgutter
 paq {'airblade/vim-gitgutter'}
--- scrollbar
-paq { 'dstein64/nvim-scrollview' }
--- fuzzy file open and search
--- paq {'nvim-lua/popup.nvim'} -- required
--- paq {'nvim-lua/plenary.nvim'} -- required
--- paq {'nvim-telescope/telescope.nvim'}
+-- fzf
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
 -- test running
@@ -59,22 +52,38 @@ paq {'vim-ruby/vim-ruby'}
 paq {'sheerun/vim-polyglot'}
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
--- sublime style multiple cursors
+-- sublime style multiple cursors. ctrl-n to start
 paq {'mg979/vim-visual-multi'}
 
--- theme
+-- colors
 cmd 'colorscheme onedark'
 
 -- statusline
 local lualine = require('lualine')
-lualine.options.theme = 'onedark'
-lualine.status()
+lualine.setup({
+  options = {
+    theme = 'onedark'
+  },
+  sections = {
+    lualine_a = { {'mode', upper = true} },
+    lualine_b = { {'branch', icon = ''} },
+    lualine_c = { {'filename', file_status = true} },
+    lualine_x = { },
+    lualine_y = { },
+    lualine_z = { },
+  },
+})
 
--- bufferline (barbar)
-g.bufferline = {
-  auto_hide = 1
-}
-g.BufferTabpageFill = "bg"
+-- copy into clipboard by default
+local os = fn.substitute(fn.system('uname'), '\n', '', '')
+if os == 'Darwin' then
+  opt('o', 'clipboard', 'unnamed')
+else
+  opt('o', 'clipboard', 'unnamedplus')
+end
+
+-- strip trailing spaces on save
+vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
 
 -- settings
 local indent = 2
@@ -102,7 +111,6 @@ map('n', '<C-_>', ':split<CR>')
 -- tree
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_auto_open = 1 -- opens the tree when typing `vim $DIR` or `vim`
 g.nvim_tree_auto_close = 1 -- closes the tree when it's the last window
 g.nvim_tree_follow = 1 -- tree focuses on the current file
 map('n', '<C-b>', ':NvimTreeToggle<Cr>')
@@ -134,24 +142,6 @@ g.fzf_colors['hl+'] = {'fg', 'Label'}
 
 map('n', '<C-p>', ':Files<Cr>')
 map('n', '<C-h>', ':History<Cr>')
-map('n', '<C-f>', ':Rg<Cr>')
-
--- telescope
--- require("telescope").setup {
---   defaults = {
---     layout_strategy = "vertical",
---     layout_defaults = {
---       vertical = {
---         mirror = true,
---         width_padding = 1,
---         height_padding = 1
---       }
---     },
---   }
--- }
--- map('n', '<C-p>', ':Telescope find_files<Cr>')
--- map('n', '<C-h>', ':Telescope oldfiles<Cr>')
--- map('n', '<C-f>', ':Telescope live_grep<Cr>')
 
 -- tmux
 g.tmux_navigator_no_mappings = 1

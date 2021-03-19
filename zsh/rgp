@@ -12,7 +12,7 @@ function ripgrep_preview() {
     | fzf \
     --delimiter : \
     --preview "$BATNAME --color=always --highlight-line {2} {1}" \
-    --preview-window "down:80%:noborder"
+    --preview-window "down:80%:noborder:+{2}-/6"
 }
 
 alias rgp='ripgrep_preview'
