@@ -16,12 +16,19 @@ colors:
     cyan:       '#56b6c2'
     white:      '#828997' # mono-2
 
+window:
+  dynamic_padding: true
+
 font:
   normal:
     family: UbuntuMono Nerd Font
     style: regular
   size: 13
+  use_thin_strokes: true
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: F11, action: ToggleFullscreen }
+
+selection:
+  save_to_clipboard: true
