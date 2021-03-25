@@ -22,9 +22,8 @@ window:
 font:
   normal:
     family: UbuntuMono Nerd Font
-    style: regular
-  size: 13
-  use_thin_strokes: true
+    style: Regular
+  size: 16
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }

@@ -40,6 +40,8 @@ paq {'kyazdani42/nvim-tree.lua'}
 paq {'christoomey/vim-tmux-navigator'}
 -- gitgutter
 paq {'airblade/vim-gitgutter'}
+-- github link copy :GH
+paq { 'ruanyl/vim-gh-line' }
 -- fzf
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
@@ -123,7 +125,7 @@ g.fzf_layout = {
     border = 'none'
   }
 }
-g.fzf_preview_window = 'down:80%'
+g.fzf_preview_window = 'down:80%:sharp'
 g.fzf_colors = {
   fg =      {'fg', 'Normal'},
   bg =      {'bg', 'Normal'},

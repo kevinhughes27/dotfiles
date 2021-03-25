@@ -15,18 +15,18 @@ ZSH_THEME="candy" # candy, refined, fox
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(
-  colored-man-pages
   fzf
   docker
   docker-compose
+  colored-man-pages
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # user configuration
 export EDITOR='vim'
-# export LESS='-RS#3NM~g' # add line number to LESS prompt
 export BAT_THEME="OneHalfDark"
+export FZF_DEFAULT_COMMAND='rg --files'
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
 # autoload
