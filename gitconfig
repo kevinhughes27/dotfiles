@@ -85,6 +85,9 @@ su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 # shorten log commands
 l = log
 
+# shorten diff command
+d = diff
+
 # word diff, effectively ignore whitespace
 wdiff = diff -w --word-diff=color
 
