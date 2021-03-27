@@ -124,7 +124,7 @@ g.fzf_layout = {
     border = 'none'
   }
 }
-g.fzf_preview_window = 'down:80%:sharp'
+g.fzf_preview_window = 'right:60%:sharp'
 g.fzf_colors = {
   fg =      {'fg', 'Normal'},
   bg =      {'bg', 'Normal'},
