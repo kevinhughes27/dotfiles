@@ -11,6 +11,7 @@ program = gpg
 
 [core]
 excludesfile = ~/.gitignore
+pager = less --mouse
 
 [push]
 default = current
