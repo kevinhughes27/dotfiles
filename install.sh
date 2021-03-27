@@ -34,7 +34,7 @@ function backup() {
 }
 
 backup ~/.zshrc
-backup ~/.vimrc
+backup ~/.tmux.conf
 backup ~/.gitconfig
 backup ~/.gitignore
 
@@ -52,11 +52,11 @@ function link() {
 
 link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
-link ~/dotfiles/alacritty ~/.config/alacritty
-link ~/dotfiles/vimrc.vim ~/.vimrc
-link ~/dotfiles/nvim ~/.config/nvim
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
+
+link ~/dotfiles/alacritty ~/.config/alacritty
+link ~/dotfiles/nvim ~/.config/nvim
 
 echo ""
 echo "All done."

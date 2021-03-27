@@ -24,8 +24,9 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # user configuration
-export EDITOR='vim'
-export BAT_THEME="OneHalfDark"
+alias vim='nvim'
+export EDITOR='nvim'
+export BAT_THEME='OneHalfDark'
 export FZF_DEFAULT_COMMAND='rg --files'
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
