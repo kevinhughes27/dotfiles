@@ -113,7 +113,6 @@ map('n', '<C-_>', ':split<CR>')
 -- tree
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_auto_close = 1 -- closes the tree when it's the last window
 g.nvim_tree_follow = 1 -- tree focuses on the current file
 map('n', '<C-b>', ':NvimTreeToggle<Cr>')
 
