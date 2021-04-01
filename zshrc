@@ -23,11 +23,16 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# modded candy prompt
+PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
+%{$fg_bold[blue]%} ❯%{$reset_color%} '
+
 # user configuration
 alias vim='nvim'
 export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
 export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_OPTS='--reverse --height=50%'
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
 # autoload
