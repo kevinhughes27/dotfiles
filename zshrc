@@ -47,6 +47,7 @@ alias gr='git r'
 alias gf='git fr'
 alias bi='bundle install'
 alias bx='bundle exec'
+alias dc='docker-compose'
 
 # history
 HISTFILE=~/.zsh_history
