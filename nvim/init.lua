@@ -110,7 +110,7 @@ map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-|
 map('n', '<C-_>', ':split<CR>')
 
--- tree
+-- tree https://github.com/kyazdani42/nvim-tree.lua
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_follow = 1 -- tree focuses on the current file
