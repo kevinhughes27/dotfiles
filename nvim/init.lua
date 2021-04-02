@@ -114,6 +114,13 @@ map('n', '<C-_>', ':split<CR>')
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_follow = 1 -- tree focuses on the current file
+
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+
+g.nvim_tree_bindings = {
+  ["<C-x>"]          = tree_cb("vsplit"),
+}
+
 map('n', '<C-b>', ':NvimTreeToggle<Cr>')
 
 -- fzf
