@@ -24,9 +24,9 @@ window:
 
 font:
   normal:
-    family: UbuntuMono Nerd Font
+    family: Hack Nerd Font
     style: Regular
-  size: 16
+  size: 11
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
