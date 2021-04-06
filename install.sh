@@ -9,8 +9,8 @@
 #
 # On the first run it will backup any existing
 # files - this makes sure you don't remove something
-# system specific etc. On subsequent runs it will
-# detect that the file is a symlink to dotfiles and
+# system specific. On subsequent runs it will
+# detect that the file is a symlink to ~/dotfiles and
 # ignore it.
 
 echo ""
