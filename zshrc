@@ -27,12 +27,19 @@ source $ZSH/oh-my-zsh.sh
 PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
 %{$fg_bold[blue]%} ❯%{$reset_color%} '
 
+# Sometimes bat is installed as batcat.
+if command -v batcat > /dev/null; then
+  BATNAME="batcat"
+elif command -v bat > /dev/null; then
+  BATNAME="bat"
+fi
+
 # user configuration
-alias vim='nvim'
 export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
 export FZF_DEFAULT_COMMAND='rg --files'
 export FZF_DEFAULT_OPTS='--reverse --height=50%'
+export FZF_CTRL_T_OPTS="--preview '$BATNAME --color=always --line-range :50 {}' --preview-window right:70%"
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
 # autoload
