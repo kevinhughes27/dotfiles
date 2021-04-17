@@ -55,13 +55,33 @@ paq {'benmills/vimux'}
 paq {'vim-ruby/vim-ruby'}
 -- syntax
 paq {'sheerun/vim-polyglot'}
+-- colors for colors
+paq { 'norcalli/nvim-colorizer.lua' }
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
 -- sublime style multiple cursors. ctrl-n to start
 paq {'mg979/vim-visual-multi'}
 
+-- settings
+local indent = 2
+opt('o', 'mouse', 'a')                   -- allow mouse
+opt('o', 'showmatch', true)              -- highlight matching [{()}]
+opt('b', 'expandtab', true)              -- use spaces instead of tabs
+opt('b', 'shiftwidth', indent)           -- size of an indent
+opt('b', 'smartindent', true)            -- insert indents automatically
+opt('b', 'tabstop', indent)              -- number of spaces tabs count for
+opt('o', 'ignorecase', true)             -- ignore case
+opt('o', 'smartcase', true)              -- don't ignore case with capitals
+opt('o', 'splitbelow', true)             -- put new windows below current
+opt('o', 'splitright', true)             -- put new windows right of current
+opt('o', 'termguicolors', true)          -- true color support
+opt('w', 'list', true)                   -- show some invisible characters (tabs...)
+opt('w', 'number', true)                 -- print line number
+opt('w', 'wrap', false)                  -- disable line wrap
+
 -- colors
 cmd 'colorscheme onedark'
+
 
 -- statusline
 require('lualine').setup({
@@ -86,22 +106,8 @@ require('gitsigns').setup({
   }
 })
 
--- settings
-local indent = 2
-opt('o', 'mouse', 'a')                   -- allow mouse
-opt('o', 'showmatch', true)              -- highlight matching [{()}]
-opt('b', 'expandtab', true)              -- use spaces instead of tabs
-opt('b', 'shiftwidth', indent)           -- size of an indent
-opt('b', 'smartindent', true)            -- insert indents automatically
-opt('b', 'tabstop', indent)              -- number of spaces tabs count for
-opt('o', 'ignorecase', true)             -- ignore case
-opt('o', 'smartcase', true)              -- don't ignore case with capitals
-opt('o', 'splitbelow', true)             -- put new windows below current
-opt('o', 'splitright', true)             -- put new windows right of current
-opt('o', 'termguicolors', true)          -- true color support
-opt('w', 'list', true)                   -- show some invisible characters (tabs...)
-opt('w', 'number', true)                 -- print line number
-opt('w', 'wrap', false)                  -- disable line wrap
+-- colorizer
+require('colorizer').setup()
 
 -- strip trailing spaces on save
 vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
