@@ -27,6 +27,9 @@ cmd 'packadd paq-nvim'            -- load package
 local paq = require'paq-nvim'.paq -- import module and bind `paq` function
 paq {'savq/paq-nvim', opt=true}   -- let paq manage itself
 
+-- common lua functions
+paq {'nvim-lua/plenary.nvim'}
+
 ------------- Plugins -------------
 -- theme
 paq {'joshdick/onedark.vim'}
@@ -36,12 +39,12 @@ paq {'kyazdani42/nvim-web-devicons'}
 paq {'hoob3rt/lualine.nvim'}
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
--- seamless split/tmux navigation
-paq {'christoomey/vim-tmux-navigator'}
 -- gitgutter
-paq {'airblade/vim-gitgutter'}
+paq {'lewis6991/gitsigns.nvim'}
 -- github link copy :GH
 paq { 'ruanyl/vim-gh-line' }
+-- seamless split/tmux navigation
+paq {'christoomey/vim-tmux-navigator'}
 -- fzf
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
@@ -70,22 +73,19 @@ lualine.setup({
     lualine_a = { {'mode', upper = true} },
     lualine_b = { {'branch', icon = ''} },
     lualine_c = { {'filename', file_status = true} },
-    lualine_x = { },
-    lualine_y = { },
-    lualine_z = { },
+    lualine_x = { 'encoding', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'location' },
   },
+  extensions = { 'nvim-tree' }
 })
 
--- copy into clipboard by default
-local os = fn.substitute(fn.system('uname'), '\n', '', '')
-if os == 'Darwin' then
-  opt('o', 'clipboard', 'unnamed')
-else
-  opt('o', 'clipboard', 'unnamedplus')
-end
-
--- strip trailing spaces on save
-vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
+-- gitsigns
+require('gitsigns').setup({
+  signs = {
+    add = {hl = 'GitSignsAdd', text = '+'}
+  }
+})
 
 -- settings
 local indent = 2
@@ -103,25 +103,35 @@ opt('o', 'termguicolors', true)          -- true color support
 opt('w', 'list', true)                   -- show some invisible characters (tabs...)
 opt('w', 'number', true)                 -- print line number
 opt('w', 'wrap', false)                  -- disable line wrap
-opt('o', 'updatetime', 100)              -- otherwise git status in gitgutter is rather delayed
+
+-- strip trailing spaces on save
+vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
+
+-- copy into clipboard by default
+local os = fn.substitute(fn.system('uname'), '\n', '', '')
+if os == 'Darwin' then
+  opt('o', 'clipboard', 'unnamed')
+else
+  opt('o', 'clipboard', 'unnamedplus')
+end
 
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
-map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-|
+map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<C-_>', ':split<CR>')
 
--- tree https://github.com/kyazdani42/nvim-tree.lua
+-- nvim-tree
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
+g.nvim_tree_width = 40
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_follow = 1 -- tree focuses on the current file
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-
-g.nvim_tree_bindings = {
-  ["<C-x>"]          = tree_cb("vsplit"),
-}
-
 map('n', '<C-b>', ':NvimTreeToggle<Cr>')
+
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+g.nvim_tree_bindings = {
+  ["<C-x>"] = tree_cb("vsplit"),
+}
 
 -- fzf
 g.fzf_layout = {

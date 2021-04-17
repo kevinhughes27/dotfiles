@@ -29,7 +29,7 @@ font:
   normal:
     family: Hack Nerd Font
     style: Regular
-  size: 11
+  size: 14
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
