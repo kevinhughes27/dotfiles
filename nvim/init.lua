@@ -64,8 +64,7 @@ paq {'mg979/vim-visual-multi'}
 cmd 'colorscheme onedark'
 
 -- statusline
-local lualine = require('lualine')
-lualine.setup({
+require('lualine').setup({
   options = {
     theme = 'onedark'
   },
