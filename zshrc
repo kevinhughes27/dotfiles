@@ -48,6 +48,7 @@ for file in ~/dotfiles/zsh/*; do
 done
 
 # aliases
+alias vi='nvim'
 alias gs='git status'
 alias ga='git add'
 alias gr='git r'

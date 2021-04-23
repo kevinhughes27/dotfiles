@@ -64,20 +64,21 @@ paq {'mg979/vim-visual-multi'}
 
 -- settings
 local indent = 2
-opt('o', 'mouse', 'a')                   -- allow mouse
-opt('o', 'showmatch', true)              -- highlight matching [{()}]
-opt('b', 'expandtab', true)              -- use spaces instead of tabs
-opt('b', 'shiftwidth', indent)           -- size of an indent
-opt('b', 'smartindent', true)            -- insert indents automatically
-opt('b', 'tabstop', indent)              -- number of spaces tabs count for
-opt('o', 'ignorecase', true)             -- ignore case
-opt('o', 'smartcase', true)              -- don't ignore case with capitals
-opt('o', 'splitbelow', true)             -- put new windows below current
-opt('o', 'splitright', true)             -- put new windows right of current
-opt('o', 'termguicolors', true)          -- true color support
-opt('w', 'list', true)                   -- show some invisible characters (tabs...)
-opt('w', 'number', true)                 -- print line number
-opt('w', 'wrap', false)                  -- disable line wrap
+opt('o', 'mouse', 'a')                -- allow mouse
+opt('o', 'showmatch', true)           -- highlight matching [{()}]
+opt('b', 'expandtab', true)           -- use spaces instead of tabs
+opt('b', 'shiftwidth', indent)        -- size of an indent
+opt('b', 'smartindent', true)         -- insert indents automatically
+opt('b', 'tabstop', indent)           -- number of spaces tabs count for
+opt('o', 'ignorecase', true)          -- ignore case
+opt('o', 'smartcase', true)           -- don't ignore case with capitals
+opt('o', 'splitbelow', true)          -- put new windows below current
+opt('o', 'splitright', true)          -- put new windows right of current
+opt('o', 'termguicolors', true)       -- true color support
+opt('w', 'list', true)                -- show some invisible characters (tabs...)
+opt('w', 'number', true)              -- print line number
+opt('w', 'wrap', false)               -- disable line wrap
+opt('o', 'updatetime', 100)           -- update frequency
 
 -- colors
 cmd 'colorscheme onedark'
@@ -177,6 +178,7 @@ map('n', '<C-Right>', ':TmuxNavigateRight<cr>')
 -- vim-test / vimux
 g['test#strategy'] = "vimux" -- make test commands execute using vimux
 g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
+g['VimuxHeight'] = "30" -- default is 20
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 map('n', '<C-s>', ':w<CR> :TestLast<CR>')
