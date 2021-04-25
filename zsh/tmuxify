@@ -6,11 +6,9 @@ function tmuxify () {
   if hash tmux &> /dev/null; then
     if tmux ls &> /dev/null; then
       # tmux is already running
-      # I am likely opening a throwaway terminal
-      # and not my main one
     else
       # no tmux sessions yet. I probably want one
-      tmux new -A
+      tmux new -A -s main
     fi
   fi
 }

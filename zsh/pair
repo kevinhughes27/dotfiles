@@ -1,0 +1,94 @@
+#!/usr/bin/env zsh
+
+# start a new pair programming session from my machine using ttyd
+
+function pair() {
+  if [ -v $1 ]; then
+    echo "USAGE: pair username"
+    return 1
+  fi
+
+  # generate a new password
+  local username="$1"
+  local password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+
+  # ip for printing the link
+  local ip=$(hostname -I | awk '{print $1}')
+
+  # colors
+  local theme='
+    theme={
+      "foreground":"#abb2bf",
+      "background":"#282c34",
+      "green":"#98c379",
+      "brightGreen":"#98c379",
+      "brightBlue":"#61afef"
+    }
+  '
+  theme=${theme//$'\n'} # remove newlines
+  theme=${theme//$' '} # remove spaces
+
+  echo "Starting pair session"
+  echo "------------------------------------------------------------"
+  echo "connect using a browser at: $ip:7681"
+  echo "username: $username"
+  echo "password: $password"
+  echo ""
+  echo "run 'pair-connect' to connect to the session locally"
+  echo "use 'pair-pause' and 'pair-unpause' to toggle readonly mode"
+  echo "------------------------------------------------------------"
+
+  # ttyd
+  # https://github.com/tsl0922/ttyd/wiki/Client-Options
+  # --check-origin Do not allow websocket connection from different origin
+  ttyd \
+    --credential "$username:$password" \
+    --client-option titleFixed="pair shell" \
+    --client-option fontFamily="Hack Nerd Font" \
+    --client-option fontSize=14 \
+    --client-option disableLeaveAlert=true \
+    --client-option ${theme} \
+    --max-clients 1 \
+    --check-origin \
+    tmux new -A -s pair
+
+  # cleanup session
+  tmux kill-session -t pair
+}
+
+function pair-connect() {
+  tmux attach-session -t pair
+}
+
+function get-pair-client() {
+  # the ttyd client shows as `screen-256color` while my terminal session is `xterm-256color`
+  # is there a better way to detect this?
+  pair_client=$(tmux list-clients -t pair | grep screen)
+  pair_tty=$(echo $pair_client | cut -d ':' -f1)
+}
+
+function pair-pause() {
+  get-pair-client
+
+  if $(echo $pair_client | grep -q '(ro)'); then
+    echo "pair is already readonly"
+  else
+    tmux switch-client -c $pair_tty -t pair -r
+    # flash message to the client.
+    # when I upgrade tmux try the -d option for a long message
+    # also look at using display-popup instead
+    tmux display -c $pair_tty " Paused"
+    echo "pair is now readonly"
+  fi
+}
+
+function pair-unpause() {
+  get-pair-client
+
+  if $(echo $pair_client | grep -q '(ro)'); then
+    tmux switch-client -c $pair_tty -t pair -r
+    tmux display -c $pair_tty " Unpaused"
+  fi
+
+  echo "pair is unpaused"
+}
