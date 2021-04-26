@@ -40,7 +40,7 @@ paq {'hoob3rt/lualine.nvim'}
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
 -- gitgutter
-paq {'lewis6991/gitsigns.nvim'}
+paq {'airblade/vim-gitgutter'}
 -- github link copy :GH
 paq { 'ruanyl/vim-gh-line' }
 -- seamless split/tmux navigation
@@ -83,7 +83,6 @@ opt('o', 'updatetime', 100)           -- update frequency
 -- colors
 cmd 'colorscheme onedark'
 
-
 -- statusline
 require('lualine').setup({
   options = {
@@ -98,13 +97,6 @@ require('lualine').setup({
     lualine_z = { 'location' },
   },
   extensions = { 'nvim-tree' }
-})
-
--- gitsigns
-require('gitsigns').setup({
-  signs = {
-    add = {hl = 'GitSignsAdd', text = '+'}
-  }
 })
 
 -- colorizer
