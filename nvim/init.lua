@@ -119,17 +119,33 @@ map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<C-_>', ':split<CR>')
 
 -- nvim-tree
-g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
-g.nvim_tree_width = 40
-g.nvim_tree_indent_markers = 1
-g.nvim_tree_follow = 1 -- tree focuses on the current file
-
-map('n', '<C-b>', ':NvimTreeToggle<Cr>')
-
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+
+g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
+g.nvim_tree_width = 30
+g.nvim_tree_indent_markers = 1
 g.nvim_tree_bindings = {
   ["<C-x>"] = tree_cb("vsplit"),
 }
+
+-- Sync the tree but only on open
+map('n', '<C-b>', ':call ToggleTree()<Cr>')
+vim.api.nvim_exec(
+[[
+function! IsTreeOpen()
+  return bufwinnr('NvimTree') != -1
+endfunction
+
+function! ToggleTree()
+  if IsTreeOpen()
+    NvimTreeClose
+  else
+    NvimTreeClose
+    NvimTreeFindFile
+  endif
+endfunction
+]],
+true)
 
 -- fzf
 g.fzf_layout = {
