@@ -66,11 +66,11 @@ function pair-connect() {
 }
 
 function pair-pause() {
-  pair_clients=$(tmux list-clients -t pair -F "#{client_pid} #{client_tty} #{client_readonly}")
-  pair_pid=$(pgrep -P "$(pidof ttyd)")
-  pair_client=$(echo $pair_clients | grep $pair_pid)
-  pair_tty=$(echo $pair_client | cut -d ' ' -f2)
-  pair_readonly=$(echo $pair_client | cut -d ' ' -f3)
+  local pair_clients=$(tmux list-clients -t pair -F "#{client_pid} #{client_tty} #{client_readonly}")
+  local pair_pid=$(pgrep -P "$(pidof ttyd)")
+  local pair_client=$(echo $pair_clients | grep $pair_pid)
+  local pair_tty=$(echo $pair_client | cut -d ' ' -f2)
+  local pair_readonly=$(echo $pair_client | cut -d ' ' -f3)
 
   if (( $pair_readonly == 1 )); then
     echo "pair is already paused"
@@ -79,7 +79,7 @@ function pair-pause() {
     tmux switch-client -c $pair_tty -t pair -r
 
     # display message to the client.
-    pause_message="****** Session Paused ******"
+    local pause_message="****** Session Paused ******"
     (tmux display-popup -c $pair_tty -h 8 -w 30 echo "$pause_message" &)
 
     echo "Paused pairing session (pair is readonly now)"
