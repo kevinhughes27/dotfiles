@@ -27,7 +27,7 @@ source $ZSH/oh-my-zsh.sh
 PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
 %{$fg_bold[blue]%} ❯%{$reset_color%} '
 
-# Sometimes bat is installed as batcat.
+# sometimes bat is installed as batcat.
 if command -v batcat > /dev/null; then
   BATNAME="batcat"
 elif command -v bat > /dev/null; then

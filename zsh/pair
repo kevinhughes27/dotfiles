@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
 # start a new pair programming session from my machine using ttyd
+# the function will create a new tmux session named 'pair' which
+# can be attached to locally and paused.
 
 function pair() {
   if [ -v $1 ]; then
@@ -38,6 +40,9 @@ function pair() {
   echo "use 'pair-pause' and 'pair-unpause' to toggle readonly mode"
   echo "------------------------------------------------------------"
 
+  # start tmux session
+  tmux new-session -s pair -c $(pwd) -d
+
   # ttyd
   # https://github.com/tsl0922/ttyd/wiki/Client-Options
   # --check-origin Do not allow websocket connection from different origin
@@ -50,9 +55,9 @@ function pair() {
     --client-option ${theme} \
     --max-clients 1 \
     --check-origin \
-    tmux new -A -s pair
+    tmux attach-session -t pair
 
-  # cleanup session
+  # cleanup tmux session
   tmux kill-session -t pair
 }
 
@@ -60,35 +65,34 @@ function pair-connect() {
   tmux attach-session -t pair
 }
 
-function get-pair-client() {
-  # the ttyd client shows as `screen-256color` while my terminal session is `xterm-256color`
-  # is there a better way to detect this?
-  pair_client=$(tmux list-clients -t pair | grep screen)
-  pair_tty=$(echo $pair_client | cut -d ':' -f1)
-}
-
 function pair-pause() {
-  get-pair-client
+  pair_clients=$(tmux list-clients -t pair -F "#{client_pid} #{client_tty} #{client_readonly}")
+  pair_pid=$(pgrep -P "$(pidof ttyd)")
+  pair_client=$(echo $pair_clients | grep $pair_pid)
+  pair_tty=$(echo $pair_client | cut -d ' ' -f2)
+  pair_readonly=$(echo $pair_client | cut -d ' ' -f3)
 
-  if $(echo $pair_client | grep -q '(ro)'); then
-    echo "pair is already readonly"
+  if (( $pair_readonly == 1 )); then
+    echo "pair is already paused"
   else
+    # make tmux client readonly
     tmux switch-client -c $pair_tty -t pair -r
-    # flash message to the client.
-    # when I upgrade tmux try the -d option for a long message
-    # also look at using display-popup instead
-    tmux display -c $pair_tty " Paused"
-    echo "pair is now readonly"
-  fi
-}
 
-function pair-unpause() {
-  get-pair-client
+    # display message to the client.
+    pause_message="****** Session Paused ******"
+    (tmux display-popup -c $pair_tty -h 8 -w 30 echo "$pause_message" &)
 
-  if $(echo $pair_client | grep -q '(ro)'); then
+    echo "Paused pairing session (pair is readonly now)"
+    echo "---------------------------------------------"
+    read -s -k "?Press any key to unpause."
+    echo ""
+
+    # close the client popup
+    tmux display-popup -C -c $pair_tty
+
+    # make tmux client read/write again
     tmux switch-client -c $pair_tty -t pair -r
-    tmux display -c $pair_tty " Unpaused"
-  fi
 
-  echo "pair is unpaused"
+    echo "Resumed pairing session (pair is read/write)"
+  fi
 }
