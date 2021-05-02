@@ -55,8 +55,6 @@ paq {'benmills/vimux'}
 paq {'vim-ruby/vim-ruby'}
 -- syntax
 paq {'sheerun/vim-polyglot'}
--- colors for colors
-paq { 'norcalli/nvim-colorizer.lua' }
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
 -- sublime style multiple cursors. ctrl-n to start
@@ -98,9 +96,6 @@ require('lualine').setup({
   },
   extensions = { 'nvim-tree' }
 })
-
--- colorizer
-require('colorizer').setup()
 
 -- strip trailing spaces on save
 vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
