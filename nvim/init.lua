@@ -55,6 +55,8 @@ paq {'benmills/vimux'}
 paq {'vim-ruby/vim-ruby'}
 -- syntax
 paq {'sheerun/vim-polyglot'}
+-- tab complete
+paq {'ervandew/supertab'}
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
 -- sublime style multiple cursors. ctrl-n to start
@@ -113,6 +115,26 @@ map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<C-_>', ':split<CR>')
 
+-- resize vertical splits
+map('n', '=', ':exe "vertical resize " . (winwidth(0) * 5/4)<CR>') -- in my head this is `+`
+map('n', '-', ':exe "vertical resize " . (winwidth(0) * 3/4)<CR>')
+
+-- tmux
+g.tmux_navigator_no_mappings = 1
+g.tmux_navigator_save_on_switch = 2
+map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>')
+map('n', '<C-Down>',  ':TmuxNavigateDown<cr>')
+map('n', '<C-Up>',    ':TmuxNavigateUp<cr>')
+map('n', '<C-Right>', ':TmuxNavigateRight<cr>')
+
+-- vim-test / vimux
+g['test#strategy'] = "vimux" -- make test commands execute using vimux
+g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
+g['VimuxHeight'] = "30" -- default is 20
+map('n', '<C-t>', ':w<CR> :TestFile<CR>')
+map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
+map('n', '<C-s>', ':w<CR> :TestLast<CR>')
+
 -- nvim-tree
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
@@ -145,9 +167,8 @@ true)
 -- fzf
 g.fzf_layout = {
   window = {
-    width = 1.0,
-    height = 1.0,
-    border = 'none'
+    width = 0.8,
+    height = 0.9,
   }
 }
 g.fzf_preview_window = 'right:60%:sharp'
@@ -167,25 +188,8 @@ g.fzf_colors['fg+'] = {'fg', 'CursorLine', 'CursorColumn', 'Normal'}
 g.fzf_colors['bg+'] = {'bg', 'CursorLine', 'CursorColumn'}
 g.fzf_colors['hl+'] = {'fg', 'Label'}
 
-map('n', '<C-p>', ':Files<Cr>')
+map('n', '<C-p>', ':GFiles<Cr>')
 map('n', '<C-h>', ':History<Cr>')
-
--- tmux
-g.tmux_navigator_no_mappings = 1
-g.tmux_navigator_save_on_switch = 2
-map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>')
-map('n', '<C-Down>',  ':TmuxNavigateDown<cr>')
-map('n', '<C-Up>',    ':TmuxNavigateUp<cr>')
-map('n', '<C-Right>', ':TmuxNavigateRight<cr>')
-
--- vim-test / vimux
-g['test#strategy'] = "vimux" -- make test commands execute using vimux
-g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
-g['VimuxHeight'] = "30" -- default is 20
-map('n', '<C-t>', ':w<CR> :TestFile<CR>')
-map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
-map('n', '<C-s>', ':w<CR> :TestLast<CR>')
-
 
 ----------------------- References ----------------------------
 -- https://oroques.dev/notes/neovim-init/
