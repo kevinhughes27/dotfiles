@@ -48,11 +48,12 @@ function pair() {
   # --check-origin Do not allow websocket connection from different origin
   ttyd \
     --credential "$username:$password" \
-    --client-option titleFixed="pair shell" \
+    --client-option titleFixed="pair session" \
     --client-option fontFamily="Hack Nerd Font" \
     --client-option fontSize=14 \
     --client-option disableLeaveAlert=true \
     --client-option ${theme} \
+    --index "$HOME/dotfiles/pair.html" \
     --max-clients 1 \
     --check-origin \
     tmux attach-session -t pair
