@@ -80,6 +80,10 @@ opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
 
+-- onedark.vim override:
+-- don't set a background color just use the terminal's background color
+vim.api.nvim_command("autocmd ColorScheme *  call onedark#set_highlight(\"Normal\", {})")
+
 -- colors
 cmd 'colorscheme onedark'
 
