@@ -16,6 +16,10 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local t = function(str)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+
 -- auto install paq-nvim if necessary
 local install_path = fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -26,9 +30,6 @@ end
 cmd 'packadd paq-nvim'            -- load package
 local paq = require'paq-nvim'.paq -- import module and bind `paq` function
 paq {'savq/paq-nvim', opt=true}   -- let paq manage itself
-
--- common lua functions
-paq {'nvim-lua/plenary.nvim'}
 
 ------------- Plugins -------------
 -- theme
@@ -55,8 +56,8 @@ paq {'benmills/vimux'}
 paq {'vim-ruby/vim-ruby'}
 -- syntax
 paq {'sheerun/vim-polyglot'}
--- tab complete
-paq {'ervandew/supertab'}
+-- code completion
+paq {'neoclide/coc.nvim', branch = 'release'}
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
 -- sublime style multiple cursors. ctrl-n to start
@@ -139,6 +140,29 @@ map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 map('n', '<C-s>', ':w<CR> :TestLast<CR>')
 
+-- code completion
+local check_back_space = function()
+  local col = vim.fn.col(".") - 1
+  if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+      return true
+  else
+      return false
+  end
+end
+
+_G.tab_complete = function()
+  if vim.fn.pumvisible() == 1 then
+      return t "<C-n>"
+  elseif check_back_space() then
+      return t "<Tab>"
+  else
+      return vim.fn["coc#refresh"]()
+  end
+end
+
+map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+
 -- nvim-tree
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
@@ -149,7 +173,7 @@ g.nvim_tree_bindings = {
   ["<C-x>"] = tree_cb("vsplit"),
 }
 
--- Sync the tree but only on open
+-- sync the tree but only on open
 map('n', '<C-b>', ':call ToggleTree()<Cr>')
 vim.api.nvim_exec(
 [[
