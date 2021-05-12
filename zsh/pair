@@ -12,10 +12,10 @@ function pair() {
 
   # generate a new password
   local username="$1"
-  local password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+  local password=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
   # ip for printing the link
-  local ip=$(hostname -I | awk '{print $1}')
+  local ip=$(ipconfig getifaddr en0)
 
   # colors
   local theme='
@@ -68,7 +68,7 @@ function pair-connect() {
 
 function pair-pause() {
   local pair_clients=$(tmux list-clients -t pair -F "#{client_pid} #{client_tty} #{client_readonly}")
-  local pair_pid=$(pgrep -P "$(pidof ttyd)")
+  local pair_pid=$(pgrep -P $(pidof ttyd))
   local pair_client=$(echo $pair_clients | grep $pair_pid)
   local pair_tty=$(echo $pair_client | cut -d ' ' -f2)
   local pair_readonly=$(echo $pair_client | cut -d ' ' -f3)
