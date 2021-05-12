@@ -15,7 +15,11 @@ function pair() {
   local password=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
 
   # ip for printing the link
-  local ip=$(ipconfig getifaddr en0)
+  if [[ `uname` == "Darwin" ]]; then
+    local ip=$(ipconfig getifaddr en0)
+  else
+    local ip=$(hostname -I | awk '{print $1}')
+  fi
 
   # colors
   local theme='
