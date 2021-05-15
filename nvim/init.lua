@@ -115,22 +115,34 @@ else
   opt('o', 'clipboard', 'unnamedplus')
 end
 
+-- disable visual-multi-mappings
+-- it binds to ctrl up/down which I use for navigation
+g.VM_default_mappings = 0
+
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
+
+-- new splits
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<C-_>', ':split<CR>')
 
 -- resize vertical splits
-map('n', '=', ':exe "vertical resize " . (winwidth(0) * 5/4)<CR>') -- in my head this is `+`
-map('n', '-', ':exe "vertical resize " . (winwidth(0) * 3/4)<CR>')
+map('n', '=', ':exe "vertical resize " . (winwidth(0) * 9/8)<CR>') -- in my head this is `+`
+map('n', '-', ':exe "vertical resize " . (winwidth(0) * 7/8)<CR>')
+
+-- tab for tabs
+map('n', '<tab>', ':tabnext<CR>')
+
+-- gimme ctrl s
+map('n', '<C-s>', ':w<CR>')
 
 -- tmux
 g.tmux_navigator_no_mappings = 1
 g.tmux_navigator_save_on_switch = 2
-map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>')
-map('n', '<C-Down>',  ':TmuxNavigateDown<cr>')
-map('n', '<C-Up>',    ':TmuxNavigateUp<cr>')
-map('n', '<C-Right>', ':TmuxNavigateRight<cr>')
+map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>', {silent = true})
+map('n', '<C-Down>',  ':TmuxNavigateDown<cr>', {silent = true})
+map('n', '<C-Up>',    ':TmuxNavigateUp<cr>', {silent = true})
+map('n', '<C-Right>', ':TmuxNavigateRight<cr>', {silent = true})
 
 -- vim-test / vimux
 g['test#strategy'] = "vimux" -- make test commands execute using vimux
@@ -138,7 +150,6 @@ g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
 g['VimuxHeight'] = "30" -- default is 20
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
-map('n', '<C-s>', ':w<CR> :TestLast<CR>')
 
 -- code completion
 local check_back_space = function()
@@ -163,14 +174,40 @@ end
 map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 
--- nvim-tree
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+-- Make <CR> auto-select the first completion item and notify coc.nvim to
+-- format on enter, <cr> could be remapped by other vim plugin
+vim.api.nvim_exec(
+[[
+  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+]],
+true)
 
+-- nvim-tree
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_width = 30
 g.nvim_tree_indent_markers = 1
+
+-- Remove all default bindings.
+require'nvim-tree.view'.View.bindings = {}
+local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+-- Add back most of the detaul bindings
+-- but not `-` which I use to resize splits
 g.nvim_tree_bindings = {
-  ["<C-x>"] = tree_cb("vsplit"),
+  ["<CR>"]           = tree_cb("edit"),
+  ["<2-LeftMouse>"]  = tree_cb("edit"),
+  ["<2-RightMouse>"] = tree_cb("cd"),
+  ["<C-x>"]          = tree_cb("split"),
+  ["<C-z>"]          = tree_cb("vsplit"),
+  ["<C-t>"]          = tree_cb("tabnew"),
+  ["R"]              = tree_cb("refresh"),
+  ["a"]              = tree_cb("create"),
+  ["d"]              = tree_cb("remove"),
+  ["r"]              = tree_cb("rename"),
+  ["<C-r>"]          = tree_cb("full_rename"),
+  ["x"]              = tree_cb("cut"),
+  ["c"]              = tree_cb("copy"),
+  ["p"]              = tree_cb("paste"),
+  ["q"]              = tree_cb("close"),
 }
 
 -- sync the tree but only on open
@@ -216,7 +253,8 @@ g.fzf_colors['fg+'] = {'fg', 'CursorLine', 'CursorColumn', 'Normal'}
 g.fzf_colors['bg+'] = {'bg', 'CursorLine', 'CursorColumn'}
 g.fzf_colors['hl+'] = {'fg', 'Label'}
 
-map('n', '<C-p>', ':GFiles<Cr>')
+map('n', '<C-p>', ':Files<Cr>')
+map('n', '<C-o>', ':Buffers<Cr>')
 map('n', '<C-h>', ':History<Cr>')
 
 ----------------------- References ----------------------------
