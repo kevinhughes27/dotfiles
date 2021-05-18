@@ -1,31 +1,19 @@
-# Init
-if [[ ! -d ~/.oh-my-zsh ]]; then
-  echo ""
-  echo "Installing oh-my-zsh"
-  curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-fi
+# prompt
+eval "$(starship init zsh)"
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# completions
+autoload -U compaudit compinit
+autoload -U +X bashcompinit && bashcompinit
+compinit -i -C -d "${HOME}/.zcompdump"
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-ZSH_THEME="candy" # candy, refined, fox
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*' list-colors ''
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(
-  fzf
-  docker
-  docker-compose
-  colored-man-pages
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# modded candy prompt
-PROMPT=$'%{$fg_bold[green]%}%n@%m %{$fg[blue]%}%D{[%X]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\
-%{$fg_bold[blue]%} ❯%{$reset_color%} '
+# source fzf
+fzf_base=$(brew --prefix fzf)
+fzf_shell="${fzf_base}/shell"
+source "${fzf_shell}/completion.zsh" 2> /dev/null
+source "${fzf_shell}/key-bindings.zsh"
 
 # sometimes bat is installed as batcat.
 if command -v batcat > /dev/null; then
@@ -34,7 +22,7 @@ elif command -v bat > /dev/null; then
   BATNAME="bat"
 fi
 
-# user configuration
+# configuration
 export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
@@ -47,8 +35,7 @@ export FZF_CTRL_T_OPTS="--preview '$BATNAME --color=always --line-range :50 {}' 
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
-'
+--color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef'
 
 # autoload
 for file in ~/dotfiles/zsh/*; do

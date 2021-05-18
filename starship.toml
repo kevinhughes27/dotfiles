@@ -1,0 +1,26 @@
+add_newline = false
+
+format = """
+$username\
+$directory\
+$git_branch\
+${custom.dirty}
+$character"""
+
+[username]
+style_user = "bold green"
+show_always = true
+
+[directory]
+truncate_to_repo = false
+style = "bold blue"
+
+# ignores untracked files for performance
+[custom.dirty]
+when = "(git rev-parse --is-inside-work-tree >/dev/null 2>&1) && (! git diff --no-ext-diff --quiet --exit-code)"
+format = "[*](red)"
+
+[character]
+success_symbol = "[❯](bold blue)"
+error_symbol = "[❯](bold yellow)"
+format = " $symbol "
