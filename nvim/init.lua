@@ -16,10 +16,6 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
 -- auto install paq-nvim if necessary
 local install_path = fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -49,6 +45,10 @@ paq {'christoomey/vim-tmux-navigator'}
 -- fzf
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
+-- telescope (fzf)
+paq {'nvim-lua/popup.nvim'}
+paq {'nvim-lua/plenary.nvim'}
+paq {'nvim-telescope/telescope.nvim'}
 -- test running
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
@@ -83,7 +83,7 @@ opt('o', 'updatetime', 100)           -- update frequency
 
 -- onedark.vim override:
 -- don't set a background color just use the terminal's background color
-vim.api.nvim_command("autocmd ColorScheme *  call onedark#set_highlight(\"Normal\", {})")
+execute("autocmd ColorScheme *  call onedark#set_highlight(\"Normal\", {})")
 
 -- colors
 cmd 'colorscheme onedark'
@@ -105,7 +105,7 @@ require('lualine').setup({
 })
 
 -- strip trailing spaces on save
-vim.api.nvim_command("autocmd BufWritePre * :%s/\\s\\+$//e")
+execute("autocmd BufWritePre * :%s/\\s\\+$//e")
 
 -- copy into clipboard by default
 local os = fn.substitute(fn.system('uname'), '\n', '', '')
@@ -114,10 +114,6 @@ if os == 'Darwin' then
 else
   opt('o', 'clipboard', 'unnamedplus')
 end
-
--- disable visual-multi-mappings
--- it binds to ctrl up/down which I use for navigation
-g.VM_default_mappings = 0
 
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
@@ -144,6 +140,10 @@ map('n', '<C-Down>',  ':TmuxNavigateDown<cr>', {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<cr>', {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<cr>', {silent = true})
 
+-- disable visual-multi-mappings
+-- it binds to ctrl up/down which I use for navigation
+g.VM_default_mappings = 0
+
 -- vim-test / vimux
 g['test#strategy'] = "vimux" -- make test commands execute using vimux
 g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
@@ -152,110 +152,26 @@ map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- code completion
-local check_back_space = function()
-  local col = vim.fn.col(".") - 1
-  if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-      return true
-  else
-      return false
-  end
-end
-
-_G.tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-      return t "<C-n>"
-  elseif check_back_space() then
-      return t "<Tab>"
-  else
-      return vim.fn["coc#refresh"]()
-  end
-end
-
+require('tab-complete')
 map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
 map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 
--- Make <CR> auto-select the first completion item and notify coc.nvim to
--- format on enter, <cr> could be remapped by other vim plugin
-vim.api.nvim_exec(
-[[
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-]],
-true)
-
 -- nvim-tree
-g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
-g.nvim_tree_width = 30
-g.nvim_tree_indent_markers = 1
-
--- Remove all default bindings.
-require'nvim-tree.view'.View.bindings = {}
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
--- Add back most of the detaul bindings
--- but not `-` which I use to resize splits
-g.nvim_tree_bindings = {
-  ["<CR>"]           = tree_cb("edit"),
-  ["<2-LeftMouse>"]  = tree_cb("edit"),
-  ["<2-RightMouse>"] = tree_cb("cd"),
-  ["<C-x>"]          = tree_cb("split"),
-  ["<C-z>"]          = tree_cb("vsplit"),
-  ["<C-t>"]          = tree_cb("tabnew"),
-  ["R"]              = tree_cb("refresh"),
-  ["a"]              = tree_cb("create"),
-  ["d"]              = tree_cb("remove"),
-  ["r"]              = tree_cb("rename"),
-  ["<C-r>"]          = tree_cb("full_rename"),
-  ["x"]              = tree_cb("cut"),
-  ["c"]              = tree_cb("copy"),
-  ["p"]              = tree_cb("paste"),
-  ["q"]              = tree_cb("close"),
-}
-
--- sync the tree but only on open
+require('tree-config')
 map('n', '<C-b>', ':call ToggleTree()<Cr>')
-vim.api.nvim_exec(
-[[
-function! IsTreeOpen()
-  return bufwinnr('NvimTree') != -1
-endfunction
-
-function! ToggleTree()
-  if IsTreeOpen()
-    NvimTreeClose
-  else
-    NvimTreeClose
-    NvimTreeFindFile
-  endif
-endfunction
-]],
-true)
 
 -- fzf
-g.fzf_layout = {
-  window = {
-    width = 0.8,
-    height = 0.9,
-  }
-}
-g.fzf_preview_window = 'right:60%:sharp'
-g.fzf_colors = {
-  fg =      {'fg', 'Normal'},
-  bg =      {'bg', 'Normal'},
-  hl =      {'fg', 'Label'},
-  info =    {'fg', 'Comment'},
-  border =  {'fg', 'Ignore'},
-  prompt =  {'fg', 'Function'},
-  pointer = {'fg', 'Statement'},
-  marker =  {'fg', 'Conditional'},
-  spinner = {'fg', 'Label'},
-  header =  {'fg', 'Comment'}
-}
-g.fzf_colors['fg+'] = {'fg', 'CursorLine', 'CursorColumn', 'Normal'}
-g.fzf_colors['bg+'] = {'bg', 'CursorLine', 'CursorColumn'}
-g.fzf_colors['hl+'] = {'fg', 'Label'}
+require('fzf-config')
+-- map('n', '<C-p>', ':Files<Cr>')
+-- map('n', '<C-o>', ':Buffers<Cr>')
+-- map('n', '<C-h>', ':History<Cr>')
 
-map('n', '<C-p>', ':Files<Cr>')
-map('n', '<C-o>', ':Buffers<Cr>')
-map('n', '<C-h>', ':History<Cr>')
+-- telescope
+require('telescope-config')
+map('n', '<C-p>', ':Telescope find_files<Cr>')
+map('n', '<C-o>', ':Telescope buffers<Cr>')
+map('n', '<C-h>', ':Telescope oldfiles<Cr>')
+map('n', '<C-f>', ':Telescope grep_string<Cr>')
 
 ----------------------- References ----------------------------
 -- https://oroques.dev/notes/neovim-init/
