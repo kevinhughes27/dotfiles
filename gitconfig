@@ -96,7 +96,7 @@ whatadded = log --diff-filter=A
 whattouched = log --diff-filter=M
 
 # stands for "branch delete"
-bd = "!f() { git branch | fzf --multi --header='[branch:delete]' | xargs git branch -D; }; f"
+bd = "!f() { git branch | fzf --multi | xargs git branch -D; }; f"
 
 # stands for "fresh". switch to master and pull
 fr = "!f() { git checkout master && git pull --autostash; }; f"
