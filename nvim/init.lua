@@ -46,9 +46,9 @@ paq {'christoomey/vim-tmux-navigator'}
 paq {'junegunn/fzf', hook = fn['fzf#install']}
 paq {'junegunn/fzf.vim'}
 -- telescope (fzf)
-paq {'nvim-lua/popup.nvim'}
-paq {'nvim-lua/plenary.nvim'}
-paq {'nvim-telescope/telescope.nvim'}
+-- paq {'nvim-lua/popup.nvim'}
+-- paq {'nvim-lua/plenary.nvim'}
+-- paq {'nvim-telescope/telescope.nvim'}
 -- test running
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
@@ -80,10 +80,11 @@ opt('w', 'list', true)                -- show some invisible characters (tabs...
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
+opt('o', 'hidden', true)              -- fix for completion blocking
 
 -- onedark.vim override:
 -- don't set a background color just use the terminal's background color
-execute("autocmd ColorScheme *  call onedark#set_highlight(\"Normal\", {})")
+execute('autocmd ColorScheme *  call onedark#set_highlight("Normal", {})')
 
 -- colors
 cmd 'colorscheme onedark'
@@ -105,7 +106,7 @@ require('lualine').setup({
 })
 
 -- strip trailing spaces on save
-execute("autocmd BufWritePre * :%s/\\s\\+$//e")
+execute('autocmd BufWritePre * :%s/\\s\\+$//e')
 
 -- copy into clipboard by default
 local os = fn.substitute(fn.system('uname'), '\n', '', '')
@@ -127,7 +128,7 @@ map('n', '=', ':exe "vertical resize " . (winwidth(0) * 9/8)<CR>') -- in my head
 map('n', '-', ':exe "vertical resize " . (winwidth(0) * 7/8)<CR>')
 
 -- tab for tabs
-map('n', '<tab>', ':tabnext<CR>')
+map('n', '<Tab>', ':tabnext<CR>')
 
 -- gimme ctrl s
 map('n', '<C-s>', ':w<CR>')
@@ -145,16 +146,18 @@ map('n', '<C-Right>', ':TmuxNavigateRight<cr>', {silent = true})
 g.VM_default_mappings = 0
 
 -- vim-test / vimux
-g['test#strategy'] = "vimux" -- make test commands execute using vimux
+g['test#strategy'] = 'vimux' -- make test commands execute using vimux
 g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
-g['VimuxHeight'] = "30" -- default is 20
+g['VimuxHeight'] = '20'
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- code completion
 require('tab-complete')
-map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map('i', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+map('s', '<Tab>', 'v:lua.tab_complete()', {expr = true})
+-- this seems to overwrite my tab mapping for some reason
+-- map('n', '<C-i>', ':call CocActionAsync("doHover")<cr>', {silent=true})
 
 -- nvim-tree
 require('tree-config')
@@ -162,16 +165,17 @@ map('n', '<C-b>', ':call ToggleTree()<Cr>')
 
 -- fzf
 require('fzf-config')
--- map('n', '<C-p>', ':Files<Cr>')
--- map('n', '<C-o>', ':Buffers<Cr>')
--- map('n', '<C-h>', ':History<Cr>')
+map('n', '<C-p>', ':Files<Cr>')
+map('n', '<C-o>', ':Buffers<Cr>')
+map('n', '<C-h>', ':History<Cr>')
+map('n', '<C-f>', ':Rg <C-R><C-W><CR>', {silent=true})
 
 -- telescope
-require('telescope-config')
-map('n', '<C-p>', ':Telescope find_files<Cr>')
-map('n', '<C-o>', ':Telescope buffers<Cr>')
-map('n', '<C-h>', ':Telescope oldfiles<Cr>')
-map('n', '<C-f>', ':Telescope grep_string<Cr>')
+-- require('telescope-config')
+-- map('n', '<C-p>', ':Telescope find_files<Cr>')
+-- map('n', '<C-o>', ':Telescope buffers<Cr>')
+-- map('n', '<C-h>', ':Telescope oldfiles<Cr>')
+-- map('n', '<C-f>', ':Telescope grep_string<Cr>')
 
 ----------------------- References ----------------------------
 -- https://oroques.dev/notes/neovim-init/

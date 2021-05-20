@@ -21,10 +21,9 @@ _G.tab_complete = function()
   end
 end
 
--- Make <CR> auto-select the first completion item and notify coc.nvim to
--- format on enter, <cr> could be remapped by other vim plugin
+-- Make <CR> select completion item without dropping to a new line
 vim.api.nvim_exec(
 [[
-  inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent><expr> <CR> coc#_selected() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 ]],
 true)
