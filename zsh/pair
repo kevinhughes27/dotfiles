@@ -60,7 +60,7 @@ function pair() {
     --client-option ${theme} \
     --max-clients 1 \
     --check-origin \
-    tmux attach-session -t pair
+    tmux attach-session -t pair -f ignore-size
 
   # cleanup tmux session
   tmux kill-session -t pair
@@ -71,7 +71,8 @@ function pair-connect() {
 }
 
 function pair-pause() {
-  local pair_clients=$(tmux list-clients -t pair -F "#{client_pid} #{client_tty} #{client_readonly}")
+  local pair_session="pair"
+  local pair_clients=$(tmux list-clients -t $pair_session -F "#{client_pid} #{client_tty} #{client_readonly}")
   local pair_pid=$(pgrep -P $(pidof ttyd))
   local pair_client=$(echo $pair_clients | grep $pair_pid)
   local pair_tty=$(echo $pair_client | cut -d ' ' -f2)
@@ -81,7 +82,7 @@ function pair-pause() {
     echo "pair is already paused"
   else
     # make tmux client readonly
-    tmux switch-client -c $pair_tty -t pair -r
+    tmux switch-client -c $pair_tty -t $pair_session -r
 
     # display message to the client.
     local pause_message="****** Session Paused ******"
@@ -96,7 +97,7 @@ function pair-pause() {
     tmux display-popup -C -c $pair_tty
 
     # make tmux client read/write again
-    tmux switch-client -c $pair_tty -t pair -r
+    tmux switch-client -c $pair_tty -t $pair_session -r
 
     echo "Resumed pairing session (pair is read/write)"
   fi
