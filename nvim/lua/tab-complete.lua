@@ -1,9 +1,9 @@
 local check_back_space = function()
   local col = vim.fn.col(".") - 1
   if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
-      return true
+    return true
   else
-      return false
+    return false
   end
 end
 
@@ -13,11 +13,11 @@ end
 
 _G.tab_complete = function()
   if vim.fn.pumvisible() == 1 then
-      return t "<C-n>"
+    return t "<C-n>"
   elseif check_back_space() then
-      return t "<Tab>"
+    return t "<Tab>"
   else
-      return fn["coc#refresh"]()
+    return fn["coc#refresh"]()
   end
 end
 
