@@ -22,7 +22,7 @@ g.nvim_tree_bindings = {
   ["r"]              = tree_cb("rename"),
   ["<C-r>"]          = tree_cb("full_rename"),
   ["x"]              = tree_cb("cut"),
-  ["c"]              = tree_cb("copy"), -- doesn't work...
+  ["c"]              = tree_cb("copy"),
   ["p"]              = tree_cb("paste"),
   ["q"]              = tree_cb("close"),
 }
