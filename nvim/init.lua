@@ -45,10 +45,6 @@ paq {'christoomey/vim-tmux-navigator'}
 -- fzf
 paq {'junegunn/fzf'}
 paq {'junegunn/fzf.vim'}
--- telescope (fzf)
--- paq {'nvim-lua/popup.nvim'}
--- paq {'nvim-lua/plenary.nvim'}
--- paq {'nvim-telescope/telescope.nvim'}
 -- test running
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
@@ -169,13 +165,6 @@ map('n', '<C-p>', ':Files<Cr>')
 map('n', '<C-o>', ':Buffers<Cr>')
 map('n', '<C-h>', ':History<Cr>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent=true})
-
--- telescope
--- require('telescope-config')
--- map('n', '<C-p>', ':Telescope find_files<Cr>')
--- map('n', '<C-o>', ':Telescope buffers<Cr>')
--- map('n', '<C-h>', ':Telescope oldfiles<Cr>')
--- map('n', '<C-f>', ':Telescope grep_string<Cr>')
 
 ----------------------- References ----------------------------
 -- https://oroques.dev/notes/neovim-init/
