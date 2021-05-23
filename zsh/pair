@@ -26,9 +26,23 @@ function pair() {
     theme={
       "foreground":"#abb2bf",
       "background":"#282c34",
-      "green":"#98c379",
-      "brightGreen":"#98c379",
-      "brightBlue":"#61afef"
+      "cursor": "#adadad",
+      "black": "#5c6370",
+      "red": "#e06c75",
+      "green": "#98c379",
+      "yellow": "#e5c07b",
+      "blue": "#61afef",
+      "magenta": "#c678dd",
+      "cyan": "#56b6c2",
+      "white": "#828997",
+      "brightBlack": "#5c6370",
+      "brightRed": "#e06c75",
+      "brightGreen": "#98c379",
+      "brightYellow": "#e5c07b",
+      "brightBlue": "#61afef",
+      "brightMagenta": "#c678dd",
+      "brightCyan": "#56b6c2",
+      "brightWhite": "#828997",
     }
   '
   theme=${theme//$'\n'} # remove newlines
