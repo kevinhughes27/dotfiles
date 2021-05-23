@@ -43,7 +43,7 @@ paq { 'ruanyl/vim-gh-line' }
 -- seamless split/tmux navigation
 paq {'christoomey/vim-tmux-navigator'}
 -- fzf
-paq {'junegunn/fzf', hook = fn['fzf#install']}
+paq {'junegunn/fzf'}
 paq {'junegunn/fzf.vim'}
 -- telescope (fzf)
 -- paq {'nvim-lua/popup.nvim'}
@@ -168,7 +168,7 @@ require('fzf-config')
 map('n', '<C-p>', ':Files<Cr>')
 map('n', '<C-o>', ':Buffers<Cr>')
 map('n', '<C-h>', ':History<Cr>')
-map('n', '<C-f>', ':Rg <C-R><C-W><CR>', {silent=true})
+map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent=true})
 
 -- telescope
 -- require('telescope-config')
