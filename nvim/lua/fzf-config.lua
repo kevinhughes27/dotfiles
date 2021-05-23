@@ -1,11 +1,18 @@
 local g = vim.g
+local fn = vim.fn
 
-g.fzf_layout = {
-  window = {
-    width = 0.8,
-    height = 0.9,
+if fn.exists('$TMUX') == 1 then
+  g.fzf_layout = {
+    tmux = '-p 90%,90%'
   }
-}
+else
+  g.fzf_layout = {
+    window = {
+      width = 0.8,
+      height = 0.9,
+    }
+  }
+end
 
 g.fzf_preview_window = 'right:60%:sharp'
 
