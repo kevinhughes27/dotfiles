@@ -17,7 +17,7 @@ _G.tab_complete = function()
   elseif check_back_space() then
     return t "<Tab>"
   else
-    return fn["coc#refresh"]()
+    return vim.fn["coc#refresh"]()
   end
 end
 
