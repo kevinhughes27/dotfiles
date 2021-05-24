@@ -61,8 +61,10 @@ paq {'benmills/vimux'}
 paq {'sheerun/vim-polyglot'}
 paq {'vim-ruby/vim-ruby'}
 
--- code completion
-paq {'neoclide/coc.nvim', branch = 'release'}
+-- completion
+paq {'hrsh7th/nvim-compe'}
+paq {'neovim/nvim-lspconfig'}
+paq {'onsails/lspkind-nvim'}
 
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
@@ -87,11 +89,12 @@ opt('w', 'list', true)                -- show some invisible characters (tabs...
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
-opt('o', 'hidden', true)              -- fix for completion blocking
 
 -- onedark.vim override:
 -- don't set a background color just use the terminal's background color
-execute('autocmd ColorScheme *  call onedark#set_highlight("Normal", {})')
+-- set pmenu highlight to green
+execute('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
+execute('autocmd BufEnter * hi PmenuSel guibg=#98c379')
 
 -- colors
 cmd('colorscheme onedark')
@@ -194,8 +197,7 @@ map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 require('tab-complete')
 map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
 map('s', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
-map('i', '<CR>',  'v:lua.tab_complete_enter()', {silent = true, expr = true, noremap = true})
--- map('n', '<C-i>', 'v:lua.show_documentation()', {silent = true, expr = true}) -- this hijacks my tab mapping
+map('i', '<CR>', 'compe#confirm("<CR>")',  {silent = true, expr = true})
 
 -- nvim-tree
 require('tree-config')
