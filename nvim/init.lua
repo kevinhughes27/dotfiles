@@ -23,9 +23,9 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 -- init paq-nvim
-cmd 'packadd paq-nvim'            -- load package
-local paq = require'paq-nvim'.paq -- import module and bind `paq` function
-paq {'savq/paq-nvim', opt=true}   -- let paq manage itself
+cmd('packadd paq-nvim')             -- load package
+local paq = require('paq-nvim').paq -- import module and bind `paq` function
+paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
 ------------- Plugins -------------
 -- theme
@@ -103,29 +103,29 @@ cmd('colorscheme onedark')
 require('nvim-web-devicons').setup({
   override = {
     rb = {
-      icon = "",
-      color = "#e06c75",
-      name = "Rb"
+      icon = '',
+      color = '#e06c75',
+      name = 'Rb'
     },
     erb = {
-      icon = "",
-      color = "#e06c75",
-      name = "Erb",
+      icon = '',
+      color = '#e06c75',
+      name = 'Erb',
     },
     rake = {
-      icon = "",
-      color = "#e06c75",
-      name = "Rake"
+      icon = '',
+      color = '#e06c75',
+      name = 'Rake'
     },
-    ["config.ru"] = {
-      icon = "",
-      color = "#e06c75",
-      name = "ConfigRu"
+    ['config.ru'] = {
+      icon = '',
+      color = '#e06c75',
+      name = 'ConfigRu'
     },
     sqlite3 = {
-      icon = "",
-      color = "#dad8d8",
-      name = "sqlite",
+      icon = '',
+      color = '#dad8d8',
+      name = 'sqlite',
     };
   };
 })

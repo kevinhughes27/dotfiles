@@ -10,11 +10,11 @@ g.nvim_tree_show_icons = {
 }
 
 -- Remove all default bindings.
-require('nvim-tree.view').View.bindings = {}
+require("nvim-tree.view").View.bindings = {}
 
 -- Add back most of the detaul bindings
 -- but not `-` which I use to resize splits
-local tree_cb = require('nvim-tree.config').nvim_tree_callback
+local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 g.nvim_tree_bindings = {
   ["<CR>"]           = tree_cb("edit"),
