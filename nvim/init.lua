@@ -133,7 +133,8 @@ require('nvim-web-devicons').setup({
 -- statusline
 require('lualine').setup({
   options = {
-    theme = 'onedark'
+    theme = 'onedark',
+    disabled_filetypes = {'NvimTree'}
   },
   sections = {
     lualine_a = { {'mode', upper = true} },
@@ -143,7 +144,6 @@ require('lualine').setup({
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
   },
-  extensions = { 'nvim-tree' }
 })
 
 -- copy into clipboard by default
