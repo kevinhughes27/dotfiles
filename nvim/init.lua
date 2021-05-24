@@ -194,7 +194,7 @@ map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- code completion
-require('tab-complete')
+require('completion-config')
 map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
 map('s', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
 map('i', '<CR>', 'compe#confirm("<CR>")',  {silent = true, expr = true})
