@@ -30,32 +30,43 @@ paq {'savq/paq-nvim', opt=true}   -- let paq manage itself
 ------------- Plugins -------------
 -- theme
 paq {'joshdick/onedark.vim'}
+
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
+
 -- statusline
 paq {'hoob3rt/lualine.nvim'}
+
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
+
 -- gitgutter
 paq {'airblade/vim-gitgutter'}
+
 -- github link copy :GH
 paq { 'ruanyl/vim-gh-line' }
+
 -- seamless split/tmux navigation
 paq {'christoomey/vim-tmux-navigator'}
+
 -- fzf
 paq {'junegunn/fzf'}
 paq {'junegunn/fzf.vim'}
+
 -- test running
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
--- ruby
-paq {'vim-ruby/vim-ruby'}
+
 -- syntax
 paq {'sheerun/vim-polyglot'}
+paq {'vim-ruby/vim-ruby'}
+
 -- code completion
 paq {'neoclide/coc.nvim', branch = 'release'}
+
 -- gcc and gc + motion to comment
 paq {'tpope/vim-commentary' }
+
 -- sublime style multiple cursors. ctrl-n to start
 paq {'mg979/vim-visual-multi'}
 
@@ -83,7 +94,38 @@ opt('o', 'hidden', true)              -- fix for completion blocking
 execute('autocmd ColorScheme *  call onedark#set_highlight("Normal", {})')
 
 -- colors
-cmd 'colorscheme onedark'
+cmd('colorscheme onedark')
+
+-- icons
+require('nvim-web-devicons').setup({
+  override = {
+    rb = {
+      icon = "",
+      color = "#e06c75",
+      name = "Rb"
+    },
+    erb = {
+      icon = "",
+      color = "#e06c75",
+      name = "Erb",
+    },
+    rake = {
+      icon = "",
+      color = "#e06c75",
+      name = "Rake"
+    },
+    ["config.ru"] = {
+      icon = "",
+      color = "#e06c75",
+      name = "ConfigRu"
+    },
+    sqlite3 = {
+      icon = "",
+      color = "#dad8d8",
+      name = "sqlite",
+    };
+  };
+})
 
 -- statusline
 require('lualine').setup({
@@ -100,9 +142,6 @@ require('lualine').setup({
   },
   extensions = { 'nvim-tree' }
 })
-
--- strip trailing spaces on save
-execute('autocmd BufWritePre * :%s/\\s\\+$//e')
 
 -- copy into clipboard by default
 local os = fn.substitute(fn.system('uname'), '\n', '', '')
@@ -129,12 +168,15 @@ map('n', '<Tab>', ':tabnext<CR>')
 -- gimme ctrl s
 map('n', '<C-s>', ':w<CR>')
 
+-- strip trailing spaces on save
+execute('autocmd BufWritePre * :%s/\\s\\+$//e')
+
 -- tmux
 g.tmux_navigator_no_mappings = 1
 g.tmux_navigator_save_on_switch = 2
-map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>', {silent = true})
-map('n', '<C-Down>',  ':TmuxNavigateDown<cr>', {silent = true})
-map('n', '<C-Up>',    ':TmuxNavigateUp<cr>', {silent = true})
+map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>',  {silent = true})
+map('n', '<C-Down>',  ':TmuxNavigateDown<cr>',  {silent = true})
+map('n', '<C-Up>',    ':TmuxNavigateUp<cr>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<cr>', {silent = true})
 
 -- disable visual-multi-mappings
@@ -150,10 +192,10 @@ map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- code completion
 require('tab-complete')
-map('i', '<Tab>', 'v:lua.tab_complete()', {expr = true})
-map('s', '<Tab>', 'v:lua.tab_complete()', {expr = true})
--- this seems to overwrite my tab mapping for some reason
--- map('n', '<C-i>', ':call CocActionAsync("doHover")<cr>', {silent=true})
+map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
+map('s', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
+map('i', '<CR>',  'v:lua.tab_complete_enter()', {silent = true, expr = true, noremap = true})
+-- map('n', '<C-i>', 'v:lua.show_documentation()', {silent = true, expr = true}) -- this hijacks my tab mapping
 
 -- nvim-tree
 require('tree-config')
@@ -164,7 +206,7 @@ require('fzf-config')
 map('n', '<C-p>', ':Files<Cr>')
 map('n', '<C-o>', ':Buffers<Cr>')
 map('n', '<C-h>', ':History<Cr>')
-map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent=true})
+map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 
 ----------------------- References ----------------------------
 -- https://oroques.dev/notes/neovim-init/

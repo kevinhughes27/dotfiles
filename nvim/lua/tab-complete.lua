@@ -21,9 +21,16 @@ _G.tab_complete = function()
   end
 end
 
--- Make <CR> select completion item without dropping to a new line
-vim.api.nvim_exec(
-[[
-  inoremap <silent><expr> <CR> coc#_selected() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-]],
-true)
+_G.tab_complete_enter = function()
+  if vim.fn.pumvisible() == 1 then
+    return vim.fn["coc#_select_confirm"]()
+  else
+    return t "<C-g>u<CR><c-r>=coc#on_enter()<CR>"
+  end
+end
+
+_G.show_documentation = function()
+  if vim.fn["coc#rpc#ready"]() then
+    vim.api.nvim_exec("call CocActionAsync('doHover')", true)
+  end
+end

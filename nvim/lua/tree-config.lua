@@ -3,13 +3,18 @@ local g = vim.g
 g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
 g.nvim_tree_width = 30
 g.nvim_tree_indent_markers = 1
+g.nvim_tree_show_icons = {
+  folders = 1,
+  files = 1,
+  git = 0
+}
 
 -- Remove all default bindings.
-require'nvim-tree.view'.View.bindings = {}
+require('nvim-tree.view').View.bindings = {}
 
 -- Add back most of the detaul bindings
 -- but not `-` which I use to resize splits
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
+local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 g.nvim_tree_bindings = {
   ["<CR>"]           = tree_cb("edit"),
