@@ -32,6 +32,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# then run fzf/install to create this file.
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # autoload
