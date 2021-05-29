@@ -154,8 +154,24 @@ else
   opt('o', 'clipboard', 'unnamedplus')
 end
 
+-- remember last cursor position
+vim.api.nvim_exec([[
+function! RestoreCursor()
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call RestoreCursor()
+augroup END
+]], true)
+
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
+map('n', '<CR>', ':noh<CR>') -- clear highlight
 
 -- new splits
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
@@ -214,3 +230,4 @@ map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 -- https://oroques.dev/notes/neovim-init/
 -- https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
 -- https://github.com/siduck76/neovim-dots
+-- https://github.com/mjlbach/defaults.nvim
