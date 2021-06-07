@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+# connect to overmind in a tmux popup
+# usage: oc rails
+
+function overmind_connect() {
+  tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect $1
+}
+
+alias oc='overmind_connect'
