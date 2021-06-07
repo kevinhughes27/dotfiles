@@ -18,6 +18,10 @@ lspconf["tsserver"].setup({ on_attach = on_attach })
 -- GO111MODULE=on go get golang.org/x/tools/gopls@latest
 lspconf["gopls"].setup({ on_attach = on_attach })
 
+-- curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > ~/.local/bin/rust-analyzer
+-- chmod +x ~/.local/bin/rust-analyzer
+lspconf["rust_analyzer"].setup({ on_attach = on_attach })
+
 require("lspkind").init({
   symbol_map = {
     Enum = '',
