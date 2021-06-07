@@ -59,6 +59,10 @@ added = yellow
 changed = green
 untracked = cyan
 
+# for fzf.vim
+[delta]
+diff-so-fancy
+
 [alias]
 
 # commit
