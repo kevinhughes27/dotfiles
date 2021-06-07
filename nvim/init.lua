@@ -57,9 +57,9 @@ paq {'junegunn/fzf.vim'}
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
 
--- syntax
-paq {'sheerun/vim-polyglot'}
+-- language specific
 paq {'vim-ruby/vim-ruby'}
+paq {'mattn/vim-goimports'}
 
 -- completion
 paq {'hrsh7th/nvim-compe'}
@@ -186,6 +186,7 @@ map('n', '<Tab>', ':tabnext<CR>')
 
 -- gimme ctrl s
 map('n', '<C-s>', ':w<CR>')
+map('i', '<C-s>', '<ESC>:w<CR>i')
 
 -- strip trailing spaces on save
 execute('autocmd BufWritePre * :%s/\\s\\+$//e')
@@ -193,10 +194,10 @@ execute('autocmd BufWritePre * :%s/\\s\\+$//e')
 -- tmux
 g.tmux_navigator_no_mappings = 1
 g.tmux_navigator_save_on_switch = 2
-map('n', '<C-Left>',  ':TmuxNavigateLeft<cr>',  {silent = true})
-map('n', '<C-Down>',  ':TmuxNavigateDown<cr>',  {silent = true})
-map('n', '<C-Up>',    ':TmuxNavigateUp<cr>',    {silent = true})
-map('n', '<C-Right>', ':TmuxNavigateRight<cr>', {silent = true})
+map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
+map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
+map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
+map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
 -- disable visual-multi-mappings
 -- it binds to ctrl up/down which I use for navigation
@@ -217,13 +218,13 @@ map('i', '<CR>', 'compe#confirm("<CR>")',  {silent = true, expr = true})
 
 -- nvim-tree
 require('tree-config')
-map('n', '<C-b>', ':call ToggleTree()<Cr>')
+map('n', '<C-b>', ':call ToggleTree()<CR>')
 
 -- fzf
 require('fzf-config')
-map('n', '<C-p>', ':Files<Cr>')
-map('n', '<C-o>', ':Buffers<Cr>')
-map('n', '<C-h>', ':History<Cr>')
+map('n', '<C-p>', ':Files<CR>')
+map('n', '<C-o>', ':Buffers<CR>')
+map('n', '<C-h>', ':History<CR>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 
 ----------------------- References ----------------------------
