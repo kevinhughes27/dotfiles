@@ -171,7 +171,6 @@ augroup END
 
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
-map('n', '<CR>', ':noh<CR>') -- clear highlight
 
 -- new splits
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
