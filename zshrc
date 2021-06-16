@@ -21,7 +21,7 @@ export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
 export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
 
-export FZF_DEFAULT_COMMAND='rg --files'
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS='--reverse --height=50%'
 
 # fzf one dark theme
