@@ -154,9 +154,13 @@ else
   opt('o', 'clipboard', 'unnamedplus')
 end
 
--- remember last cursor position
+-- remember last cursor position (ignore tree)
 vim.api.nvim_exec([[
 function! RestoreCursor()
+  if &ft =~ 'NvimTree'
+    return
+  endif
+
   if line("'\"") <= line("$")
     normal! g`"
     return 1
