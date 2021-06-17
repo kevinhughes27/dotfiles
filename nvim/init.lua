@@ -214,6 +214,11 @@ g['VimuxHeight'] = '20'
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
+-- overmind connect in a tmux popup
+vim.api.nvim_exec([[
+command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind connect <f-args>
+]], true)
+
 -- code completion
 require('completion-config')
 map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
