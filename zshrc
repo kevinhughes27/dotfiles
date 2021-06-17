@@ -9,13 +9,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive comple
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' list-colors ''
 
-# sometimes bat is installed as batcat.
-if command -v batcat > /dev/null; then
-  BATNAME="batcat"
-elif command -v bat > /dev/null; then
-  BATNAME="bat"
-fi
-
 # configuration
 export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
