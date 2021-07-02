@@ -10,26 +10,26 @@ g.nvim_tree_show_icons = {
 }
 
 -- Remove all default bindings.
-require("nvim-tree.view").View.bindings = {}
+g.nvim_tree_disable_default_keybindings = 1
 
--- Add back most of the detaul bindings
+-- Add back most of the default bindings
 -- but not `-` which I use to resize splits
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
 g.nvim_tree_bindings = {
-  ["<CR>"]           = tree_cb("edit"),
-  ["<2-LeftMouse>"]  = tree_cb("edit"),
-  ["<2-RightMouse>"] = tree_cb("cd"),
-  ["<C-t>"]          = tree_cb("tabnew"), -- this is now opening the window picker which I don't want. How can I new tab open now?
-  ["R"]              = tree_cb("refresh"),
-  ["a"]              = tree_cb("create"),
-  ["d"]              = tree_cb("remove"),
-  ["r"]              = tree_cb("rename"),
-  ["<C-r>"]          = tree_cb("full_rename"),
-  ["x"]              = tree_cb("cut"),
-  ["c"]              = tree_cb("copy"),
-  ["p"]              = tree_cb("paste"),
-  ["q"]              = tree_cb("close"),
+  {key = {"<CR>"},           cb = tree_cb("edit")},
+  {key = {"<2-LeftMouse>"},  cb = tree_cb("edit")},
+  {key = {"<2-RightMouse>"}, cb = tree_cb("cd")},
+  {key = {"<C-t>"},          cb = tree_cb("tabnew")}, -- this is now opening the window picker which I don't want. How can I new tab open now?
+  {key = {"R"},              cb = tree_cb("refresh")},
+  {key = {"a"},              cb = tree_cb("create")},
+  {key = {"d"},              cb = tree_cb("remove")},
+  {key = {"r"},              cb = tree_cb("rename")},
+  {key = {"<C-r>"},          cb = tree_cb("full_rename")},
+  {key = {"x"},              cb = tree_cb("cut")},
+  {key = {"c"},              cb = tree_cb("copy")},
+  {key = {"p"},              cb = tree_cb("paste")},
+  {key = {"q"},              cb = tree_cb("close")},
 }
 
 -- sync the tree but only on open

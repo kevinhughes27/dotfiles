@@ -1,5 +1,6 @@
 ----------------------- Helpers -------------------------------
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
+local lsp = vim.lsp  -- had to add this here or it errors when other lua files try and grab it
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
@@ -220,6 +221,7 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 ]], true)
 
 -- code completion
+require('lsp-config')
 require('completion-config')
 map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
 map('s', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
