@@ -29,7 +29,7 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
 ------------- Plugins -------------
 -- theme
-paq {'joshdick/onedark.vim'}
+paq {'joshdick/onedark.vim', branch='main'}
 
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
