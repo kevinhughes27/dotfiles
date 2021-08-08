@@ -29,11 +29,13 @@ font:
   normal:
     family: Hack Nerd Font
     style: Regular
-  size: 11
+  size: 11 # 13 for OSX
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: F11, action: ToggleFullscreen }
+  # Cmd N opens new window osx
+  # F11 doesn't work on OSX but if I change the key it does
 
 selection:
   save_to_clipboard: true
