@@ -21,7 +21,7 @@ lspconf["gopls"].setup({ on_attach = on_attach })
 lspconf["rust_analyzer"].setup({ on_attach = on_attach })
 
 -- npm install -g bash-language-server
-lspconf["bashls"].setup({ on_attach = on_attach })
+-- lspconf["bashls"].setup({ on_attach = on_attach })
 
 require("lspkind").init({
   symbol_map = {
