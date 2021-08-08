@@ -2,6 +2,7 @@ local g = vim.g
 
 g.nvim_tree_ignore = {".git", "node_modules", ".cache", ".DS_Store"}
 g.nvim_tree_width = 30
+g.nvim_tree_auto_resize = 0
 g.nvim_tree_indent_markers = 1
 g.nvim_tree_show_icons = {
   folders = 1,
