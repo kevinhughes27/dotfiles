@@ -178,7 +178,7 @@ augroup END
 
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
-map('n', '<ESC>', ':noh<CR>') -- clear highlight
+map('n', '<ESC>', ':noh|set norelativenumber!<CR>') -- clear highlight and toggle relative numbers
 
 -- new splits
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
