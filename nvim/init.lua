@@ -68,6 +68,7 @@ paq {'mattn/vim-goimports'}
 paq {'hrsh7th/nvim-cmp'}
 paq {'hrsh7th/cmp-path'}
 paq {'hrsh7th/cmp-buffer'}
+paq {'hrsh7th/cmp-nvim-lsp'}
 paq {'hrsh7th/vim-vsnip'}
 paq {'neovim/nvim-lspconfig'}
 paq {'onsails/lspkind-nvim'}
