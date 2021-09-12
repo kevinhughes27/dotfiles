@@ -65,7 +65,10 @@ paq {'vim-ruby/vim-ruby'}
 paq {'mattn/vim-goimports'}
 
 -- completion
-paq {'hrsh7th/nvim-compe'}
+paq {'hrsh7th/nvim-cmp'}
+paq {'hrsh7th/cmp-path'}
+paq {'hrsh7th/cmp-buffer'}
+paq {'hrsh7th/vim-vsnip'}
 paq {'neovim/nvim-lspconfig'}
 paq {'onsails/lspkind-nvim'}
 
@@ -224,10 +227,7 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 
 -- code completion
 require('lsp-config')
-require('completion-config')
-map('i', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
-map('s', '<Tab>', 'v:lua.tab_complete()', {silent = true, expr = true})
-map('i', '<CR>', 'compe#confirm("<CR>")',  {silent = true, expr = true})
+require('cmp-config')
 
 -- nvim-tree
 require('tree-config')
