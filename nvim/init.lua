@@ -40,6 +40,9 @@ paq {'hoob3rt/lualine.nvim'}
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
 
+-- smart relative vs absolute line numbering
+paq {'jeffkreeftmeijer/vim-numbertoggle'}
+
 -- gitgutter
 paq {'airblade/vim-gitgutter'}
 
