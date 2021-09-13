@@ -3,8 +3,8 @@ local cmp = require("cmp")
 cmp.setup({
   snippet = {
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
+      require("luasnip").lsp_expand(args.body)
+    end
   },
   mapping = {
     ["<Tab>"] = cmp.mapping(cmp.mapping.select_next_item(), { "i", "s" }),
@@ -16,6 +16,7 @@ cmp.setup({
   sources = {
     { name = "path" },
     { name = "buffer" },
+    { name = "luasnip" },
     { name = "nvim_lsp" },
   },
   formatting = {
@@ -27,7 +28,7 @@ cmp.setup({
       vim_item.menu = ({
         buffer = "[Buffer]",
         nvim_lsp = "[LSP]",
-        vsnip = "[Snippet]",
+        luasnip = "[Snippet]",
       })[entry.source.name]
       return vim_item
     end,

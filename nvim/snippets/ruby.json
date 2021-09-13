@@ -1,0 +1,12 @@
+{
+  "Class definition with initialize": {
+    "prefix": ["class init"],
+    "body": [
+      "class ${1:ClassName}",
+      "\tdef initialize",
+      "\t\t$0",
+      "\tend",
+      "end"
+    ]
+  },
+}

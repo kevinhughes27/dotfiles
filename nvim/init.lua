@@ -69,7 +69,9 @@ paq {'hrsh7th/nvim-cmp'}
 paq {'hrsh7th/cmp-path'}
 paq {'hrsh7th/cmp-buffer'}
 paq {'hrsh7th/cmp-nvim-lsp'}
-paq {'hrsh7th/vim-vsnip'}
+paq {'saadparwaiz1/cmp_luasnip'}
+
+paq {'L3MON4D3/LuaSnip'}
 paq {'neovim/nvim-lspconfig'}
 paq {'onsails/lspkind-nvim'}
 
@@ -202,7 +204,7 @@ map('i', '<C-s>', '<ESC>:w<CR>i')
 -- strip trailing spaces on save
 execute('autocmd BufWritePre * :%s/\\s\\+$//e')
 
--- tmux
+-- tmux navigation
 g.tmux_navigator_no_mappings = 1
 g.tmux_navigator_save_on_switch = 2
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
@@ -228,6 +230,7 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 
 -- code completion
 require('lsp-config')
+require('snip-config')
 require('cmp-config')
 
 -- nvim-tree
