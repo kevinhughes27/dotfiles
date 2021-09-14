@@ -1,6 +1,6 @@
 {
   "Class definition with initialize": {
-    "prefix": ["class init"],
+    "prefix": "class init",
     "body": [
       "class ${1:ClassName}",
       "\tdef initialize",
@@ -8,5 +8,58 @@
       "\tend",
       "end"
     ]
+  },
+  "for loop": {
+    "prefix": "for loop",
+    "body": [
+      "for ${1:value} in ${2:enumerable} do",
+      "\t$0",
+      "end"
+    ]
+  },
+  "case": {
+    "prefix": "case",
+    "body": [
+      "case ${1:test}",
+      "when $2",
+      "\t$3",
+      "when $4",
+      "\t$5",
+      "else",
+      "\t$6",
+      "end"
+    ]
+  },
+  "Insert require": {
+    "prefix": "require",
+    "body": "require '${1}'$0"
+  },
+  "Insert require_relative": {
+    "prefix": "require_relative",
+    "body": "require_relative '${1}'$0"
+  },
+  "Insert each with index multiline block": {
+    "prefix": "each_with_index",
+    "body": [
+      "each_with_index do |${1:e}, ${2:i}|",
+      "\t$0",
+      "end"
+    ]
+  },
+  "Insert RSpec.describe class": {
+    "prefix": "rspec",
+    "body": [
+      "RSpec.describe ${1:described_class} do",
+      "\t$0",
+      "end"
+    ]
+  },
+    "Insert expect": {
+    "prefix": "expect",
+    "body": "expect(${1:object}).to ${0}"
+  },
+  "Insert expect with block": {
+    "prefix": "expectd",
+    "body": "expect { ${1:object} }.to ${0}"
   }
 }

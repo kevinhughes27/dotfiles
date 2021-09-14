@@ -230,7 +230,6 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 
 -- code completion
 require('lsp-config')
-require('snip-config')
 require('cmp-config')
 
 -- nvim-tree

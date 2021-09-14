@@ -1,5 +1,12 @@
 local cmp = require("cmp")
+local snippet_loader = require("luasnip.loaders.from_vscode")
 
+-- snippets
+snippet_loader.lazy_load({
+  paths = { "~/dotfiles/nvim/snippets" }
+})
+
+-- completion
 cmp.setup({
   snippet = {
     expand = function(args)

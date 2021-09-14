@@ -1,0 +1,6 @@
+{
+  "PDB set trace": {
+    "prefix": "pdb",
+    "body": "__import__('pdb').set_trace()$0"
+  }
+}

@@ -8,6 +8,14 @@
       {
         "language": "ruby",
         "path": "./ruby.json"
+      },
+      {
+        "language": "ruby",
+        "path": "./rails.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
       }
     ]
   }
