@@ -62,7 +62,9 @@ paq {'benmills/vimux'}
 
 -- language specific
 paq {'vim-ruby/vim-ruby'}
-paq {'mattn/vim-goimports'}
+
+-- auto formatting
+paq {'mhartington/formatter.nvim'}
 
 -- completion
 paq {'hrsh7th/nvim-cmp'}
@@ -163,25 +165,6 @@ else
   opt('o', 'clipboard', 'unnamedplus')
 end
 
--- remember last cursor position (ignore tree)
-vim.api.nvim_exec([[
-function! RestoreCursor()
-  if &ft =~ 'NvimTree'
-    return
-  endif
-
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call RestoreCursor()
-augroup END
-]], true)
-
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 map('n', '<ESC>', ':noh|set norelativenumber!<CR>') -- clear highlight and toggle relative numbers
@@ -201,8 +184,9 @@ map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<C-s>', ':w<CR>')
 map('i', '<C-s>', '<ESC>:w<CR>i')
 
--- strip trailing spaces on save
-execute('autocmd BufWritePre * :%s/\\s\\+$//e')
+-- disable visual-multi-mappings
+-- it binds to ctrl up/down which I use for navigation
+g.VM_default_mappings = 0
 
 -- tmux navigation
 g.tmux_navigator_no_mappings = 1
@@ -211,10 +195,6 @@ map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
 map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
-
--- disable visual-multi-mappings
--- it binds to ctrl up/down which I use for navigation
-g.VM_default_mappings = 0
 
 -- vim-test / vimux
 g['test#strategy'] = 'vimux' -- make test commands execute using vimux
@@ -226,6 +206,50 @@ map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 -- overmind connect in a tmux popup
 vim.api.nvim_exec([[
 command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind connect <f-args>
+]], true)
+
+-- remember last cursor position (ignore tree)
+vim.api.nvim_exec([[
+function! RestoreCursor()
+  if &ft =~ 'NvimTree'
+    return
+  endif
+
+  if line("'\"") <= line("$")
+    normal! g`"
+    return 1
+  endif
+endfunction
+
+augroup resCur
+  autocmd!
+  autocmd BufWinEnter * call RestoreCursor()
+augroup END
+]], true)
+
+-- formatter
+require('formatter').setup({
+  filetype = {
+    go = {
+      function()
+        return {
+          exe = 'goimports',
+          stdin = true,
+        }
+      end
+    }
+  }
+})
+
+--- strip trailing spaces on save
+execute('autocmd BufWritePre * :%s/\\s\\+$//e')
+
+-- format on save
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.go FormatWrite
+augroup END
 ]], true)
 
 -- code completion
