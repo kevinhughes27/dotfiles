@@ -110,10 +110,7 @@ nb = "!f() { git checkout master && git pull && git checkout -b $1; }; f"
 
 # rebase the current branch against fresh master
 r = "!git_rebase() { \
-  local curbranch=`git rev-parse --abbrev-ref HEAD`; \
-  git checkout master; \
-  git pull origin master; \
-  git checkout $curbranch; \
+  git fetch origin master:master; \
   git rebase master; \
 }; git_rebase"
 
