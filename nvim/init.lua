@@ -1,9 +1,7 @@
 ----------------------- Helpers -------------------------------
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
 local g = vim.g      -- a table to access global variables
 local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-local execute = vim.api.nvim_command
 
 local function opt(scope, key, value)
   scopes[scope][key] = value
@@ -19,11 +17,11 @@ end
 -- auto install paq-nvim if necessary
 local install_path = fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/savq/paq-nvim.git '..install_path)
+  vim.api.nvim_command('!git clone https://github.com/savq/paq-nvim.git '..install_path)
 end
 
 -- init paq-nvim
-cmd('packadd paq-nvim')             -- load package
+vim.cmd('packadd paq-nvim')         -- load package
 local paq = require('paq-nvim').paq -- import module and bind `paq` function
 paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
@@ -104,11 +102,11 @@ opt('o', 'updatetime', 100)           -- update frequency
 -- onedark.vim override:
 -- don't set a background color just use the terminal's background color
 -- set pmenu highlight to green
-execute('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
-execute('autocmd BufEnter * hi PmenuSel guibg=#98c379')
+vim.api.nvim_command('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
+vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=#98c379')
 
 -- colors
-cmd('colorscheme onedark')
+vim.cmd('colorscheme onedark')
 
 -- icons
 require('nvim-web-devicons').setup({
@@ -209,61 +207,22 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 ]], true)
 
 -- remember last cursor position (ignore tree)
-vim.api.nvim_exec([[
-function! RestoreCursor()
-  if &ft =~ 'NvimTree'
-    return
-  endif
+require('cursor')
 
-  if line("'\"") <= line("$")
-    normal! g`"
-    return 1
-  endif
-endfunction
-
-augroup resCur
-  autocmd!
-  autocmd BufWinEnter * call RestoreCursor()
-augroup END
-]], true)
-
--- formatter
-require('formatter').setup({
-  filetype = {
-    go = {
-      function()
-        return {
-          exe = 'goimports',
-          stdin = true,
-        }
-      end
-    }
-  }
-})
-
---- strip trailing spaces on save
-execute('autocmd BufWritePre * :%s/\\s\\+$//e')
-
--- format on save
-vim.api.nvim_exec([[
-augroup FormatAutogroup
-  autocmd!
-  autocmd BufWritePost *.go FormatWrite
-augroup END
-]], true)
+-- formatting
+require('formatting')
 
 -- code completion
-require('lsp-config')
-require('cmp-config')
+require('lsp')
+require('completion')
 
 -- nvim-tree
-require('tree-config')
+require('tree')
 map('n', '<C-b>', ':call ToggleTree()<CR>')
 
 -- fzf
-require('fzf-config')
+require('fzf')
 map('n', '<C-p>', ':Files<CR>')
-map('n', '<C-o>', ':Buffers<CR>')
 map('n', '<C-h>', ':History<CR>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 
