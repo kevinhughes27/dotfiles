@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 function man () {
   export LESS_TERMCAP_mb=$'\e[1;32m'

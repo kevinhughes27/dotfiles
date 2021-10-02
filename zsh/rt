@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # rspec or rails tests
 # based on Gemfile contents

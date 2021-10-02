@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # start a new pair programming session from my machine using ttyd
 # the function will create a new tmux session named 'pair' which

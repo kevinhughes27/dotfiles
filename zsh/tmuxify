@@ -1,7 +1,6 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
-# if installed:
-# if no session exists, create it and attach to it.
+# if tmux is available but no session exists, create one and attach to it.
 function tmuxify () {
   if hash tmux &> /dev/null; then
     if tmux ls &> /dev/null; then

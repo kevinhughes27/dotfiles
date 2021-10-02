@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh
 
 # push the current branch, confirm master push.
 # allow force push unless master
