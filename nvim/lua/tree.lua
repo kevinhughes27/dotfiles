@@ -1,5 +1,13 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
+vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache", "__pycache__", ".DS_Store"}
+vim.g.nvim_tree_indent_markers = 1
+vim.g.nvim_tree_show_icons = {
+  folders = 1,
+  files = 1,
+  git = 0
+}
+
 require('nvim-tree').setup {
   view = {
     width = 30,
@@ -24,14 +32,6 @@ require('nvim-tree').setup {
       }
     }
   }
-}
-
-vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache", ".DS_Store"}
-vim.g.nvim_tree_indent_markers = 1
-vim.g.nvim_tree_show_icons = {
-  folders = 1,
-  files = 1,
-  git = 0
 }
 
 -- sync the tree but only on open
