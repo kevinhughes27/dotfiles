@@ -1,22 +1,22 @@
 -- custom language servers
--- local configs = require "lspconfig/configs"
--- local util = require "lspconfig/util"
+local configs = require "lspconfig/configs"
+local util = require "lspconfig/util"
 
--- configs.es_ruby = {
---   default_config = {
---     cmd = { "nc", "localhost", "8341" },
---     filetypes = { "ruby", },
---     root_dir = util.root_pattern("Gemfile", ".git"),
---   },
---   docs = {
---     description = [[
---       Language server for Ruby, backed by Elastic search.
---     ]],
---     default_config = {
---       root_dir = [[root_pattern("Gemfile", ".git")]],
---     },
---   },
--- }
+configs.es_ruby = {
+  default_config = {
+    cmd = { "nc", "localhost", "8341" },
+    filetypes = { "ruby", },
+    root_dir = util.root_pattern("Gemfile", ".git"),
+  },
+  docs = {
+    description = [[
+      Language server for Ruby, backed by Elastic search.
+    ]],
+    default_config = {
+      root_dir = [[root_pattern("Gemfile", ".git")]],
+    },
+  },
+}
 
 local lspconf = require("lspconfig")
 
@@ -31,7 +31,7 @@ function on_attach(client)
 
   local opts = {noremap = true, silent = true}
   buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "<RightMouse>", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 end
 
 -- npm install -g typescript-language-server
@@ -69,10 +69,10 @@ lspconf["rust_analyzer"].setup({
     --mount "type=bind,source=/Users/kevinhughes/clio,target=/projects/clio,readonly" \
     blinknlights/elastic_ruby_server
 ]]
--- lspconf["es_ruby"].setup({
---   capabilities = capabilities,
---   on_attach = on_attach
--- })
+lspconf["es_ruby"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach
+})
 
 -- npm install -g bash-language-server
 -- lspconf["bashls"].setup({ on_attach = on_attach })
