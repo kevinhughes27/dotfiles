@@ -45,7 +45,7 @@ function! ToggleTree()
   if IsTreeOpen()
     NvimTreeClose
   else
-    NvimTreeClose
+    NvimTreeOpen
     NvimTreeFindFile
   endif
 endfunction
