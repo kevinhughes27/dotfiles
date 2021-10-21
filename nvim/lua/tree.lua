@@ -34,20 +34,29 @@ require('nvim-tree').setup {
   }
 }
 
--- sync the tree but only on open
-vim.api.nvim_exec(
-[[
-function! IsTreeOpen()
-  return bufwinnr('NvimTree') != -1
-endfunction
+local view = require("nvim-tree.view")
+local lib = require("nvim-tree.lib")
+local find_file = require("nvim-tree").find_file
+local luv = vim.loop
 
-function! ToggleTree()
-  if IsTreeOpen()
-    NvimTreeClose
+local function is_file_readable(fname)
+  local stat = luv.fs_stat(fname)
+  return stat and stat.type == "file" and luv.fs_access(fname, 'R')
+end
+
+-- sync the tree but only on open
+function _G.ToggleTree()
+  if view.win_open() then
+    view.close()
+    return
+  end
+
+  local bufname = vim.fn.bufname()
+  local filepath = vim.fn.fnamemodify(bufname, ':p')
+
+  if is_file_readable(filepath) then
+    find_file(true)
   else
-    NvimTreeOpen
-    NvimTreeFindFile
-  endif
-endfunction
-]],
-true)
+    lib.open()
+  end
+end

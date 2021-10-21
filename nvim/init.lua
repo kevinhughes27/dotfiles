@@ -218,7 +218,7 @@ require('completion')
 
 -- nvim-tree
 require('tree')
-map('n', '<C-b>', ':call ToggleTree()<CR>')
+map('n', '<C-b>', ':lua ToggleTree()<CR>')
 
 -- fzf
 require('fzf')
