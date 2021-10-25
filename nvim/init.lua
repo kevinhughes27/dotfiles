@@ -33,7 +33,7 @@ paq {'joshdick/onedark.vim', branch='main'}
 paq {'kyazdani42/nvim-web-devicons'}
 
 -- statusline
-paq {'hoob3rt/lualine.nvim'}
+paq {'nvim-lualine/lualine.nvim'}
 
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
