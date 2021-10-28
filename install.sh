@@ -42,23 +42,25 @@ echo ""
 echo "Symlinking files:"
 echo "-----------------"
 
+DIR=`realpath $0 | sed 's/\/install.sh//'`
+
 function link() {
-  from="$1"
+  from="$DIR/$1"
   to="$2"
   echo "Linking '$from' to '$to'"
   rm -f "$to"
   ln -s "$from" "$to"
 }
 
-link ~/dotfiles/zshrc ~/.zshrc
-link ~/dotfiles/tmux.conf ~/.tmux.conf
-link ~/dotfiles/gitconfig ~/.gitconfig
-link ~/dotfiles/gitignore ~/.gitignore
+link zshrc ~/.zshrc
+link tmux.conf ~/.tmux.conf
+link gitconfig ~/.gitconfig
+link gitignore ~/.gitignore
 
-link ~/dotfiles/alacritty ~/.config/alacritty
-link ~/dotfiles/bottom ~/.config/bottom
-link ~/dotfiles/starship.toml ~/.config/starship.toml
-link ~/dotfiles/nvim ~/.config/nvim
+link alacritty ~/.config/alacritty
+link bottom ~/.config/bottom
+link starship.toml ~/.config/starship.toml
+link nvim ~/.config/nvim
 
 echo ""
 echo "All done."
