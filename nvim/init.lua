@@ -27,7 +27,7 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
 ------------- Plugins -------------
 -- theme
-paq {'joshdick/onedark.vim', branch='main'}
+paq {'rmehri01/onenord.nvim', branch='main'}
 
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
@@ -99,14 +99,8 @@ opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
 
--- onedark.vim override:
--- don't set a background color just use the terminal's background color
--- set pmenu highlight to green
-vim.api.nvim_command('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
-vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=#98c379')
-
 -- colors
-vim.cmd('colorscheme onedark')
+vim.cmd('colorscheme onenord')
 
 -- icons
 require('nvim-web-devicons').setup({
@@ -142,7 +136,7 @@ require('nvim-web-devicons').setup({
 -- statusline
 require('lualine').setup({
   options = {
-    theme = 'onedark',
+    theme = 'onenord',
     disabled_filetypes = {'NvimTree'}
   },
   sections = {
