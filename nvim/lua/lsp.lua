@@ -51,12 +51,20 @@ lspconf["bashls"].setup({
   on_attach = on_attach
 })
 
-
 -- require("es_ruby")
 -- lspconf["es_ruby"].setup({
 --   capabilities = capabilities,
 --   on_attach = on_attach
 -- })
+
+-- don't show diagnostics
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    virtual_text = false,
+    signs = false,
+    update_in_insert = false,
+  }
+)
 
 require("lspkind").init({
   symbol_map = {
