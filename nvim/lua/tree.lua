@@ -1,6 +1,5 @@
 local tree_cb = require("nvim-tree.config").nvim_tree_callback
 
-vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache", "__pycache__", ".DS_Store"}
 vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_show_icons = {
   folders = 1,
@@ -9,6 +8,9 @@ vim.g.nvim_tree_show_icons = {
 }
 
 require('nvim-tree').setup {
+  filters = {
+    custom = {".git", "node_modules", ".cache", "__pycache__", ".DS_Store"},
+  },
   view = {
     width = 30,
     side = 'left',
@@ -33,30 +35,3 @@ require('nvim-tree').setup {
     }
   }
 }
-
-local view = require("nvim-tree.view")
-local lib = require("nvim-tree.lib")
-local find_file = require("nvim-tree").find_file
-local luv = vim.loop
-
-local function is_file_readable(fname)
-  local stat = luv.fs_stat(fname)
-  return stat and stat.type == "file" and luv.fs_access(fname, 'R')
-end
-
--- sync the tree but only on open
-function _G.ToggleTree()
-  if view.win_open() then
-    view.close()
-    return
-  end
-
-  local bufname = vim.fn.bufname()
-  local filepath = vim.fn.fnamemodify(bufname, ':p')
-
-  if is_file_readable(filepath) then
-    find_file(true)
-  else
-    lib.open()
-  end
-end

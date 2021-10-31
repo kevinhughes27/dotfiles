@@ -58,8 +58,8 @@ paq {'junegunn/fzf.vim'}
 paq {'vim-test/vim-test'}
 paq {'benmills/vimux'}
 
--- language specific
-paq {'vim-ruby/vim-ruby'}
+-- syntax highlighting
+paq {'nvim-treesitter/nvim-treesitter'}
 
 -- auto formatting
 paq {'mhartington/formatter.nvim'}
@@ -155,6 +155,13 @@ require('lualine').setup({
   },
 })
 
+-- treesitter
+require('nvim-treesitter.configs').setup({
+  highlight = {
+    enable = true,
+  }
+})
+
 -- copy into clipboard by default
 local os = fn.substitute(fn.system('uname'), '\n', '', '')
 if os == 'Darwin' then
@@ -218,7 +225,7 @@ require('completion')
 
 -- nvim-tree
 require('tree')
-map('n', '<C-b>', ':lua ToggleTree()<CR>')
+map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>')
 
 -- fzf
 require('fzf')
