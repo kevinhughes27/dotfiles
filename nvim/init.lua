@@ -72,6 +72,7 @@ paq {'nvim-treesitter/nvim-treesitter'}
 
 -- auto formatting
 paq {'mhartington/formatter.nvim'}
+paq {'McAuleyPenney/tidy.nvim'}
 
 -- completion
 paq {'hrsh7th/nvim-cmp'}
