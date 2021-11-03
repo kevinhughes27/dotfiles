@@ -28,6 +28,8 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 ------------- Plugins -------------
 -- theme
 paq {'navarasu/onedark.nvim'}
+paq {'sunjon/Shade.nvim'}
+paq {'folke/twilight.nvim'}
 
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
@@ -147,6 +149,16 @@ require('nvim-web-devicons').setup({
       name = 'sqlite',
     };
   };
+})
+
+require('shade').setup({
+  overlay_opacity = 75,
+  opacity_step = 1,
+  keys = {
+    brightness_up    = '<C-Up>',
+    brightness_down  = '<C-Down>',
+    toggle           = '<Leader>s',
+  }
 })
 
 -- statusline
