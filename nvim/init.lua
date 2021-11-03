@@ -27,7 +27,7 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
 ------------- Plugins -------------
 -- theme
-paq {'joshdick/onedark.vim', branch='main'}
+paq {'navarasu/onedark.nvim'}
 
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
@@ -99,14 +99,24 @@ opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
 
--- onedark.vim override:
--- don't set a background color just use the terminal's background color
--- set pmenu highlight to green
-vim.api.nvim_command('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
-vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=#98c379')
+-- copy into clipboard by default
+local os = fn.substitute(fn.system('uname'), '\n', '', '')
+if os == 'Darwin' then
+  opt('o', 'clipboard', 'unnamed')
+else
+  opt('o', 'clipboard', 'unnamedplus')
+end
 
 -- colors
-vim.cmd('colorscheme onedark')
+require('onedark').setup()
+
+-- disable dark sidebar
+local c = require('onedark.colors')
+vim.cmd('highlight NvimTreeNormal guibg=' .. c.bg0)
+vim.cmd('highlight NvimTreeEndOfBuffer guibg=' .. c.bg0)
+
+-- set pmenu highlight to green
+vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=' .. c.green)
 
 -- icons
 require('nvim-web-devicons').setup({
@@ -162,14 +172,6 @@ require('nvim-treesitter.configs').setup({
   }
 })
 
--- copy into clipboard by default
-local os = fn.substitute(fn.system('uname'), '\n', '', '')
-if os == 'Darwin' then
-  opt('o', 'clipboard', 'unnamed')
-else
-  opt('o', 'clipboard', 'unnamedplus')
-end
-
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 map('n', '<ESC>', ':noh|set norelativenumber!<CR>') -- clear highlight and toggle relative numbers
@@ -189,8 +191,7 @@ map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<C-s>', ':w<CR>')
 map('i', '<C-s>', '<ESC>:w<CR>i')
 
--- disable visual-multi-mappings
--- it binds to ctrl up/down which I use for navigation
+-- disable visual-multi-mappings (it binds to ctrl up/down which I use for navigation)
 g.VM_default_mappings = 0
 
 -- tmux navigation
