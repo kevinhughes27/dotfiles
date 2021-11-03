@@ -126,7 +126,7 @@ vim.cmd('highlight NvimTreeNormal guibg=' .. c.bg0)
 vim.cmd('highlight NvimTreeEndOfBuffer guibg=' .. c.bg0)
 
 -- set pmenu highlight to green
-vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=' .. c.green)
+vim.cmd('highlight PmenuSel guibg=' .. c.green)
 
 -- icons
 require('nvim-web-devicons').setup({
