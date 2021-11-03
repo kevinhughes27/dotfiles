@@ -28,7 +28,11 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 ------------- Plugins -------------
 -- theme
 paq {'navarasu/onedark.nvim'}
+
+-- dim inactive panes
 paq {'sunjon/Shade.nvim'}
+
+-- focus current block
 paq {'folke/twilight.nvim'}
 
 -- icons
@@ -39,6 +43,9 @@ paq {'nvim-lualine/lualine.nvim'}
 
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
+
+-- navigation training
+paq {'tjdevries/train.nvim'}
 
 -- smart relative vs absolute line numbering
 paq {'jeffkreeftmeijer/vim-numbertoggle'}
