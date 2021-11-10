@@ -17,6 +17,14 @@
       "end"
     ]
   },
+  "for range": {
+    "prefix": "for range",
+    "body": [
+      "for ${1:value} in 0..${2:end} do",
+      "\t$0",
+      "end"
+    ]
+  },
   "case": {
     "prefix": "case",
     "body": [
@@ -54,7 +62,7 @@
       "end"
     ]
   },
-    "Insert expect": {
+  "Insert expect": {
     "prefix": "expect",
     "body": "expect(${1:object}).to ${0}"
   },
