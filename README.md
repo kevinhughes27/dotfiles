@@ -42,3 +42,4 @@ I've been collecting bits and pieces for a while and unfortunately I haven't alw
 * https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
 * https://github.com/siduck76/neovim-dots
 * https://github.com/mjlbach/defaults.nvim
+* https://github.com/rafamadriz/friendly-snippets
