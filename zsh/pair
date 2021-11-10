@@ -64,6 +64,10 @@ function pair() {
   # ttyd
   # https://github.com/tsl0922/ttyd/wiki/Client-Options
   # --check-origin Do not allow websocket connection from different origin
+
+  # template
+  # to rebuild pair.html run `yarn build` in ttyd/html
+  # then copy ttyd/html/dist/inline.html to pair.html
   ttyd \
     --credential "$username:$password" \
     --index "$HOME/dotfiles/pair.html" \
