@@ -29,12 +29,6 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 -- theme
 paq {'navarasu/onedark.nvim'}
 
--- dim inactive panes
-paq {'sunjon/Shade.nvim'}
-
--- focus current block
-paq {'folke/twilight.nvim'}
-
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
 
@@ -44,8 +38,8 @@ paq {'nvim-lualine/lualine.nvim'}
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
 
--- navigation training
-paq {'tjdevries/train.nvim'}
+-- dim inactive panes
+paq {'sunjon/Shade.nvim'}
 
 -- smart relative vs absolute line numbering
 paq {'jeffkreeftmeijer/vim-numbertoggle'}
@@ -90,6 +84,9 @@ paq {'tpope/vim-commentary' }
 
 -- sublime style multiple cursors. ctrl-n to start
 paq {'mg979/vim-visual-multi'}
+
+-- navigation training
+paq {'tjdevries/train.nvim'}
 
 -- settings
 local indent = 2
@@ -159,16 +156,6 @@ require('nvim-web-devicons').setup({
   };
 })
 
-require('shade').setup({
-  overlay_opacity = 75,
-  opacity_step = 1,
-  keys = {
-    brightness_up    = '<C-Up>',
-    brightness_down  = '<C-Down>',
-    toggle           = '<Leader>s',
-  }
-})
-
 -- statusline
 require('lualine').setup({
   options = {
@@ -190,6 +177,12 @@ require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
   }
+})
+
+-- shade inactive
+require('shade').setup({
+  overlay_opacity = 90,
+  opacity_step = 1,
 })
 
 -- mappings
@@ -225,7 +218,7 @@ map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 -- vim-test / vimux
 g['test#strategy'] = 'vimux' -- make test commands execute using vimux
 g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
-g['VimuxHeight'] = '20'
+g['VimuxHeight'] = '25'
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 

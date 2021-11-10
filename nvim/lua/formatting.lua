@@ -11,3 +11,11 @@ require('formatter').setup({
     }
   }
 })
+
+-- format on save
+vim.api.nvim_exec([[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.go FormatWrite
+augroup END
+]], true)
