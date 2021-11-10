@@ -59,7 +59,7 @@ function pair() {
   echo "------------------------------------------------------------"
 
   # start tmux session
-  tmux new-session -s pair -c $(pwd) -d
+  # tmux new-session -s pair -c $(pwd) -d
 
   # ttyd
   # https://github.com/tsl0922/ttyd/wiki/Client-Options
@@ -78,10 +78,10 @@ function pair() {
     --client-option ${theme} \
     --max-clients 1 \
     --check-origin \
-    tmux attach-session -t pair -f ignore-size
+    tmux attach-session -t main -f ignore-size
 
   # cleanup tmux session
-  tmux kill-session -t pair
+  # tmux kill-session -t pair
 }
 
 function pair-connect() {
