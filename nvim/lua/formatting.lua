@@ -5,6 +5,7 @@ require('formatter').setup({
         return {
           exe = 'goimports',
           stdin = true,
+          ignore_exitcode = true,
         }
       end
     }
