@@ -37,7 +37,7 @@ g.fzf_colors['hl+'] = {'fg', 'Label'}
 vim.api.nvim_exec(
 [[
 function RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case -- %s'
+  let command_fmt = 'rg --hidden --glob "!.git/*" --ignore-file ~/dotfiles/fzf-ignore --column --line-number --no-heading --color=always --smart-case -- %s'
   let command = printf(command_fmt, shellescape(a:query))
   call fzf#vim#grep(command, 1, fzf#vim#with_preview(), a:fullscreen)
 endfunction
