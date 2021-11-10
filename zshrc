@@ -24,8 +24,10 @@ export FZF_DEFAULT_OPTS='--reverse --height=50%'
 # fzf one dark theme
 export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
---color=fg:-1,bg:-1,hl:#c678dd,fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef,gutter:-1'
+--color=fg:-1,bg:-1,hl:#c678dd
+--color=fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
+--color=info:#98c379,prompt:#61afef,pointer:#be5046
+--color=marker:#e5c07b,spinner:#61afef,header:#61afef,gutter:-1'
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
