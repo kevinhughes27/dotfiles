@@ -1,22 +1,6 @@
------------------------ Helpers -------------------------------
-local fn = vim.fn    -- to call vim functions e.g. fn.bufnr()
-local g = vim.g      -- a table to access global variables
-local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
-
-local function opt(scope, key, value)
-  scopes[scope][key] = value
-  if scope ~= 'o' then scopes['o'][key] = value end
-end
-
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
 -- auto install paq-nvim if necessary
-local install_path = fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
+local install_path = vim.fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.api.nvim_command('!git clone https://github.com/savq/paq-nvim.git '..install_path)
 end
 
@@ -27,7 +11,7 @@ paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
 
 ------------- Plugins -------------
 -- theme
-paq {'joshdick/onedark.vim', branch='main'}
+paq {'navarasu/onedark.nvim'}
 
 -- icons
 paq {'kyazdani42/nvim-web-devicons'}
@@ -37,6 +21,9 @@ paq {'nvim-lualine/lualine.nvim'}
 
 -- project tree
 paq {'kyazdani42/nvim-tree.lua'}
+
+-- dim inactive panes
+paq {'sunjon/Shade.nvim'}
 
 -- smart relative vs absolute line numbering
 paq {'jeffkreeftmeijer/vim-numbertoggle'}
@@ -63,6 +50,7 @@ paq {'nvim-treesitter/nvim-treesitter'}
 
 -- auto formatting
 paq {'mhartington/formatter.nvim'}
+paq {'McAuleyPenney/tidy.nvim'}
 
 -- completion
 paq {'hrsh7th/nvim-cmp'}
@@ -80,6 +68,24 @@ paq {'tpope/vim-commentary' }
 
 -- sublime style multiple cursors. ctrl-n to start
 paq {'mg979/vim-visual-multi'}
+
+-- navigation training
+paq {'tjdevries/train.nvim'}
+
+------------- Helpers -------------
+local g = vim.g
+local scopes = {o = vim.o, b = vim.bo, w = vim.wo}
+
+local function opt(scope, key, value)
+  scopes[scope][key] = value
+  if scope ~= 'o' then scopes['o'][key] = value end
+end
+
+local function map(mode, lhs, rhs, opts)
+  local options = {noremap = true}
+  if opts then options = vim.tbl_extend('force', options, opts) end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
 
 -- settings
 local indent = 2
@@ -99,14 +105,29 @@ opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
 opt('o', 'updatetime', 100)           -- update frequency
 
--- onedark.vim override:
--- don't set a background color just use the terminal's background color
--- set pmenu highlight to green
-vim.api.nvim_command('autocmd ColorScheme * call onedark#set_highlight("Normal", {})')
-vim.api.nvim_command('autocmd BufEnter * hi PmenuSel guibg=#98c379')
+-- copy into clipboard by default
+local os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '')
+if os == 'Darwin' then
+  opt('o', 'clipboard', 'unnamed')
+else
+  opt('o', 'clipboard', 'unnamedplus')
+end
 
--- colors
-vim.cmd('colorscheme onedark')
+-- theme
+require('onedark').setup()
+
+-- disable dark sidebar
+local c = require('onedark.colors')
+vim.cmd('highlight NvimTreeNormal guibg=' .. c.bg0)
+vim.cmd('highlight NvimTreeVertSplit guibg=' .. c.bg0)
+vim.cmd('highlight NvimTreeEndOfBuffer guibg=' .. c.bg0)
+
+-- hide status bar in the tree
+vim.cmd('highlight NvimTreeStatusline guibg=' .. c.bg0 .. ' guifg=' .. c.bg0)
+vim.cmd('highlight NvimTreeStatuslineNc guibg=' .. c.bg0)
+
+-- set pmenu highlight to green
+vim.cmd('highlight PmenuSel guibg=' .. c.green)
 
 -- icons
 require('nvim-web-devicons').setup({
@@ -143,7 +164,7 @@ require('nvim-web-devicons').setup({
 require('lualine').setup({
   options = {
     theme = 'onedark',
-    disabled_filetypes = {'NvimTree'}
+    disabled_filetypes = {'NvimTree'},
   },
   sections = {
     lualine_a = { {'mode', upper = true} },
@@ -162,13 +183,11 @@ require('nvim-treesitter.configs').setup({
   }
 })
 
--- copy into clipboard by default
-local os = fn.substitute(fn.system('uname'), '\n', '', '')
-if os == 'Darwin' then
-  opt('o', 'clipboard', 'unnamed')
-else
-  opt('o', 'clipboard', 'unnamedplus')
-end
+-- shade inactive
+require('shade').setup({
+  overlay_opacity = 90,
+  opacity_step = 1,
+})
 
 -- mappings
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
@@ -189,8 +208,7 @@ map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<C-s>', ':w<CR>')
 map('i', '<C-s>', '<ESC>:w<CR>i')
 
--- disable visual-multi-mappings
--- it binds to ctrl up/down which I use for navigation
+-- disable visual-multi-mappings (it binds to ctrl up/down which I use for navigation)
 g.VM_default_mappings = 0
 
 -- tmux navigation
@@ -204,7 +222,7 @@ map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 -- vim-test / vimux
 g['test#strategy'] = 'vimux' -- make test commands execute using vimux
 g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
-g['VimuxHeight'] = '20'
+g['VimuxHeight'] = '25'
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
@@ -232,9 +250,3 @@ require('fzf')
 map('n', '<C-p>', ':Files<CR>')
 map('n', '<C-h>', ':History<CR>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
-
------------------------ References ----------------------------
--- https://oroques.dev/notes/neovim-init/
--- https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
--- https://github.com/siduck76/neovim-dots
--- https://github.com/mjlbach/defaults.nvim

@@ -5,14 +5,12 @@ require('formatter').setup({
         return {
           exe = 'goimports',
           stdin = true,
+          ignore_exitcode = true,
         }
       end
     }
   }
 })
-
---- strip trailing spaces on save
-vim.api.nvim_command('autocmd BufWritePre * :%s/\\s\\+$//e')
 
 -- format on save
 vim.api.nvim_exec([[
@@ -21,4 +19,3 @@ augroup FormatAutogroup
   autocmd BufWritePost *.go FormatWrite
 augroup END
 ]], true)
-

@@ -38,3 +38,7 @@ I've been collecting bits and pieces for a while and unfortunately I haven't alw
 * https://gist.github.com/fimmtiu/263192ba21534a63057a034edc218c0b
 * https://github.com/sirupsen/dotfiles
 * https://github.com/SidOfc/dotfiles
+* https://oroques.dev/notes/neovim-init/
+* https://alpha2phi.medium.com/neovim-init-lua-e80f4f136030
+* https://github.com/siduck76/neovim-dots
+* https://github.com/mjlbach/defaults.nvim
