@@ -34,16 +34,16 @@ lspconf["rust_analyzer"].setup({
 })
 
 -- npm install -g pyright
--- lspconf["pyright"].setup({
---   capabilities = capabilities,
---   on_attach = on_attach
--- })
-
--- pip install 'python-lsp-server[all]'
-lspconf["pylsp"].setup({
+lspconf["pyright"].setup({
   capabilities = capabilities,
   on_attach = on_attach
 })
+
+-- pip install 'python-lsp-server[all]'
+-- lspconf["pylsp"].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach
+-- })
 
 -- npm install -g bash-language-server
 lspconf["bashls"].setup({
@@ -58,13 +58,13 @@ lspconf["bashls"].setup({
 -- })
 
 -- don't show diagnostics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
-    signs = false,
-    update_in_insert = false,
-  }
-)
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     virtual_text = false,
+--     signs = false,
+--     update_in_insert = false,
+--   }
+-- )
 
 require("lspkind").init({
   symbol_map = {
