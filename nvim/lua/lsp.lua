@@ -34,10 +34,10 @@ lspconf["rust_analyzer"].setup({
 })
 
 -- npm install -g pyright
-lspconf["pyright"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach
-})
+-- lspconf["pyright"].setup({
+--   capabilities = capabilities,
+--   on_attach = on_attach
+-- })
 
 -- pip install 'python-lsp-server[all]'
 lspconf["pylsp"].setup({
