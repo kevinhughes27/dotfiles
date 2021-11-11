@@ -1,0 +1,26 @@
+{
+  "fn": {
+    "prefix": "fn",
+    "body": [
+      "fn ${1:name}(${2:arg}: ${3:Type}) -> ${4:RetType} {",
+      "    ${5:unimplemented!();}",
+      "}"
+    ],
+    "description": "fn …(…) { … }"
+  },
+  "for": {
+    "prefix": "for",
+    "body": ["for ${1:pat} in ${2:expr} {", "    ${3:unimplemented!();}", "}"],
+    "description": "for … in … { … }"
+  },
+  "match": {
+    "prefix": "match",
+    "body": [
+      "match ${1:expr} {",
+      "    ${2:Some(expr)} => ${3:expr},",
+      "    ${4:None} => ${5:expr},",
+      "}"
+    ],
+    "description": "match … { … }"
+  },
+}

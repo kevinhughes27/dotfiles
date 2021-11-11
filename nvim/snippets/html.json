@@ -1,0 +1,53 @@
+{
+  "html5": {
+    "prefix": "html5",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"$1en\">",
+      "\t<head>",
+      "\t\t<title>$2</title>",
+      "\t\t<meta charset=\"UTF-8\">",
+      "\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">",
+      "\t\t<link href=\"$3css/style.css\" rel=\"stylesheet\">",
+      "\t</head>",
+      "\t<body>",
+      "\t$4",
+      "\t</body>",
+      "</html>"
+    ],
+    "description": "HTML - Defines a template for a html5 document",
+    "scope": "text.html"
+  },
+  "a": {
+    "prefix": "a",
+    "body": "<a href=\"$1\">$2</a>$3",
+    "description": "HTML - Defines a hyperlink",
+    "scope": "text.html"
+  },
+  "div": {
+    "prefix": "div",
+    "body": [
+      "<div>",
+      "\t$1",
+      "</div>"
+    ],
+    "description": "HTML - Defines a section in a document",
+    "scope": "text.html"
+  },
+  "input": {
+    "prefix": "input",
+    "body": "<input type=\"$1\" name=\"$2\" value=\"$3\">$4",
+    "description": "HTML - Defines an input field",
+    "scope": "text.html"
+  },
+  "js": {
+    "prefix": "js",
+    "body": [
+      "<script type=\"text/javascript\">",
+      "\t$1",
+      "</script>"
+    ],
+    "description": "HTML - Defines a script",
+    "scope": "text.html"
+  }
+}

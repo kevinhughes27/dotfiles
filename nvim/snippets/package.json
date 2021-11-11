@@ -16,6 +16,29 @@
       {
         "language": "python",
         "path": "./python.json"
+      },
+      {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
+        "language": "rust",
+        "path": "rust.json"
+      },
+      {
+        "language": [
+          "html",
+          "eruby"
+        ],
+        "path": "./html.json"
+      },
+      {
+        "language": [
+          "shellscript",
+          "shell",
+          "sh"
+        ],
+        "path": "./shell.json"
       }
     ]
   }
