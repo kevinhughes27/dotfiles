@@ -23,7 +23,7 @@
       },
       {
         "language": "rust",
-        "path": "rust.json"
+        "path": "./rust.json"
       },
       {
         "language": [
