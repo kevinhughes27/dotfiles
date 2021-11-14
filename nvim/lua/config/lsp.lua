@@ -10,6 +10,7 @@ function on_attach(client)
   end
 
   local opts = {noremap = true, silent = true}
+
   buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "<RightMouse>", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
 end
@@ -51,25 +52,8 @@ lspconf["bashls"].setup({
   on_attach = on_attach
 })
 
--- require("es_ruby")
+-- require("config/es_ruby")
 -- lspconf["es_ruby"].setup({
 --   capabilities = capabilities,
 --   on_attach = on_attach
 -- })
-
--- don't show diagnostics
--- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
---   vim.lsp.diagnostic.on_publish_diagnostics, {
---     virtual_text = false,
---     signs = false,
---     update_in_insert = false,
---   }
--- )
-
-require("lspkind").init({
-  symbol_map = {
-    Enum = '',
-    Constant = '',
-    Struct = ''
-  }
-})

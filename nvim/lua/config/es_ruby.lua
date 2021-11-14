@@ -35,4 +35,3 @@ configs.es_ruby = {
     --mount "type=bind,source=/Users/kevinhughes/clio,target=/projects/clio,readonly" \
     blinknlights/elastic_ruby_server
 ]]
-
