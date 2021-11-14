@@ -9,7 +9,7 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 ------------------- Plugins -------------------
-return require('packer').startup(function(use)
+return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
 
   -- theme
@@ -92,4 +92,11 @@ return require('packer').startup(function(use)
   if packer_bootstrap then
     require('packer').sync()
   end
-end)
+end,
+config = {
+  display = {
+    open_fn = function()
+      return require('packer.util').float({ border = 'single' })
+    end
+  }
+}})
