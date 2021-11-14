@@ -43,3 +43,4 @@ I've been collecting bits and pieces for a while and unfortunately I haven't alw
 * https://github.com/siduck76/neovim-dots
 * https://github.com/mjlbach/defaults.nvim
 * https://github.com/rafamadriz/friendly-snippets
+* https://github.com/NvChad/NvChad
