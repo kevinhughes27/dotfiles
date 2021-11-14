@@ -1,12 +1,3 @@
--- lsp symbols
-require("lspkind").init({
-  symbol_map = {
-    Enum = '',
-    Constant = '',
-    Struct = ''
-  }
-})
-
 -- snippets
 require("luasnip.loaders.from_vscode").lazy_load({
   paths = { "~/dotfiles/nvim/snippets" }
@@ -22,26 +13,11 @@ cmp.setup({
     end
   },
 
-  -- format with icon and name
   formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = string.format(
-        "%s %s",
-        require("lspkind").presets.default[vim_item.kind],
-        vim_item.kind
-      )
-
-      vim_item.menu = ({
-        buffer = "[Buffer]",
-        nvim_lsp = "[LSP]",
-        luasnip = "[Snippet]",
-      })[entry.source.name]
-
-      return vim_item
-    end,
+    format = require("lspkind").cmp_format({maxwidth = 50})
   },
 
-  -- note that pressing esc will finalize the snippet
+  -- NOTE pressing esc will finalize the snippet
   mapping = {
     ["<CR>"] = cmp.mapping.confirm {
        behavior = cmp.ConfirmBehavior.Replace,
