@@ -16,7 +16,7 @@ zstyle ':completion:*' list-colors ''
 # configuration
 export EDITOR='nvim'
 export BAT_THEME='OneHalfDark'
-export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/overmind.tmux.conf"
+export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/tmux.overmind.conf"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --ignore-file ~/dotfiles/fzf-ignore'
 export FZF_DEFAULT_OPTS='--reverse --height=50%'
