@@ -67,17 +67,17 @@ return require('packer').startup(function(use)
   use 'mhartington/formatter.nvim'
   use 'McAuleyPenney/tidy.nvim'
 
+  -- lsp and snippets
+  use 'L3MON4D3/LuaSnip'
+  use 'neovim/nvim-lspconfig'
+  use 'onsails/lspkind-nvim'
+
   -- completion
   use 'hrsh7th/nvim-cmp'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
-
-  -- lsp and snippets
-  use 'L3MON4D3/LuaSnip'
-  use 'neovim/nvim-lspconfig'
-  use 'onsails/lspkind-nvim'
 
   -- gcc and gc + motion to comment
   use 'tpope/vim-commentary'
