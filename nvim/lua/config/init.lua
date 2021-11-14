@@ -1,11 +1,6 @@
-require('nvim-treesitter.configs').setup({
-  highlight = {
-    enable = true,
-  }
-})
-
 require('config/icons')
 require('config/lualine')
+require('config/treesitter')
 
 require('config/fzf')
 require('config/nvim-tree')
