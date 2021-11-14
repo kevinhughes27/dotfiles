@@ -1,76 +1,95 @@
--- auto install paq-nvim if necessary
-local install_path = vim.fn.stdpath('data')..'/site/pack/paqs/opt/paq-nvim'
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.api.nvim_command('!git clone https://github.com/savq/paq-nvim.git '..install_path)
+------------------ Bootstrap ------------------
+local fn = vim.fn
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
--- init paq-nvim
-vim.cmd('packadd paq-nvim')         -- load package
-local paq = require('paq-nvim').paq -- import module and bind `paq` function
-paq {'savq/paq-nvim', opt=true}     -- let paq manage itself
+vim.cmd [[packadd packer.nvim]]
 
-------------- Plugins -------------
+------------------- Plugins -------------------
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
 
--- theme
-paq {'navarasu/onedark.nvim'}
+  -- theme
+  use 'navarasu/onedark.nvim'
 
--- icons
-paq {'kyazdani42/nvim-web-devicons'}
+  -- icons
+  use 'kyazdani42/nvim-web-devicons'
 
--- statusline
-paq {'nvim-lualine/lualine.nvim'}
+  -- statusline
+  use 'nvim-lualine/lualine.nvim'
 
--- project tree
-paq {'kyazdani42/nvim-tree.lua'}
+  -- project tree
+  use 'kyazdani42/nvim-tree.lua'
 
--- dim inactive panes
--- breaks LSP documentation https://github.com/sunjon/Shade.nvim/issues/25
--- paq {'sunjon/Shade.nvim'}
+  -- dim inactive panes
+  -- breaks LSP documentation https://github.com/sunjon/Shade.nvim/issues/25
+  -- use 'sunjon/Shade.nvim'
 
--- smart relative vs absolute line numbering
-paq {'jeffkreeftmeijer/vim-numbertoggle'}
+  -- smart relative vs absolute line numbering
+  use 'jeffkreeftmeijer/vim-numbertoggle'
 
--- gitgutter
-paq {'airblade/vim-gitgutter'}
+  -- gitsigns
+  use {
+    'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+    config = function() require('gitsigns').setup() end
+  }
 
--- github link copy :GH
-paq { 'ruanyl/vim-gh-line' }
+  -- github link copy :GH
+  use 'ruanyl/vim-gh-line'
 
--- seamless split/tmux navigation
-paq {'christoomey/vim-tmux-navigator'}
+  -- seamless split/tmux navigation
+  use 'christoomey/vim-tmux-navigator'
 
--- fzf
-paq {'junegunn/fzf'}
-paq {'junegunn/fzf.vim'}
+  -- fzf
+  use 'junegunn/fzf'
+  use 'junegunn/fzf.vim'
 
--- test running
-paq {'vim-test/vim-test'}
-paq {'benmills/vimux'}
+  -- test running
+  use 'vim-test/vim-test'
+  use 'benmills/vimux'
 
--- syntax highlighting
-paq {'nvim-treesitter/nvim-treesitter'}
+  -- syntax highlighting
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('nvim-treesitter.configs').setup({
+        highlight = {
+          enable = true,
+        }
+      })
+    end
+  }
 
--- auto formatting
-paq {'mhartington/formatter.nvim'}
-paq {'McAuleyPenney/tidy.nvim'}
+  -- auto formatting
+  use 'mhartington/formatter.nvim'
+  use 'McAuleyPenney/tidy.nvim'
 
--- completion
-paq {'hrsh7th/nvim-cmp'}
-paq {'hrsh7th/cmp-path'}
-paq {'hrsh7th/cmp-buffer'}
-paq {'hrsh7th/cmp-nvim-lsp'}
-paq {'saadparwaiz1/cmp_luasnip'}
+  -- completion
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'saadparwaiz1/cmp_luasnip'
 
--- lsp and snippets
-paq {'L3MON4D3/LuaSnip'}
-paq {'neovim/nvim-lspconfig'}
-paq {'onsails/lspkind-nvim'}
+  -- lsp and snippets
+  use 'L3MON4D3/LuaSnip'
+  use 'neovim/nvim-lspconfig'
+  use 'onsails/lspkind-nvim'
 
--- gcc and gc + motion to comment
-paq {'tpope/vim-commentary' }
+  -- gcc and gc + motion to comment
+  use 'tpope/vim-commentary'
 
--- sublime style multiple cursors. ctrl-n to start
-paq {'mg979/vim-visual-multi'}
+  -- sublime style multiple cursors. ctrl-n to start
+  use 'mg979/vim-visual-multi'
 
--- navigation training
-paq {'tjdevries/train.nvim'}
+  -- navigation training
+  use 'tjdevries/train.nvim'
+
+  -- automatically sync after cloning packer.nvim
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)

@@ -1,6 +1,5 @@
 require('config/icons')
 require('config/lualine')
-require('config/treesitter')
 
 require('config/fzf')
 require('config/nvim-tree')
