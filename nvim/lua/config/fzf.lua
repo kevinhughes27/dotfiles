@@ -2,10 +2,12 @@ local g = vim.g
 local fn = vim.fn
 
 if fn.exists('$TMUX') == 1 then
+  g.fzf_tmux = 1
   g.fzf_layout = {
     tmux = '-p 90%,90%'
   }
 else
+  g.fzf_tmux = 0
   g.fzf_layout = {
     window = {
       width = 0.8,
@@ -13,6 +15,27 @@ else
     }
   }
 end
+
+function _G.FzfTmuxToggle()
+  if g.fzf_tmux == 1 then
+    g.fzf_tmux = 0
+    g.fzf_layout = {
+      window = {
+        width = 0.8,
+        height = 0.9,
+      }
+    }
+  else
+    g.fzf_tmux = 1
+    g.fzf_layout = {
+      tmux = '-p 90%,90%'
+    }
+  end
+end
+
+vim.api.nvim_exec([[
+command! FzfTmuxToggle :lua FzfTmuxToggle()
+]], true)
 
 g.fzf_preview_window = 'right:60%:sharp'
 
