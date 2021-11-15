@@ -1,6 +1,6 @@
+require 'settings'
 require 'plugins'
 require 'colors'
 require 'config'
-require 'settings'
 require 'commands'
 require 'mappings'
