@@ -1,19 +1,19 @@
 -- define custom language server
-local configs = require "lspconfig/configs"
-local util = require "lspconfig/util"
+local configs = require 'lspconfig/configs'
+local util = require 'lspconfig/util'
 
 configs.es_ruby = {
   default_config = {
-    cmd = { "nc", "localhost", "8341" },
-    filetypes = { "ruby", },
-    root_dir = util.root_pattern("Gemfile", ".git"),
+    cmd = { 'nc', 'localhost', '8341' },
+    filetypes = { 'ruby', },
+    root_dir = util.root_pattern('Gemfile', '.git'),
   },
   docs = {
     description = [[
       Language server for Ruby, backed by Elastic search.
     ]],
     default_config = {
-      root_dir = [[root_pattern("Gemfile", ".git")]],
+      root_dir = [[root_pattern('Gemfile', '.git')]],
     },
   },
 }
