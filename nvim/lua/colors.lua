@@ -14,3 +14,6 @@ vim.cmd('highlight NvimTreeStatuslineNc guibg=' .. c.bg0)
 
 -- set pmenu highlight to green
 vim.cmd('highlight PmenuSel guibg=' .. c.green)
+
+-- set selected tab highlight to blue
+vim.cmd('highlight TabLineSel guibg=' .. c.blue)
