@@ -1,4 +1,4 @@
------------------- Bootstrap ------------------
+-- Bootstrap
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
@@ -8,7 +8,7 @@ end
 
 vim.cmd [[packadd packer.nvim]]
 
-------------------- Plugins -------------------
+-- Plugins
 return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
 
@@ -67,8 +67,17 @@ return require('packer').startup({function(use)
   use 'mhartington/formatter.nvim'
   use 'McAuleyPenney/tidy.nvim'
 
-  -- lsp and snippets
-  use 'L3MON4D3/LuaSnip'
+  -- snippets
+  use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load({
+        paths = { "~/dotfiles/nvim/snippets" }
+      })
+    end
+  }
+
+  -- lsp
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
 

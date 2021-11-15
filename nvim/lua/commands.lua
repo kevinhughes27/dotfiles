@@ -1,3 +1,5 @@
+-- Commands
+
 -- overmind connect in a tmux popup
 vim.api.nvim_exec([[
 command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind connect <f-args>

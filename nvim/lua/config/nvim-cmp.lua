@@ -1,9 +1,3 @@
--- snippets
-require("luasnip.loaders.from_vscode").lazy_load({
-  paths = { "~/dotfiles/nvim/snippets" }
-})
-
--- completion
 local cmp = require("cmp")
 
 cmp.setup({

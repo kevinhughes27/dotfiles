@@ -1,3 +1,4 @@
+-- Colors
 require('onedark').setup()
 
 local c = require('onedark.colors')
