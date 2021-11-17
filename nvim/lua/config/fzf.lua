@@ -21,7 +21,7 @@ function _G.FzfTmuxToggle()
     g.fzf_tmux = 0
     g.fzf_layout = {
       window = {
-        width = 0.8,
+        width = 0.9,
         height = 0.9,
       }
     }
