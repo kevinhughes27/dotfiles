@@ -44,3 +44,19 @@ cmp.setup({
     { name = 'path' },
   },
 })
+
+-- use buffer source for `/`
+cmp.setup.cmdline('/', {
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- use cmdline & path source for ':'
+cmp.setup.cmdline(':', {
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
