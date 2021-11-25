@@ -94,9 +94,6 @@ return require('packer').startup({function(use)
   -- sublime style multiple cursors. ctrl-n to start
   use 'mg979/vim-visual-multi'
 
-  -- navigation training
-  use 'tjdevries/train.nvim'
-
   -- automatically sync after cloning packer.nvim
   if packer_bootstrap then
     require('packer').sync()
