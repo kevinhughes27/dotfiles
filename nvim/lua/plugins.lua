@@ -24,10 +24,6 @@ return require('packer').startup({function(use)
   -- project tree
   use 'kyazdani42/nvim-tree.lua'
 
-  -- dim inactive panes
-  -- breaks LSP documentation https://github.com/sunjon/Shade.nvim/issues/25
-  -- use 'sunjon/Shade.nvim'
-
   -- smart relative vs absolute line numbering
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
