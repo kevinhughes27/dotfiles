@@ -4,9 +4,9 @@ require('lualine').setup({
     disabled_filetypes = {'NvimTree'},
   },
   sections = {
-    lualine_a = { {'mode', upper = true} },
-    lualine_b = { {'branch', icon = ''} },
-    lualine_c = { {'filename', file_status = true} },
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch' },
+    lualine_c = { {'filename', path = 1, file_status = true} },
     lualine_x = { 'encoding', 'filetype' },
     lualine_y = { 'progress' },
     lualine_z = { 'location' },
