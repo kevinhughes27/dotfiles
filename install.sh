@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install script for my dotfiles
 # ------------------------------
@@ -18,13 +18,9 @@ echo "Backup the original files"
 echo "-------------------------"
 
 function backup() {
-  # backs up the file/folder the first time only
   file="$1"
-
-  # simlink already exists
   if [[ -L $file ]] && [[ "`readlink $file`" == *"dotfiles"* ]]; then
     echo "Simlink already exists for '$file'"
-  # file exists
   elif [[ -f $file ]]; then
     if [[ ! -f "$file.old" ]]; then
       echo "Backup '$file' to '$file.old'"
@@ -55,10 +51,11 @@ link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 
+link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/alacritty ~/.config/alacritty
 link ~/dotfiles/bottom ~/.config/bottom
-link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/nvim ~/.config/nvim
+link ~/dotfiles/ulauncher ~/.config/ulauncher
 
 echo ""
 echo "All done."

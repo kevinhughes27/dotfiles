@@ -1,0 +1,62 @@
+{
+    "7385ad4a-518d-45fe-9fb2-1c867cdaab21": {
+        "id": "7385ad4a-518d-45fe-9fb2-1c867cdaab21",
+        "name": "Google Search",
+        "keyword": "g",
+        "cmd": "https://google.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/google-search-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1604336996.227554
+    },
+    "d765e34e-0f14-4309-b344-1b55ca42d81d": {
+        "id": "d765e34e-0f14-4309-b344-1b55ca42d81d",
+        "name": "Stack Overflow",
+        "keyword": "so",
+        "cmd": "http://stackoverflow.com/search?q=%s",
+        "icon": "/usr/share/ulauncher/media/stackoverflow-icon.svg",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1604336996.227612
+    },
+    "9d693e76-998b-4142-971b-017be51a7f75": {
+        "id": "9d693e76-998b-4142-971b-017be51a7f75",
+        "name": "Wikipedia",
+        "keyword": "wiki",
+        "cmd": "https://en.wikipedia.org/wiki/%s",
+        "icon": "/usr/share/ulauncher/media/wikipedia-icon.png",
+        "is_default_search": true,
+        "run_without_argument": false,
+        "added": 1604336996.2276504
+    },
+    "54689897-60bf-40d6-b284-46cd347ee508": {
+        "id": "54689897-60bf-40d6-b284-46cd347ee508",
+        "name": "GitHub",
+        "keyword": "gh",
+        "cmd": "https://github.com/search?q=%s",
+        "icon": "/usr/share/icons/Numix-Circle-Light/48/apps/github.svg",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1640039371.3965483
+    },
+    "03503cb9-da22-4796-8c3f-d35ccb62c9f7": {
+        "id": "03503cb9-da22-4796-8c3f-d35ccb62c9f7",
+        "name": "DevDocs",
+        "keyword": "dd",
+        "cmd": "https://devdocs.io/#q=%s",
+        "icon": "/usr/share/icons/Numix-Circle-Light/48/apps/devdocs.svg",
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1640040905.7157812
+    },
+    "7b98e684-62ad-4089-a0ee-57d547efaa44": {
+        "id": "7b98e684-62ad-4089-a0ee-57d547efaa44",
+        "name": "cheat.sh",
+        "keyword": "ch",
+        "cmd": "http://cheat.sh/%s",
+        "icon": null,
+        "is_default_search": false,
+        "run_without_argument": false,
+        "added": 1640041341.3446891
+    }
+}
