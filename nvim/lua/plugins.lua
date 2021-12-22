@@ -27,6 +27,9 @@ return require('packer').startup({function(use)
   -- smart relative vs absolute line numbering
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
+  -- fancy menu
+  use 'gelguy/wilder.nvim'
+
   -- gitsigns
   use {
     'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
