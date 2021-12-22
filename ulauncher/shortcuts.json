@@ -53,7 +53,7 @@
         "id": "7b98e684-62ad-4089-a0ee-57d547efaa44",
         "name": "cheat.sh",
         "keyword": "ch",
-        "cmd": "http://cheat.sh/%s",
+        "cmd": "https://cheat.sh/%s",
         "icon": null,
         "is_default_search": false,
         "run_without_argument": false,
