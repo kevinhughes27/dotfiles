@@ -34,7 +34,7 @@ font:
 key_bindings:
   - { key: V, mods: Control, action: Paste }
   - { key: F11, action: ToggleFullscreen } # F11 doesn't work on OSX but if I change the key it does
-  - { key: Minus, mods: Control, action: ReceiveChar } # ignore this binding
+  # - { key: Minus, mods: Control, action: ReceiveChar } # ignore this binding
   # Cmd N opens new window osx
 
 selection:
