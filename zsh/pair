@@ -84,6 +84,23 @@ function pair() {
   # tmux kill-session -t pair
 }
 
+function pair-calibrate() {
+  local program='
+    from rich.layout import Layout
+    from rich.live import Live
+    from time import sleep
+
+    layout = Layout()
+
+    with Live(layout, screen=True):
+        while True:
+            sleep(0.5)
+  '
+  program=$(echo "$program" | sed -r 's/^\s{4}//g') # remove leading space
+
+  python3 -c "$program"
+}
+
 function pair-connect() {
   tmux attach-session -t pair
 }
