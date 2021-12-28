@@ -25,6 +25,8 @@ window:
     x: 2
     y: 2
 
+background_opacity: 0.96
+
 font:
   normal:
     family: Hack Nerd Font

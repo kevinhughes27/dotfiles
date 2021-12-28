@@ -35,3 +35,6 @@ require('nvim-tree').setup {
     }
   }
 }
+
+-- fix for transparent background
+vim.cmd('highlight NvimTreeStatusline guibg=NONE')
