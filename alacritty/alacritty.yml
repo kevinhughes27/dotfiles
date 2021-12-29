@@ -27,17 +27,19 @@ window:
 
 background_opacity: 0.96
 
+# Font
+# mkdir -p ~/.local/share/fonts
+# cd ~/.local/share/fonts
+# curl -fLo "Hack Regular Nerd Font Complete.ttf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/Hack/Regular/complete/Hack%20Regular%20Nerd%20Font%20Complete.ttf
 font:
   normal:
     family: Hack Nerd Font
     style: Regular
-  size: 11 # 13 for OSX
+  size: 11
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
-  - { key: F11, action: ToggleFullscreen } # F11 doesn't work on OSX but if I change the key it does
-  # - { key: Minus, mods: Control, action: ReceiveChar } # ignore this binding
-  # Cmd N opens new window osx
+  - { key: F11, action: ToggleFullscreen }
 
 selection:
   save_to_clipboard: true
