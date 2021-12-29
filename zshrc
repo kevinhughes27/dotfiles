@@ -10,8 +10,8 @@ zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' list-colors ''
 
 # fzf-tab
-# git clone https://github.com/Aloxaf/fzf-tab ~/fzf-tab
-[[ -d ~/fzf-tab ]] && source ~/fzf-tab/fzf-tab.plugin.zsh
+# git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
+[[ -d ~/.fzf-tab ]] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
 # configuration
 export EDITOR='nvim'
@@ -31,7 +31,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-# then run fzf/install to create this file.
+# then run ~/.fzf/install to create this file.
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
 
 # autoload
