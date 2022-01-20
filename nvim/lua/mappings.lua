@@ -37,6 +37,8 @@ map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
+map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
+
 -- vim-test / vimux
 vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
 vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane

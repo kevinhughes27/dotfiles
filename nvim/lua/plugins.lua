@@ -42,6 +42,9 @@ return require('packer').startup({function(use)
   -- seamless split/tmux navigation
   use 'christoomey/vim-tmux-navigator'
 
+  -- zoom
+  use 'nyngwang/NeoZoom.lua'
+
   -- fzf
   use 'junegunn/fzf'
   use 'junegunn/fzf.vim'
