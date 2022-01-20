@@ -2,14 +2,14 @@
     "com.github.dhelmr.ulauncher-tldr": {
         "id": "com.github.dhelmr.ulauncher-tldr",
         "url": "https://github.com/dhelmr/ulauncher-tldr",
-        "updated_at": "2021-12-20T17:40:10.109409",
+        "updated_at": "2022-01-16T19:43:01.902302",
         "last_commit": "2ad5d29963db649775f68a7815af18509f4c287f",
         "last_commit_time": "2021-09-07T14:26:21"
     },
     "com.github.ulauncher.ulauncher-emoji": {
         "id": "com.github.ulauncher.ulauncher-emoji",
         "url": "https://github.com/Ulauncher/ulauncher-emoji",
-        "updated_at": "2021-12-20T17:43:40.635568",
+        "updated_at": "2022-01-16T19:43:05.929565",
         "last_commit": "4c6af50d1c9a24d5aad2c597634ff0c634972a5c",
         "last_commit_time": "2021-08-08T19:19:59"
     }
