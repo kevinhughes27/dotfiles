@@ -1,7 +1,10 @@
 -- Colors
-vim.g.onedark_transparent_background = true
 
-require('onedark').setup()
+require('onedark').setup({
+  transparent = true
+})
+
+require('onedark').load()
 
 local c = require('onedark.colors')
 
