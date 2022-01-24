@@ -3,6 +3,7 @@ eval "$(starship init zsh)"
 
 # completions
 autoload -U compaudit compinit
+autoload -Uz bashcompinit && bashcompinit
 compinit -i -C -d "${HOME}/.zcompdump"
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive completion
@@ -54,10 +55,12 @@ alias open='xdg-open'
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
+HIST_STAMPS='yyyy-mm-dd'
 
 setopt SHARE_HISTORY
 setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 # use .localrc for settings specific to one system
