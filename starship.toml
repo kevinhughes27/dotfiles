@@ -3,6 +3,8 @@ add_newline = false
 format = """
 $username\
 $directory\
+$hostname\
+${custom.toolbox}\
 $git_branch\
 ${custom.dirty}
 $character"""
@@ -10,6 +12,15 @@ $character"""
 [username]
 style_user = "bold green"
 show_always = true
+
+[hostname]
+ssh_only = true
+format =  "on [$hostname](bold red) "
+
+[custom.toolbox]
+when = "hostname | grep 'toolbox'"
+command = "cat /run/.containerenv | grep 'name' | cut -d \\= -f2 | sed 's/\"//g'"
+format = "[ $output](yellow) "
 
 [directory]
 truncate_to_repo = false
