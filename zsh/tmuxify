@@ -7,7 +7,7 @@ function tmuxify () {
       # tmux is already running
     else
       # no tmux sessions yet. I probably want one
-      tmux new -A -s main
+      tmux new -A -s main -n main
     fi
   fi
 }
