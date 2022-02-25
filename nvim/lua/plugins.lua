@@ -21,6 +21,9 @@ return require('packer').startup({function(use)
   -- statusline
   use 'nvim-lualine/lualine.nvim'
 
+  -- tabline
+  use 'rafcamlet/tabline-framework.nvim'
+
   -- project tree
   use 'kyazdani42/nvim-tree.lua'
 
