@@ -31,7 +31,7 @@ return require('packer').startup({function(use)
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
   -- fancy menu
-  use 'gelguy/wilder.nvim'
+  use { 'gelguy/wilder.nvim', run = ':UpdateRemotePlugins' }
 
   -- gitsigns
   use {
