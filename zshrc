@@ -54,6 +54,7 @@ alias bi='bundle install'
 alias bx='bundle exec'
 alias dc='docker-compose'
 alias open='xdg-open'
+alias clipboard='xclip -selection clipboard'
 
 # history
 HISTFILE=~/.zsh_history
