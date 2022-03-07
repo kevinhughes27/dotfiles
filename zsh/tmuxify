@@ -2,12 +2,14 @@
 
 # if tmux is available but no session exists, create one and attach to it.
 function tmuxify () {
+  tmux_socket=$HOME/tmux.sock
+
   if hash tmux &> /dev/null; then
-    if tmux ls &> /dev/null; then
+    if [[ -S $tmux_socket ]]; then
       # tmux is already running
     else
-      # no tmux sessions yet. I probably want one
-      tmux new -A -s main -n main
+      tmux -S $tmux_socket new -A -s main -n main
+      rm $tmux_socket # remove socket on quit
     fi
   fi
 }
