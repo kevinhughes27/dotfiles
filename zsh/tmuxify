@@ -2,7 +2,7 @@
 
 # if tmux is available but no session exists, create one and attach to it.
 function tmuxify () {
-  tmux_socket=$HOME/tmux.sock
+  tmux_socket=$HOME/.tmux.sock
 
   if hash tmux &> /dev/null; then
     if [[ -S $tmux_socket ]]; then
