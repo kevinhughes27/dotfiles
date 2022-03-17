@@ -105,7 +105,12 @@ return require('packer').startup({function(use)
   use 'saadparwaiz1/cmp_luasnip'
 
   -- gcc and gc + motion to comment
-  use 'tpope/vim-commentary'
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 
   -- sublime style multiple cursors. ctrl-n to start
   use 'mg979/vim-visual-multi'
