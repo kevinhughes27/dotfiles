@@ -19,6 +19,7 @@ map('n', '-', ':exe "vertical resize " . (winwidth(0) * 7/8)<CR>')
 
 -- tab for tabs
 map('n', '<Tab>', ':tabnext<CR>')
+map('n', '<S-Tab>', ':tabprev<CR>')
 
 -- gimme ctrl s
 map('n', '<C-s>', ':w<CR>')
