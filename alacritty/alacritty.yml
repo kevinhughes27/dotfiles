@@ -24,8 +24,7 @@ window:
   padding:
     x: 2
     y: 2
-
-background_opacity: 0.96
+  opacity: 0.96
 
 # Font
 # mkdir -p ~/.local/share/fonts
