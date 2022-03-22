@@ -1,0 +1,3 @@
+# https://superuser.com/questions/1371931/show-context-after-every-move-using-python-pdb
+alias n next ;; l
+alias s step ;; l

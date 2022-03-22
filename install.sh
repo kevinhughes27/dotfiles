@@ -9,8 +9,10 @@
 # by accident. On subsequent runs it will detect that
 # the file is a symlink to ~/dotfiles and ignore it.
 
-echo "Installing starship.rs"
-sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes > /dev/null
+if ! which starship &> /dev/null; then
+  echo "Installing starship.rs"
+  sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes > /dev/null
+fi
 
 echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &> /dev/null
@@ -54,6 +56,7 @@ link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
+link ~/dotfiles/pdbrc ~/.pdbrc
 
 link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/alacritty ~/.config/alacritty
