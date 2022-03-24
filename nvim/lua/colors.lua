@@ -24,3 +24,15 @@ vim.cmd('highlight! CmpItemKindVariable guifg=' .. c.purple)
 vim.cmd('highlight! CmpItemKindFunction guifg=' .. c.blue)
 vim.cmd('highlight! CmpItemKindKeyword guifg=' .. c.red)
 vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
+
+-- markdown
+vim.cmd('highlight! MarkdownStrikethrough gui=strikethrough guifg=' .. c.grey)
+vim.cmd('highlight! Conceal gui=NONE guifg=NONE')
+
+-- add for checkboxes too
+vim.api.nvim_exec([[
+set conceallevel=3
+call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
+call matchadd('Conceal',  '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
+call matchadd('Conceal',  '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':''})
+]], true)
