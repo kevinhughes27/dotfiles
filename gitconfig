@@ -3,6 +3,9 @@ name = Kevin Hughes
 email = kevinhughes27@gmail.com
 signingkey = ABDAFEE7
 
+# include a local git config if it exists
+# allows me to configure a different user
+# and gpg key
 [include]
 path = ~/.localgc
 
@@ -108,21 +111,29 @@ whattouched = log --diff-filter=M
 # stands for "branch delete"
 bd = "!f() { git branch | fzf --multi | xargs git branch -D; }; f"
 
-# stands for "fresh". switch to master and pull
-fr = "!f() { git checkout master && git pull --autostash; }; f"
+# stands for "fresh". switch to master/main and pull
+fr = "!f() { \
+  local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
+  git checkout $mainbranch && git pull --autostash; \
+}; f"
 
-# stands for "new branch". `git nb foo` will create a new branch named `foo` based off the latest master.
-nb = "!f() { git checkout master && git pull && git checkout -b $1; }; f"
+# stands for "new branch". `git nb foo` will create a new branch named `foo` based off the latest master/main.
+nb = "!f() { \
+  local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
+  git checkout $mainbranch && git pull && git checkout -b $1; \
+}; f"
 
-# rebase the current branch against fresh master
+# rebase the current branch against fresh master/main
 r = "!git_rebase() { \
-  git fetch origin master:master; \
-  git rebase master; \
+  local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
+  git fetch origin $mainbranch:$mainbranch; \
+  git rebase $mainbranch; \
 }; git_rebase"
 
 # `git ri` does an interactive rebase from the branch point
 ri = "!git_rebase_i() { \
+  local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   local currbranch=`git rev-parse --abbrev-ref HEAD`; \
-  local branchpoint=`git merge-base master $currbranch`; \
+  local branchpoint=`git merge-base $mainbranch $currbranch`; \
   git rebase -i $branchpoint $currbranch; \
 }; git_rebase_i"
