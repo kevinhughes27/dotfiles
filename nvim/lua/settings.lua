@@ -20,6 +20,7 @@ opt('o', 'smartcase', true)           -- don't ignore case with capitals
 opt('o', 'splitbelow', true)          -- put new windows below current
 opt('o', 'splitright', true)          -- put new windows right of current
 opt('o', 'termguicolors', true)       -- true color support
+opt('o', 'conceallevel', 2)           -- concealed text is completely hidden unless it has a custom replacement character defined
 opt('w', 'list', true)                -- show some invisible characters (tabs...)
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap

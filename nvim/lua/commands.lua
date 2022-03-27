@@ -7,7 +7,7 @@ command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind c
 
 -- remember last cursor position (ignore NvimTree)
 vim.api.nvim_exec([[
-function! RestoreCursor()
+function RestoreCursor()
   if &ft =~ 'NvimTree'
     return
   endif
