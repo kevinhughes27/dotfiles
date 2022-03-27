@@ -15,16 +15,29 @@ end
 
 local lsp_installer = require('nvim-lsp-installer')
 
+local specific_server_opts = {
+  ["sumneko_lua"] = function(opts)
+    opts.settings = {
+      Lua = {
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+      },
+    }
+  end,
+}
+
 lsp_installer.on_server_ready(function(server)
   local opts = {
     capabilities = capabilities,
     on_attach = on_attach
   }
 
-  -- (optional) Customize the options passed to the server
-  -- if server.name == "tsserver" then
-  --     opts.root_dir = function() ... end
-  -- end
+  if specific_server_opts[server.name] then
+    -- Enhance the default opts with the server-specific ones
+    specific_server_opts[server.name](opts)
+  end
 
   -- This setup() function is exactly the same as lspconfig's setup function.
   -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
