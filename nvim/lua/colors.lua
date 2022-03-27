@@ -27,21 +27,27 @@ vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
 -- markdown fancy things
 vim.cmd('highlight! MarkdownStrikethrough gui=strikethrough guifg=' .. c.grey)
-vim.cmd('highlight! Conceal gui=NONE guifg=NONE')
 
 vim.api.nvim_exec([[
+" :help matchadd for more information
+
 function MarkdownHighlights()
   call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
   call matchadd('MarkdownStrikethrough', '\[x\].\+')
 
-  call matchadd('Conceal',  '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
-  call matchadd('Conceal',  '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':''})
+  call matchadd('Conceal', '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
+  call matchadd('Conceal', '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':''})
 
   call matchadd('Conceal', '\[\ \]', 10, -1, {'conceal': ''})
   call matchadd('Conceal', '\[x\]', 10, -1, {'conceal': ''})
 endfunction
 
+function ClearMarkdownHighlights()
+  call clearmatches()
+endfunction
+
 augroup mdHighlights
   autocmd!
+  autocmd BufWinEnter * call ClearMarkdownHighlights()
   autocmd BufWinEnter *.md call MarkdownHighlights()
 ]], true)
