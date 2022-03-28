@@ -26,6 +26,10 @@
         "path": "./rust.json"
       },
       {
+        "language": "markdown",
+        "path": "./markdown.json"
+      },
+      {
         "language": [
           "html",
           "eruby"

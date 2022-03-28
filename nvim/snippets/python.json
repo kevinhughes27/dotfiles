@@ -1,6 +1,6 @@
 {
   "#!/usr/bin/env python": {
-    "prefix": ["#!", "shebang"],
+    "prefix": ["shebang"],
     "body": "#!/usr/bin/env python\n$0",
     "description": "Adds shebang line for default python interpreter."
   },

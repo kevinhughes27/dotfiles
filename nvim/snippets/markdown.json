@@ -1,0 +1,12 @@
+{
+  "Links": {
+    "prefix": ["l", "link"],
+    "body": ["[${1}](${2}) ${0}"],
+    "description": "Add links"
+  },
+  "Images": {
+    "prefix": "img",
+    "body": ["![${1}](${2}) ${0}"],
+    "description": "Add images"
+  }
+}
