@@ -27,11 +27,13 @@ vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
 -- markdown fancy things
 vim.cmd('highlight! MarkdownStrikethrough gui=strikethrough guifg=' .. c.grey)
+vim.cmd('highlight! MarkdownStar guifg=' .. c.yellow)
 
 vim.api.nvim_exec([[
 " :help matchadd for more information
 
 function MarkdownHighlights()
+  call matchadd('MarkdownStar', '⭐')
   call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
   call matchadd('MarkdownStrikethrough', '\[x\].\+')
 
@@ -50,4 +52,5 @@ augroup mdHighlights
   autocmd!
   autocmd BufWinEnter * call ClearMarkdownHighlights()
   autocmd BufWinEnter *.md call MarkdownHighlights()
+augroup END
 ]], true)
