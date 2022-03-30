@@ -34,8 +34,8 @@ function Save()
 
   if cwd =~ notesdir
     let git_add = "git add ".expand('%:.')
-    let commit_msg = "save ".strftime("%Y-%m-%d")
-    let git_commit = "git commit -m '".commit_msg."'"
+    let msg = "Updated Note ".expand('%:t')
+    let git_commit = "git commit -m '".msg."'"
     let git_push = "git push origin master"
 
     let cmd = git_add." && ".git_commit." && ".git_push
