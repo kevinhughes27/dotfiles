@@ -22,8 +22,8 @@ map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<S-Tab>', ':tabprev<CR>')
 
 -- gimme ctrl s
-map('n', '<C-s>', ':w<CR>')
-map('i', '<C-s>', '<ESC>:w<CR>i')
+map('n', '<C-s>', ':call Save()<CR>')
+map('i', '<C-s>', '<ESC>:call Save()<CR>i')
 
 -- disable visual-multi-mappings
 -- (it binds to ctrl up/down which I use for navigation)

@@ -24,6 +24,27 @@ augroup resCur
 augroup END
 ]], true)
 
+-- save
+vim.api.nvim_exec([[
+function Save()
+  write
+
+  let cwd = getcwd()
+  let notesdir = $HOME."/notes"
+
+  if cwd =~ notesdir
+    let git_add = "git add ".expand('%:.')
+    let commit_msg = "save ".strftime("%Y-%m-%d")
+    let git_commit = "git commit -m '".commit_msg."'"
+    let git_push = "git push origin master"
+
+    let cmd = git_add." && ".git_commit." && ".git_push
+
+    call jobstart(cmd)
+  endif
+endfunction
+]], true)
+
 -- set word wrap for markdown files
 vim.api.nvim_exec([[
 autocmd bufreadpre *.md setlocal wrap linebreak nolist
