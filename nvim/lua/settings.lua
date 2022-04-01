@@ -24,6 +24,7 @@ opt('o', 'conceallevel', 2)           -- concealed text is completely hidden unl
 opt('w', 'list', true)                -- show some invisible characters (tabs...)
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
+opt('o', 'signcolumn','yes')          -- always shown signcolumn
 opt('o', 'updatetime', 100)           -- update frequency
 
 -- copy into clipboard by default
