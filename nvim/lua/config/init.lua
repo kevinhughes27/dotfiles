@@ -2,6 +2,8 @@ require('config/icons')
 require('config/lualine')
 require('config/tabline')
 
+require('config/markdown')
+
 require('config/fzf')
 require('config/nvim-tree')
 require('config/wilder')

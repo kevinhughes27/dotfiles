@@ -77,6 +77,9 @@ return require('packer').startup({function(use)
     end
   }
 
+  -- highlight urls
+  use 'itchyny/vim-highlighturl'
+
   -- auto formatting
   use 'mhartington/formatter.nvim'
   use 'McAuleyPenney/tidy.nvim'

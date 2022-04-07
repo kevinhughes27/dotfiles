@@ -44,8 +44,3 @@ function Save()
   endif
 endfunction
 ]], true)
-
--- set word wrap for markdown files
-vim.api.nvim_exec([[
-autocmd bufreadpre *.md setlocal wrap linebreak nolist
-]], true)

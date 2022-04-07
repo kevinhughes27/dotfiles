@@ -14,6 +14,9 @@ vim.cmd('highlight PmenuSel guibg=' .. c.green)
 -- set selected tab highlight to blue
 vim.cmd('highlight TabLineSel guibg=' .. c.blue)
 
+-- set url highlight color
+vim.g.highlighturl_guifg = c.blue
+
 -- cmp
 vim.cmd('highlight! CmpItemAbbrMatch guifg=' .. '#569CD6')
 vim.cmd('highlight! CmpItemAbbrMatchFuzzy guifg=' .. '#569CD6')
@@ -25,32 +28,14 @@ vim.cmd('highlight! CmpItemKindFunction guifg=' .. c.blue)
 vim.cmd('highlight! CmpItemKindKeyword guifg=' .. c.red)
 vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
--- markdown fancy things
-vim.cmd('highlight! MarkdownStrikethrough gui=strikethrough guifg=' .. c.grey)
-vim.cmd('highlight! MarkdownStar guifg=' .. c.yellow)
-
+-- :call SynStack() to get the highlight under the cursor
+-- https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
 vim.api.nvim_exec([[
-" :help matchadd for more information
-
-function MarkdownHighlights()
-  call matchadd('MarkdownStar', '⭐')
-  call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
-  call matchadd('MarkdownStrikethrough', '\[x\].\+')
-
-  call matchadd('Conceal', '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
-  call matchadd('Conceal', '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':''})
-
-  call matchadd('Conceal', '\[\ \]', 10, -1, {'conceal': ''})
-  call matchadd('Conceal', '\[x\]', 10, -1, {'conceal': ''})
-endfunction
-
-function ClearMarkdownHighlights()
-  call clearmatches()
-endfunction
-
-augroup mdHighlights
-  autocmd!
-  autocmd BufWinEnter * call ClearMarkdownHighlights()
-  autocmd BufWinEnter *.md call MarkdownHighlights()
-augroup END
-]], true)
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+]],
+true)
