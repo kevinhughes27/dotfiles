@@ -9,6 +9,11 @@ end
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 map('n', '<ESC>', ':noh|set norelativenumber!<CR>') -- clear highlight and toggle relative numbers
 
+-- dont lose selection when shifting sideways
+-- https://github.com/mhinz/vim-galore#dont-lose-selection-when-shifting-sidewards
+map('x', '<', '<gv')
+map('x', '>', '>gv')
+
 -- new splits
 map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<C-_>', ':split<CR>')
