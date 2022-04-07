@@ -51,3 +51,23 @@ augroup END
 vim.api.nvim_exec([[
 autocmd bufreadpre *.md setlocal wrap linebreak nolist
 ]], true)
+
+-- check uncheck checkboxes
+-- https://www.reddit.com/r/vim/comments/c2h28r/a_small_markdown_mapping_for_checkboxes/
+vim.api.nvim_exec([[
+function Check()
+  let l:line=getline('.')
+  let l:curs=winsaveview()
+
+  if l:line=~?'\s*-\s*\[\s*\].*'
+      s/\[\s*\]/[x]/
+  elseif l:line=~?'\s*-\s*\[x\].*'
+      s/\[x\]/[ ]/
+  endif
+
+  call winrestview(l:curs)
+endfunction
+
+autocmd FileType markdown nnoremap <silent> <CR> :call Check()<CR>
+autocmd FileType markdown nnoremap <silent> <space> :call Check()<CR>
+]], true)
