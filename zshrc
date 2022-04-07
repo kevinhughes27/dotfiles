@@ -70,6 +70,12 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
+# remove extra new lines from paste
+bracketed-paste() {
+  zle .$WIDGET && LBUFFER=${LBUFFER%$'\n'}
+}
+zle -N bracketed-paste
+
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && source ~/.localrc
 
