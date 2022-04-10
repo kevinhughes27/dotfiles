@@ -1,6 +1,21 @@
 require 'settings'
 require 'plugins'
 require 'colors'
-require 'config'
+
+-- config
+require('config/icons')
+require('config/lualine')
+require('config/tabline')
+
+require('config/markdown')
+
+require('config/fzf')
+require('config/nvim-tree')
+require('config/wilder')
+
+require('config/lsp')
+require('config/nvim-cmp')
+require('config/formatter')
+
 require 'commands'
 require 'mappings'
