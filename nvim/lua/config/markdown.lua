@@ -8,7 +8,6 @@ vim.cmd('highlight! markdownLinkText gui=underline guifg=' .. c.blue)
 vim.api.nvim_exec([[
 function MarkdownHighlights()
   " :help matchadd for more information
-  call matchadd('MarkdownStar', '⭐')
   call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
   call matchadd('MarkdownStrikethrough', '\[x\].\+')
 
