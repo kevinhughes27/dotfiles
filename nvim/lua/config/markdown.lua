@@ -8,10 +8,9 @@ vim.cmd('highlight! markdownLinkText gui=underline guifg=' .. c.blue)
 vim.api.nvim_exec([[
 function MarkdownHighlights()
   " :help matchadd for more information
+  " strikethrough
   call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
   call matchadd('MarkdownStrikethrough', '\[x\].\+')
-
-  " strikethrough
   call matchadd('Conceal', '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
   call matchadd('Conceal', '\~\~.\+\zs\~\~\ze', 10, -1, {'conceal':''})
 
