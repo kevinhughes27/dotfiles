@@ -43,7 +43,13 @@ return require('packer').startup({function(use)
   use 'ruanyl/vim-gh-line'
 
   -- seamless split/tmux navigation
-  use 'christoomey/vim-tmux-navigator'
+  use {
+    'christoomey/vim-tmux-navigator',
+    config = function ()
+      vim.g.tmux_navigator_no_mappings = 1
+      vim.g.tmux_navigator_save_on_switch = 2
+    end
+  }
 
   -- zoom
   use 'nyngwang/NeoZoom.lua'
@@ -53,8 +59,15 @@ return require('packer').startup({function(use)
   use 'junegunn/fzf.vim'
 
   -- test running
-  use 'vim-test/vim-test'
   use 'benmills/vimux'
+  use {
+    'vim-test/vim-test',
+    config = function ()
+      vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
+      vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
+      vim.g['VimuxHeight'] = '25'
+    end
+  }
 
   -- syntax highlighting
   use {

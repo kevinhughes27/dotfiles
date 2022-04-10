@@ -31,21 +31,15 @@ map('n', '<C-s>', ':call Save()<CR>')
 map('i', '<C-s>', '<ESC>:call Save()<CR>i')
 
 -- tmux navigation
-vim.g.tmux_navigator_no_mappings = 1
-vim.g.tmux_navigator_save_on_switch = 2
-
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
 map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
+-- zoom
 map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
 
--- vim-test / vimux
-vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
-vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
-vim.g['VimuxHeight'] = '25'
-
+-- vim-test
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
