@@ -3,7 +3,6 @@
 local c = require('onedark.colors')
 
 vim.cmd('highlight! MarkdownStrikethrough gui=strikethrough guifg=' .. c.grey)
-vim.cmd('highlight! MarkdownStar guifg=' .. c.yellow)
 vim.cmd('highlight! markdownLinkText gui=underline guifg=' .. c.blue)
 
 vim.api.nvim_exec([[
