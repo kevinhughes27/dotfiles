@@ -30,10 +30,6 @@ map('n', '<S-Tab>', ':tabprev<CR>')
 map('n', '<C-s>', ':call Save()<CR>')
 map('i', '<C-s>', '<ESC>:call Save()<CR>i')
 
--- disable visual-multi-mappings
--- (it binds to ctrl up/down which I use for navigation)
-vim.g.VM_default_mappings = 0
-
 -- tmux navigation
 vim.g.tmux_navigator_no_mappings = 1
 vim.g.tmux_navigator_save_on_switch = 2

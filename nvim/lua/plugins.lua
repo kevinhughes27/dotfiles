@@ -116,7 +116,14 @@ return require('packer').startup({function(use)
   }
 
   -- sublime style multiple cursors. ctrl-n to start
-  use 'mg979/vim-visual-multi'
+  use {
+    'mg979/vim-visual-multi',
+    config = function()
+      -- disable visual-multi-mappings
+      -- (it binds to ctrl up/down which I use for navigation)
+      vim.g.VM_default_mappings = 0
+    end
+  }
 
   -- automatically sync after cloning packer.nvim
   if packer_bootstrap then

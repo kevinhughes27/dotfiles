@@ -1,6 +1,5 @@
 local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
-vim.g.nvim_tree_indent_markers = 1
 vim.g.nvim_tree_show_icons = {
   folders = 1,
   files = 1,
@@ -10,6 +9,11 @@ vim.g.nvim_tree_show_icons = {
 require('nvim-tree').setup {
   filters = {
     custom = {'.git', 'node_modules', '.cache', '__pycache__', '.DS_Store'},
+  },
+  renderer = {
+    indent_markers = {
+      enable = true
+    },
   },
   view = {
     width = 30,
