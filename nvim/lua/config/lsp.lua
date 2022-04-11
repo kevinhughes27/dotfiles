@@ -1,7 +1,11 @@
 local lsp_installer = require('nvim-lsp-installer')
 
+-- nvim-cmp capabilities
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
 local specific_server_opts = {
-  ["sumneko_lua"] = function(opts)
+  ['sumneko_lua'] = function(opts)
     opts.settings = {
       Lua = {
         diagnostics = {
@@ -13,35 +17,28 @@ local specific_server_opts = {
   end,
 }
 
--- nvim-cmp capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-function on_attach(client, bufnr)
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
-  local opts = {noremap = true, silent = true}
-
-  buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  buf_set_keymap('n', '<RightMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-end
-
--- configure servers
 lsp_installer.on_server_ready(function(server)
   local opts = {
     capabilities = capabilities,
-    on_attach = on_attach
+    on_attach = function(client, bufnr)
+      local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+      end
+
+      local opts = {noremap = true, silent = true}
+
+      buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+      buf_set_keymap('n', '<RightMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    end
   }
 
+  -- enhance the default opts with the server-specific ones
   if specific_server_opts[server.name] then
-    -- Enhance the default opts with the server-specific ones
     specific_server_opts[server.name](opts)
   end
 
-  -- This setup() function is exactly the same as lspconfig's setup function.
-  -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+  -- this setup() function is exactly the same as lspconfig's setup function.
+  -- refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
   server:setup(opts)
 end)
 
