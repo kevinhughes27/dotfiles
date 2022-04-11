@@ -83,3 +83,10 @@ endfunction
 command! -nargs=* -bang RG call LiveRipgrepFzf(<q-args>, <bang>0)
 ]],
 true)
+
+-- remove commands I don't use
+vim.api.nvim_exec(
+[[
+autocmd VimEnter * :delcommand Ag
+autocmd VimEnter * :delcommand Snippets
+]], true)
