@@ -15,7 +15,6 @@ require('config/wilder')
 
 require('config/lsp')
 require('config/nvim-cmp')
-require('config/formatter')
 
 require 'commands'
 require 'mappings'

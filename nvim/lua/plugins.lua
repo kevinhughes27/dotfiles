@@ -93,10 +93,6 @@ return require('packer').startup({function(use)
   -- highlight urls
   use 'itchyny/vim-highlighturl'
 
-  -- auto formatting
-  use 'mhartington/formatter.nvim'
-  use 'McAuleyPenney/tidy.nvim'
-
   -- snippets
   use {
     'L3MON4D3/LuaSnip',
@@ -110,7 +106,11 @@ return require('packer').startup({function(use)
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
+  use 'jose-elias-alvarez/null-ls.nvim'
   use 'onsails/lspkind-nvim'
+
+  -- auto formatting
+  use 'McAuleyPenney/tidy.nvim'
 
   -- completion
   use 'hrsh7th/nvim-cmp'
