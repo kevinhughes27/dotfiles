@@ -51,6 +51,14 @@ return require('packer').startup({function(use)
     end
   }
 
+  -- remember cursor position
+  use {
+    'farmergreg/vim-lastplace',
+    config = function()
+      vim.g.lastplace_ignore_buftype = "quickfix,nofile,help,NvimTree"
+    end
+  }
+
   -- zoom
   use 'nyngwang/NeoZoom.lua'
 
