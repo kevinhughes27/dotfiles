@@ -27,8 +27,8 @@ map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<S-Tab>', ':tabprev<CR>')
 
 -- gimme ctrl s
-map('n', '<C-s>', ':call Save()<CR>')
-map('i', '<C-s>', '<ESC>:call Save()<CR>i')
+map('n', '<C-s>', ':Save<CR>')
+map('i', '<C-s>', '<ESC>:Save<CR>i')
 
 -- tmux navigation
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})

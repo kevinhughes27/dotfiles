@@ -11,22 +11,24 @@ end, {
 })
 
 -- save
-vim.api.nvim_exec([[
-function Save()
-  write
+create("Save", function(args)
+  vim.api.nvim_exec("write", true)
 
-  let cwd = getcwd()
-  let notesdir = $HOME."/notes"
+  local cwd = vim.fn.getcwd()
+  local notesdir = os.getenv("HOME") .. "/notes"
 
-  if cwd =~ notesdir
-    let git_add = "git add ".expand('%:.')
-    let msg = "Updated Note ".expand('%:t')
-    let git_commit = "git commit -m '".msg."'"
-    let git_push = "git push origin master"
+  if string.find(cwd, notesdir) then
+    local git_add = "git add " .. vim.fn.expand('%:.')
+    local msg = "Updated Note " .. vim.fn.expand('%:t')
+    local git_commit = "git commit -m '" .. msg .. "'"
+    local git_push = "git push origin master"
 
-    let cmd = git_add." && ".git_commit." && ".git_push
+    local  cmd = git_add .. " && " .. git_commit .. " && " .. git_push
 
-    call jobstart(cmd)
-  endif
-endfunction
-]], true)
+    vim.fn.jobstart(cmd)
+  end
+
+end, {
+  nargs = 0,
+  desc = "Save current buffer. commit and push notes"
+})
