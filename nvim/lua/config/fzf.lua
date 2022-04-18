@@ -109,7 +109,8 @@ end, {
 
 
 -- remove commands I don't use
-vim.api.nvim_exec([[
-  autocmd VimEnter * :delcommand Ag
-  autocmd VimEnter * :delcommand Snippets
-]], true)
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  command = "delcommand Ag | delcommand Snippets",
+  desc = "remove unused fzf commands"
+})
