@@ -1,9 +1,14 @@
 -- Commands
 
+local create = vim.api.nvim_create_user_command
+
 -- overmind connect in a tmux popup
-vim.api.nvim_exec([[
-command! -nargs=1 Oc :silent !tmux popup -E -d $(pwd) -h 80\% -w 80\% overmind connect <f-args>
-]], true)
+create("Oc", function(args)
+  os.execute("tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect " .. args.args)
+end, {
+  nargs = 1,
+  desc = "Connect to overmind in a tmux popup window",
+})
 
 -- save
 vim.api.nvim_exec([[
