@@ -16,7 +16,7 @@ else
   }
 end
 
-function _G.FzfTmuxToggle()
+vim.api.nvim_create_user_command("FzfTmuxToggle", function(args)
   if g.fzf_tmux == 1 then
     g.fzf_tmux = 0
     g.fzf_layout = {
@@ -31,11 +31,10 @@ function _G.FzfTmuxToggle()
       tmux = '-p 90%,90%'
     }
   end
-end
-
-vim.api.nvim_exec([[
-command! FzfTmuxToggle :lua FzfTmuxToggle()
-]], true)
+end, {
+  nargs = 0,
+  desc = "Toggle Fzf tmux to use a vim window. Needed for pairing to display fzf"
+})
 
 g.fzf_preview_window = 'right:60%:sharp'
 
@@ -57,36 +56,60 @@ g.fzf_colors['bg+'] = {'bg', 'CursorLine', 'CursorColumn'}
 g.fzf_colors['hl+'] = {'fg', 'Label'}
 
 -- overwrite Rg to search in hidden files but not .git
-vim.api.nvim_exec(
-[[
-function RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --hidden --glob "!.git/*" --ignore-file ~/dotfiles/fzf-ignore --column --line-number --no-heading --color=always --smart-case -- %s'
-  let command = printf(command_fmt, shellescape(a:query))
-  call fzf#vim#grep(command, 1, fzf#vim#with_preview(), a:fullscreen)
-endfunction
+vim.api.nvim_create_user_command("Rg", function(args)
+  local command = 'rg \z
+      --hidden \z
+      --glob "!.git/*" \z
+      --ignore-file ~/dotfiles/fzf-ignore \z
+      --column \z
+      --line-number \z
+      --no-heading \z
+      --color=always \z
+      --smart-case \z
+      -- ' .. args.args
 
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-]],
-true)
+  vim.api.nvim_exec("call fzf#vim#grep('" .. command .. "', 1, fzf#vim#with_preview())", true)
+
+end, {
+  nargs = "*",
+  bang = true,
+  desc = "RipgrepFzf"
+})
+
 
 -- live ripgrep fzf acts as selector only
-vim.api.nvim_exec(
-[[
-function! LiveRipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case -- %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+vim.api.nvim_create_user_command("RG", function(args)
+  local command_fmt = 'rg \z
+    --hidden \z
+    --glob "!.git/*" \z
+    --column \z
+    --line-number \z
+    --no-heading \z
+    --color=always \z
+    --smart-case \z
+    -- %s || true'
 
-command! -nargs=* -bang RG call LiveRipgrepFzf(<q-args>, <bang>0)
-]],
-true)
+  local initial_command = string.format(command_fmt, args.args)
+  local reload_command = string.format(command_fmt, '{q}')
+  local spec = string.format("{ \z
+    'options': [ \z
+      '--phony', \z
+      '--query', '%s', \z
+      '--bind', 'change:reload:%s' \z
+    ] \z
+  }", args.args, reload_command)
+
+  vim.api.nvim_exec("call fzf#vim#grep('" .. initial_command .. "', 1, fzf#vim#with_preview(" .. spec .."))", true)
+
+end, {
+  nargs = "*",
+  bang = true,
+  desc = "LiveRipgrepFzf"
+})
+
 
 -- remove commands I don't use
-vim.api.nvim_exec(
-[[
-autocmd VimEnter * :delcommand Ag
-autocmd VimEnter * :delcommand Snippets
+vim.api.nvim_exec([[
+  autocmd VimEnter * :delcommand Ag
+  autocmd VimEnter * :delcommand Snippets
 ]], true)
