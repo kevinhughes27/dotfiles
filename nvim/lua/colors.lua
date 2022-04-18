@@ -28,6 +28,15 @@ vim.cmd('highlight! CmpItemKindFunction guifg=' .. c.blue)
 vim.cmd('highlight! CmpItemKindKeyword guifg=' .. c.red)
 vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
+-- highlight on yank
+vim.cmd('highlight! YankPost guifg=' .. c.black .. ' guibg=' .. c.blue)
+local highlight_group = vim.api.nvim_create_autocmd('TextYankPost', {
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank({higroup='YankPost', timeout=500})
+  end
+})
+
 -- :call SynStack() to get the highlight under the cursor
 -- https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
 vim.api.nvim_exec([[
