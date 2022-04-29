@@ -112,8 +112,14 @@ return require('packer').startup({function(use)
   }
 
   -- lsp
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
+  use {
+    'junnplus/nvim-lsp-setup',
+    requires = {
+      'neovim/nvim-lspconfig',
+      'williamboman/nvim-lsp-installer',
+    }
+  }
+  use 'folke/lua-dev.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'onsails/lspkind-nvim'
 
