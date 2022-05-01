@@ -3,10 +3,21 @@ local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({
+    'git',
+    'clone',
+    '--depth',
+    '1',
+    'https://github.com/wbthomason/packer.nvim',
+    install_path
+  })
+
+  vim.cmd [[packadd packer.nvim]]
 end
 
-vim.cmd [[packadd packer.nvim]]
+local function get_config(name)
+  return string.format('require("config/%s")', name)
+end
 
 -- Plugins
 return require('packer').startup({function(use)
@@ -16,22 +27,38 @@ return require('packer').startup({function(use)
   use 'navarasu/onedark.nvim'
 
   -- icons
-  use 'kyazdani42/nvim-web-devicons'
+  use {
+    'kyazdani42/nvim-web-devicons',
+    config = get_config('icons'),
+  }
 
   -- statusline
-  use 'nvim-lualine/lualine.nvim'
+  use {
+    'nvim-lualine/lualine.nvim',
+    config = get_config('lualine'),
+  }
 
   -- tabline
-  use 'rafcamlet/tabline-framework.nvim'
+  use {
+    'rafcamlet/tabline-framework.nvim',
+    config = get_config('tabline'),
+  }
 
   -- project tree
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = get_config('nvim-tree'),
+  }
 
   -- smart relative vs absolute line numbering
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
   -- fancy menu
-  use { 'gelguy/wilder.nvim', run = ':UpdateRemotePlugins' }
+  use {
+    'gelguy/wilder.nvim',
+    run = ':UpdateRemotePlugins',
+    config = get_config('wilder'),
+  }
 
   -- gitsigns
   use {
@@ -63,8 +90,11 @@ return require('packer').startup({function(use)
   use 'nyngwang/NeoZoom.lua'
 
   -- fzf
-  use 'junegunn/fzf'
-  use 'junegunn/fzf.vim'
+  use {
+    'junegunn/fzf.vim',
+    requires = { 'junegunn/fzf' },
+    config = get_config('fzf'),
+  }
 
   -- test running
   use 'benmills/vimux'
@@ -117,22 +147,27 @@ return require('packer').startup({function(use)
     requires = {
       'neovim/nvim-lspconfig',
       'williamboman/nvim-lsp-installer',
+      'folke/lua-dev.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
     }
   }
-  use 'folke/lua-dev.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
 
   -- auto formatting
   use 'McAuleyPenney/tidy.nvim'
 
   -- completion
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-cmdline'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'onsails/lspkind-nvim'
+  use {
+    'hrsh7th/nvim-cmp',
+    requires = {
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-cmdline',
+      'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind-nvim',
+    },
+    config = get_config('nvim-cmp'),
+  }
 
   -- gcc and gc + motion to comment
   use {
