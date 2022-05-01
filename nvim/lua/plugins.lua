@@ -121,7 +121,6 @@ return require('packer').startup({function(use)
   }
   use 'folke/lua-dev.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
-  use 'onsails/lspkind-nvim'
 
   -- auto formatting
   use 'McAuleyPenney/tidy.nvim'
@@ -133,6 +132,7 @@ return require('packer').startup({function(use)
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-cmdline'
   use 'saadparwaiz1/cmp_luasnip'
+  use 'onsails/lspkind-nvim'
 
   -- gcc and gc + motion to comment
   use {
