@@ -1,4 +1,4 @@
--- rendering
+-- markdown
 
 local c = require('onedark.colors')
 
