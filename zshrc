@@ -27,12 +27,17 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*" --ignore-file ~
 export FZF_DEFAULT_OPTS='--reverse --height=50%'
 
 # fzf one dark theme
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+green="#98c379"
+blue="#61afef"
+yellow="#e5c07b"
+magenta="#c678dd"
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
 --color=dark
---color=fg:-1,bg:-1,hl:#c678dd
+--color=fg:-1,bg:-1,hl:$magenta
 --color=fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:#98c379,prompt:#61afef,pointer:#be5046
---color=marker:#e5c07b,spinner:#61afef,header:#61afef,gutter:-1'
+--color=info:$green,prompt:$blue,pointer:$magenta
+--color=marker:$yellow,spinner:$blue,header:$blue,gutter:-1"
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -54,7 +59,7 @@ alias bi='bundle install'
 alias bx='bundle exec'
 alias dc='docker-compose'
 alias ts='avn-toolbox-shell'
-alias tr='tmux rename-window'
+alias rw='tmux rename-window'
 alias open='xdg-open'
 alias clipboard='xclip -selection clipboard'
 

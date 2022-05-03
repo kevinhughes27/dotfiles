@@ -60,6 +60,7 @@ link ~/dotfiles/pdbrc ~/.pdbrc
 
 link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/alacritty ~/.config/alacritty
+link ~/dotfiles/kitty ~/.config/kitty
 link ~/dotfiles/bottom ~/.config/bottom
 link ~/dotfiles/nvim ~/.config/nvim
 link ~/dotfiles/ulauncher ~/.config/ulauncher
