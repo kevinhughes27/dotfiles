@@ -15,12 +15,14 @@ map('x', '<', '<gv')
 map('x', '>', '>gv')
 
 -- new splits
-map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
-map('n', '<C-_>', ':split<CR>')
+map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
+map('n', '<A-->', ':split<CR>')
 
--- resize vertical splits
-map('n', '=', ':exe "vertical resize " . (winwidth(0) * 9/8)<CR>') -- in my head this is `+`
-map('n', '-', ':exe "vertical resize " . (winwidth(0) * 7/8)<CR>')
+-- resize splits
+map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>')
+map('n', '<A-Right>', ':SmartResizeRight 5<CR>')
+map('n', '<A-Up>',    ':SmartResizeUp    5<CR>')
+map('n', '<A-Down>',  ':SmartResizeDown  5<CR>')
 
 -- tab for tabs
 map('n', '<Tab>', ':tabnext<CR>')

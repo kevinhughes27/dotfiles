@@ -50,6 +50,8 @@ return require('packer').startup({function(use)
     config = get_config('nvim-tree'),
   }
 
+  use 'rcarriga/nvim-notify'
+
   -- smart relative vs absolute line numbering
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -68,6 +70,14 @@ return require('packer').startup({function(use)
 
   -- github link copy :GH
   use 'ruanyl/vim-gh-line'
+
+  -- smart split resize
+  use {
+    'mrjones2014/smart-splits.nvim',
+    config = function()
+      require('smart-splits').setup({})
+    end
+  }
 
   -- seamless split/tmux navigation
   use {
