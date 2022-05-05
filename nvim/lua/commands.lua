@@ -30,7 +30,11 @@ create('Save', function(args)
       args = {'-i', 's/modified:.*/modified: ' .. timestamp .. '/g', filepath},
       cwd = cwd,
     }):sync()
+
+    -- stable reload
+    local view = vim.fn.winsaveview()
     vim.api.nvim_exec('e', true)
+    vim.fn.winrestview(view)
 
     local git_add = 'git add ' .. filepath
     local msg = 'Updated Note ' .. filename
