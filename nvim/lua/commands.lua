@@ -24,7 +24,7 @@ create("Save", function(args)
     local git_commit = "git commit -m '" .. msg .. "'"
     local git_push = "git push origin master"
 
-    local  cmd = git_add .. " && " .. git_commit .. " && " .. git_push
+    local cmd = git_add .. " && " .. git_commit .. " && " .. git_push
 
     Job:new({
       command = 'sh',
@@ -39,7 +39,6 @@ create("Save", function(args)
       end,
     }):start()
   end
-
 end, {
   nargs = 0,
   desc = "Save current buffer. commit and push notes"
