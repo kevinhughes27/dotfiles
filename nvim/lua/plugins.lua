@@ -131,6 +131,32 @@ return require('packer').startup({function(use)
             node_decremental = '<S-TAB>',
           },
         },
+        ensure_installed = {
+          'bash',
+          'c',
+          'cmake',
+          'cpp',
+          'css',
+          'dockerfile',
+          'go',
+          'graphql',
+          'html',
+          'java',
+          'javascript',
+          'json',
+          'latex',
+          'lua',
+          'make',
+          -- 'markdown', -- messes up my conceals
+          'python',
+          'ruby',
+          'rust',
+          'toml',
+          'tsx',
+          'typescript',
+          'vim',
+          'yaml'
+        }
       })
     end
   }
