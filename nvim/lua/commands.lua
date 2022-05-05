@@ -32,9 +32,9 @@ create("Save", function(args)
       cwd = cwd,
       on_exit = function(j, return_val)
         if return_val == 0 then
-          print("Notes pushed!")
+          print("[Notes] pushed!")
         else
-          print("[WARN] Notes push failed!")
+          print("[Notes] [WARN] push failed!")
         end
       end,
     }):start()
