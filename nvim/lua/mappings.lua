@@ -25,6 +25,7 @@ map('n', '<A-Up>',    ':SmartResizeUp    5<CR>')
 map('n', '<A-Down>',  ':SmartResizeDown  5<CR>')
 
 -- tab for tabs
+map('n', '<C-t>', ':tabnew<CR>')
 map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<S-Tab>', ':tabprev<CR>')
 
@@ -42,7 +43,7 @@ map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
 
 -- vim-test
-map('n', '<C-t>', ':w<CR> :TestFile<CR>')
+-- map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- nvim-tree
