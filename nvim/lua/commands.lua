@@ -1,6 +1,7 @@
 -- Commands
 
 local create = vim.api.nvim_create_user_command
+local Job = require('plenary.job')
 
 -- overmind connect in a tmux popup
 create("Oc", function(args)
@@ -25,7 +26,18 @@ create("Save", function(args)
 
     local  cmd = git_add .. " && " .. git_commit .. " && " .. git_push
 
-    vim.fn.jobstart(cmd)
+    Job:new({
+      command = 'sh',
+      args = {'-c', cmd},
+      cwd = cwd,
+      on_exit = function(j, return_val)
+        if return_val == 0 then
+          print("Notes pushed!")
+        else
+          print("[WARN] Notes push failed!")
+        end
+      end,
+    }):start()
   end
 
 end, {

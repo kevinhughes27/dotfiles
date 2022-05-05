@@ -22,6 +22,7 @@ end
 -- Plugins
 return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
+  use 'nvim-lua/plenary.nvim'
 
   -- theme
   use 'navarasu/onedark.nvim'
@@ -50,8 +51,6 @@ return require('packer').startup({function(use)
     config = get_config('nvim-tree'),
   }
 
-  use 'rcarriga/nvim-notify'
-
   -- smart relative vs absolute line numbering
   use 'jeffkreeftmeijer/vim-numbertoggle'
 
@@ -64,7 +63,7 @@ return require('packer').startup({function(use)
 
   -- gitsigns
   use {
-    'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+    'lewis6991/gitsigns.nvim',
     config = function() require('gitsigns').setup() end
   }
 
@@ -74,9 +73,7 @@ return require('packer').startup({function(use)
   -- smart split resize
   use {
     'mrjones2014/smart-splits.nvim',
-    config = function()
-      require('smart-splits').setup({})
-    end
+    config = function() require('smart-splits').setup({}) end
   }
 
   -- seamless split/tmux navigation
@@ -182,9 +179,7 @@ return require('packer').startup({function(use)
   -- gcc and gc + motion to comment
   use {
     'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
+    config = function() require('Comment').setup() end
   }
 
   -- sublime style multiple cursors. ctrl-n to start
