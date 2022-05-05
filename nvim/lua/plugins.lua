@@ -156,7 +156,8 @@ return require('packer').startup({function(use)
       'williamboman/nvim-lsp-installer',
       'folke/lua-dev.nvim',
       'jose-elias-alvarez/null-ls.nvim',
-    }
+    },
+    config = get_config('lsp')
   }
 
   -- auto formatting
