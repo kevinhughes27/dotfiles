@@ -13,6 +13,21 @@
     "prefix": "pdb",
     "body": "__import__('pdb').set_trace()$0"
   },
+  "Files in Directory": {
+    "prefix": "files",
+    "body": "for file in glob.glob(${1:value}):\n$0",
+    "description": "iterate files in a directory"
+  },
+  "File Read": {
+    "prefix": "fileread",
+    "body": "f = open(\"demofile.txt\", \"r\")\nprint(f.read())",
+    "description": "read the contents of a file"
+  },
+  "File Write": {
+    "prefix": "filewrite",
+    "body": "f = open(\"demofile2.txt\", \"a\")\nf.write(\"Now the file has more content!\")\nf.close()",
+    "description": "write to file"
+  },
   "List comprehension": {
     "prefix": "lc",
     "body": "[${1:value} for ${2:value} in ${3:iterable}]$0",
