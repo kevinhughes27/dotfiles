@@ -7,7 +7,9 @@ vim.cmd('highlight! markdownLinkText gui=underline guifg=' .. c.blue)
 
 vim.api.nvim_exec([[
 function MarkdownHighlights()
-  " :help matchadd for more information
+  " enable conceal
+  set conceallevel=2
+
   " strikethrough
   call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
   call matchadd('MarkdownStrikethrough', '\[x\].\+')
@@ -34,6 +36,7 @@ function MarkdownHighlights()
 endfunction
 
 function ClearMarkdownHighlights()
+  set conceallevel=0
   call clearmatches()
 endfunction
 
