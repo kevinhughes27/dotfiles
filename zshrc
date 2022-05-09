@@ -14,6 +14,9 @@ bindkey "^[[1~" beginning-of-line
 bindkey "^[[3~" delete-char
 bindkey "^[[4~" end-of-line
 
+# disable ctrl s from triggering stop
+stty stop undef
+
 # fzf-tab
 # git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
 [[ -d ~/.fzf-tab ]] && source ~/.fzf-tab/fzf-tab.plugin.zsh
