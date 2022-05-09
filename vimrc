@@ -88,16 +88,18 @@ function! ToggleNetrw()
     endif
 endfunction
 
-map <C-b> :call ToggleNetrw() <Cr>
+map <C-b> :call ToggleNetrw() <CR>
+
+map <C-s> :write <CR>
 
 " tmux navigation
 if !empty($TMUX)
   " fix arrow keys sent from tmux
   " https://stackoverflow.com/questions/15445481/mapping-arrow-keys-when-running-tmux
-  execute 'set <xUp>=\e[1;*A'
-  execute 'set <xDown>=\e[1;*B'
-  execute 'set <xRight>=\e[1;*C'
-  execute 'set <xLeft>=\e[1;*D'
+  execute "set <xUp>=\e[1;*A"
+  execute "set <xDown>=\e[1;*B"
+  execute "set <xRight>=\e[1;*C"
+  execute "set <xLeft>=\e[1;*D"
 
   " https://gist.github.com/mislav/5189704
   function! TmuxMove(direction)
@@ -105,12 +107,12 @@ if !empty($TMUX)
     silent! execute 'wincmd ' . a:direction
     " if the winnr is still the same after we moved, it is the last pane
     if wnr == winnr()
-      call system('tmux select-pane -' . a:direction)
+      call system('tmux select-pane -' . tr(a:direction, 'phjkl', 'lLDUR'))
     end
   endfunction
 
-  nnoremap <silent> <C-Left>  :call TmuxMove('L')<cr>
-  nnoremap <silent> <C-Down>  :call TmuxMove('D')<cr>
-  nnoremap <silent> <C-Up>    :call TmuxMove('U')<cr>
-  nnoremap <silent> <C-Right> :call TmuxMove('R')<cr>
+  nnoremap <silent> <C-Left>  :call TmuxMove('h')<cr>
+  nnoremap <silent> <C-Down>  :call TmuxMove('j')<cr>
+  nnoremap <silent> <C-Up>    :call TmuxMove('k')<cr>
+  nnoremap <silent> <C-Right> :call TmuxMove('l')<cr>
 endif
