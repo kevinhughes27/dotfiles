@@ -8,6 +8,7 @@ setlocal conceallevel=2
 
 " strikethrough
 highlight! MarkdownStrikethrough gui=strikethrough guifg=#546178
+
 call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
 call matchadd('MarkdownStrikethrough', '\[x\].\+')
 call matchadd('Conceal', '\~\~\ze.\+\~\~', 10, -1, {'conceal':''})
@@ -23,8 +24,8 @@ syn region markdownLink
   \ start="(" end=")" contains=markdownUrl keepend contained
   \ conceal
 
-" link text
 highlight! markdownLinkText gui=underline guifg=#5ab0f6
+
 syn region markdownLinkText
   \ matchgroup=markdownLinkTextDelimiter
   \ start="!\=\[\%(\%(\_[^][]\|\[\_[^][]*\]\)*]\%( \=[[(]\)\)\@="
