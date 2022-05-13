@@ -1,8 +1,7 @@
 #!/bin/zsh
 
 # start a new pair programming session from my machine using ttyd
-# the function will create a new tmux session named 'pair' which
-# can be attached to locally and paused.
+# the function will start ttyd and attach to the current tmux session.
 
 function pair() {
   if [ -v $1 ]; then
@@ -20,6 +19,9 @@ function pair() {
   else
     local ip=$(hostname -I | awk '{print $1}')
   fi
+
+  # tmux session
+  local tmux_session=$(tmux list-panes -t "$TMUX_PANE" -F '#S' | head -n1)
 
   # colors
   local theme='
@@ -54,18 +56,22 @@ function pair() {
   echo "username: $username"
   echo "password: $password"
   echo ""
-  echo "run 'pair-connect' to connect to the session locally"
-  echo "use 'pair-pause' and 'pair-unpause' to toggle readonly mode"
+  echo "use 'pair-calibrate' to check screen sizes"
+  echo "use 'pair-pause' to toggle readonly mode"
   echo "------------------------------------------------------------"
 
-  # start tmux session
-  tmux new-session -s pair -c $(pwd) -d
+  # refresh tmux status line async and on exit
+  ## disable background processes output
+  setopt local_options no_notify no_monitor
+  (sleep 0.1; tmux refresh-client && tmux set status on) &
+  trap "tmux refresh-client" SIGINT
 
   # ttyd
-  # https://github.com/tsl0922/ttyd/wiki/Client-Options
-  # --check-origin Do not allow websocket connection from different origin
-
-  # template
+  # documentation: https://github.com/tsl0922/ttyd/wiki/Client-Options
+  #
+  # --check-origin do not allow websocket connection from different origin
+  # --index use a custom index.html file
+  #
   # to rebuild pair.html run `yarn build` in ttyd/html
   # then copy ttyd/html/dist/inline.html to pair.html
   ttyd \
@@ -78,10 +84,7 @@ function pair() {
     --client-option ${theme} \
     --max-clients 1 \
     --check-origin \
-    tmux attach-session -t pair -f ignore-size
-
-  # cleanup tmux session
-  tmux kill-session -t pair
+    tmux attach-session -t $tmux_session -f ignore-size
 }
 
 function pair-calibrate() {
@@ -101,13 +104,10 @@ function pair-calibrate() {
   python3 -c "$program"
 }
 
-function pair-connect() {
-  tmux attach-session -t pair
-}
 
 function pair-pause() {
-  local pair_session="pair"
-  local pair_clients=$(tmux list-clients -t $pair_session -F "#{client_pid} #{client_tty} #{client_readonly}")
+  local tmux_session=$(tmux list-panes -t "$TMUX_PANE" -F '#S' | head -n1)
+  local pair_clients=$(tmux list-clients -t $tmux_session -F "#{client_pid} #{client_tty} #{client_readonly}")
   local pair_pid=$(pgrep -P $(pidof ttyd))
   local pair_client=$(echo $pair_clients | grep $pair_pid)
   local pair_tty=$(echo $pair_client | cut -d ' ' -f2)
@@ -117,7 +117,7 @@ function pair-pause() {
     echo "pair is already paused"
   else
     # make tmux client readonly
-    tmux switch-client -c $pair_tty -t $pair_session -r
+    tmux switch-client -c $pair_tty -t $tmux_session -r
 
     # display message to the client.
     local pause_message="****** Session Paused ******"
@@ -132,7 +132,7 @@ function pair-pause() {
     tmux display-popup -C -c $pair_tty
 
     # make tmux client read/write again
-    tmux switch-client -c $pair_tty -t $pair_session -r
+    tmux switch-client -c $pair_tty -t $tmux_session -r
 
     echo "Resumed pairing session (pair is read/write)"
   fi
