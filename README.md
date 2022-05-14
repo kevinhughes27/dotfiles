@@ -1,13 +1,13 @@
 dotfiles
 ========
 
-Installation
-------------
+Setup
+-----
 
 ```
 git clone https://github.com/kevinhughes27/dotfiles ~/dotfiles
 cd ~/dotfiles
-./install.sh
+./setup.sh
 ```
 
 Afterwards remember to update to ssh: `git remote set-url origin git@github.com:kevinhughes27/dotfiles`
