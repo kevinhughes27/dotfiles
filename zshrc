@@ -66,6 +66,12 @@ alias rw='tmux rename-window'
 alias open='xdg-open'
 alias clipboard='xclip -selection clipboard'
 
+# remove extra new lines from paste
+bracketed-paste() {
+  zle .$WIDGET && LBUFFER=${LBUFFER%$'\n'}
+}
+zle -N bracketed-paste
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -78,11 +84,12 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
-# remove extra new lines from paste
-bracketed-paste() {
-  zle .$WIDGET && LBUFFER=${LBUFFER%$'\n'}
+# auto rename windows
+chpwd() {
+  if [[ -d '.git' ]]; then
+    tmux rename-window $(basename $(pwd))
+  fi
 }
-zle -N bracketed-paste
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && source ~/.localrc
