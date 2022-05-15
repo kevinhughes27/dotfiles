@@ -47,7 +47,7 @@ map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- nvim-tree
-map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>')
+map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 
 -- fzf
 map('n', '<C-p>', ':Files<CR>')
