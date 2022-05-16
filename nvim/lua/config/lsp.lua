@@ -16,6 +16,7 @@ require('nvim-lsp-setup').setup({
   servers = {
     sumneko_lua = require('lua-dev').setup(),
     pylsp = {},
+    tsserver = {},
   }
 })
 
