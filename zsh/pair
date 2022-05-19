@@ -70,10 +70,7 @@ function pair() {
   # documentation: https://github.com/tsl0922/ttyd/wiki/Client-Options
   #
   # --check-origin do not allow websocket connection from different origin
-  # --index use a custom index.html file
-  #
-  # to rebuild pair.html run `yarn build` in ttyd/html
-  # then copy ttyd/html/dist/inline.html to pair.html
+  # --index use a custom index.html file (see pair-rebuild-html below)
   ttyd \
     --credential "$username:$password" \
     --index "$HOME/dotfiles/pair.html" \
@@ -85,6 +82,13 @@ function pair() {
     --max-clients 1 \
     --check-origin \
     tmux attach-session -t $tmux_session -f ignore-size
+}
+
+function pair-rebuild-html() {
+  pushd ~/src/ttyd/html
+  INLINE_FONT=~/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf yarn build
+  popd
+  cp ~/src/ttyd/html/dist/inline.html ~/dotfiles/pair.html
 }
 
 function pair-calibrate() {
