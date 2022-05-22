@@ -85,11 +85,7 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 # auto rename windows
-chpwd() {
-  if [[ -d '.git' ]]; then
-    tmux rename-window $(basename $(pwd))
-  fi
-}
+[[ -v TMUX ]] && source ~/dotfiles/tmux/auto-rename.sh
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && source ~/.localrc
