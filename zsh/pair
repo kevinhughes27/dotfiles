@@ -23,6 +23,17 @@ function pair() {
   # tmux session
   local tmux_session=$(tmux list-panes -t "$TMUX_PANE" -F '#S' | head -n1)
 
+  # display a message when the pair connects to tmux
+  local current_client=$(tmux list-clients -F '#{client_tty} #{client_flags}' | grep 'focused')
+  local current_tty=$(echo $current_client | cut -d ' ' -f1)
+
+  local message_layout="#[fill=#282c34 align=right]"
+  local message_sep="#[bg=#282c34 fg=#c678dd]#[fg=default]"
+  local message_style="$message_layout$message_sep#[bg=#c678dd bold]"
+
+  tmux set-hook client-attached "display-message -c $current_tty -d 1000 '$message_style PAIR connected! '"
+  tmux set-hook client-detached "display-message -c $current_tty -d 1000 '$message_style PAIR disconnected! '"
+
   # colors
   local theme='
     theme={
@@ -84,12 +95,14 @@ function pair() {
     tmux attach-session -t $tmux_session -f ignore-size
 }
 
+
 function pair-rebuild-html() {
   pushd ~/src/ttyd/html
   INLINE_FONT=~/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf yarn build
   popd
   cp ~/src/ttyd/html/dist/inline.html ~/dotfiles/pair.html
 }
+
 
 function pair-calibrate() {
   local program='
