@@ -35,6 +35,9 @@ font:
     family: Hack Nerd Font
     style: Regular
   size: 11
+  offset:
+    x: 0
+    y: 0
 
 key_bindings:
   - { key: V, mods: Control, action: Paste }
