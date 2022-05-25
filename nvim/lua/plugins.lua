@@ -22,6 +22,8 @@ end
 -- Plugins
 return require('packer').startup({function(use)
   use 'wbthomason/packer.nvim'
+
+  -- lua utils
   use 'nvim-lua/plenary.nvim'
 
   -- theme
