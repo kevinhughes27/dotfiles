@@ -1,4 +1,5 @@
 local luasnip = require('luasnip')
+local lspkind = require('lspkind')
 local cmp = require('cmp')
 
 cmp.setup({
@@ -6,10 +7,6 @@ cmp.setup({
     expand = function(args)
       luasnip.lsp_expand(args.body)
     end
-  },
-
-  formatting = {
-    format = require('lspkind').cmp_format({maxwidth = 50})
   },
 
   -- NOTE pressing esc will finalize the snippet
@@ -49,23 +46,46 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
+    { name = 'buffer', max_item_count=5 },
     { name = 'path' },
   },
+
+  formatting = {
+    format = lspkind.cmp_format({maxwidth = 50})
+  },
+
+  window = {
+    completion = {
+      border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
+    },
+    documentation = {
+      border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
+    }
+  }
 })
 
--- use buffer source for `/`
--- cmp.setup.cmdline('/', {
---   sources = {
---     { name = 'buffer' }
---   }
--- })
+local cmdline_formatting = {
+  fields = { 'abbr' },
+  format = function(_, vim_item)
+    return vim_item
+  end,
+}
 
--- use cmdline & path source for ':'
--- cmp.setup.cmdline(':', {
---   sources = cmp.config.sources({
---     { name = 'path' }
---   }, {
---     { name = 'cmdline' }
---   })
--- })
+-- use buffer source for `/`
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
+-- use cmdline and path source for ':'
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  sources = {
+    { name = 'path' },
+    { name = 'cmdline' }
+  }
+})
