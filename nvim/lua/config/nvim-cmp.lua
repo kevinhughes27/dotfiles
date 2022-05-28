@@ -67,6 +67,8 @@ cmp.setup({
 local cmdline_formatting = {
   fields = { 'abbr' },
   format = function(_, vim_item)
+    vim_item.menu = ""
+    vim_item.kind = ""
     return vim_item
   end,
 }
