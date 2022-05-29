@@ -88,6 +88,6 @@ cmp.setup.cmdline(':', {
   formatting = cmdline_formatting,
   sources = {
     { name = 'path' },
-    { name = 'cmdline' }
+    { name = 'cmdline', max_item_count=15 }
   }
 })
