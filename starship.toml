@@ -7,7 +7,7 @@ $hostname\
 ${custom.toolbox}\
 $git_branch\
 ${custom.dirty}\
-${cmd_duration}\
+$cmd_duration
 $character"""
 
 [username]
