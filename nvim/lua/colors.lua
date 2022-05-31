@@ -17,6 +17,9 @@ vim.cmd('highlight TabLineSel guibg=' .. c.blue)
 -- set url highlight color
 vim.g.highlighturl_guifg = c.blue
 
+-- tree
+vim.cmd('highlight! NvimTreeWinSeparator guifg=' .. '#3e4452')
+
 -- cmp
 vim.cmd('highlight! CmpItemAbbrMatch guifg=' .. '#569CD6')
 vim.cmd('highlight! CmpItemAbbrMatchFuzzy guifg=' .. '#569CD6')
