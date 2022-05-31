@@ -96,7 +96,8 @@ return require('packer').startup({function(use)
         left_ratio = 0.0,
         top_ratio = 0.0,
         width_ratio = 1.0,
-        height_ratio = 1.0
+        height_ratio = 1.0,
+        border = 'single',
       })
     end
   }
