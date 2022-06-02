@@ -7,7 +7,9 @@ local function map(mode, lhs, rhs, opts)
 end
 
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
-map('n', '<ESC>', ':noh|set norelativenumber!<CR>') -- clear highlight and toggle relative numbers
+
+map('n', 'rl', ':set norelativenumber!<CR>') -- toggle relative numbers
+map('n', '<ESC>', ':noh<CR>', {silent = true}) -- clear highlight
 
 -- dont lose selection when shifting sideways
 -- https://github.com/mhinz/vim-galore#dont-lose-selection-when-shifting-sidewards
@@ -25,13 +27,13 @@ map('n', '<A-Up>',    ':SmartResizeUp    5<CR>')
 map('n', '<A-Down>',  ':SmartResizeDown  5<CR>')
 
 -- tab for tabs
-map('n', '<C-t>', ':tabnew<CR>')
+map('n', '<A-t>', ':tabnew<CR>')
 map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<S-Tab>', ':tabprev<CR>')
 
 -- gimme ctrl s
 map('n', '<C-s>', ':Save<CR>')
-map('i', '<C-s>', '<ESC>:Save<CR>i')
+map('i', '<C-s>', '<ESC>:Save<CR>')
 
 -- tmux navigation
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
@@ -43,7 +45,7 @@ map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
 
 -- vim-test
--- map('n', '<C-t>', ':w<CR> :TestFile<CR>')
+map('n', '<C-t>', ':w<CR> :TestFile<CR>')
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
 
 -- nvim-tree
