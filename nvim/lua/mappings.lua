@@ -8,8 +8,11 @@ end
 
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 
-map('n', 'rl', ':set norelativenumber!<CR>') -- toggle relative numbers
-map('n', '<ESC>', ':noh<CR>', {silent = true}) -- clear highlight
+-- clear highlight
+map('n', '<ESC>', ':noh<CR>', {silent = true})
+
+-- toggle relative numbers
+-- map('n', 'rl', ':set norelativenumber!<CR>')
 
 -- dont lose selection when shifting sideways
 -- https://github.com/mhinz/vim-galore#dont-lose-selection-when-shifting-sidewards

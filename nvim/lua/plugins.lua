@@ -54,7 +54,7 @@ return require('packer').startup({function(use)
   }
 
   -- smart relative vs absolute line numbering
-  use 'jeffkreeftmeijer/vim-numbertoggle'
+  -- use 'jeffkreeftmeijer/vim-numbertoggle'
 
   -- gitsigns
   use {
