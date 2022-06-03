@@ -193,7 +193,12 @@ return require('packer').startup({function(use)
   }
 
   -- auto formatting
-  use 'McAuleyPenney/tidy.nvim'
+  use {
+    'McAuleyPenney/tidy.nvim',
+    config = function()
+        require('tidy').setup()
+    end
+  }
 
   -- completion
   use {
