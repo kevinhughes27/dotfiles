@@ -65,6 +65,7 @@ link ~/dotfiles/terminals/kitty ~/.config/kitty
 link ~/dotfiles/nvim ~/.config/nvim
 link ~/dotfiles/tools/bottom ~/.config/bottom
 link ~/dotfiles/tools/ulauncher ~/.config/ulauncher
+link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle
 
 echo ""
 echo "All done."
