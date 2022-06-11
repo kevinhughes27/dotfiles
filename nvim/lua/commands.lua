@@ -31,18 +31,26 @@ create('Save', function(args)
       cwd = cwd,
     }):sync()
 
-    -- stable reload
+    -- save view
     local view = vim.fn.winsaveview()
+
+    -- git add
+    job:new({
+      command = 'git',
+      args = {'add', filepath},
+      cwd = cwd,
+    }):sync()
+
+    -- update view
     vim.api.nvim_exec('e', true)
     vim.fn.winrestview(view)
 
-    local git_add = 'git add ' .. filepath
+    -- commit and push
     local msg = 'Updated Note ' .. filename
     local git_commit = 'git commit -m "' .. msg .. '"'
     local git_push = 'git push origin master'
-    local cmd = git_add .. ' && ' .. git_commit .. ' && ' .. git_push
+    local cmd = git_commit .. ' && ' .. git_push
 
-    -- commit and push
     job:new({
       command = 'sh',
       args = {'-c', cmd},
