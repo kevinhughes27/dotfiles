@@ -51,6 +51,10 @@ create('Save', function(args)
     local git_push = 'git push origin master'
     local cmd = git_commit .. ' && ' .. git_push
 
+    local nothing_to_commit = function(result)
+      return string.find(table.concat(result, ""), "nothing to commit")
+    end
+
     job:new({
       command = 'sh',
       args = {'-c', cmd},
@@ -58,6 +62,8 @@ create('Save', function(args)
       on_exit = function(j, return_val)
         if return_val == 0 then
           print('[Notes] pushed!')
+        elseif nothing_to_commit(j:result()) then
+          print('[Notes] nothing to commit')
         else
           print('[Notes] [WARN] push failed!')
         end
