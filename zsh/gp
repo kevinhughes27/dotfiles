@@ -2,7 +2,7 @@
 
 # push the current branch, confirm master/main push.
 # allow force push unless master/main
-function git_push {
+git_push() {
   if git rev-parse --git-dir > /dev/null 2>&1; then
     branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
     args="$@"

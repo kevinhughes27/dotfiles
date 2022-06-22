@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # if tmux is available but no session exists, create one and attach to it.
-function tmuxify () {
+tmuxify() {
   if hash tmux &> /dev/null; then
     if tmux ls &> /dev/null; then
       # tmux is already running
