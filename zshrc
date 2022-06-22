@@ -19,7 +19,7 @@ stty stop undef
 
 # fzf-tab
 # git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
-[[ -d ~/.fzf-tab ]] && source ~/.fzf-tab/fzf-tab.plugin.zsh
+[ -d ~/.fzf-tab ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
 # configuration
 export EDITOR='nvim'
@@ -45,7 +45,7 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # then run ~/.fzf/install to create this file.
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # autoload
 for file in ~/dotfiles/zsh/*; do
@@ -85,10 +85,10 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
 # auto rename windows
-[[ -v TMUX ]] && source ~/dotfiles/tmux/auto-rename.sh
+[ -v TMUX ] && source ~/dotfiles/tmux/auto-rename.sh
 
 # use .localrc for settings specific to one system
-[[ -f ~/.localrc ]] && source ~/.localrc
+[ -f ~/.localrc ] && source ~/.localrc
 
 # start tmux once
 tmuxify
