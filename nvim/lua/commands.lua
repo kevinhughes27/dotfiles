@@ -43,6 +43,7 @@ create('Save', function(args)
 
     -- update view
     vim.api.nvim_exec('e', true)
+    vim.api.nvim_exec('Gitsigns refresh', true)
     vim.fn.winrestview(view)
 
     -- commit and push
