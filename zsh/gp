@@ -13,7 +13,7 @@ git_push() {
     fi
 
     if [[ "$branch" != "HEAD" ]]; then
-      if [[ "$branch" =~ "master" || "$branch" =~ "main" ]]; then
+      if [[ "$branch" = "master" || "$branch" = "main" ]]; then
 
         echo "push $branch, Are you sure? (y/n)"
         read REPLY
