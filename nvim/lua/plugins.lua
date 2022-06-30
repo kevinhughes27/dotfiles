@@ -115,6 +115,7 @@ return require('packer').startup({function(use)
     'vim-test/vim-test',
     config = function ()
       vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
+      vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
       vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
       vim.g['VimuxHeight'] = '25'
     end
