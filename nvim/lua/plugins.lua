@@ -124,6 +124,7 @@ return require('packer').startup({function(use)
   -- syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
+    requires = { 'nvim-treesitter/playground' },
     config = function()
       require('nvim-treesitter.configs').setup({
         highlight = {
@@ -163,6 +164,10 @@ return require('packer').startup({function(use)
           'typescript',
           'vim',
           'yaml'
+        },
+        playground = {
+          enable = true,
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
         }
       })
     end
