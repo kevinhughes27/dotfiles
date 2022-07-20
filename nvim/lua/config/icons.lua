@@ -1,5 +1,10 @@
 require('nvim-web-devicons').setup({
   override = {
+    md = {
+      icon = '',
+      color = '#6d8086',
+      name = 'Md'
+    },
     rb = {
       icon = '',
       color = '#e06c75',
