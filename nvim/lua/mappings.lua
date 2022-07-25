@@ -1,30 +1,6 @@
 -- Mappings
 local map = vim.keymap.set
 
-map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
-
--- clear highlight
-map('n', '<ESC>', ':noh<CR>', {silent = true})
-
--- toggle relative numbers
--- map('n', 'rl', ':set norelativenumber!<CR>')
-
--- dont lose selection when shifting sideways
--- https://github.com/mhinz/vim-galore#dont-lose-selection-when-shifting-sidewards
-map('x', '<', '<gv')
-map('x', '>', '>gv')
-
--- smart_dd
--- https://www.reddit.com/r/neovim/comments/w0jzzv/smart_dd/
-function Smart_dd()
-  if vim.api.nvim_get_current_line():match("^%s*$") then
-    return "\"_dd"
-  else
-    return "dd"
-  end
-end
-map('n', 'dd', Smart_dd, {expr = true})
-
 -- new splits
 map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<A-->', ':split<CR>')
@@ -64,3 +40,25 @@ map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 map('n', '<C-p>', ':Files<CR>')
 map('n', '<C-h>', ':History<CR>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
+
+-- clear highlight
+map('n', '<ESC>', ':noh<CR>', {silent = true})
+
+-- toggle relative numbers
+-- map('n', 'rl', ':set norelativenumber!<CR>')
+
+-- dont lose selection when shifting sideways
+-- https://github.com/mhinz/vim-galore#dont-lose-selection-when-shifting-sidewards
+map('x', '<', '<gv')
+map('x', '>', '>gv')
+
+-- smart_dd
+-- https://www.reddit.com/r/neovim/comments/w0jzzv/smart_dd/
+function Smart_dd()
+  if vim.api.nvim_get_current_line():match("^%s*$") then
+    return "\"_dd"
+  else
+    return "dd"
+  end
+end
+map('n', 'dd', Smart_dd, {expr = true})
