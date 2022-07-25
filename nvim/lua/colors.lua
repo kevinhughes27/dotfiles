@@ -33,7 +33,7 @@ vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
 -- highlight on yank
 vim.cmd('highlight! YankPost guifg=' .. c.black .. ' guibg=' .. c.blue)
-local highlight_group = vim.api.nvim_create_autocmd('TextYankPost', {
+vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
   callback = function()
     vim.highlight.on_yank({higroup='YankPost', timeout=500})
