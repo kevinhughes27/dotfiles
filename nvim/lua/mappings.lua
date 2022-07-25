@@ -1,10 +1,5 @@
 -- Mappings
-
-local function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = vim.keymap.set
 
 map('i', 'jk', '<ESC>') -- https://danielmiessler.com/study/vim/
 
@@ -28,7 +23,7 @@ function Smart_dd()
     return "dd"
   end
 end
-vim.keymap.set('n', 'dd', Smart_dd, { expr = true })
+map('n', 'dd', Smart_dd, {expr = true})
 
 -- new splits
 map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
