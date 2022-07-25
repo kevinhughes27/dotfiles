@@ -19,6 +19,17 @@ map('n', '<ESC>', ':noh<CR>', {silent = true})
 map('x', '<', '<gv')
 map('x', '>', '>gv')
 
+-- smart_dd
+-- https://www.reddit.com/r/neovim/comments/w0jzzv/smart_dd/
+function Smart_dd()
+  if vim.api.nvim_get_current_line():match("^%s*$") then
+    return "\"_dd"
+  else
+    return "dd"
+  end
+end
+vim.keymap.set('n', 'dd', Smart_dd, { expr = true })
+
 -- new splits
 map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
 map('n', '<A-->', ':split<CR>')
