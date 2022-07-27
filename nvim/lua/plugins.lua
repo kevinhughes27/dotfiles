@@ -30,10 +30,7 @@ return require('packer').startup({function(use)
   use 'navarasu/onedark.nvim'
 
   -- icons
-  use {
-    'kyazdani42/nvim-web-devicons',
-    config = get_config('icons'),
-  }
+  use 'kyazdani42/nvim-web-devicons'
 
   -- statusline
   use {

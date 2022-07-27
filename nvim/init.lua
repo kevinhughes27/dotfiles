@@ -1,6 +1,7 @@
 require 'settings'
 require 'plugins'
 require 'colors'
+require 'icons'
 require 'autocmd'
 require 'commands'
 require 'mappings'

@@ -1,4 +1,4 @@
-require('nvim-web-devicons').setup({
+require('nvim-web-devicons').setup {
   override = {
     md = {
       icon = '',
@@ -31,4 +31,4 @@ require('nvim-web-devicons').setup({
       name = 'sqlite',
     };
   };
-})
+}
