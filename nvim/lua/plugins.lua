@@ -1,6 +1,6 @@
 -- Bootstrap
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
   packer_bootstrap = fn.system({
@@ -20,7 +20,7 @@ local function get_config(name)
 end
 
 -- Plugins
-return require('packer').startup({function(use)
+return require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   -- lua utils
@@ -71,7 +71,7 @@ return require('packer').startup({function(use)
   -- seamless split/tmux navigation
   use {
     'christoomey/vim-tmux-navigator',
-    config = function ()
+    config = function()
       vim.g.tmux_navigator_no_mappings = 1
       vim.g.tmux_navigator_save_on_switch = 2
     end
@@ -110,7 +110,7 @@ return require('packer').startup({function(use)
   use 'benmills/vimux'
   use {
     'vim-test/vim-test',
-    config = function ()
+    config = function()
       vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
       vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
       vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
@@ -173,16 +173,6 @@ return require('packer').startup({function(use)
   -- highlight urls
   use 'itchyny/vim-highlighturl'
 
-  -- snippets
-  use {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require('luasnip.loaders.from_vscode').lazy_load({
-        paths = { '~/dotfiles/nvim/snippets' }
-      })
-    end
-  }
-
   -- lsp
   use {
     'junnplus/nvim-lsp-setup',
@@ -190,17 +180,19 @@ return require('packer').startup({function(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'folke/lua-dev.nvim',
       'jose-elias-alvarez/null-ls.nvim',
+      'folke/lua-dev.nvim',
     },
     config = get_config('lsp')
   }
 
-  -- auto formatting
+  -- snippets
   use {
-    'McAuleyPenney/tidy.nvim',
+    'L3MON4D3/LuaSnip',
     config = function()
-        require('tidy').setup()
+      require('luasnip.loaders.from_vscode').lazy_load({
+        paths = { '~/dotfiles/nvim/snippets' }
+      })
     end
   }
 
@@ -212,7 +204,6 @@ return require('packer').startup({function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-nvim-lua',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
     },
