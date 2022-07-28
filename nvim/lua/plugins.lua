@@ -44,14 +44,11 @@ return require('packer').startup({ function(use)
     config = get_config('tabline'),
   }
 
-  -- project tree
+  -- file tree
   use {
     'kyazdani42/nvim-tree.lua',
     config = get_config('nvim-tree'),
   }
-
-  -- smart relative vs absolute line numbering
-  -- use 'jeffkreeftmeijer/vim-numbertoggle'
 
   -- gitsigns
   use {
@@ -62,11 +59,8 @@ return require('packer').startup({ function(use)
   -- github link copy :GH
   use 'ruanyl/vim-gh-line'
 
-  -- smart split resize
-  use {
-    'mrjones2014/smart-splits.nvim',
-    config = function() require('smart-splits').setup({}) end
-  }
+  -- highlight urls
+  use 'itchyny/vim-highlighturl'
 
   -- seamless split/tmux navigation
   use {
@@ -77,12 +71,10 @@ return require('packer').startup({ function(use)
     end
   }
 
-  -- remember cursor position
+  -- smart split resize
   use {
-    'farmergreg/vim-lastplace',
-    config = function()
-      vim.g.lastplace_ignore_buftype = "quickfix,nofile,help,NvimTree"
-    end
+    'mrjones2014/smart-splits.nvim',
+    config = function() require('smart-splits').setup({}) end
   }
 
   -- zoom
@@ -122,56 +114,8 @@ return require('packer').startup({ function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     requires = { 'nvim-treesitter/playground' },
-    config = function()
-      require('nvim-treesitter.configs').setup({
-        highlight = {
-          enable = true,
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<CR>',
-            scope_incremental = '<CR>',
-            node_incremental = '<TAB>',
-            node_decremental = '<S-TAB>',
-          },
-        },
-        ensure_installed = {
-          'bash',
-          'c',
-          'cmake',
-          'cpp',
-          'css',
-          'dockerfile',
-          'go',
-          'graphql',
-          'html',
-          'java',
-          'javascript',
-          'json',
-          'latex',
-          'lua',
-          'make',
-          -- 'markdown', -- messes up my conceals
-          'python',
-          'ruby',
-          'rust',
-          'toml',
-          'tsx',
-          'typescript',
-          'vim',
-          'yaml'
-        },
-        playground = {
-          enable = true,
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        }
-      })
-    end
+    config = get_config('treesitter')
   }
-
-  -- highlight urls
-  use 'itchyny/vim-highlighturl'
 
   -- lsp
   use {
@@ -214,6 +158,14 @@ return require('packer').startup({ function(use)
   use {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
+  }
+
+  -- remember cursor position
+  use {
+    'farmergreg/vim-lastplace',
+    config = function()
+      vim.g.lastplace_ignore_buftype = 'quickfix,nofile,help,NvimTree'
+    end
   }
 
   -- sublime style multiple cursors. ctrl-n to start
