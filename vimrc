@@ -8,7 +8,6 @@ syntax on
 filetype plugin indent on
 
 " colors
-colorscheme delek
 set background=dark
 
 " settings
