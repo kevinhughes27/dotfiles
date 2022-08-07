@@ -9,6 +9,18 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' # case insensitive comple
 zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*' list-colors ''
 
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+HIST_STAMPS='yyyy-mm-dd'
+
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+
 # fix home, end and delete
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[3~" delete-char
@@ -16,10 +28,6 @@ bindkey "^[[4~" end-of-line
 
 # disable ctrl s from triggering stop
 stty stop undef
-
-# fzf-tab
-# git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
-[ -d ~/.fzf-tab ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
 
 # configuration
 export EDITOR='nvim'
@@ -47,6 +55,10 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
 # then run ~/.fzf/install to create this file.
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# fzf-tab
+# git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
+[ -d ~/.fzf-tab ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
+
 # autoload
 for file in ~/dotfiles/zsh/*; do
   source "$file"
@@ -71,18 +83,6 @@ bracketed-paste() {
   zle .$WIDGET && LBUFFER=${LBUFFER%$'\n'}
 }
 zle -N bracketed-paste
-
-# history
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-HIST_STAMPS='yyyy-mm-dd'
-
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_IGNORE_SPACE
-setopt HIST_REDUCE_BLANKS
 
 # auto rename windows
 [ -v TMUX ] && source ~/dotfiles/tmux/auto-rename.sh
