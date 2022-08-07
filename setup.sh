@@ -57,12 +57,13 @@ link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
-link ~/dotfiles/pdbrc ~/.pdbrc
 
 link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/terminals/alacritty ~/.config/alacritty
 link ~/dotfiles/terminals/kitty ~/.config/kitty
 link ~/dotfiles/nvim ~/.config/nvim
+
+link ~/dotfiles/tools/pdbrc ~/.pdbrc
 link ~/dotfiles/tools/bottom ~/.config/bottom
 link ~/dotfiles/tools/ulauncher ~/.config/ulauncher
 link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle
