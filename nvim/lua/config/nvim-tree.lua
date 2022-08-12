@@ -2,7 +2,7 @@ local tree_cb = require('nvim-tree.config').nvim_tree_callback
 
 require('nvim-tree').setup {
   filters = {
-    custom = {'.git', 'node_modules', '.cache', '__pycache__', '.DS_Store'},
+    custom = {'.git\\>','node_modules', '.cache', '__pycache__', '.DS_Store'},
   },
   renderer = {
     indent_markers = {
