@@ -6,7 +6,11 @@ tmuxify() {
     if tmux ls &> /dev/null; then
       # tmux is already running
     else
-      tmux new -A -s main -n main
+      # create a default tmux session with my notes open
+      tmux new-session -s main -n main -d
+      tmux new-window -t main:2 -n notes -c $HOME/notes nvim +NvimTreeOpen
+      tmux select-window -t main:1
+      tmux attach
     fi
   fi
 }
