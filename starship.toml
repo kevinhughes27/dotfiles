@@ -20,7 +20,7 @@ format =  "on [$hostname](bold red) "
 [custom.toolbox]
 when = "hostname | grep 'toolbox'"
 command = "cat /run/.containerenv | grep 'name' | cut -d \\= -f2 | sed 's/\"//g'"
-format = "[ $output](yellow) "
+format = "in [ $output](yellow) "
 
 [directory]
 truncate_to_repo = false
