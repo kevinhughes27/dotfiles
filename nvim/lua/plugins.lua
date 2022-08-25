@@ -77,20 +77,6 @@ return require('packer').startup({ function(use)
     config = function() require('smart-splits').setup({}) end
   }
 
-  -- zoom
-  use {
-    'nyngwang/NeoZoom.lua',
-    config = function()
-      require('neo-zoom').setup({
-        left_ratio = 0.0,
-        top_ratio = 0.0,
-        width_ratio = 1.0,
-        height_ratio = 1.0,
-        border = 'single',
-      })
-    end
-  }
-
   -- fzf
   use {
     'junegunn/fzf.vim',

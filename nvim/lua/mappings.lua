@@ -27,7 +27,7 @@ map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
 -- zoom
-map('n', '<C-z>', ':NeoZoomToggle<CR>', {silent = true})
+map('n', '<C-z>', ':tabe %<CR>', {silent = true})
 
 -- vim-test
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
