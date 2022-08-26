@@ -37,15 +37,21 @@ endfunction
 
 " syntax colors
 " https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L193
-call s:h("Comment",    { "ctermfg": s:colors.grey })
-call s:h("Constant",   { "ctermfg": s:colors.cyan })
-call s:h("String",     { "ctermfg": s:colors.green })
-call s:h("Type",       { "ctermfg": s:colors.yellow })
+call s:h("Comment", { "ctermfg": s:colors.grey })
+call s:h("Constant", { "ctermfg": s:colors.cyan })
+call s:h("String", { "ctermfg": s:colors.green })
+call s:h("Type", { "ctermfg": s:colors.yellow })
+call s:h("StorageClass", { "ctermfg": s:colors.yellow })
+call s:h("Structure", { "ctermfg": s:colors.yellow })
+call s:h("Typedef", { "ctermfg": s:colors.yellow })
+call s:h("Number", { "ctermfg": s:colors.dark_yellow })
+call s:h("Boolean", { "ctermfg": s:colors.dark_yellow })
+call s:h("Float", { "ctermfg": s:colors.dark_yellow })
 call s:h("Identifier", { "ctermfg": s:colors.red })
-call s:h("Special",    { "ctermfg": s:colors.blue })
-call s:h("Statement",  { "ctermfg": s:colors.purple })
-call s:h("Keyword",    { "ctermfg": s:colors.red })
-call s:h("Directory",  { "ctermfg": s:colors.blue })
+call s:h("Special", { "ctermfg": s:colors.blue })
+call s:h("Statement", { "ctermfg": s:colors.purple })
+call s:h("Keyword", { "ctermfg": s:colors.red })
+call s:h("Directory", { "ctermfg": s:colors.blue })
 
 " vim UI colors
 " https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L233
