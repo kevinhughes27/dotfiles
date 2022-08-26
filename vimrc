@@ -10,6 +10,67 @@ filetype plugin indent on
 " colors
 set background=dark
 
+" https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim
+let s:colors = {
+  \ "red": "1",
+  \ "dark_red": "9",
+  \ "green": "2",
+  \ "yellow": "3",
+  \ "dark_yellow": "11",
+  \ "blue": "4",
+  \ "purple": "5",
+  \ "cyan": "6",
+  \ "white": "15",
+  \ "black": "0",
+  \ "foreground": "NONE",
+  \ "background": "NONE",
+  \ "comment_grey": "7",
+  \ "gutter_fg_grey": "8",
+  \ "cursor_grey": "0",
+  \ "visual_grey": "8",
+  \ "menu_grey": "7",
+  \ "special_grey": "7",
+  \ "vertsplit": "7",
+  \}
+
+function s:h(group, style)
+  execute "highlight" a:group
+    \ "ctermfg=" (has_key(a:style, "ctermfg") ? a:style.ctermfg : "NONE")
+    \ "ctermbg=" (has_key(a:style, "ctermbg") ? a:style.ctermbg : "NONE")
+    \ "cterm="   (has_key(a:style, "cterm")   ? a:style.cterm : "NONE")
+endfunction
+
+call s:h("Normal", { "ctermbg": s:colors.background, "ctermfg": s:colors.foreground })
+
+" syntax colors
+" https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L193
+call s:h("Comment",    { "ctermfg": s:colors.comment_grey })
+call s:h("Constant",   { "ctermfg": s:colors.cyan })
+call s:h("String",     { "ctermfg": s:colors.green })
+call s:h("Type",       { "ctermfg": s:colors.yellow })
+call s:h("Identifier", { "ctermfg": s:colors.red })
+call s:h("Special",    { "ctermfg": s:colors.blue })
+call s:h("Statement",  { "ctermfg": s:colors.purple })
+call s:h("Keyword",    { "ctermfg": s:colors.red })
+call s:h("Directory",  { "ctermfg": s:colors.blue })
+
+" vim UI colours
+call s:h("LineNR",       { "ctermfg": s:colors.gutter_fg_grey })
+call s:h("StatusLine",   { "ctermfg": s:colors.black, "ctermbg": s:colors.green })
+call s:h("StatusLineNC", { "ctermfg": s:colors.black })
+call s:h("TabLine",      { "ctermfg": s:colors.comment_grey })
+call s:h("TabLineFill",  {})
+call s:h("Visual",       { "ctermbg": s:colors.visual_grey })
+call s:h("VertSplit",    { "ctermfg": s:colors.vertsplit })
+call s:h("MatchParen",   { "ctermfg": s:colors.blue, "cterm": "underline" })
+
+call s:h("Pmenu",    { "ctermfg": s:colors.white, "ctermbg": s:colors.menu_grey })
+call s:h("PmenuSel", { "ctermfg": s:colors.cursor_grey, "ctermbg": s:colors.green })
+
+call s:h("IncSearch", { "ctermfg": s:colors.yellow, "ctermbg": s:colors.comment_grey })
+call s:h("Search",    { "ctermfg": s:colors.black, "ctermbg": s:colors.yellow })
+call s:h("ModeMsg",   {})
+
 " settings
 set encoding=UTF-8
 set mouse=a          " allow mouse
@@ -48,7 +109,6 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " status line
-highlight Statusline ctermfg=Black ctermbg=Green
 let g:currentmode={
   \ 'n'  : 'NORMAL ',
   \ 'v'  : 'VISUAL ',
