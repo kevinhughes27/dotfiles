@@ -58,6 +58,7 @@ link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
 link ~/dotfiles/gitignore ~/.gitignore
 
+mkdir -p ~/.config
 link ~/dotfiles/starship.toml ~/.config/starship.toml
 link ~/dotfiles/terminals/alacritty ~/.config/alacritty
 link ~/dotfiles/terminals/kitty ~/.config/kitty
