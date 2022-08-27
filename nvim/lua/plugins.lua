@@ -154,6 +154,12 @@ return require('packer').startup({ function(use)
     end
   }
 
+  -- autolist - starts new list items automatically in markdown
+  use {
+    'gaoDean/autolist.nvim',
+     config = function() require('autolist').setup() end
+  }
+
   -- sublime style multiple cursors. ctrl-n to start
   use {
     'mg979/vim-visual-multi',
