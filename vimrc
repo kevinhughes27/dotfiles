@@ -8,70 +8,85 @@ syntax on
 filetype plugin indent on
 
 " colors
+" https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim
+let s:red = "1"
+let s:dark_red = "9"
+let s:green = "2"
+let s:yellow = "3"
+let s:dark_yellow = "11"
+let s:blue = "4"
+let s:purple = "5"
+let s:cyan = "6"
+let s:white = "15"
+let s:black = "0"
+let s:grey = "7"
+let s:dark_grey = "8"
+
 set background=dark
 
-" https://github.com/joshdick/onedark.vim/blob/main/autoload/onedark.vim
-let s:colors = {
-  \ "red": "1",
-  \ "dark_red": "9",
-  \ "green": "2",
-  \ "yellow": "3",
-  \ "dark_yellow": "11",
-  \ "blue": "4",
-  \ "purple": "5",
-  \ "cyan": "6",
-  \ "white": "15",
-  \ "black": "0",
-  \ "grey": "7",
-  \ "dark_grey": "8",
-  \ "foreground": "NONE",
-  \ "background": "NONE",
-\}
-
+" https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L76
 function s:h(group, style)
   execute "highlight" a:group
-    \ "ctermfg=" (has_key(a:style, "ctermfg") ? a:style.ctermfg : "NONE")
-    \ "ctermbg=" (has_key(a:style, "ctermbg") ? a:style.ctermbg : "NONE")
+    \ "ctermfg=" (has_key(a:style, "fg") ? a:style.fg : "NONE")
+    \ "ctermbg=" (has_key(a:style, "bg") ? a:style.bg : "NONE")
     \ "cterm="   (has_key(a:style, "cterm")   ? a:style.cterm : "NONE")
 endfunction
 
 " syntax colors
 " https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L193
-call s:h("Comment", { "ctermfg": s:colors.grey })
-call s:h("Constant", { "ctermfg": s:colors.cyan })
-call s:h("String", { "ctermfg": s:colors.green })
-call s:h("Type", { "ctermfg": s:colors.yellow })
-call s:h("StorageClass", { "ctermfg": s:colors.yellow })
-call s:h("Structure", { "ctermfg": s:colors.yellow })
-call s:h("Typedef", { "ctermfg": s:colors.yellow })
-call s:h("Number", { "ctermfg": s:colors.dark_yellow })
-call s:h("Boolean", { "ctermfg": s:colors.dark_yellow })
-call s:h("Float", { "ctermfg": s:colors.dark_yellow })
-call s:h("Identifier", { "ctermfg": s:colors.red })
-call s:h("Special", { "ctermfg": s:colors.blue })
-call s:h("Statement", { "ctermfg": s:colors.purple })
-call s:h("Keyword", { "ctermfg": s:colors.red })
-call s:h("Directory", { "ctermfg": s:colors.blue })
+call s:h("Comment", { "fg": s:grey, "cterm": "italic" }) " any comment
+call s:h("Constant", { "fg": s:cyan }) " any constant
+call s:h("String", { "fg": s:green }) " a string constant: "this is a string"
+call s:h("Character", { "fg": s:green }) " a character constant: 'c', '\n'
+call s:h("Number", { "fg": s:dark_yellow }) " a number constant: 234, 0xff
+call s:h("Boolean", { "fg": s:dark_yellow }) " a boolean constant: TRUE, false
+call s:h("Float", { "fg": s:dark_yellow }) " a floating point constant: 2.3e10
+call s:h("Identifier", { "fg": s:red }) " any variable name
+call s:h("Function", { "fg": s:blue }) " function name (also: methods for classes)
+call s:h("Statement", { "fg": s:purple }) " any statement
+call s:h("Conditional", { "fg": s:purple }) " if, then, else, endif, switch, etc.
+call s:h("Repeat", { "fg": s:purple }) " for, do, while, etc.
+call s:h("Label", { "fg": s:purple }) " case, default, etc.
+call s:h("Operator", { "fg": s:purple }) " sizeof", "+", "*", etc.
+call s:h("Keyword", { "fg": s:red }) " any other keyword
+call s:h("Exception", { "fg": s:purple }) " try, catch, throw
+call s:h("PreProc", { "fg": s:yellow }) " generic Preprocessor
+call s:h("Include", { "fg": s:blue }) " preprocessor #include
+call s:h("Define", { "fg": s:purple }) " preprocessor #define
+call s:h("Macro", { "fg": s:purple }) " same as Define
+call s:h("PreCondit", { "fg": s:yellow }) " preprocessor #if, #else, #endif, etc.
+call s:h("Type", { "fg": s:yellow }) " int, long, char, etc.
+call s:h("StorageClass", { "fg": s:yellow }) " static, register, volatile, etc.
+call s:h("Structure", { "fg": s:yellow }) " struct, union, enum, etc.
+call s:h("Typedef", { "fg": s:yellow }) " A typedef
+call s:h("Special", { "fg": s:blue }) " any special symbol
+call s:h("SpecialChar", { "fg": s:dark_yellow }) " special character in a constant
+call s:h("Tag", {}) " you can use CTRL-] on this
+call s:h("Delimiter", {}) " character that needs attention
+call s:h("SpecialComment", { "fg": s:grey }) " special things inside a comment
+call s:h("Debug", {}) " debugging statements
+call s:h("Underlined", { "cterm": "underline" }) " text that stands out, HTML links
+call s:h("Ignore", {}) " left blank, hidden
+call s:h("Error", { "fg": s:red }) " any erroneous construct
+call s:h("Todo", { "fg": s:purple }) " anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+call s:h("Directory", { "fg": s:blue }) " directory names (and other special names in listings)
 
 " vim UI colors
 " https://github.com/joshdick/onedark.vim/blob/main/colors/onedark.vim#L233
-call s:h("Normal", { "ctermbg": s:colors.background, "ctermfg": s:colors.foreground })
-
-call s:h("LineNR",       { "ctermfg": s:colors.dark_grey })
-call s:h("StatusLine",   { "ctermfg": s:colors.black, "ctermbg": s:colors.green })
-call s:h("StatusLineNC", { "ctermfg": s:colors.black })
-call s:h("TabLine",      { "ctermfg": s:colors.grey })
-call s:h("TabLineFill",  {})
-call s:h("Visual",       { "ctermbg": s:colors.dark_grey })
-call s:h("VertSplit",    { "ctermfg": s:colors.grey })
-call s:h("MatchParen",   { "ctermfg": s:colors.blue, "cterm": "underline" })
-
-call s:h("Pmenu",    { "ctermfg": s:colors.white, "ctermbg": s:colors.grey })
-call s:h("PmenuSel", { "ctermfg": s:colors.black, "ctermbg": s:colors.green })
-
-call s:h("IncSearch", { "ctermfg": s:colors.yellow, "ctermbg": s:colors.grey })
-call s:h("Search",    { "ctermfg": s:colors.black, "ctermbg": s:colors.yellow })
-call s:h("ModeMsg",   {})
+call s:h("LineNR", { "fg": s:dark_grey })
+call s:h("StatusLine", { "fg": s:black, "bg": s:green })
+call s:h("StatusLineNC", { "fg": s:black })
+call s:h("TabLine", { "fg": s:grey })
+call s:h("TabLineFill", {})
+call s:h("Visual", { "bg": s:dark_grey })
+call s:h("VertSplit", { "fg": s:grey })
+call s:h("MatchParen", { "fg": s:blue, "cterm": "underline" })
+call s:h("Normal", { "bg": "NONE", "fg": "NONE" })
+call s:h("Pmenu", { "fg": s:white, "bg": s:grey })
+call s:h("PmenuSel", { "fg": s:black, "bg": s:green })
+call s:h("IncSearch", { "fg": s:yellow, "bg": s:grey })
+call s:h("Search", { "fg": s:black, "bg": s:yellow })
+call s:h("ModeMsg", {})
 
 " settings
 set encoding=UTF-8
