@@ -75,8 +75,6 @@ alias bx='bundle exec'
 alias dc='docker-compose'
 alias ts='avn-toolbox-shell'
 alias rw='tmux rename-window'
-alias open='xdg-open'
-alias clipboard='xclip -selection clipboard'
 
 # remove extra new lines from paste
 bracketed-paste() {

@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+clipboard() {
+  # or a remote pbcopy shim ;)
+  if [ type pbcopy &>/dev/null ]; then
+    pbcopy
+  else
+    xclip -selection clipboard
+  fi
+}
+
+# https://seancoates.com/blogs/remote-pbcopy
+install_remote_pbcopy() {
+  pbcoby_port=2224
+  echo "cat | nc -q1 localhost $pbcoby_port" | sudo tee /usr/local/bin/pbcopy
+  sudo chmod +x /usr/local/bin/pbcopy
+}
