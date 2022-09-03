@@ -44,6 +44,14 @@ return require('packer').startup({ function(use)
     config = get_config('tabline'),
   }
 
+  -- dim inactive panes
+  use {
+    'levouh/tint.nvim',
+    config = function()
+      require('tint').setup({ amt = -20 })
+    end
+  }
+
   -- file tree
   use {
     'kyazdani42/nvim-tree.lua',
