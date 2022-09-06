@@ -11,3 +11,20 @@ vim.api.nvim_create_autocmd(
         desc = 'Automatically resize windows when the host window size changes.'
     }
 )
+
+local yp_group = vim.api.nvim_create_augroup('YankPost', { clear = true })
+
+vim.api.nvim_create_autocmd(
+  'TextYankPost',
+  {
+    group = yp_group,
+    pattern = '*',
+    callback = function()
+      -- copy to system clipboard using osc52 escape code
+      vim.fn.execute('OSCYankReg +')
+
+      -- highlight copied text
+      vim.highlight.on_yank({ higroup='YankPost', timeout=500 })
+    end
+  }
+)

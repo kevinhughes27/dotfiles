@@ -64,6 +64,9 @@ return require('packer').startup({ function(use)
     config = function() require('gitsigns').setup() end
   }
 
+  -- remote copy
+  use 'ojroques/vim-oscyank'
+
   -- github link copy :GH
   use 'ruanyl/vim-gh-line'
 
