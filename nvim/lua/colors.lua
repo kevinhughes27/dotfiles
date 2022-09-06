@@ -33,14 +33,3 @@ vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
 
 -- highlight on yank
 vim.cmd('highlight! YankPost guifg=' .. c.black .. ' guibg=' .. c.blue)
-
--- :call SynStack() to get the highlight under the cursor
--- https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
-vim.api.nvim_exec([[
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-]], true)

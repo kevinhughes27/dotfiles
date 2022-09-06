@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+clipboard() {
+  if [ type xclip &>/dev/null ]; then
+    xclip -selection clipboard
+  else
+    printf_escape "\033]52;c;$( cat "$@" | base64 | tr -d '\r\n' )\a"
+  fi
+}
+
+# copy via OSC 52
+# https://sunaku.github.io/tmux-yank-osc52.html
+printf_escape() {
+  esc=$1
+  test -n "$TMUX" -o -z "${TERM##screen*}" && esc="\033Ptmux;\033$esc\033\\"
+  printf "$esc"
+}
