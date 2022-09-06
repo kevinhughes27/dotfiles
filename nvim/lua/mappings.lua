@@ -3,8 +3,8 @@ local map = vim.keymap.set
 
 -- new splits
 -- this conflicts with text size increase/decrease on linux
-map('n', '<C-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
-map('n', '<C-->', ':split<CR>')
+map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
+map('n', '<A-->', ':split<CR>')
 
 -- resize splits
 map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>')
