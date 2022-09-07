@@ -1,8 +1,8 @@
 #!/bin/zsh
 
 clipboard() {
-  if [ type xclip &>/dev/null ]; then
-    xclip -selection clipboard
+  if type xclip &>/dev/null; then
+    cat "$@" | xclip -selection clipboard
   else
     printf_escape "\033]52;c;$( cat "$@" | base64 | tr -d '\r\n' )\a"
   fi
