@@ -4,7 +4,9 @@ local map = vim.keymap.set
 -- new splits
 -- this conflicts with text size increase/decrease on linux
 map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
+map('n', '«', ':vsplit<CR>') -- alt-\ on osx
 map('n', '<A-->', ':split<CR>')
+map('n', '–', ':split<CR>') -- alt - on osx
 
 -- resize splits
 map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>')
