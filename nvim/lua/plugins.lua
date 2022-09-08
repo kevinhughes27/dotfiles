@@ -65,7 +65,13 @@ return require('packer').startup({ function(use)
   }
 
   -- remote copy
-  use 'ojroques/vim-oscyank'
+  use {
+    'ojroques/vim-oscyank',
+    config = function()
+      -- https://github.com/ojroques/vim-oscyank/issues/26
+      vim.g.oscyank_term = 'default'
+    end
+  }
 
   -- github link copy :GH
   use 'ruanyl/vim-gh-line'

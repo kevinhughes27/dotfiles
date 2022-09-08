@@ -4,14 +4,14 @@ clipboard() {
   if type xclip &>/dev/null; then
     cat "$@" | xclip -selection clipboard
   else
-    printf_escape "\033]52;c;$( cat "$@" | base64 | tr -d '\r\n' )\a"
+    print_osc52 "$@"
   fi
 }
 
 # copy via OSC 52
 # https://sunaku.github.io/tmux-yank-osc52.html
-printf_escape() {
-  esc=$1
-  test -n "$TMUX" -o -z "${TERM##tmux*}" && esc="\033Ptmux;\033$esc\033\\"
-  printf "$esc"
+# newer tmux does not need the tmux escape anymore
+# https://github.com/ojroques/vim-oscyank/issues/26
+print_osc52() {
+  printf "\033]52;c;$( cat "$@" | base64 | tr -d '\r\n' )\a"
 }
