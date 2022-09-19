@@ -95,8 +95,8 @@ return require('packer').startup({ function(use)
 
   -- test running
   use {
-    'benmills/vimux',
-    commit = "89604a4464c3069dbe31f7bc8dd16a5fbc88a303", -- https://github.com/preservim/vimux/pull/210
+    'mvanderkamp/vimux',
+    branch = "issue-210-hotfix",
   }
   use {
     'vim-test/vim-test',
