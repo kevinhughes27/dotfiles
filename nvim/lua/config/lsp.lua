@@ -1,5 +1,5 @@
 -- lsp setup
-require('nvim-lsp-setup').setup({
+require('lsp-setup').setup({
   capabilities = vim.lsp.protocol.make_client_capabilities(),
 
   on_attach = function(client, bufnr)
