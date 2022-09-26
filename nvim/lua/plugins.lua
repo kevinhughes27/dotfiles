@@ -95,11 +95,8 @@ return require('packer').startup({ function(use)
 
   -- test running
   use {
-    'mvanderkamp/vimux',
-    branch = "issue-210-hotfix",
-  }
-  use {
     'vim-test/vim-test',
+    requires = { 'preservim/vimux' },
     config = function()
       vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
       vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
