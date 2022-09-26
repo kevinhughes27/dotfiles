@@ -108,7 +108,6 @@ return require('packer').startup({ function(use)
   -- syntax highlighting
   use {
     'nvim-treesitter/nvim-treesitter',
-    requires = { 'nvim-treesitter/playground' },
     config = get_config('treesitter')
   }
 
