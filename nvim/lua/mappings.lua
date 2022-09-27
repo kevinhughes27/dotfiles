@@ -1,13 +1,6 @@
 -- Mappings
 local map = vim.keymap.set
 
--- new splits
--- this conflicts with text size increase/decrease on linux
-map('n', '<A-\\>', ':vsplit<CR>') -- in my head this is C-| (pipe)
-map('n', '«', ':vsplit<CR>') -- alt-\ on osx
-map('n', '<A-->', ':split<CR>')
-map('n', '–', ':split<CR>') -- alt - on osx
-
 -- resize splits
 map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>')
 map('n', '<A-Right>', ':SmartResizeRight 5<CR>')
@@ -15,7 +8,7 @@ map('n', '<A-Up>',    ':SmartResizeUp    5<CR>')
 map('n', '<A-Down>',  ':SmartResizeDown  5<CR>')
 
 -- tab for tabs
-map('n', '<A-t>', ':tabnew<CR>')
+-- map('n', '<A-t>', ':tabnew<CR>')
 map('n', '<Tab>', ':tabnext<CR>')
 map('n', '<S-Tab>', ':tabprev<CR>')
 
@@ -29,7 +22,7 @@ map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
--- zoom
+-- zoom (opens new tab)
 map('n', '<C-z>', ':tabe %<CR>', {silent = true})
 
 -- vim-test
