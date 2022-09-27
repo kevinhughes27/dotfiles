@@ -118,10 +118,15 @@ return require('packer').startup({ function(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
       'folke/lua-dev.nvim',
     },
     config = get_config('lsp')
+  }
+
+  -- null-ls (formatting)
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = get_config("null-ls")
   }
 
   -- snippets
