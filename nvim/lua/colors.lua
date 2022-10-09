@@ -1,35 +1,24 @@
 -- Colors
 
-require('onedark').setup({
-  transparent = true
+local onedark = require('onedark')
+
+onedark.setup({
+  transparent = true,
+  highlights = {
+    PmenuSel = {bg = '$green'},
+    TabLineSel = {bg = '$blue'},
+    HighlightUrl = {fg = '$blue'},
+    YankPost = {fg = '$black', bg='$blue'},
+    NvimTreeWinSeparator = {fg = '#3e4452'},
+    CmpItemAbbrMatch = {fg = '#569CD6'},
+    CmpItemAbbrMatchFuzzy = {fg ='#569CD6'},
+    CmpItemKindClass = {fg = '$cyan'},
+    CmpItemKindMethod = {fg = '$blue'},
+    CmpItemKindVariable = {fg = '$purple'},
+    CmpItemKindFunction = {fg = '$blue'},
+    CmpItemKindKeyword = {fg = '$red'},
+    CmpItemKindText = {fg = '$fg'},
+  }
 })
 
-require('onedark').load()
-
-local c = require('onedark.colors')
-
--- set pmenu highlight to green
-vim.cmd('highlight PmenuSel guibg=' .. c.green)
-
--- set selected tab highlight to blue
-vim.cmd('highlight TabLineSel guibg=' .. c.blue)
-
--- set url highlight color
-vim.g.highlighturl_guifg = c.blue
-
--- tree
-vim.cmd('highlight! NvimTreeWinSeparator guifg=' .. '#3e4452')
-
--- cmp
-vim.cmd('highlight! CmpItemAbbrMatch guifg=' .. '#569CD6')
-vim.cmd('highlight! CmpItemAbbrMatchFuzzy guifg=' .. '#569CD6')
-
-vim.cmd('highlight! CmpItemKindClass guifg=' .. c.cyan)
-vim.cmd('highlight! CmpItemKindMethod guifg=' .. c.blue)
-vim.cmd('highlight! CmpItemKindVariable guifg=' .. c.purple)
-vim.cmd('highlight! CmpItemKindFunction guifg=' .. c.blue)
-vim.cmd('highlight! CmpItemKindKeyword guifg=' .. c.red)
-vim.cmd('highlight! CmpItemKindText guifg=' .. c.fg)
-
--- highlight on yank
-vim.cmd('highlight! YankPost guifg=' .. c.black .. ' guibg=' .. c.blue)
+onedark.load()
