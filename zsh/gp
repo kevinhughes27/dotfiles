@@ -9,7 +9,8 @@ git_push() {
 
     # filter -d command since I never want this and typo it often
     if [[ "$args" =~ "-d" ]]; then
-      args=""
+      echo "-d not allowed"
+      return 1
     fi
 
     if [[ "$branch" != "HEAD" ]]; then
@@ -20,22 +21,26 @@ git_push() {
         if [[ $REPLY =~ ^[Yy]$ ]]; then
           if [[ -n $args ]]; then
             echo "no force push $branch"
+            return 1
           else
             git push origin $branch
           fi
         else
           echo 'git push aborted.'
+          return 1
         fi
 
       # branch is not master or main, allow options like force
       else
-        git push origin $branch $args
+        git push origin $branch $@
       fi
     else
       echo 'not on a branch'
+      return 1
     fi
   else
-    echo 'Not a git repo'
+    echo 'not a git repo'
+    return 1
   fi
 }
 
