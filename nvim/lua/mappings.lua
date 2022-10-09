@@ -21,9 +21,11 @@ function Smart_tab(tabcmd)
 end
 
 -- tab for tabs
--- map('n', '<A-t>', ':tabnew<CR>')
 map('n', '<Tab>', function() Smart_tab('tabnext') end)
 map('n', '<S-Tab>', function() Smart_tab('tabprev') end)
+
+-- zoom (opens new tab)
+map('n', '<C-z>', ':tabe %<CR>', {silent = true})
 
 -- gimme ctrl s
 map('n', '<C-s>', ':Save<CR>')
@@ -34,9 +36,6 @@ map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
 map('n', '<C-Down>',  ':TmuxNavigateDown<CR>',  {silent = true})
 map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
-
--- zoom (opens new tab)
-map('n', '<C-z>', ':tabe %<CR>', {silent = true})
 
 -- vim-test
 map('n', '<C-t>', ':w<CR> :TestFile<CR>')
