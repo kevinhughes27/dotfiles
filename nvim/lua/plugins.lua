@@ -56,12 +56,22 @@ return require('packer').startup({ function(use)
     config = function() require('gitsigns').setup() end
   }
 
-  -- remote copy
+  -- remote copy and yank highlight
   use {
-    'ojroques/vim-oscyank',
+    'ibhagwan/smartyank.nvim',
     config = function()
-      -- https://github.com/ojroques/vim-oscyank/issues/26
-      vim.g.oscyank_term = 'default'
+      require('smartyank').setup {
+        highlight = {
+          enabled = true,
+          higroup = 'YankPost',
+          timeout = 500
+        },
+        osc52 = {
+          enabled = true,
+          ssh_only = true,
+          silent = true,
+        }
+      }
     end
   }
 
