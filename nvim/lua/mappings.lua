@@ -28,8 +28,8 @@ map('n', '<S-Tab>', function() Smart_tab('tabprev') end)
 map('n', '<C-z>', ':tabe %<CR>', {silent = true})
 
 -- gimme ctrl s
-map('n', '<C-s>', ':Save<CR>')
-map('i', '<C-s>', '<ESC>:Save<CR>')
+map('n', '<C-s>', ':w<CR>')
+map('i', '<C-s>', '<ESC>:w<CR>')
 
 -- tmux navigation
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})

@@ -11,8 +11,8 @@ end, {
   desc = 'Connect to overmind in a tmux popup window',
 })
 
--- save
-create('Save', function(args)
+-- note save
+create('NS', function(args)
   vim.api.nvim_exec('write', true)
 
   local cwd = vim.fn.getcwd()
