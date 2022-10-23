@@ -1,5 +1,7 @@
 local lsp_setup = require('lsp-setup')
-local lua_dev = require('lua-dev')
+local neodev = require('neodev')
+
+neodev.setup({})
 
 lsp_setup.setup({
   capabilities = vim.lsp.protocol.make_client_capabilities(),
@@ -13,7 +15,7 @@ lsp_setup.setup({
   end,
 
   servers = {
-    sumneko_lua = lua_dev.setup(),
+    sumneko_lua = {},
     pylsp = {},
     tsserver = {},
   }

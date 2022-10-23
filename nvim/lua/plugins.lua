@@ -128,7 +128,7 @@ return require('packer').startup({ function(use)
       'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'folke/lua-dev.nvim',
+      'folke/neodev.nvim',
     },
     config = get_config('lsp')
   }
