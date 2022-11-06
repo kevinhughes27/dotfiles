@@ -25,7 +25,7 @@ map('n', '<Tab>', function() Smart_tab('tabnext') end)
 map('n', '<S-Tab>', function() Smart_tab('tabprev') end)
 
 -- zoom (opens new tab)
-map('n', '<C-z>', ':tabe %<CR>', {silent = true})
+map('n', '<C-z>', ':tab split<CR>', {silent = true})
 
 -- gimme ctrl s
 map('n', '<C-s>', ':w<CR>')
