@@ -3,6 +3,15 @@
 local create = vim.api.nvim_create_user_command
 local job = require('plenary.job')
 
+-- copy current file path
+-- doesn't use osc52 but can p then yank
+create('CopyPath', function()
+  vim.api.nvim_exec('let @+=@%', true)
+end, {
+  nargs = 0,
+  desc = 'Copy the path of the current file to clipboard',
+})
+
 -- overmind connect in a tmux popup
 create('Oc', function(args)
   os.execute('tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect ' .. args.args)
