@@ -3,23 +3,6 @@
 local create = vim.api.nvim_create_user_command
 local job = require('plenary.job')
 
--- copy current file path
-create('CopyPath', function()
-  vim.api.nvim_exec('let @+=@%', true)
-  require('osc52').copy_register('+')
-end, {
-  nargs = 0,
-  desc = 'Copy the path of the current file to clipboard',
-})
-
--- overmind connect in a tmux popup
-create('Oc', function(args)
-  os.execute('tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect ' .. args.args)
-end, {
-  nargs = 1,
-  desc = 'Connect to overmind in a tmux popup window',
-})
-
 -- notes push
 create('Np', function()
   vim.api.nvim_exec('write', true)
@@ -81,4 +64,30 @@ create('Np', function()
 end, {
   nargs = 0,
   desc = 'Save current buffer. commit and push notes',
+})
+
+-- overmind connect in a tmux popup
+create('Oc', function(args)
+  os.execute('tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect ' .. args.args)
+end, {
+  nargs = 1,
+  desc = 'Connect to overmind in a tmux popup window',
+})
+
+-- copy current file path
+create('CopyPath', function()
+  vim.api.nvim_exec('let @+=@%', true)
+  require('osc52').copy_register('+')
+end, {
+  nargs = 0,
+  desc = 'Copy the path of the current file to clipboard',
+})
+
+-- copy link to current file on github
+create('GitHubLink', function()
+  vim.fn.execute('GH')
+  require('osc52').copy_register('+')
+end, {
+  nargs = 0,
+  desc = 'Copy the link to the file on GitHub'
 })
