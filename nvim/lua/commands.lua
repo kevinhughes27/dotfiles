@@ -12,7 +12,7 @@ end, {
 })
 
 -- notes push
-create('Np', function(args)
+create('Np', function()
   vim.api.nvim_exec('write', true)
 
   local cwd = vim.fn.getcwd()
@@ -21,7 +21,6 @@ create('Np', function(args)
 
   if is_notes then
     local filepath = vim.fn.expand('%:.')
-    local filename = vim.fn.expand('%:t')
     local timestamp = vim.fn.strftime('%Y-%m-%dT%H:%M:%S%z')
 
     -- update frontmatter timestamp
@@ -37,7 +36,7 @@ create('Np', function(args)
     -- git add
     job:new({
       command = 'git',
-      args = {'add', filepath},
+      args = {'add', '.'},
       cwd = cwd,
     }):sync()
 
@@ -47,8 +46,7 @@ create('Np', function(args)
     vim.fn.winrestview(view)
 
     -- commit and push
-    local msg = 'Updated Note ' .. filename
-    local git_commit = 'git commit -m "' .. msg .. '"'
+    local git_commit = 'git commit -m "Updated Notes"'
     local git_push = 'git push origin master'
     local cmd = git_commit .. ' && ' .. git_push
 
