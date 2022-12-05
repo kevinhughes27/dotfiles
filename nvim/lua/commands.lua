@@ -4,9 +4,9 @@ local create = vim.api.nvim_create_user_command
 local job = require('plenary.job')
 
 -- copy current file path
--- doesn't use osc52 but can p then yank
 create('CopyPath', function()
   vim.api.nvim_exec('let @+=@%', true)
+  require('osc52').copy_register('+')
 end, {
   nargs = 0,
   desc = 'Copy the path of the current file to clipboard',
