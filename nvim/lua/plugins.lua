@@ -65,7 +65,7 @@ return require('packer').startup({ function(use)
   }
 
   -- github link copy :GH
-  use 'ruanyl/vim-gh-line'
+  use 'ruifm/gitlinker.nvim'
 
   -- highlight urls
   use 'itchyny/vim-highlighturl'

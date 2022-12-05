@@ -84,9 +84,13 @@ end, {
 })
 
 -- copy link to current file on github
-create('GitHubLink', function()
-  vim.fn.execute('GH')
-  require('osc52').copy_register('+')
+create('GH', function()
+  require('gitlinker').get_buf_range_url('n', {
+    action_callback = function(url)
+      vim.api.nvim_command('let @+ = \'' .. url .. '\'')
+      require('osc52').copy_register('+')
+    end,
+  })
 end, {
   nargs = 0,
   desc = 'Copy the link to the file on GitHub'
