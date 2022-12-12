@@ -2,10 +2,10 @@
 local map = vim.keymap.set
 
 -- resize splits
-map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>')
-map('n', '<A-Right>', ':SmartResizeRight 5<CR>')
-map('n', '<A-Up>',    ':SmartResizeUp    5<CR>')
-map('n', '<A-Down>',  ':SmartResizeDown  5<CR>')
+map('n', '<A-Left>',  ':SmartResizeLeft  5<CR>', {})
+map('n', '<A-Right>', ':SmartResizeRight 5<CR>', {})
+map('n', '<A-Up>',    ':SmartResizeUp    5<CR>', {})
+map('n', '<A-Down>',  ':SmartResizeDown  5<CR>', {})
 
 -- smart tab next|prev that moved the cursor out of the tree
 -- if necessary. this makes the tabline display a file instead of
@@ -21,15 +21,15 @@ function Smart_tab(tabcmd)
 end
 
 -- tab for tabs
-map('n', '<Tab>', function() Smart_tab('tabnext') end)
-map('n', '<S-Tab>', function() Smart_tab('tabprev') end)
+map('n', '<Tab>', function() Smart_tab('tabnext') end, {})
+map('n', '<S-Tab>', function() Smart_tab('tabprev') end, {})
 
 -- zoom (opens new tab)
 map('n', '<C-z>', ':tab split<CR>', {silent = true})
 
 -- gimme ctrl s
-map('n', '<C-s>', ':w<CR>')
-map('i', '<C-s>', '<ESC>:w<CR>')
+map('n', '<C-s>', ':w<CR>', {})
+map('i', '<C-s>', '<ESC>:w<CR>', {})
 
 -- tmux navigation
 map('n', '<C-Left>',  ':TmuxNavigateLeft<CR>',  {silent = true})
@@ -38,16 +38,16 @@ map('n', '<C-Up>',    ':TmuxNavigateUp<CR>',    {silent = true})
 map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 
 -- vim-test
-map('n', '<C-t>', ':w<CR> :TestFile<CR>')
-map('n', '<C-l>', ':w<CR> :TestNearest<CR>')
+map('n', '<C-t>', ':w<CR> :TestFile<CR>', {})
+map('n', '<C-l>', ':w<CR> :TestNearest<CR>', {})
 
 -- nvim-tree
 map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 
 -- fzf
-map('n', '<C-p>', ':FzfLua files<CR>')
-map('n', '<C-h>', ':FzfLua oldfiles<CR>')
-map('n', '<C-f>', ':FzfLua grep_cword')
+map('n', '<C-p>', ':FzfLua files<CR>', {})
+map('n', '<C-h>', ':FzfLua oldfiles<CR>', {})
+map('n', '<C-f>', ':FzfLua grep_cword', {})
 
 -- clear highlight
 map('n', '<ESC>', ':noh<CR>', {silent = true})
