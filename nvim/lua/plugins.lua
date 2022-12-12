@@ -133,7 +133,7 @@ return require('packer').startup({ function(use)
   -- null-ls (formatting)
   use {
     'jose-elias-alvarez/null-ls.nvim',
-    config = get_config("null-ls")
+    config = get_config('null-ls')
   }
 
   -- snippets
