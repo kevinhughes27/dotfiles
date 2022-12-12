@@ -70,6 +70,14 @@ return require('packer').startup({ function(use)
   -- highlight urls
   use 'itchyny/vim-highlighturl'
 
+  -- autolist
+  use {
+    'gaoDean/autolist.nvim',
+    config = function()
+      require('autolist').setup({})
+    end
+  }
+
   -- seamless split/tmux navigation
   use {
     'christoomey/vim-tmux-navigator',
