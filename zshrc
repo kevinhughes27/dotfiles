@@ -29,21 +29,21 @@ bindkey "^[[4~" end-of-line
 # disable ctrl s from triggering stop
 stty stop undef
 
-# configuration
+# editor
 export EDITOR='nvim'
+
+# bat theme
 export BAT_THEME='OneHalfDark'
-export OVERMIND_TMUX_CONFIG="$HOME/dotfiles/tmux.overmind.conf"
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
-export FZF_DEFAULT_OPTS='--reverse --height=50%'
-
-# fzf one dark theme
+# colors (onedark)
 green="#98c379"
 blue="#61afef"
 yellow="#e5c07b"
 magenta="#c678dd"
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
+# fzf configuration
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
+export FZF_DEFAULT_OPTS="--reverse --height=50%
 --color=dark
 --color=fg:-1,bg:-1,hl:$magenta
 --color=fg+:#ffffff,bg+:#4b5263,hl+:#d858fe

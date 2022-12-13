@@ -66,14 +66,6 @@ end, {
   desc = 'Save current buffer. commit and push notes',
 })
 
--- overmind connect in a tmux popup
-create('Oc', function(args)
-  os.execute('tmux popup -E -d $(pwd) -h 80% -w 80% overmind connect ' .. args.args)
-end, {
-  nargs = 1,
-  desc = 'Connect to overmind in a tmux popup window',
-})
-
 -- copy current file path
 create('CopyPath', function()
   vim.api.nvim_exec('let @+=@%', true)
