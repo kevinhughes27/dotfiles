@@ -84,7 +84,7 @@ function pair() {
   # --index use a custom index.html file (see pair-rebuild-html below)
   ttyd \
     --credential "$username:$password" \
-    --index "$HOME/dotfiles/pair.html" \
+    --index "$HOME/dotfiles/terminals/pair.html" \
     --client-option titleFixed="pair session" \
     --client-option fontFamily="Hack Nerd Font" \
     --client-option fontSize=14 \
@@ -100,7 +100,7 @@ function pair-rebuild-html() {
   pushd ~/src/ttyd/html
   INLINE_FONT=~/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf yarn build
   popd
-  cp ~/src/ttyd/html/dist/inline.html ~/dotfiles/pair.html
+  cp ~/src/ttyd/html/dist/inline.html ~/dotfiles/terminals/pair.html
 }
 
 
