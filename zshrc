@@ -73,7 +73,6 @@ alias gf='git fr'
 alias bi='bundle install'
 alias bx='bundle exec'
 alias dc='docker-compose'
-alias ts='avn-toolbox-shell'
 alias rw='tmux rename-window'
 
 # remove extra new lines from paste
