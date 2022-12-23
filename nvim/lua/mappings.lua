@@ -45,9 +45,9 @@ map('n', '<C-l>', ':w<CR> :TestNearest<CR>', {})
 map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 
 -- fzf
-map('n', '<C-p>', ':FzfLua files<CR>', {})
-map('n', '<C-h>', ':FzfLua oldfiles<CR>', {})
-map('n', '<C-f>', ':FzfLua grep_cword', {})
+map('n', '<C-p>', ':Files<CR>')
+map('n', '<C-h>', ':History<CR>')
+map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 
 -- clear highlight
 map('n', '<ESC>', ':noh<CR>', {silent = true})
