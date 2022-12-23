@@ -1,26 +1,9 @@
--- Bootstrap
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-
-if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim',
-    install_path
-  })
-
-  vim.cmd [[packadd packer.nvim]]
-end
-
 local function get_config(name)
   return string.format('require("config/%s")', name)
 end
 
 -- Plugins
-return require('packer').startup({ function(use)
+require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
   -- lua utils
@@ -183,11 +166,6 @@ return require('packer').startup({ function(use)
       vim.g.VM_default_mappings = 0
     end
   }
-
-  -- automatically sync after cloning packer.nvim
-  if packer_bootstrap then
-    require('packer').sync()
-  end
 end,
 config = {
   display = {
@@ -196,3 +174,11 @@ config = {
     end
   }
 }})
+
+-- automatically source and re-compile packer whenever this file is saved
+local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  command = 'source <afile> | PackerCompile',
+  group = packer_group,
+  pattern = 'plugins.lua',
+})
