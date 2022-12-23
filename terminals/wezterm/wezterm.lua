@@ -22,4 +22,5 @@ return {
       action = wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'Clipboard',
     },
   },
+  audible_bell = "Disabled",
 }
