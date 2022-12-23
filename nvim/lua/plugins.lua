@@ -95,7 +95,7 @@ return require('packer').startup({ function(use)
 
   -- fzf
   use {
-    'ibhagwan/fzf-lua',
+    'junegunn/fzf.vim',
     requires = { 'junegunn/fzf' },
     config = get_config('fzf'),
   }
