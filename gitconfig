@@ -34,7 +34,6 @@ rebase = true
 
 [merge]
 ff = only
-conflictstyle = diff3
 
 [status]
 showUntrackedFiles = all
