@@ -15,7 +15,15 @@ lsp_setup.setup({
   end,
 
   servers = {
-    sumneko_lua = {},
+    sumneko_lua = {
+      settings = {
+        Lua = {
+          workspace = {
+            checkThirdParty = false,
+          },
+        },
+      },
+    },
     pylsp = {},
     tsserver = {},
   }
