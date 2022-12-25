@@ -19,7 +19,7 @@ program = gpg
 insteadOf = https://github.com/
 
 [core]
-excludesfile = ~/.gitignore
+excludesfile = ~/dotfiles/gitignore
 pager = less --mouse
 
 [push]
@@ -66,10 +66,6 @@ moved = zebra
 added = yellow
 changed = green
 untracked = cyan
-
-# for fzf.vim
-[delta]
-diff-so-fancy
 
 [alias]
 

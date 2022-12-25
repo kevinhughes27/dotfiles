@@ -38,7 +38,6 @@ function backup() {
 backup ~/.zshrc
 backup ~/.tmux.conf
 backup ~/.gitconfig
-backup ~/.gitignore
 
 echo ""
 echo "Symlinking files:"
@@ -56,7 +55,6 @@ link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
 link ~/dotfiles/gitconfig ~/.gitconfig
-link ~/dotfiles/gitignore ~/.gitignore
 
 mkdir -p ~/.config
 link ~/dotfiles/starship.toml ~/.config/starship.toml
