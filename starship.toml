@@ -15,7 +15,7 @@ show_always = true
 
 [hostname]
 ssh_only = true
-format =  "on [$hostname](bold red) "
+format =  "in [$hostname](bold red) "
 
 [custom.toolbox]
 when = "hostname | grep 'toolbox'"
