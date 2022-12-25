@@ -9,7 +9,6 @@ cmp.setup({
     end
   },
 
-  -- NOTE pressing esc will finalize the snippet
   -- use TAB and S-TAB to cycle through snippet nodes
   mapping = {
     ['<Tab>'] = cmp.mapping(function(fallback)
@@ -32,9 +31,6 @@ cmp.setup({
       end
     end, { 'i', 's' }),
 
-    -- close cmp. useful mid snippet to allow jumping
-    -- and to insert a newline if there is a completion
-    ['<C-e>'] = cmp.mapping.abort(),
     ['<ESC>'] = cmp.mapping.abort(),
 
     ['<CR>'] = cmp.mapping.confirm {
