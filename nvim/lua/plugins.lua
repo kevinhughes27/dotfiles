@@ -181,5 +181,5 @@ local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
   group = packer_group,
-  pattern = 'plugins.lua',
+  pattern = 'nvim/**/*.lua',
 })
