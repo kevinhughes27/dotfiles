@@ -8,7 +8,7 @@ return {
   },
   font_size = 14,
   enable_tab_bar = false,
-  window_background_opacity = 0.96,
+  window_background_opacity = 1.0,
   keys = {
     { key = 'v', mods = 'CTRL', action = wezterm.action.Paste },
     { key = 'F11', action = wezterm.action.ToggleFullScreen },
