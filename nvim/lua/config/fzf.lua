@@ -112,33 +112,81 @@ vim.api.nvim_create_user_command("Files", function()
   fzf(source, options)
 end, {})
 
--- Recent Files
-vim.api.nvim_exec([[
-  function! _uniq(list)
-    let visited = {}
-    let ret = []
-    for l in a:list
-      if !empty(l) && !has_key(visited, l)
-        call add(ret, l)
-        let visited[l] = 1
-      endif
-    endfor
-    return ret
-  endfunction
 
-  function! _recent_files()
-    return _uniq(map(
-      \ filter([expand('%%')], 'len(v:val)')
-      \   + filter(copy(v:oldfiles), "filereadable(fnamemodify(v:val, ':p'))"),
-      \ 'fnamemodify(v:val, ":~:.")'))
-  endfunction
-]], true)
+-- RecentBuffers
+-- needed for RecentFiles because oldfiles does not update until vim is closed
+-- based on https://github.com/smartpde/telescope-recent-files
 
-vim.api.nvim_create_user_command("RecentFiles", function()
-  local source = vim.fn["_recent_files"]()
+local recent_buffers = {}
+
+_G.track_recent_buffers = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local file = vim.api.nvim_buf_get_name(bufnr)
+  table.insert(recent_buffers, file)
+end
+
+vim.cmd([[
+  augroup recent_files
+    au!
+    au! bufenter * lua track_recent_buffers()
+  augroup end
+]])
+
+vim.api.nvim_create_user_command("RecentBuffers", function()
+  local source = recent_buffers
   local options = '--prompt "Recent> " --preview "bat --style=numbers --color=always {}"'
   fzf(source, options)
 end, {})
+
+
+-- RecentFiles
+-- based on https://github.com/smartpde/telescope-recent-files
+local function get_recent_files()
+  local function uniq(t)
+    local result = {}
+    local seen = {}
+    for _,v in ipairs(t) do
+      if not seen[v] then
+        seen[v] = true
+        table.insert(result, v)
+      end
+    end
+    return result
+  end
+
+  local function stat(filename)
+    local s = vim.loop.fs_stat(filename)
+    if not s then
+      return nil
+    end
+    return s.type
+  end
+
+  local recent_files = {}
+
+  for _,file in ipairs(recent_buffers) do
+    if stat(file) then
+      file = vim.fn.fnamemodify(file, ":~:.")
+      table.insert(recent_files, file)
+    end
+  end
+
+  for _, file in ipairs(vim.v.oldfiles) do
+    if stat(file) then
+      file = vim.fn.fnamemodify(file, ":~:.")
+      table.insert(recent_files, file)
+    end
+  end
+
+  return uniq(recent_files)
+end
+
+vim.api.nvim_create_user_command("RecentFiles", function()
+  local source = get_recent_files()
+  local options = '--prompt "Recent> " --preview "bat --style=numbers --color=always {}"'
+  fzf(source, options)
+end, {})
+
 
 -- Rg
 vim.api.nvim_create_user_command("Rg", function(args)
