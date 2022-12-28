@@ -1,8 +1,9 @@
+-- Plugins
+
 local function get_config(name)
   return string.format('require("config/%s")', name)
 end
 
--- Plugins
 require('packer').startup({ function(use)
   use 'wbthomason/packer.nvim'
 
@@ -87,9 +88,9 @@ require('packer').startup({ function(use)
     'vim-test/vim-test',
     requires = { 'preservim/vimux' },
     config = function()
-      vim.g['test#strategy'] = 'vimux' -- make test commands execute using vimux
+      vim.g['test#strategy'] = 'vimux'       -- make test commands execute using vimux
       vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
-      vim.g['VimuxUseNearest'] = 0 -- don't use an exisiting pane
+      vim.g['VimuxUseNearest'] = 0           -- don't use an exisiting pane
       vim.g['VimuxHeight'] = '25'
     end
   }
@@ -104,9 +105,9 @@ require('packer').startup({ function(use)
   use {
     'junnplus/nvim-lsp-setup',
     requires = {
-      'neovim/nvim-lspconfig',
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
       'folke/neodev.nvim',
     },
     config = get_config('lsp')
@@ -175,7 +176,7 @@ config = {
   }
 }})
 
--- automatically source and re-compile packer whenever this file is saved
+-- automatically source and re-compile packer whenever config is saved
 local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',

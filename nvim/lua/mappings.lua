@@ -1,4 +1,5 @@
 -- Mappings
+
 local map = vim.keymap.set
 
 -- resize splits
