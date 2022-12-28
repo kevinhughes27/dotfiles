@@ -219,21 +219,22 @@ end, {})
 -- Rg
 vim.api.nvim_create_user_command("Rg", function(args)
   local source = 'rg --hidden --glob "!.git/*" --column --line-number --color=always --smart-case -- ' .. args.args
-  local options = '--ansi --multi --delimiter : --preview "bat --style=numbers --color=always --highlight-line {2} {1}" --preview-window +{2}-/2'
+  local preview = '--delimiter : --preview "bat --style=numbers --color=always --highlight-line {2} {1}" --preview-window +{2}-/2'
+  local options = string.format('--ansi --multi %s', preview)
   fzf(source, options)
 end, { nargs = 1 })
 
 
 -- RG
 -- live ripgrep. fzf acts as selector only
--- TODO needs preview. Can preview be shared?
 vim.api.nvim_create_user_command("RG", function(args)
   local command_fmt = 'rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case -- %s || true'
   local initial_command = string.format(command_fmt, args.args)
   local reload_command = string.format(command_fmt, '{q}')
 
   local source = initial_command
-  local options = string.format("--ansi --multi --query '%s' --bind 'change:reload:%s'", args.args, reload_command)
+  local preview = "--delimiter : --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' --preview-window +{2}-/2"
+  local options = string.format("--ansi --multi %s --query '%s' --bind 'change:reload:%s'", preview, args.args, reload_command)
 
   fzf(source, options)
 end, { nargs = "*" })
