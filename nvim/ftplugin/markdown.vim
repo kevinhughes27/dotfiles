@@ -49,5 +49,5 @@ function Check()
   call winrestview(l:curs)
 endfunction
 
-nnoremap <silent> <CR> :call Check()<CR>
-nnoremap <silent> <space> :call Check()<CR>
+nnoremap <buffer><silent> <CR> :call Check()<CR>
+nnoremap <buffer><silent> <space> :call Check()<CR>
