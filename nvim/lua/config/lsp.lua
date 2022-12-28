@@ -1,5 +1,5 @@
-local lsp_setup = require('lsp-setup')
 local neodev = require('neodev')
+local lsp_setup = require('lsp-setup')
 
 neodev.setup({})
 
