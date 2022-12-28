@@ -46,7 +46,7 @@ map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 
 -- fzf
 map('n', '<C-p>', ':Files<CR>')
-map('n', '<C-h>', ':History<CR>')
+map('n', '<C-h>', ':RecentFiles<CR>')
 map('n', '<C-f>', ':RG <C-R><C-W><CR>', {silent = true})
 
 -- clear highlight
