@@ -75,8 +75,8 @@ local function fzf(source, options)
   -- it does so with an anonymous vim function which does not live
   -- outside of the first vim.fn call meaning it is undefined when
   -- we call fzf_run. Therefore we have to setup the expected keys
-  -- and sinklist ourselve. fzf_wrap is still useful for the layout
-  -- and colors.
+  -- and sinklist ourselves. fzf_wrap is still useful for setting
+  -- the layout and colors.
 
   local action_keys = {}
   for k in pairs(g.fzf_action) do action_keys[#action_keys + 1] = k end
