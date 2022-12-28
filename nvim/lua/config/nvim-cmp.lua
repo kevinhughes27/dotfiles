@@ -2,6 +2,18 @@ local luasnip = require('luasnip')
 local lspkind = require('lspkind')
 local cmp = require('cmp')
 
+local cmp_single_entry = function()
+  local entries = cmp.get_entries()
+  local count = 0
+  for _ in pairs(entries) do count = count + 1 end
+  return count == 1
+end
+
+local autoconfirm = function()
+  local key = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+  vim.api.nvim_feedkeys(key, "i", false)
+end
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -14,6 +26,7 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
+        if cmp_single_entry() then autoconfirm() end
       elseif luasnip.expand_or_jumpable() then
         luasnip.expand_or_jump()
       else
@@ -33,14 +46,13 @@ cmp.setup({
 
     ['<ESC>'] = cmp.mapping.abort(),
 
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-    },
+    ['<CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
   },
 
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'buffer', keyword_length=5, max_item_count=2 },
     { name = 'emoji' },
     { name = 'path' },
   },
