@@ -144,7 +144,6 @@ end, {})
 -- RecentBuffers
 -- needed for RecentFiles because oldfiles does not update until vim is closed
 -- based on https://github.com/smartpde/telescope-recent-files
-
 local recent_buffers = {}
 
 _G.track_recent_buffers = function()
@@ -162,7 +161,7 @@ vim.cmd([[
 
 vim.api.nvim_create_user_command("RecentBuffers", function()
   local source = recent_buffers
-  local options = '--prompt "Recent> " --preview "bat --style=numbers --color=always {}"'
+  local options = '--prompt "Buffers> " --preview "bat --style=numbers --color=always {}"'
   fzf(source, options)
 end, {})
 
@@ -220,7 +219,7 @@ end, {})
 vim.api.nvim_create_user_command("Rg", function(args)
   local source = 'rg --hidden --glob "!.git/*" --column --line-number --color=always --smart-case -- ' .. args.args
   local preview = '--delimiter : --preview "bat --style=numbers --color=always --highlight-line {2} {1}" --preview-window +{2}-/2'
-  local options = string.format('--ansi --multi %s', preview)
+  local options = string.format('--prompt "Rg> " --ansi --multi %s', preview)
   fzf(source, options)
 end, { nargs = 1 })
 
@@ -234,7 +233,7 @@ vim.api.nvim_create_user_command("RG", function(args)
 
   local source = initial_command
   local preview = "--delimiter : --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' --preview-window +{2}-/2"
-  local options = string.format("--ansi --multi %s --query '%s' --bind 'change:reload:%s'", preview, args.args, reload_command)
+  local options = string.format("--prompt 'RG> ' --ansi --multi %s --query '%s' --bind 'change:reload:%s'", preview, args.args, reload_command)
 
   fzf(source, options)
 end, { nargs = "*" })
