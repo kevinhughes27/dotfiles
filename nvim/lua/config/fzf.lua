@@ -3,10 +3,9 @@ local g = vim.g
 -- actions
 g.fzf_action = {
   ['ctrl-t'] = 'tab split',
-  ['ctrl-x'] = 'split',
-  ['ctrl-v'] = 'vsplit',
+  ['ctrl-s'] = 'split',
+  ['ctrl-h'] = 'vsplit',
 }
--- need quick fix too
 
 -- preview window
 g.fzf_preview_window = 'right:60%:sharp'
@@ -67,8 +66,8 @@ g.fzf_colors['hl+'] = {'fg', 'Label'}
 
 
 -- fzf
+-- https://github.com/junegunn/fzf/blob/master/README-VIM.md
 local function fzf(source, options)
-  -- https://github.com/junegunn/fzf/blob/master/README-VIM.md
   local fzf_run = vim.fn["fzf#run"]
   local fzf_wrap = vim.fn["fzf#wrap"]
 
@@ -79,23 +78,52 @@ local function fzf(source, options)
   -- and sinklist ourselve. fzf_wrap is still useful for the layout
   -- and colors.
 
-  local keys = {}
-  for k in pairs(g.fzf_action) do keys[#keys + 1] = k end
-  options = options .. " --expect=" .. table.concat(keys, ",")
+  local action_keys = {}
+  for k in pairs(g.fzf_action) do action_keys[#action_keys + 1] = k end
+  options = options .. " --expect=" .. table.concat(action_keys, ",")
 
   local sinklist = function(lines)
+    local count = 0
+    for _ in pairs(lines) do count = count + 1 end
+
     -- cancelled
-    if next(lines) == nil then return end
+    if count == 0 then return end
 
-    local key = lines[1]
-    local file = lines[2]
+    -- normal case:
+    -- optional action + one file
+    if count == 2 then
+      local key = lines[1]
+      local match = lines[2]
 
-    -- action if any
-    local action = g.fzf_action[key]
-    if action then vim.cmd(action) end
+      local file = string.match(match, "(.-):") or match
+      local lineno = string.match(match, ":(.-):")
 
-    -- open the file
-    vim.cmd("e " .. file)
+      -- action if any (e.g. split)
+      local action = g.fzf_action[key]
+      if action then vim.cmd(action) end
+
+      -- open the file
+      vim.cmd("e " .. file)
+
+      -- move to line
+      if lineno then vim.cmd(":" .. lineno) end
+
+      return
+    end
+
+    -- multiple files -> quickfix
+    if count > 2 then
+      local qflist = {}
+      for i,v in ipairs(lines) do
+        if i > 1 then
+          local file = string.match(v, "(.-):")
+          local lineno = string.match(v, ":(.-):")
+          table.insert(qflist, {filename = file, lnum = lineno})
+        end
+      end
+      vim.fn.setqflist(qflist)
+      vim.cmd("copen")
+    end
   end
 
   fzf_run(fzf_wrap({
@@ -191,20 +219,21 @@ end, {})
 -- Rg
 vim.api.nvim_create_user_command("Rg", function(args)
   local source = 'rg --hidden --glob "!.git/*" --column --line-number --color=always --smart-case -- ' .. args.args
-  local options = '--ansi --delimiter : --preview "bat --style=numbers --color=always --highlight-line {2} {1}" --preview-window +{2}-/2'
+  local options = '--ansi --multi --delimiter : --preview "bat --style=numbers --color=always --highlight-line {2} {1}" --preview-window +{2}-/2'
   fzf(source, options)
 end, { nargs = 1 })
 
 
 -- RG
 -- live ripgrep. fzf acts as selector only
+-- TODO needs preview. Can preview be shared?
 vim.api.nvim_create_user_command("RG", function(args)
   local command_fmt = 'rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case -- %s || true'
   local initial_command = string.format(command_fmt, args.args)
   local reload_command = string.format(command_fmt, '{q}')
 
   local source = initial_command
-  local options = string.format("--ansi --query '%s' --bind 'change:reload:%s'", args.args, reload_command)
+  local options = string.format("--ansi --multi --query '%s' --bind 'change:reload:%s'", args.args, reload_command)
 
   fzf(source, options)
 end, { nargs = "*" })
