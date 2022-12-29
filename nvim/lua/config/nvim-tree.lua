@@ -25,20 +25,27 @@ require('nvim-tree').setup {
     mappings = {
       custom_only = true,
       list = {
+        {key = {'<TAB>'},          cb = tree_cb('preview')}, -- opens the file but keeps cursor in tree
         {key = {'<CR>'},           cb = tree_cb('edit')},
         {key = {'<2-LeftMouse>'},  cb = tree_cb('edit')},
-        {key = {'<2-RightMouse>'}, cb = tree_cb('cd')},
         {key = {'<C-t>'},          cb = tree_cb('tabnew')},
+        {key = {'<C-s>'},          cb = tree_cb('split')},
+        {key = {'<C-h>'},          cb = tree_cb('vsplit')},
         {key = {'R'},              cb = tree_cb('refresh')},
         {key = {'a'},              cb = tree_cb('create')},
         {key = {'d'},              cb = tree_cb('remove')},
-        {key = {'r'},              cb = tree_cb('rename')},
-        {key = {'<C-r>'},          cb = tree_cb('full_rename')},
+        {key = {'r'},              cb = tree_cb('full_rename')},
         {key = {'x'},              cb = tree_cb('cut')},
         {key = {'c'},              cb = tree_cb('copy')},
         {key = {'p'},              cb = tree_cb('paste')},
         {key = {'q'},              cb = tree_cb('close')},
+        {key = {'W'},              cb = tree_cb('collapse_all')},
       }
+    }
+  },
+  actions = {
+    change_dir = {
+      restrict_above_cwd = true,
     }
   }
 }
