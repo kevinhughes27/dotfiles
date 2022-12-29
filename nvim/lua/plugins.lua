@@ -49,7 +49,10 @@ require('packer').startup({ function(use)
   }
 
   -- github link copy :GH
-  use 'ruifm/gitlinker.nvim'
+  use {
+    'ruifm/gitlinker.nvim',
+    requires = { 'preservim/vimux' },
+  }
 
   -- highlight urls
   use 'itchyny/vim-highlighturl'
