@@ -22,4 +22,3 @@ bind 'set completion-ignore-case on'
 # aliases
 alias gs='git status'
 alias gr='git r'
-alias gf='git fr'
