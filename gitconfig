@@ -3,11 +3,9 @@ name = Kevin Hughes
 email = kevinhughes27@gmail.com
 signingkey = ABDAFEE7
 
-# include a local git config if it exists
-# allows me to configure a different user
-# and gpg key
+# override user and signing key if ~/.gituser exists
 [include]
-path = ~/.localgc
+path = ~/.gituser
 
 [commit]
 gpgsign = true
