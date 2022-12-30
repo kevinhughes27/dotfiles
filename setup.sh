@@ -35,6 +35,7 @@ function backup() {
   fi
 }
 
+backup ~/.bashrc
 backup ~/.zshrc
 backup ~/.tmux.conf
 backup ~/.gitconfig
@@ -51,6 +52,7 @@ function link() {
   ln -s "$from" "$to"
 }
 
+link ~/dotfiles/bashrc ~/.bashrc
 link ~/dotfiles/zshrc ~/.zshrc
 link ~/dotfiles/vimrc ~/.vimrc
 link ~/dotfiles/tmux.conf ~/.tmux.conf
