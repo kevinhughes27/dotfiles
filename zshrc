@@ -67,6 +67,7 @@ done
 # aliases
 alias vi='nvim'
 alias gs='git status'
+alias gr='git r'
 alias bi='bundle install'
 alias bx='bundle exec'
 alias dc='docker-compose'
