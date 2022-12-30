@@ -14,6 +14,11 @@ HISTCONTROL=ignorespace:ignoredups
 # case insensitive completion
 bind 'set completion-ignore-case on'
 
+# source fzf
+# git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# then run ~/.fzf/install to create this file.
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # aliases
 alias gs='git status'
 alias gr='git r'

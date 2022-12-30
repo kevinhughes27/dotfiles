@@ -17,7 +17,7 @@ fi
 echo "Installing fzf"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &> /dev/null
 git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab &> /dev/null
-~/.fzf/install --key-bindings --completion --no-update-rc --no-bash > /dev/null
+~/.fzf/install --key-bindings --completion --no-update-rc > /dev/null
 
 echo ""
 echo "Backup the original files"
