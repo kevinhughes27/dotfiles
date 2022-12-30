@@ -6,10 +6,10 @@ RESET="\e[00m"
 PS1="${GREEN}\u${RESET}@${RED}\h${RESET} \n${BLUE} ❯ ${RESET}"
 
 # history
-HISTCONTROL=ignoreboth # no duplicates or lines starting with space
-export HISTSIZE=10000
-export HISTFILESIZE=10000
 shopt -s histappend
+HISTSIZE=10000
+HISTFILESIZE=10000
+HISTCONTROL=ignorespace:ignoredups
 
 # case insensitive completion
 bind 'set completion-ignore-case on'
