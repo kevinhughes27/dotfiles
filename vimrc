@@ -97,7 +97,6 @@ set number           " show line numbers
 set showmatch        " highlight matching [{()}]
 set tabstop=2        " number of visual spaces per TAB
 set softtabstop=4    " number of spaces in tab when editing
-set autoindent       " autoindent
 set expandtab        " tabs are spaces
 set nowrap           " do not wrap text at `textwidth`
 set ignorecase       " ignore case in search
