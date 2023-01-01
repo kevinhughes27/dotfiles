@@ -43,5 +43,3 @@ git_push() {
     return 1
   fi
 }
-
-alias gp='git_push'
