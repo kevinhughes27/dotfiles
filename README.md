@@ -63,7 +63,7 @@ cd ~/dotfiles
 
 `neovim` will bootstrap itself on first open.
 
-From a configured system `./setup.sh -r <remote>` host can be used to copy my standalone `bashrc`, `vimrc` and `gitconfig` to a remote host. `fzf` will also be copied.
+From a configured system `./setup.sh -r <remote>` can be used to copy my standalone `bashrc`, `vimrc` and `gitconfig` to a remote host. `fzf` will also be copied.
 
 
 .localrc
