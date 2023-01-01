@@ -85,7 +85,7 @@ sw = "!f() { git branch --sort='-committerdate' | fzf --height=10 | xargs git ch
 # shorten branch commmands
 br = branch
 
-# stands for "set upstream". less typing to set upstream
+# [S]et [U]pstream
 su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 
 # shorten log commands
@@ -101,29 +101,38 @@ wdiff = diff -w --word-diff=color
 whatadded = log --diff-filter=A
 whattouched = log --diff-filter=M
 
-# stands for "branch delete"
+# [L]og [S]earch
+ls = "!f() { \
+  local format='%C(yellow)%h%C(red)%d%C(reset) - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)'; \
+  local preview='git show --color=always {1}'; \
+  git log --color=always --format=\"$format\" $@ | \
+    fzf --ansi --no-sort --no-height --reverse --multi --delimiter ' ' --preview \"$preview\" | \
+      cut -d ' ' -f1; \
+}; f"
+
+# [B]ranch [D]elete
 bd = "!f() { git branch | fzf --multi | xargs git branch -D; }; f"
 
-# stands for "fresh". switch to master/main and pull
+# [F]resh switch to master/main and pull
 fr = "!f() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   git checkout $mainbranch && git pull --autostash; \
 }; f"
 
-# stands for "new branch". `git nb foo` will create a new branch named `foo` based off the latest master/main.
+# [N]ew [B]ranch". `git nb foo` will create a new branch named `foo` based off the latest master/main.
 nb = "!f() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   git checkout $mainbranch && git pull && git checkout -b $1; \
 }; f"
 
-# rebase the current branch against fresh master/main
+# [R]ebase the current branch against fresh master/main
 r = "!git_rebase() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   git fetch origin $mainbranch:$mainbranch; \
   git rebase $mainbranch; \
 }; git_rebase"
 
-# `git ri` does an interactive rebase from the branch point
+# [R]ebase [I]nteractive `git ri` does an interactive rebase from the branch point
 ri = "!git_rebase_i() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   local currbranch=`git rev-parse --abbrev-ref HEAD`; \
