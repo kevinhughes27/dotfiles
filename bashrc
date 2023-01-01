@@ -47,3 +47,4 @@ fi
 # aliases
 alias gs='git status'
 alias gr='git r'
+alias gp='git p'
