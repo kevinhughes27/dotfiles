@@ -148,19 +148,16 @@ p = "!git_push() { \
   if [ \"$@##*-d*\" ]; then echo \"-d arg not allowed\"; exit 1; fi; \
   if [ $currbranch = \"HEAD\" ]; then echo \"not on a branch\"; exit 1; fi; \
   if [ $currbranch = \"master\" ] || [ $currbranch = \"main\" ]; then \
+    if [ $nargs > 0 ]; then echo \"$currbranch push no args allowed\"; exit 1; fi; \
     echo \"push $currbranch, Are you sure? (y/n)\"; \
     read REPLY; \
     if [ $REPLY = \"y\" ] || [ $REPLY = \"Y\" ] ; then \
-      if [ $nargs = 0 ]; then \
-        git push origin $currbranch; \
-      else \
-        echo \"master/main push no args allowed\"; exit 1; \
-      fi;\
+      git push origin $currbranch; \
     else \
       echo \"git push aborted\"; exit 1; \
     fi;\
   else \
-    # branch is not master or main. allow args \
+    echo \"branch is not master or main. allow args\" > /dev/null; \
     git push origin $currbranch $@; \
   fi; \
 }; git_push"
