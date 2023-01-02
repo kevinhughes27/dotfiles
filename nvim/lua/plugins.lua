@@ -1,141 +1,147 @@
 -- Plugins
 
-local function get_config(name)
-  return string.format('require("config/%s")', name)
+-- bootstrap
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({ 'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath })
 end
+vim.opt.rtp:prepend(lazypath)
 
-require('packer').startup({ function(use)
-  use 'wbthomason/packer.nvim'
-
+require('lazy').setup({
   -- lua utils
-  use 'nvim-lua/plenary.nvim'
+  {'nvim-lua/plenary.nvim'},
 
   -- theme
-  use 'navarasu/onedark.nvim'
+  {
+    'navarasu/onedark.nvim',
+    priority=1000,
+    config = function() require('config/onedark') end,
+  },
 
   -- icons
-  use 'kyazdani42/nvim-web-devicons'
+  {
+    'kyazdani42/nvim-web-devicons',
+    config = function() require('config/nvim-web-devicons') end,
+  },
 
   -- statusline
-  use {
+  {
     'nvim-lualine/lualine.nvim',
-    config = get_config('lualine'),
-  }
+    config = function() require('config/lualine') end,
+  },
 
   -- tabline
-  use {
+  {
     'rafcamlet/tabline-framework.nvim',
-    config = get_config('tabline'),
-  }
+    config = function() require('config/tabline') end,
+  },
 
   -- file tree
-  use {
+  {
     'kyazdani42/nvim-tree.lua',
-    config = get_config('nvim-tree'),
-  }
+    config = function() require('config/nvim-tree') end,
+  },
 
   -- gitsigns
-  use {
+  {
     'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end
-  }
+    config = function() require('gitsigns').setup() end,
+  },
 
   -- remote copy
-  use {
+  {
     'ojroques/nvim-osc52',
     config = function()
       require('osc52').setup({ silent = true })
     end
-  }
+  },
 
   -- github link copy :GH
-  use {
+  {
     'ruifm/gitlinker.nvim',
-    requires = { 'preservim/vimux' },
-  }
+    dependencies = { 'preservim/vimux' },
+  },
 
   -- highlight urls
-  use 'itchyny/vim-highlighturl'
+  {'itchyny/vim-highlighturl'},
 
   -- autolist
-  use {
+  {
     'gaoDean/autolist.nvim',
-    config = function()
-      require('autolist').setup({})
-    end
-  }
+    config = function() require('autolist').setup({}) end,
+  },
 
   -- seamless split/tmux navigation
-  use {
+  {
     'christoomey/vim-tmux-navigator',
     config = function()
       vim.g.tmux_navigator_no_mappings = 1
       vim.g.tmux_navigator_save_on_switch = 2
     end
-  }
+  },
 
   -- smart split resize
-  use {
+  {
     'mrjones2014/smart-splits.nvim',
-    config = function() require('smart-splits').setup({}) end
-  }
+    config = function() require('smart-splits').setup({}) end,
+  },
 
   -- fzf
-  use {
+  {
     'junegunn/fzf',
-    config = get_config('fzf'),
-  }
+    config = function() require('config/fzf') end,
+  },
 
   -- test running
-  use {
+  {
     'vim-test/vim-test',
-    requires = { 'preservim/vimux' },
+    dependencies = { 'preservim/vimux' },
     config = function()
       vim.g['test#strategy'] = 'vimux'       -- make test commands execute using vimux
       vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
       vim.g['VimuxUseNearest'] = 0           -- don't use an exisiting pane
       vim.g['VimuxHeight'] = '25'
     end
-  }
+  },
 
   -- syntax highlighting
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    config = get_config('treesitter')
-  }
+    config = function() require('config/treesitter') end,
+  },
 
   -- lsp
-  use {
+  {
     'junnplus/nvim-lsp-setup',
-    requires = {
+    dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
       'folke/neodev.nvim',
     },
-    config = get_config('lsp')
-  }
+    config = function() require('config/lsp') end,
+  },
 
   -- null-ls (formatting)
-  use {
+  {
     'jose-elias-alvarez/null-ls.nvim',
-    config = get_config('null-ls')
-  }
+    config = function() require('config/null-ls') end,
+  },
 
   -- snippets
-  use {
+  {
     'L3MON4D3/LuaSnip',
     config = function()
       require('luasnip.loaders.from_vscode').lazy_load({
         paths = { '~/dotfiles/nvim/snippets' }
       })
     end
-  }
+  },
 
   -- completion
-  use {
+  {
     'hrsh7th/nvim-cmp',
-    requires = {
+    dependencies = {
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-emoji',
       'hrsh7th/cmp-buffer',
@@ -144,45 +150,32 @@ require('packer').startup({ function(use)
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
     },
-    config = get_config('nvim-cmp'),
-  }
+    config = function() require('config/nvim-cmp') end,
+  },
 
   -- gcc and gc + motion to comment
-  use {
+  {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
-  }
+  },
 
   -- remember cursor position
-  use {
+  {
     'farmergreg/vim-lastplace',
     config = function()
       vim.g.lastplace_ignore_buftype = 'quickfix,nofile,help,NvimTree'
     end
-  }
+  },
 
   -- sublime style multiple cursors. ctrl-n to start
-  use {
+  {
     'mg979/vim-visual-multi',
     config = function()
       -- disable visual-multi-mappings
       -- (it binds to ctrl up/down which I use for navigation)
       vim.g.VM_default_mappings = 0
     end
-  }
-end,
-config = {
-  display = {
-    open_fn = function()
-      return require('packer.util').float({ border = 'single' })
-    end
-  }
-}})
-
--- automatically source and re-compile packer whenever config is saved
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
-vim.api.nvim_create_autocmd('BufWritePost', {
-  command = 'source <afile> | PackerCompile',
-  group = packer_group,
-  pattern = 'nvim/**/*.lua',
-})
+  },
+},
+-- lazy opts
+{})
