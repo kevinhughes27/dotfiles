@@ -51,3 +51,7 @@ endfunction
 
 nnoremap <buffer><silent> <CR> :call Check()<CR>
 nnoremap <buffer><silent> <space> :call Check()<CR>
+
+" disable /usr/local/share/nvim/runtime/ftplugin/markdown.vim
+" from overwriting tabstop et al
+let g:markdown_recommended_style = 0
