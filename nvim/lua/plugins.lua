@@ -160,7 +160,10 @@ local plugins = {
     },
     config = function() require('config/nvim-cmp') end,
     lazy = true,
-    event = 'InsertEnter',
+    event = {
+      'InsertEnter',
+      'CmdlineEnter'
+    }
   },
 
   -- lua utils
