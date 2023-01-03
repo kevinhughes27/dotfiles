@@ -4,7 +4,7 @@ local plugins = {
   -- theme
   {
     'navarasu/onedark.nvim',
-    priority=1000,
+    priority=100,
     config = function() require('config/onedark') end,
   },
 
@@ -36,36 +36,10 @@ local plugins = {
     config = function() require('config/nvim-tree') end,
   },
 
-  -- lua utils
-  {'nvim-lua/plenary.nvim'},
-
-  -- gitsigns
+  -- fzf
   {
-    'lewis6991/gitsigns.nvim',
-    config = function() require('gitsigns').setup() end,
-  },
-
-  -- remote copy
-  {
-    'ojroques/nvim-osc52',
-    config = function()
-      require('osc52').setup({ silent = true })
-    end
-  },
-
-  -- github link copy :GH
-  {
-    'ruifm/gitlinker.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
-
-  -- highlight urls
-  {'itchyny/vim-highlighturl'},
-
-  -- autolist
-  {
-    'gaoDean/autolist.nvim',
-    config = function() require('autolist').setup({}) end,
+    'junegunn/fzf',
+    config = function() require('config/fzf') end,
   },
 
   -- seamless split/tmux navigation
@@ -81,12 +55,6 @@ local plugins = {
   {
     'mrjones2014/smart-splits.nvim',
     config = function() require('smart-splits').setup({}) end,
-  },
-
-  -- fzf
-  {
-    'junegunn/fzf',
-    config = function() require('config/fzf') end,
   },
 
   -- test running
@@ -106,6 +74,9 @@ local plugins = {
     'nvim-treesitter/nvim-treesitter',
     config = function() require('config/treesitter') end,
   },
+
+  -- highlight urls
+  {'itchyny/vim-highlighturl'},
 
   -- lsp
   {
@@ -143,10 +114,39 @@ local plugins = {
     config = function() require('config/nvim-cmp') end,
   },
 
+  -- lua utils
+  {'nvim-lua/plenary.nvim'},
+
+  -- gitsigns
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function() require('gitsigns').setup() end,
+  },
+
+  -- remote copy
+  {
+    'ojroques/nvim-osc52',
+    config = function()
+      require('osc52').setup({ silent = true })
+    end
+  },
+
+  -- github link copy :GH
+  {
+    'ruifm/gitlinker.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
   -- gcc and gc + motion to comment
   {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
+  },
+
+  -- autolist
+  {
+    'gaoDean/autolist.nvim',
+    config = function() require('autolist').setup({}) end,
   },
 
   -- remember cursor position
