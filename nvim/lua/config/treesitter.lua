@@ -37,8 +37,4 @@ require('nvim-treesitter.configs').setup({
     'vim',
     'yaml'
   },
-  playground = {
-    enable = true,
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-  }
 })

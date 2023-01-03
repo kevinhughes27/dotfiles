@@ -1,5 +1,3 @@
--- Colors
-
 local onedark = require('onedark')
 
 onedark.setup({
@@ -18,6 +16,9 @@ onedark.setup({
     CmpItemKindFunction = {fg = '$blue'},
     CmpItemKindKeyword = {fg = '$red'},
     CmpItemKindText = {fg = '$fg'},
+  },
+  code_style = {
+    comments = 'none',
   }
 })
 
