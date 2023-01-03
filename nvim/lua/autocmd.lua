@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd(
 )
 
 local yp_group = vim.api.nvim_create_augroup('YankPost', { clear = true })
-
 vim.api.nvim_create_autocmd(
   'TextYankPost',
   {
@@ -28,3 +27,19 @@ vim.api.nvim_create_autocmd(
     end
   }
 )
+
+-- automatically source when config is saved
+local cf_group = vim.api.nvim_create_augroup('Config', { clear = true })
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  group = cf_group,
+  pattern = 'nvim/**/*.lua',
+  callback = function()
+    local file = vim.api.nvim_buf_get_name(0)
+    -- can't re-source init.lua or plugins.lua with lazy.nvim
+    -- init.lua is not included by the pattern
+    if not string.find(file, "plugins.lua") then
+      vim.cmd("source " .. file)
+    end
+  end
+})

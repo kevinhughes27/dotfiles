@@ -1,16 +1,6 @@
 -- Plugins
 
--- bootstrap
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({ 'git', 'clone', '--filter=blob:none', 'https://github.com/folke/lazy.nvim.git', '--branch=stable', lazypath })
-end
-vim.opt.rtp:prepend(lazypath)
-
-require('lazy').setup({
-  -- lua utils
-  {'nvim-lua/plenary.nvim'},
-
+local plugins = {
   -- theme
   {
     'navarasu/onedark.nvim',
@@ -21,7 +11,7 @@ require('lazy').setup({
   -- icons
   {
     'kyazdani42/nvim-web-devicons',
-    config = function() require('config/nvim-web-devicons') end,
+    config = function() require('config/icons') end,
   },
 
   -- statusline
@@ -39,8 +29,15 @@ require('lazy').setup({
   -- file tree
   {
     'kyazdani42/nvim-tree.lua',
+    lazy = true,
+    keys = {
+      { '<C-b>', ':NvimTreeFindFileToggle<CR>', silent = true },
+    },
     config = function() require('config/nvim-tree') end,
   },
+
+  -- lua utils
+  {'nvim-lua/plenary.nvim'},
 
   -- gitsigns
   {
@@ -59,7 +56,7 @@ require('lazy').setup({
   -- github link copy :GH
   {
     'ruifm/gitlinker.nvim',
-    dependencies = { 'preservim/vimux' },
+    dependencies = { 'nvim-lua/plenary.nvim' },
   },
 
   -- highlight urls
@@ -116,26 +113,11 @@ require('lazy').setup({
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'jose-elias-alvarez/null-ls.nvim',
       'neovim/nvim-lspconfig',
       'folke/neodev.nvim',
     },
     config = function() require('config/lsp') end,
-  },
-
-  -- null-ls (formatting)
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function() require('config/null-ls') end,
-  },
-
-  -- snippets
-  {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require('luasnip.loaders.from_vscode').lazy_load({
-        paths = { '~/dotfiles/nvim/snippets' }
-      })
-    end
   },
 
   -- completion
@@ -149,6 +131,14 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind-nvim',
+      {
+        'L3MON4D3/LuaSnip',
+        config = function()
+          require('luasnip.loaders.from_vscode').lazy_load({
+            paths = { '~/dotfiles/nvim/snippets' }
+          })
+        end
+      },
     },
     config = function() require('config/nvim-cmp') end,
   },
@@ -176,6 +166,6 @@ require('lazy').setup({
       vim.g.VM_default_mappings = 0
     end
   },
-},
--- lazy opts
-{})
+}
+
+require('lazy').setup(plugins, {})

@@ -42,8 +42,8 @@ map('n', '<C-Right>', ':TmuxNavigateRight<CR>', {silent = true})
 map('n', '<C-t>', ':w<CR> :TestFile<CR>', {})
 map('n', '<C-l>', ':w<CR> :TestNearest<CR>', {})
 
--- nvim-tree
-map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
+-- nvim-tree (set by lazy)
+-- map('n', '<C-b>', ':NvimTreeFindFileToggle<CR>', {silent = true})
 
 -- fzf
 map('n', '<C-p>', ':Files<CR>')
