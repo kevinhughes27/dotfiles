@@ -55,6 +55,7 @@ local plugins = {
     keys = {
       { '<C-b>', ':NvimTreeFindFileToggle<CR>', silent = true },
     },
+    cmd = 'NvimTreeOpen',
     config = function() require('config/nvim-tree') end,
   },
 

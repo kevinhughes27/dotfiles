@@ -8,8 +8,9 @@ My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell wi
 dependencies
 ------------
 
-The `setup` script will do most of the work but there are a few dependencies that need to be installed manually with the system package manager or `cargo` since they're all rust:
+The `setup` script will do most of the work but there are a few dependencies that need to be installed manually with the system package manager or built from source. `cargo` can be used for the rust dependencies:
 
+  * `neovim` (greater than 0.8, prefer nightly)
   * `bat` / `batcat`
   * `rg` / `ripgrep`
 
