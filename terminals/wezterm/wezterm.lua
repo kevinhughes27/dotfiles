@@ -6,7 +6,7 @@ return {
     "Hack Nerd Font",
     "Noto Color Emoji",
   },
-  font_size = 14,
+  font_size = 11,
   enable_tab_bar = false,
   window_background_opacity = 1.0,
   keys = {
