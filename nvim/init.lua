@@ -1,5 +1,5 @@
 require 'bootstrap'
 require 'plugins'
 require 'settings'
-require 'autocmd'
+require 'autocmds'
 require 'commands'
