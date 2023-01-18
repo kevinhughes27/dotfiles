@@ -1,11 +1,11 @@
 " Markdown
 
-" disable /usr/local/share/nvim/runtime/ftplugin/markdown.vim
-" from overwriting tabstop et al
-let g:markdown_recommended_style = 0
-
 " enable linewrap
 setlocal wrap linebreak nolist
+
+" set tabstop back to 2
+" overwrite all related settings from /usr/local/share/nvim/runtime/ftplugin/markdown.vim
+setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 
 " enable conceal
 setlocal conceallevel=2
