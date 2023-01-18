@@ -1,5 +1,9 @@
 " Markdown
 
+" disable /usr/local/share/nvim/runtime/ftplugin/markdown.vim
+" from overwriting tabstop et al
+let g:markdown_recommended_style = 0
+
 " enable linewrap
 setlocal wrap linebreak nolist
 
@@ -33,25 +37,3 @@ syn region markdownLinkText
   \ nextgroup=markdownLink,markdownId skipwhite
   \ contains=@markdownInline,markdownLineStart
   \ concealends
-
-" check and uncheck checkboxes
-" https://www.reddit.com/r/vim/comments/c2h28r/a_small_markdown_mapping_for_checkboxes/
-function Check()
-  let l:line=getline('.')
-  let l:curs=winsaveview()
-
-  if l:line=~?'\s*-\s*\[\s*\].*'
-      s/\[\s*\]/[x]/
-  elseif l:line=~?'\s*-\s*\[x\].*'
-      s/\[x\]/[ ]/
-  endif
-
-  call winrestview(l:curs)
-endfunction
-
-nnoremap <buffer><silent> <CR> :call Check()<CR>
-nnoremap <buffer><silent> <space> :call Check()<CR>
-
-" disable /usr/local/share/nvim/runtime/ftplugin/markdown.vim
-" from overwriting tabstop et al
-let g:markdown_recommended_style = 0
