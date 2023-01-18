@@ -1,6 +1,6 @@
 -- Plugins
 --
-local plugins = {
+return {
   -- theme
   {
     'navarasu/onedark.nvim',
@@ -245,5 +245,3 @@ local plugins = {
     },
   },
 }
-
-require('lazy').setup(plugins, {})

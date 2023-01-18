@@ -62,3 +62,31 @@ function Smart_dd()
   end
 end
 map('n', 'dd', Smart_dd, {expr = true})
+
+-- disable builtins
+-- they will still show in a --startuptime output but the times will be much faster
+-- because it is short-circuited to not load here
+local builtins = {
+  "gzip",
+  "2html_plugin",
+  "getscript",
+  "getscriptPlugin",
+  "logiPat",
+  "matchit",
+  "matchparen",
+  "netrw",
+  "netrwFileHandlers",
+  "netrwPlugin",
+  "netrwSettings",
+  "rrhelper",
+  "tar",
+  "tarPlugin",
+  "vimball",
+  "vimballPlugin",
+  "zip",
+  "zipPlugin",
+}
+
+for _, plugin in ipairs(builtins) do
+  vim.g["loaded_" .. plugin] = 1
+end
