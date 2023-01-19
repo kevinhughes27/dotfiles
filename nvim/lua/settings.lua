@@ -45,8 +45,6 @@ local builtins = {
   'getscript',
   'getscriptPlugin',
   'logiPat',
-  'matchit',
-  'matchparen',
   'netrw',
   'netrwFileHandlers',
   'netrwPlugin',
