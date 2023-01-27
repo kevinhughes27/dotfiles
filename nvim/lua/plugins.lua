@@ -241,7 +241,7 @@ return {
     end,
     lazy = true,
     keys = {
-      { '<C-n>', ':call g:VM_maps["Find Under"][1]' }
+      { '<C-n>', ':call g:VM_maps["Find Under"][1]', mode = {'n', 'v'}}
     },
   },
 }
