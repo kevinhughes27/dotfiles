@@ -10,6 +10,8 @@ dependencies
 
 The `setup` script will do most of the work but there are a few dependencies that need to be installed manually with the system package manager or built from source. `cargo` can be used for the rust dependencies:
 
+  * `zsh`
+  * `tmux` (greater than 3.2a, prefer head)
   * `neovim` (greater than 0.8, prefer nightly)
   * `bat` / `batcat`
   * `rg` / `ripgrep`
