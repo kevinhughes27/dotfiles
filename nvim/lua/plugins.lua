@@ -225,9 +225,9 @@ return {
 
   -- remember cursor position
   {
-    'farmergreg/vim-lastplace',
-    init = function()
-      vim.g.lastplace_ignore_buftype = 'quickfix,nofile,help,NvimTree'
+    'vladdoster/remember.nvim',
+    config = function()
+      require('remember')
     end
   },
 
