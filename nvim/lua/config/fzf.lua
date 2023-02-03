@@ -149,7 +149,7 @@ local recent_buffers = {}
 _G.track_recent_buffers = function()
   local bufnr = vim.api.nvim_get_current_buf()
   local file = vim.api.nvim_buf_get_name(bufnr)
-  table.insert(recent_buffers, file)
+  recent_buffers[#recent_buffers+1] = file
 end
 
 vim.cmd([[
