@@ -16,7 +16,7 @@ lsp_setup.setup({
   end,
 
   servers = {
-    sumneko_lua = {
+    lua_ls = {
       settings = {
         Lua = {
           workspace = {
