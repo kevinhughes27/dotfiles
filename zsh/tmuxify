@@ -6,11 +6,12 @@ tmuxify() {
     if tmux ls &> /dev/null; then
       # tmux is already running
     else
-      # create a default tmux session with my notes open
-      tmux new-session -s main -n main -d
-      tmux new-window -t main:2 -n notes -c $HOME/notes nvim +NvimTreeOpen
-      tmux select-window -t main:1
-      tmux attach
+      # create a default tmux session
+      local session="main"
+      tmux new-session -s $session -n dots -d -c $HOME/dotfiles nvim +NvimTreeOpen
+      tmux new-window -t $session:2 -n notes -c $HOME/notes nvim +NvimTreeOpen
+      tmux select-window -t $session:1
+      tmux attach -t $session
     fi
   fi
 }

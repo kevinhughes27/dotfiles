@@ -188,39 +188,12 @@ return {
   {
     'ruifm/gitlinker.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    lazy = true,
-    cmd = 'GH',
   },
 
   -- gcc and gc + motion to comment
   {
     'numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
-  },
-
-  -- autolist
-  {
-    'gaoDean/autolist.nvim',
-    config = function()
-      local autolist = require('autolist')
-      autolist.setup()
-
-      autolist.create_mapping_hook('i', '<CR>', autolist.new)
-      autolist.create_mapping_hook('i', '<Tab>', autolist.indent)
-      autolist.create_mapping_hook('i', '<S-Tab>', autolist.indent, '<C-D>')
-      autolist.create_mapping_hook('n', 'o', autolist.new)
-      autolist.create_mapping_hook('n', 'O', autolist.new_before)
-      autolist.create_mapping_hook('n', '>>', autolist.indent)
-      autolist.create_mapping_hook('n', '<<', autolist.indent)
-      autolist.create_mapping_hook('n', '<CR>', autolist.invert_entry, '')
-
-      vim.api.nvim_create_autocmd('TextChanged', {
-        pattern = '*',
-        callback = function()
-          vim.cmd.normal({autolist.force_recalculate(nil, nil), bang = false})
-        end
-      })
-    end,
   },
 
   -- remember cursor position
