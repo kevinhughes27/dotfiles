@@ -25,28 +25,13 @@ return {
     'rafcamlet/tabline-framework.nvim',
     config = function()
       require('config/tabline')
-
-      -- smart tab next|prev that moved the cursor out of the tree
-      -- if necessary. this makes the tabline display a file instead of
-      -- NvimTree_ after tabbing away.
-      -- this doesn't really work. new tab is one of the main issues
-      -- could I do this with a tab autocmd? TabLeave sounds promising
-      function Smart_tab(tabcmd)
-        local current_buffer = vim.api.nvim_buf_get_name(0)
-
-        if current_buffer:match('NvimTree_%d+') then
-          vim.api.nvim_exec('winc l', true)
-        end
-
-        vim.api.nvim_exec(tabcmd, true)
-      end
     end,
     lazy = true,
     event = 'TabNew',
     keys = {
       { '<C-z>', ':tab split<CR>', silent = true, desc = "zoom (opens new tab)" },
-      { '<Tab>', function() Smart_tab('tabnext') end },
-      { '<S-Tab>', function() Smart_tab('tabprev') end },
+      { '<Tab>', ':tabnext<CR>', silent = true },
+      { '<S-Tab>', ':tabprev<CR>', silent = true },
     }
   },
 

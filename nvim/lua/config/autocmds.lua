@@ -43,3 +43,15 @@ vim.api.nvim_create_autocmd('BufWritePost', {
     end
   end
 })
+
+-- automatically leave NvimTree before leaving a tab
+-- this makes the tabline display a filename which is more useful
+vim.api.nvim_create_autocmd('TabLeave', {
+  callback = function()
+    local current_buffer = vim.api.nvim_buf_get_name(0)
+
+    if current_buffer:match('NvimTree_%d+') then
+      vim.api.nvim_exec('winc l', true)
+    end
+  end
+})
