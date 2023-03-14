@@ -64,9 +64,6 @@ return {
   -- fzf
   {
     'ibhagwan/fzf-lua',
-    dependencies = {
-      'junegunn/fzf'
-    },
     lazy = false,
     config = function()
       local actions = require('fzf-lua.actions')
