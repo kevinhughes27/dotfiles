@@ -25,26 +25,13 @@ return {
     'rafcamlet/tabline-framework.nvim',
     config = function()
       require('config/tabline')
-
-      -- smart tab next|prev that moved the cursor out of the tree
-      -- if necessary. this makes the tabline display a file instead of
-      -- NvimTree_ after tabbing away.
-      function Smart_tab(tabcmd)
-        local current_buffer = vim.api.nvim_buf_get_name(0)
-
-        if current_buffer:match('NvimTree_%d+') then
-          vim.api.nvim_exec('winc l', true)
-        end
-
-        vim.api.nvim_exec(tabcmd, true)
-      end
     end,
     lazy = true,
     event = 'TabNew',
     keys = {
       { '<C-z>', ':tab split<CR>', silent = true, desc = "zoom (opens new tab)" },
-      { '<Tab>', function() Smart_tab('tabnext') end },
-      { '<S-Tab>', function() Smart_tab('tabprev') end },
+      { '<Tab>', ':tabnext<CR>', silent = true },
+      { '<S-Tab>', ':tabprev<CR>', silent = true },
     }
   },
 
@@ -61,13 +48,34 @@ return {
 
   -- fzf
   {
-    'junegunn/fzf',
-    config = function() require('config/fzf') end,
+    'ibhagwan/fzf-lua',
     lazy = false,
+    config = function()
+      local actions = require('fzf-lua.actions')
+      require('fzf-lua').setup({
+        fzf_bin = 'fzf-tmux',
+        fzf_opts = { ['--border'] = 'rounded' },
+        fzf_tmux_opts = { ['-p'] = '90%,90%' },
+        winopts = { preview = { default = 'bat', layout = 'horizontal' } },
+        oldfiles = {
+          cwd_only = true,
+          stat_file = true, -- verify files exist on disk
+          include_current_session = true, -- include bufs from current session
+        },
+        actions = {
+          files = {
+            ['default'] = actions.file_edit_or_qf,
+            ['ctrl-s']  = actions.file_split,
+            ['ctrl-h']  = actions.file_vsplit,
+            ['ctrl-t']  = actions.file_tabedit,
+          },
+        },
+      })
+    end,
     keys = {
-      { '<C-p>', ':Files<CR>' },
-      { '<C-h>', ':RecentFiles<CR>' },
-      { '<C-f>', ':RG <C-R><C-W><CR>', silent = true },
+      { '<C-p>', ':FzfLua files<CR>' },
+      { '<C-h>', ':FzfLua oldfiles<CR>' },
+      { '<C-f>', ':FzfLua grep_cword<CR>' },
     }
   },
 
@@ -103,7 +111,9 @@ return {
   -- test running
   {
     'vim-test/vim-test',
-    dependencies = { 'preservim/vimux' },
+    dependencies = {
+      'preservim/vimux'
+    },
     init = function()
       vim.g['test#strategy'] = 'vimux'       -- make test commands execute using vimux
       vim.g['test#python#runner'] = 'pytest' -- have to configure which python runner to use https://github.com/vim-test/vim-test#python
@@ -187,7 +197,9 @@ return {
   -- github link copy :GH
   {
     'ruifm/gitlinker.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
   },
 
   -- gcc and gc + motion to comment
