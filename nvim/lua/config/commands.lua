@@ -3,6 +3,14 @@
 local create = vim.api.nvim_create_user_command
 local job = require('plenary.job')
 
+-- ripgrep shortened command
+create('Rg', function()
+  vim.api.nvim_exec('FzfLua live_grep', true)
+end, {
+  nargs = 0,
+  desc = 'Start FzfLua live_grep'
+})
+
 -- notes push
 create('Np', function()
   vim.api.nvim_exec('write', true)
