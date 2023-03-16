@@ -70,6 +70,7 @@ function setup() {
   link ~/dotfiles/nvim ~/.config/nvim
 
   link ~/dotfiles/tools/pdbrc ~/.pdbrc
+  link ~/dotfiles/tools/bat ~/.config/bat
   link ~/dotfiles/tools/bottom ~/.config/bottom
   link ~/dotfiles/tools/ulauncher ~/.config/ulauncher
   link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle

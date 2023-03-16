@@ -1,0 +1,10 @@
+# Set the theme
+--theme="OneHalfDark"
+
+# Set some extra syntax types
+# need to run `bat cache --build` to add or update a new syntax from this folder
+# `bat --list-languages` is useful to see what is already configured
+#
+--map-syntax='*tmux.conf:Tmux' # https://github.com/sharkdp/bat/issues/1703
+--map-syntax='*vimrc:VimL'
+--map-syntax='*zshrc:Bourne Again Shell (bash)'

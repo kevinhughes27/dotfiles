@@ -32,9 +32,6 @@ stty stop undef
 # editor
 export EDITOR='nvim'
 
-# bat theme
-export BAT_THEME='OneHalfDark'
-
 # colors (onedark)
 green="#98c379"
 blue="#61afef"
