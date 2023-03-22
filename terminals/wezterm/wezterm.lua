@@ -19,7 +19,7 @@ return {
   window_background_opacity = 1.0,
 
   keys = {
-    { key = 'v', mods = 'CTRL', action = wezterm.action.Paste },
+    { key = 'v', mods = 'CTRL', action = wezterm.action.PasteFrom 'Clipboard' },
     { key = 'F11', action = wezterm.action.ToggleFullScreen },
   },
 
