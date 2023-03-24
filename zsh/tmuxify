@@ -6,12 +6,27 @@ tmuxify() {
     if tmux ls &> /dev/null; then
       # tmux is already running
     else
-      # create a default tmux session
-      local session="main"
-      tmux new-session -s $session -n dots -d -c $HOME/dotfiles nvim +NvimTreeOpen
-      tmux new-window -t $session:2 -n notes -c $HOME/notes nvim +NvimTreeOpen
-      tmux select-window -t $session:1
-      tmux attach -t $session
+      _default_tmux_session
     fi
   fi
+}
+
+_default_tmux_session() {
+  local session="main"
+
+  tmux new-session -s $session -d
+
+  # default windows
+  if [ -e "$HOME/.tmuxify" ]; then
+    tmux source "$HOME/.tmuxify" # can and should use $session inside
+  else
+    tmux new-window -t $session -n dots  -c $HOME/dotfiles nvim +NvimTreeOpen
+    tmux new-window -t $session -n notes -c $HOME/notes nvim +NvimTreeOpen
+  fi
+
+  # kill the default blank window. then select the new first window
+  tmux kill-window -t $session:1
+  tmux select-window -t $session:1
+
+  tmux attach -t $session
 }
