@@ -26,13 +26,14 @@ create('Np', function()
     local timestamp = vim.fn.strftime('%Y-%m-%dT%H:%M:%S%z')
 
     -- update frontmatter timestamp
+    -- needed for sort in GitJournal on Android
     job:new({
       command = 'sed',
       args = {'-i', 's/modified:.*/modified: ' .. timestamp .. '/g', filepath},
       cwd = cwd,
     }):sync()
 
-    -- save view
+    -- save view (cursor position)
     local view = vim.fn.winsaveview()
 
     -- git add
@@ -45,7 +46,7 @@ create('Np', function()
     -- update view
     vim.api.nvim_exec('e', true)
     vim.api.nvim_exec('Gitsigns refresh', true)
-    vim.fn.winrestview(view)
+    vim.defer_fn(function() vim.fn.winrestview(view) end, 0)
 
     -- commit and push
     local git_commit = 'git commit -m "Updated Notes"'
