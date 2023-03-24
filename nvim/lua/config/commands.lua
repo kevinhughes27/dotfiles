@@ -15,38 +15,16 @@ end, {
 
 -- notes push
 create('Np', function()
-  vim.api.nvim_exec('write', true)
-
   local cwd = vim.fn.getcwd()
   local notesdir = os.getenv('HOME') .. '/notes'
   local is_notes = string.find(cwd, notesdir)
 
   if is_notes then
-    local filepath = vim.fn.expand('%:.')
-    local timestamp = vim.fn.strftime('%Y-%m-%dT%H:%M:%S%z')
-
-    -- update frontmatter timestamp
-    -- needed for sort in GitJournal on Android
-    job:new({
-      command = 'sed',
-      args = {'-i', 's/modified:.*/modified: ' .. timestamp .. '/g', filepath},
-      cwd = cwd,
-    }):sync()
-
-    -- save view (cursor position)
-    local view = vim.fn.winsaveview()
-
     -- git add
-    job:new({
-      command = 'git',
-      args = {'add', '.'},
-      cwd = cwd,
-    }):sync()
+    job:new({ command = 'git', args = {'add', '.'}, cwd = cwd, }):sync()
 
     -- update view
-    vim.api.nvim_exec('e', true)
     vim.api.nvim_exec('Gitsigns refresh', true)
-    vim.defer_fn(function() vim.fn.winrestview(view) end, 0)
 
     -- commit and push
     local git_commit = 'git commit -m "Updated Notes"'
