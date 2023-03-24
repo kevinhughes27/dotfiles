@@ -70,6 +70,9 @@ alias bi='bundle install'
 alias bx='bundle exec'
 alias dc='docker-compose'
 alias rw='tmux rename-window'
+# https://github.com/npiv/chatblade
+# -i for interative -l to continue from previous query
+alias ai='chatblade -s' # --help still works with the stream option added
 
 # remove extra new lines from paste
 bracketed-paste() {
