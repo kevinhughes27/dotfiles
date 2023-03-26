@@ -20,9 +20,9 @@ Fonts also need to be configured on the base host (the system that runs the term
 
 ```sh
 if [ uname = "Darwin" ]; then
-  FONT_DIR="~/Library/Fonts"
+  FONT_DIR="$HOME/Library/Fonts"
 else
-  FONT_DIR="~/.local/share/fonts"
+  FONT_DIR="$HOME/.local/share/fonts"
 fi
 
 mkdir -p $FONT_DIR
