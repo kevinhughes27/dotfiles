@@ -64,7 +64,7 @@ cd ~/dotfiles
 ./setup.sh
 ```
 
-`neovim` will bootstrap itself on first open.
+`neovim` will bootstrap itself on first open. `npm` and `pip` will be needed for Mason to successfully install language servers.
 
 From a configured system `./setup.sh -r <remote>` can be used to copy my standalone `bashrc`, `vimrc` and `gitconfig` to a remote host. `fzf` will also be copied.
 
