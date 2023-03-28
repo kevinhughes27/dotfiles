@@ -1,8 +1,8 @@
 # prompt
-GREEN="\e[01;38;2;152;195;121m"
-RED="\e[01;38;2;224;108;117m"
-BLUE="\e[00;38;2;97;175;239m"
-RESET="\e[00m"
+GREEN="\[\e[01;38;2;152;195;121m\]"
+RED="\[\e[01;38;2;224;108;117m\]"
+BLUE="\[\e[00;38;2;97;175;239m\]"
+RESET="\[\e[00m\]"
 PS1="${GREEN}\u${RESET}@${RED}\h${RESET} \n${BLUE} ❯ ${RESET}"
 
 # to change hostname:
