@@ -41,7 +41,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
       -- needed for sort in GitJournal on Android
       vim.api.nvim_exec([[
         let save_cursor = getpos(".")
-        keepjumps exe '1,10' . 's/^modified: .*/modified: ' . strftime('%Y-%m-%dT%H:%M:%S%z') . '/e'
+        keepjumps exe '1,' . 's/^modified: .*/modified: ' . strftime('%Y-%m-%dT%H:%M:%S%z') . '/e'
         call histdel('search', -1)
         call setpos('.', save_cursor)
         exec ':noh'
