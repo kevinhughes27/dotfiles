@@ -29,10 +29,38 @@ return {
     lazy = true,
     event = 'TabNew',
     keys = {
-      { '<C-z>', ':tab split<CR>', silent = true, desc = "zoom (opens new tab)" },
+      { '<C-z>', ':tab split<CR>', silent = true, desc = 'zoom (opens new tab)' },
       { '<Tab>', ':tabnext<CR>', silent = true },
       { '<S-Tab>', ':tabprev<CR>', silent = true },
     }
+  },
+
+  {
+    'luukvbaal/statuscol.nvim',
+    config = function()
+      local builtin = require('statuscol.builtin')
+
+      require('statuscol').setup({
+        segments = {
+          {
+            sign = { name = { '.*' }, maxwidth = 1, colwidth = 1 },
+          },
+          {
+            text = { builtin.lnumfunc }
+          },
+          {
+            text = { ' ', builtin.foldfunc, ' ' },
+            click = 'v:lua.ScFa',
+            condition = { function()
+              local cwd = vim.fn.getcwd()
+              local notesdir = os.getenv('HOME') .. '/notes'
+              local is_notes = string.find(cwd, notesdir)
+              return is_notes
+            end }
+          },
+        }
+      })
+    end
   },
 
   -- file tree
