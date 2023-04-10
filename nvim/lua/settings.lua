@@ -23,7 +23,8 @@ opt('o', 'termguicolors', true)       -- true color support
 opt('w', 'list', true)                -- show some invisible characters (tabs...)
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
-opt('o', 'signcolumn','yes')          -- always shown signcolumn
+opt('o', 'signcolumn', 'yes')         -- always show signcolumn
+opt('o', 'foldcolumn', '1')           -- always show foldcolumn
 opt('o', 'undofile', true)            -- enable undofile
 opt('o', 'updatetime', 100)           -- update frequency
 
@@ -35,6 +36,15 @@ if os == 'Darwin' then
 else
   opt('o', 'clipboard', 'unnamedplus')
 end
+
+-- Fold settings
+opt('o', 'fillchars', 'fold: ,foldopen:,foldsep: ,foldclose:')
+function _G.custom_fold_text()
+  local line = vim.fn.getline(vim.v.foldstart)
+  local line_count = vim.v.foldend - vim.v.foldstart + 1
+  return line .. " ... " .. line_count .. " lines"
+end
+vim.opt.foldtext = 'v:lua.custom_fold_text()'
 
 -- disable builtins
 -- they will still show in a --startuptime output but the times will be much faster
