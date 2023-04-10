@@ -37,12 +37,11 @@ else
   opt('o', 'clipboard', 'unnamedplus')
 end
 
--- Fold settings
+-- fold settings
 opt('o', 'fillchars', 'fold: ,foldopen:,foldsep: ,foldclose:')
 function _G.custom_fold_text()
-  local line = vim.fn.getline(vim.v.foldstart)
   local line_count = vim.v.foldend - vim.v.foldstart + 1
-  return line .. " ... " .. line_count .. " lines"
+  return line_count .. " lines"
 end
 vim.opt.foldtext = 'v:lua.custom_fold_text()'
 

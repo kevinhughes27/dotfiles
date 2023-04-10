@@ -35,6 +35,7 @@ return {
     }
   },
 
+  -- statuscol (folds)
   {
     'luukvbaal/statuscol.nvim',
     config = function()
@@ -159,6 +160,15 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     config = function() require('config/treesitter') end,
+  },
+
+  -- markdown headings etc
+  {
+    'lukas-reineke/headlines.nvim',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    config = function()
+      require('headlines').setup({})
+    end
   },
 
   -- highlight urls

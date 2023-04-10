@@ -27,7 +27,8 @@ require('nvim-treesitter.configs').setup({
     'latex',
     'lua',
     'make',
-    -- 'markdown', -- messes up my conceals
+    'markdown',
+    'markdown_inline',
     'python',
     'ruby',
     'rust',
