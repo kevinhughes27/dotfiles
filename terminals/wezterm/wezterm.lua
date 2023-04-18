@@ -1,13 +1,20 @@
-local wezterm = require "wezterm"
+local wezterm = require 'wezterm'
+
+local _success, stdout, _stderr = wezterm.run_child_process { 'uname' }
+
+local font_size = 11
+if stdout == 'darwin' then
+  font_size = 14
+end
 
 return {
-  color_scheme = "OneDark (base16)",
+  color_scheme = 'OneDark (base16)',
 
   font = wezterm.font_with_fallback {
-    "Hack Nerd Font",
-    "Noto Color Emoji",
+    'Hack Nerd Font',
+    'Noto Color Emoji',
   },
-  font_size = 11,
+  font_size = font_size,
 
   enable_tab_bar = false,
   window_padding = {
@@ -33,5 +40,5 @@ return {
     },
   },
 
-  audible_bell = "Disabled",
+  audible_bell = 'Disabled',
 }
