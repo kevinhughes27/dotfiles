@@ -2,14 +2,10 @@ local wezterm = require 'wezterm'
 
 local _success, stdout, _stderr = wezterm.run_child_process { 'uname' }
 
-wezterm.log_info(stdout)
-
 local font_size = 11
 if string.match(stdout, 'Darwin') then
   font_size = 14
 end
-
-wezterm.log_info(font_size)
 
 return {
   color_scheme = 'OneDark (base16)',
