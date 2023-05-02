@@ -243,7 +243,12 @@ return {
   -- gcc and gc + motion to comment
   {
     'numToStr/Comment.nvim',
-    config = function() require('Comment').setup() end
+    config = function()
+      require('Comment').setup()
+
+      local ft = require('Comment.ft')
+      ft.set('spec', '#%s')
+    end
   },
 
   -- remember cursor position
