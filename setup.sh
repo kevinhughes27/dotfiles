@@ -95,12 +95,9 @@ function setup-remote() {
   scp vimrc $remote:~/.vimrc
   scp gitconfig $remote:~/.gitconfig
 
-  # copy fzf
-  ssh $remote 'mkdir -p ~/.fzf/bin' &> /dev/null
-  ssh $remote 'mkdir -p ~/.fzf/shell' &> /dev/null
-  scp ~/.fzf/bin/fzf $remote:~/.fzf/bin/fzf
-  scp ~/.fzf/shell/completion.bash $remote:~/.fzf/shell/completion.bash
-  scp ~/.fzf/shell/key-bindings.bash $remote:~/.fzf/shell/key-bindings.bash
+  # setup fzf
+  ssh $remote 'git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf'
+  ssh $remote '~/.fzf/install --key-bindings --completion --no-update-rc --no-zsh'
 }
 
 
