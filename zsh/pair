@@ -83,6 +83,7 @@ function pair() {
   # --check-origin do not allow websocket connection from different origin
   # --index use a custom index.html file (see pair-rebuild-html below)
   ttyd \
+    --writable \
     --credential "$username:$password" \
     --index "$HOME/dotfiles/terminals/pair.html" \
     --client-option titleFixed="pair session" \
@@ -97,10 +98,11 @@ function pair() {
 
 
 function pair-rebuild-html() {
-  pushd ~/src/ttyd/html
+  local ttyd_dir="$HOME/Projects/ttyd"
+  pushd $ttyd_dir/html
   INLINE_FONT=~/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf yarn build
   popd
-  cp ~/src/ttyd/html/dist/inline.html ~/dotfiles/terminals/pair.html
+  cp $ttyd_dir/html/dist/inline.html ~/dotfiles/terminals/pair.html
 }
 
 
