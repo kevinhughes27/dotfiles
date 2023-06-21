@@ -87,7 +87,7 @@ function pair() {
     --credential "$username:$password" \
     --index "$HOME/dotfiles/terminals/pair.html" \
     --client-option titleFixed="pair session" \
-    --client-option fontFamily="Hack Nerd Font" \
+    --client-option fontFamily="Hack Regular Nerd Font Complete" \
     --client-option fontSize=14 \
     --client-option disableLeaveAlert=true \
     --client-option ${theme} \
