@@ -12,6 +12,7 @@ function pair() {
   # generate a new password
   local username="$1"
   local password=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
+  local password="password"
 
   # ip for printing the link
   if [[ `uname` == "Darwin" ]]; then
@@ -85,7 +86,6 @@ function pair() {
   ttyd \
     --writable \
     --credential "$username:$password" \
-    --index "$HOME/dotfiles/terminals/pair.html" \
     --client-option titleFixed="pair session" \
     --client-option fontFamily="Hack Regular Nerd Font Complete" \
     --client-option fontSize=14 \
@@ -97,12 +97,50 @@ function pair() {
 }
 
 
-function pair-rebuild-html() {
+function pair-rebuild() {
   local ttyd_dir="$HOME/Projects/ttyd"
-  pushd $ttyd_dir/html
-  INLINE_FONT=~/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf yarn build
+  local font_path="$HOME/.local/share/fonts/Hack\ Regular\ Nerd\ Font\ Complete.ttf"
+
+  pushd $ttyd_dir
+
+  # pull ttyd
+  git reset --hard
+  git pull
+
+  # add font css
+  echo "@font-face { \
+    font-family: 'Hack Regular Nerd Font Complete'; \
+    font-style: normal; \
+    font-weight: normal; \
+    src: url($font_path); \
+  }" >> html/src/style/index.scss
+
+  # patch webpack
+  patch -p1 <<'EOF'
+--- a/html/webpack.config.js
++++ b/html/webpack.config.js
+@@ -29,6 +29,10 @@ const baseConfig = {
+                 test: /\.s?[ac]ss$/,
+                 use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+             },
++            {
++                test: /\.(ttf|otf|eot|woff|woff2)$/,
++                type: 'asset/inline',
++            },
+         ],
+     },
+     resolve: {
+EOF
+
+  # rebuild html
+  yarn --cwd "$ttyd_dir/html" install
+  yarn --cwd "$ttyd_dir/html" build
+
+  # rebuild ttyd
+  make
+  sudo make install
+
   popd
-  cp $ttyd_dir/html/dist/inline.html ~/dotfiles/terminals/pair.html
 }
 
 
