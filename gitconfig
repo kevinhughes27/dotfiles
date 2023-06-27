@@ -13,9 +13,6 @@ gpgsign = true
 [gpg]
 program = gpg
 
-[url "git@github.com:"]
-insteadOf = https://github.com/
-
 [core]
 excludesfile = ~/dotfiles/gitignore
 pager = less --mouse
