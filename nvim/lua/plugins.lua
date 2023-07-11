@@ -79,28 +79,7 @@ return {
   {
     'ibhagwan/fzf-lua',
     lazy = false,
-    config = function()
-      local actions = require('fzf-lua.actions')
-      require('fzf-lua').setup({
-        fzf_bin = 'fzf-tmux',
-        fzf_opts = { ['--border'] = 'rounded' },
-        fzf_tmux_opts = { ['-p'] = '90%,90%' },
-        winopts = { preview = { default = 'bat', layout = 'horizontal' } },
-        oldfiles = {
-          cwd_only = true,
-          stat_file = true, -- verify files exist on disk
-          include_current_session = true, -- include bufs from current session
-        },
-        actions = {
-          files = {
-            ['default'] = actions.file_edit_or_qf,
-            ['ctrl-s']  = actions.file_split,
-            ['ctrl-h']  = actions.file_vsplit,
-            ['ctrl-t']  = actions.file_tabedit,
-          },
-        },
-      })
-    end,
+    config = function() require('config/fzf') end,
     keys = {
       { '<C-p>', ':FzfLua files<CR>' },
       { '<C-h>', ':FzfLua oldfiles<CR>' },
@@ -180,9 +159,7 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'jose-elias-alvarez/null-ls.nvim',
       'neovim/nvim-lspconfig',
-      'folke/neodev.nvim',
     },
     config = function() require('config/lsp') end,
   },

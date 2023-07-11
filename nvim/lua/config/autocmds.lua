@@ -2,31 +2,35 @@
 --
 local wr_group = vim.api.nvim_create_augroup('WinResize', { clear = true })
 
-vim.api.nvim_create_autocmd(
-    'VimResized',
-    {
-        group = wr_group,
-        pattern = '*',
-        command = 'wincmd =',
-        desc = 'Automatically resize windows when the host window size changes.'
-    }
-)
+vim.api.nvim_create_autocmd('VimResized', {
+  group = wr_group,
+  pattern = '*',
+  command = 'wincmd =',
+  desc = 'Automatically resize windows when the host window size changes.'
+})
 
 local yp_group = vim.api.nvim_create_augroup('YankPost', { clear = true })
-vim.api.nvim_create_autocmd(
-  'TextYankPost',
-  {
-    group = yp_group,
-    pattern = '*',
-    callback = function()
-      -- copy to system clipboard using osc52 escape code
-      require('osc52').copy_register('+')
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = yp_group,
+  pattern = '*',
+  callback = function()
+    -- copy to system clipboard using osc52 escape code
+    require('osc52').copy_register('+')
 
-      -- highlight copied text
-      vim.highlight.on_yank({ higroup='YankPost', timeout=500 })
-    end
-  }
-)
+    -- highlight copied text
+    vim.highlight.on_yank({ higroup='YankPost', timeout=500 })
+  end
+})
+
+-- remove traiing whitespace
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local save_cursor = vim.fn.getpos(".")
+    vim.cmd([[%s/\s\+$//e]])
+    vim.fn.setpos('.', save_cursor)
+  end,
+})
 
 -- automatically update note timestamps
 vim.api.nvim_create_autocmd('BufWritePre', {
