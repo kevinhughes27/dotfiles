@@ -5,6 +5,7 @@ My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell wi
 
 ![screenshot](https://user-images.githubusercontent.com/1965489/210177151-84c27c26-2c4f-4e78-a644-7f4bb86e7d45.png)
 
+
 dependencies
 ------------
 
@@ -25,34 +26,10 @@ else
   FONT_DIR="$HOME/.local/share/fonts"
 fi
 
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.zip
 mkdir -p $FONT_DIR
-cd $FONT_DIR
-
-FONT_URL="https://github.com/kevinhughes27/font-patcher/raw/master/fonts/Hack%20Regular%20Nerd%20Font%20Complete.ttf"
-curl -fLo "Hack Regular Nerd Font Complete.ttf" $FONT_URL
+unzip Hack.zip -d $FONT_DIR
 ```
-
-For Alacritty on Linux a fallback font config is needed for color emoji:
-https://github.com/alacritty/alacritty/issues/153#issuecomment-630636358
-
-`~/.config/fontconfig/fonts.conf`:
-
-```xml
-<?xml version="1.0"?>
-<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-<fontconfig>
-  <alias>
-    <family>Hack Nerd Font</family> <!-- Font name you reference in alacritty.yml -->
-    <prefer>
-      <family>Hack Nerd Font</family> <!-- Your preferred monospace font -->
-      <family>Noto Color Emoji</family> <!-- Your preferred emoji font -->
-     </prefer>
-  </alias>
-</fontconfig>
-```
-
-OSX does not have an equivalent and until Alacritty adds its own configuration for fallback fonts color emojis do not work with a patched nerd font.
-https://github.com/alacritty/alacritty/issues/957
 
 
 setup
