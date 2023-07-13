@@ -17,8 +17,8 @@ call matchadd('MarkdownStrikethrough', '\~\~\zs.\+\ze\~\~')
 call matchadd('MarkdownStrikethrough', '\[x\].\+')
 
 " checkbox icon
-call matchadd('Conceal', '\[\ \]', 10, -1, {'conceal': ''})
-call matchadd('Conceal', '\[x\]', 10, -1, {'conceal': ''})
+call matchadd('Conceal', '\[\ \]', 10, -1, {'conceal': '󰄱'})
+call matchadd('Conceal', '\[x\]', 10, -1, {'conceal': '󰱒'})
 
 " check and uncheck checkboxes
 " https://www.reddit.com/r/vim/comments/c2h28r/a_small_markdown_mapping_for_checkboxes/
