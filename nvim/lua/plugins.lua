@@ -155,11 +155,10 @@ return {
 
   -- lsp
   {
-    'junnplus/nvim-lsp-setup',
+    'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-      'neovim/nvim-lspconfig',
     },
     config = function() require('config/lsp') end,
   },
