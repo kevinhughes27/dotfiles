@@ -1,6 +1,5 @@
-add_newline = false
-
 format = """
+${cmd_duration}\
 $username\
 $directory\
 $hostname\
@@ -8,6 +7,9 @@ ${custom.toolbox}\
 $git_branch\
 ${custom.dirty}
 $character"""
+
+# newline is in my format string
+add_newline = false
 
 [username]
 style_user = "bold green"
@@ -31,9 +33,9 @@ style = "bold blue"
 when = "(git rev-parse --is-inside-work-tree >/dev/null 2>&1) && (! git diff --no-ext-diff --quiet --exit-code)"
 format = "[*](red)"
 
-# [cmd_duration]
-# min_time = 2000
-# format = " [took $duration](bold yellow)"
+[cmd_duration]
+min_time = 2000
+format = "[took $duration](bold yellow)\n"
 
 [character]
 success_symbol = "[❯](bold blue)"
