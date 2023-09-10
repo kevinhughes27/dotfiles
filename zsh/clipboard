@@ -4,14 +4,42 @@ clipboard() {
   if type xclip &>/dev/null; then
     cat "$@" | xclip -selection clipboard
   else
-    print_osc52 "$@"
+    copy_osc52 "$@"
   fi
 }
 
-# copy via OSC 52
+paste() {
+  if type xclip &>/dev/null; then
+    xclip -selection clipboard -o
+  else
+    echo "not supported"
+    # paste_osc52
+  fi
+}
+
+# copy and paste via OSC 52
+#
+# references:
 # https://sunaku.github.io/tmux-yank-osc52.html
+# https://github.com/theimpostor/osc/blob/main/main.go
+#
 # newer tmux does not need the tmux escape anymore
 # https://github.com/ojroques/vim-oscyank/issues/26
+#
+copy_osc52() {
+  local b64="$(cat "$@" | base64 | tr -d '\r\n')"
+  print_osc52 "$b64"
+}
+
+# wezterm doesnt support querying yet
+# https://github.com/wez/wezterm/issues/2050
+# alacritty should but it doesn't seem to be working
+paste_osc52() {
+  print_osc52 "?"
+}
+
 print_osc52() {
-  printf "\033]52;c;$( cat "$@" | base64 | tr -d '\r\n' )\a"
+  local oscOpen="\x1b]52;c;"
+  local oscClose="\a"
+  printf "$oscOpen $@ $oscClose"
 }
