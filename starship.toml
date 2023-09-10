@@ -34,7 +34,7 @@ when = "(git rev-parse --is-inside-work-tree >/dev/null 2>&1) && (! git diff --n
 format = "[*](red)"
 
 [cmd_duration]
-min_time = 2000
+min_time = 5000
 format = "[took $duration](bold yellow)\n"
 
 [character]
