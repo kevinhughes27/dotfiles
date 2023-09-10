@@ -33,7 +33,7 @@ copy_osc52() {
 
 # wezterm doesnt support querying yet
 # https://github.com/wez/wezterm/issues/2050
-# alacritty should but it doesn't seem to be working
+# works with alacritty but not inside tmux...
 paste_osc52() {
   print_osc52 "?"
 }
