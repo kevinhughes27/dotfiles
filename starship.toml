@@ -1,5 +1,4 @@
 format = """
-${cmd_duration}\
 $username\
 $directory\
 $hostname\
