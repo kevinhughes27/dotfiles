@@ -33,9 +33,9 @@ style = "bold blue"
 when = "(git rev-parse --is-inside-work-tree >/dev/null 2>&1) && (! git diff --no-ext-diff --quiet --exit-code)"
 format = "[*](red)"
 
-[cmd_duration]
-min_time = 5000
-format = "[took $duration](bold yellow)\n"
+# [cmd_duration]
+# min_time = 5000
+# format = "[took $duration](bold yellow)\n"
 
 [character]
 success_symbol = "[❯](bold blue)"
