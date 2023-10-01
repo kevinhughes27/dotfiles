@@ -5,10 +5,10 @@ require('nvim-treesitter.configs').setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = '<CR>',
-      scope_incremental = '<CR>',
-      node_incremental = '<TAB>',
-      node_decremental = '<S-TAB>',
+      -- init_selection doesn't have to be mapped
+      node_incremental = 'v',
+      node_decremental = '<A-v>',
+      -- shift v is used for making the visual selection the whole line
     },
   },
   ensure_installed = {
