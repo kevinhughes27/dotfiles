@@ -69,6 +69,7 @@ ci = commit
 
 # commit amend
 cia = commit --amend --reuse-message=HEAD
+cian = commit --amend --reuse-message=HEAD --no-verify
 
 # checkout
 co = checkout
