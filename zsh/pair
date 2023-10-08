@@ -12,7 +12,6 @@ function pair() {
   # generate a new password
   local username="$1"
   local password=$(cat /dev/urandom | LC_ALL=C tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)
-  local password="password"
 
   # ip for printing the link
   if [[ `uname` == "Darwin" ]]; then
