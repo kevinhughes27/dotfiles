@@ -43,7 +43,7 @@ return {
 
   -- file tree
   {
-    'kyazdani42/nvim-tree.lua',
+    'nvim-tree/nvim-tree.lua',
     lazy = true,
     keys = {
       { '<C-b>', ':NvimTreeFindFileToggle<CR>', silent = true },

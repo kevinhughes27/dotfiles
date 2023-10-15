@@ -41,7 +41,7 @@ require('nvim-tree').setup {
     vim.keymap.set('n', 'R', api.tree.reload, opts('Refresh'))
     vim.keymap.set('n', 'a', api.fs.create, opts('Create'))
     vim.keymap.set('n', 'd', api.fs.remove, opts('Delete'))
-    vim.keymap.set('n', 'r', api.fs.rename_sub, opts('Rename: Omit Filename'))
+    vim.keymap.set('n', 'r', api.fs.rename_full, opts('Rename: Full Path'))
     vim.keymap.set('n', 'x', api.fs.cut, opts('Cut'))
     vim.keymap.set('n', 'c', api.fs.copy.node, opts('Copy'))
     vim.keymap.set('n', 'p', api.fs.paste, opts('Paste'))
