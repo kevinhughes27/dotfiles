@@ -6,6 +6,9 @@ require('statuscol').setup({
       sign = { name = { '.*' }, maxwidth = 1, colwidth = 1 },
     },
     {
+      sign = { namespace = { 'gitsigns' } },
+    },
+    {
       text = { builtin.lnumfunc }
     },
     {
