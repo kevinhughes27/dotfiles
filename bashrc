@@ -19,6 +19,7 @@ HISTCONTROL=ignorespace:ignoredups
 
 # fzf if present
 if [[ -d "$HOME/.fzf" ]]; then
+
   # setup fzf
   if [[ ! "$PATH" == "*$HOME/.fzf/bin*" ]]; then
     PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"

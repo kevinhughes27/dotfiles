@@ -96,8 +96,10 @@ function setup-remote() {
   scp gitconfig $remote:~/.gitconfig
 
   # setup fzf
-  scp -r ~/.fzf $remote:~/.fzf
-  ssh $remote '~/.fzf/install --key-bindings --completion --no-update-rc --no-zsh'
+  scp ~/.fzf/install $remote:~/.fzf/install
+  scp ~/.fzf/shell/completion.bash $remote:~/.fzf/shell/completion.bash
+  scp ~/.fzf/shell/key-bindings.bash $remote:~/.fzf/shell/key-bindings.bash
+  ssh $remote '~/.fzf/install --bin'
 }
 
 
