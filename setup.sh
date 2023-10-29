@@ -96,7 +96,7 @@ function setup-remote() {
   scp gitconfig $remote:~/.gitconfig
 
   # setup fzf
-  ssh $remote 'git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf'
+  scp -r ~/.fzf $remote:~/.fzf
   ssh $remote '~/.fzf/install --key-bindings --completion --no-update-rc --no-zsh'
 }
 
