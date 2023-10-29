@@ -136,6 +136,7 @@ return {
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
+      'folke/neodev.nvim',
     },
     config = function() require('config/lsp') end,
   },

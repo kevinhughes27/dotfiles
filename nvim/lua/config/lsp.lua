@@ -1,10 +1,12 @@
 -- lsp
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/lsp.md#you-might-not-need-lsp-zero
 --
+require('neodev').setup()
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
-  callback = function()
-    local opts = { noremap = true, silent = true, buffer = bufnr }
+  callback = function(event)
+    local opts = { noremap = true, silent = true, buffer = event.bufnr }
     vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     vim.keymap.set('n', '<RightMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   end
@@ -13,8 +15,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
 require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'pylsp',
-    'tsserver',
+    pylsp = {},
+    tsserver = {},
+    lua_ls = {
+      Lua = {
+        workspace = { checkThirdParty = false },
+        telemetry = { enable = false },
+      },
+    },
   }
 })
 
