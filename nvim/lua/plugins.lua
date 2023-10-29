@@ -1,6 +1,10 @@
 -- Plugins
 --
 return {
+
+  -- lua utils
+  {'nvim-lua/plenary.nvim'},
+
   -- theme
   {
     'navarasu/onedark.nvim',
@@ -169,8 +173,11 @@ return {
     }
   },
 
-  -- lua utils
-  {'nvim-lua/plenary.nvim'},
+  -- autoformat template and f strings
+  {
+    'chrisgrieser/nvim-puppeteer',
+    lazy = false, -- plugin lazy-loads itself. Can also load on filetypes.
+  },
 
   -- gitsigns
   {
