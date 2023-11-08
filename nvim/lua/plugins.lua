@@ -173,12 +173,6 @@ return {
     }
   },
 
-  -- autoformat template and f strings
-  {
-    'chrisgrieser/nvim-puppeteer',
-    lazy = false, -- plugin lazy-loads itself. Can also load on filetypes.
-  },
-
   -- gitsigns
   {
     'lewis6991/gitsigns.nvim',
