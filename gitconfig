@@ -39,6 +39,10 @@ branch = false
 [help]
 autocorrect = 1
 
+[diff "sqlite3"]
+binary = true
+textconv = "echo .dump | sqlite3"
+
 [color]
 branch = auto
 diff = auto
