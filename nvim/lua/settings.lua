@@ -20,6 +20,7 @@ opt('o', 'smartcase', true)           -- don't ignore case with capitals
 opt('o', 'splitbelow', true)          -- put new windows below current
 opt('o', 'splitright', true)          -- put new windows right of current
 opt('o', 'termguicolors', true)       -- true color support
+opt('o', 'background', 'dark')        -- set the background as dark
 opt('w', 'list', true)                -- show some invisible characters (tabs...)
 opt('w', 'number', true)              -- print line number
 opt('w', 'wrap', false)               -- disable line wrap
