@@ -15,7 +15,7 @@ function setup() {
 
   if ! which starship &> /dev/null; then
     echo "Installing starship.rs"
-    sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes > /dev/null
+    sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes > /dev/null
   fi
 
   echo "Installing fzf"
