@@ -9,10 +9,6 @@
     "body": "if __name__ == \"__main__\":\n\t${1:main()}$0",
     "description": "Create implicitly all the code at the top level using the __name__ special variable."
   },
-  "PDB set trace": {
-    "prefix": "pdb",
-    "body": "__import__('pdb').set_trace()$0"
-  },
   "Files in Directory": {
     "prefix": "files",
     "body": "for file in glob.glob(${1:value}):\n    $0",
