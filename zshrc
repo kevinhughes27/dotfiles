@@ -42,7 +42,6 @@ alias gp='git p'
 alias gpff='git p -f --no-verify'
 alias bi='bundle install'
 alias bx='bundle exec'
-alias dc='docker-compose'
 alias rw='tmux rename-window'
 
 # autoload
