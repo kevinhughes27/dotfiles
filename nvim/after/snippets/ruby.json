@@ -54,20 +54,4 @@
       "end"
     ]
   },
-  "Insert RSpec.describe class": {
-    "prefix": "rspec",
-    "body": [
-      "RSpec.describe ${1:described_class} do",
-      "\t$0",
-      "end"
-    ]
-  },
-  "Insert expect": {
-    "prefix": "expect",
-    "body": "expect(${1:object}).to ${0}"
-  },
-  "Insert expect with block": {
-    "prefix": "expectd",
-    "body": "expect { ${1:object} }.to ${0}"
-  }
 }
