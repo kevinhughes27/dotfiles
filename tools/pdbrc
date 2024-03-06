@@ -1,5 +1,9 @@
+# https://docs.python.org/3/library/pdb.html#debugger-commands
+#
+# to use list the python function in pdf use !list
+#
+# pretty print is setup by default. use `pp`
+
 # https://superuser.com/questions/1371931/show-context-after-every-move-using-python-pdb
 alias n next ;; l
 alias s step ;; l
-
-# to use list the python function in pdf use !list
