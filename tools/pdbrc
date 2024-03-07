@@ -1,6 +1,6 @@
 # https://docs.python.org/3/library/pdb.html#debugger-commands
 #
-# to use list the python function in pdf use !list
+# to use list the python function in pdb use !list
 #
 # pretty print is setup by default. use `pp`
 
