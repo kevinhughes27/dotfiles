@@ -68,6 +68,12 @@ cmp.setup({
     documentation = {
       border = {'┌', '─', '┐', '│', '┘', '─', '└', '│'},
     }
+  },
+
+  view = {
+    entries = {
+      follow_cursor = true
+    }
   }
 })
 

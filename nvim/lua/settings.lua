@@ -13,7 +13,7 @@ opt('o', 'mouse', 'a')                -- allow mouse
 opt('o', 'showmatch', true)           -- highlight matching [{()}]
 opt('b', 'expandtab', true)           -- use spaces instead of tabs
 opt('b', 'shiftwidth', indent)        -- size of an indent
-opt('b', 'smartindent', true)         -- insert indents automatically
+opt('b', 'smartindent', false)        -- insert indents automatically
 opt('b', 'tabstop', indent)           -- number of spaces tabs count for
 opt('o', 'ignorecase', true)          -- ignore case
 opt('o', 'smartcase', true)           -- don't ignore case with capitals
