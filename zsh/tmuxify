@@ -29,7 +29,7 @@ _default_tmux_session() {
     source "$HOME/.tmuxify" # can and should use $session inside
   else
     tmux new-window -t $session -n dots  -c $HOME/dotfiles nvim +NvimTreeOpen
-    tmux new-window -t $session -n notes -c $HOME/notes nvim ToDo.md +NvimTreeOpen -c '!git pull'
+    tmux new-window -t $session -n notes -c $HOME/notes 'git pull; nvim ToDo.md +NvimTreeOpen'
 
     # kill the default blank window. then select notes
     tmux kill-window -t $session:1
