@@ -32,6 +32,22 @@ vim.api.nvim_create_autocmd('BufWritePre', {
   end,
 })
 
+-- set syntax for some edgecases
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '*',
+  callback = function()
+    local file = vim.api.nvim_buf_get_name(0)
+
+    if string.find(file, "Containerfile") then
+      vim.cmd("set syntax=dockerfile")
+    end
+
+    if string.find(file, "Jenkinsfile") then
+      vim.cmd("set syntax=groovy")
+    end
+  end,
+})
+
 -- automatically update note timestamps
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*.md',
