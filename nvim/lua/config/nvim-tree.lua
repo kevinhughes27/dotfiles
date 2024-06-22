@@ -1,6 +1,6 @@
 require('nvim-tree').setup {
   filters = {
-    custom = {'.git\\>','node_modules', '.cache', '__pycache__', '.DS_Store'},
+    custom = {'.git\\>','node_modules', '\\.cache', '__pycache__', '.DS_Store'},
   },
   renderer = {
     indent_markers = {
