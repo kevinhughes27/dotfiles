@@ -55,6 +55,71 @@ end, {
   desc = 'Save current buffer. commit and push notes',
 })
 
+-- NotesRebase
+--
+-- in ~/notes first:
+-- git rebase --root --interactive
+--
+-- then run this command in vim to automatically edit the rebase file
+--
+-- may stop and have to run
+-- git commit --amend --allow-empty
+-- git rebase --continue
+--
+create('NotesRebase', function()
+  local buf = vim.api.nvim_get_current_buf()
+  local line_count = vim.api.nvim_buf_line_count(buf)
+
+  local function get_git_commit_dates()
+    local handle = io.popen("git log --date=short --pretty=format:'%h %cd'")
+    local result = handle:read("*a")
+    handle:close()
+
+    local commit_date_lookup = {}
+
+    for line in result:gmatch("[^\r\n]+") do
+      local sha, date = line:match("(%S+)%s+(%S+)")
+      if sha and date then
+        commit_date_lookup[sha] = date
+      end
+    end
+
+    return commit_date_lookup
+  end
+
+  local commit_dates = get_git_commit_dates()
+
+  for i = 2, line_count do
+    local line = vim.api.nvim_buf_get_lines(buf, i - 1, i, false)[1]
+
+    -- first blank line is the end of the commits. we are done
+    if line == "" then
+      return
+    end
+
+    local prev_line = vim.api.nvim_buf_get_lines(buf, i - 2, i - 1, false)[1]
+
+    local sha = string.match(line, "%a*%s(%w*)%s")
+    local prev_sha = string.match(prev_line, "%a*%s(%w*)%s")
+
+    local message = string.match(line, "%a* " .. sha .. " (.*)")
+    local prev_message = string.match(prev_line, "%a* " .. prev_sha .. " (.*)")
+
+    local date = commit_dates[sha]
+    local prev_date = commit_dates[prev_sha]
+
+    if message == prev_message then -- the commmits match
+      if date == prev_date then -- the date also matches
+        local edited_line = string.gsub(line, "pick", "fixup")
+        vim.api.nvim_buf_set_lines(buf, i - 1, i, false, {edited_line})
+      end
+    end
+  end
+end, {
+  nargs = 0,
+  desc = 'Helper for rebasing my notes to rollup commits',
+})
+
 -- copy current file path
 create('CopyPath', function()
   vim.api.nvim_exec('let @+=@%', true)
