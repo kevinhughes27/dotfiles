@@ -14,8 +14,18 @@ return {
 
   -- icons
   {
-    'nvim-tree/nvim-web-devicons',
-    config = function() require('config/icons') end,
+    'rachartier/tiny-devicons-auto-colors.nvim',
+    dependencies = {
+      {
+        'nvim-tree/nvim-web-devicons',
+         config = function() require('config/icons') end,
+      },
+    },
+    config = function()
+      require('tiny-devicons-auto-colors').setup({
+        colors = require('onedark.palette')['dark']
+      })
+    end
   },
 
   -- statusline
