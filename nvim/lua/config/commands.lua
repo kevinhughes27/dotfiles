@@ -66,6 +66,9 @@ end, {
 -- git commit --amend --allow-empty
 -- git rebase --continue
 --
+-- need to delete GitJournal repo after and set it up again
+-- have the app generate a key that I add as a deploy key.
+--
 create('NotesRebase', function()
   local buf = vim.api.nvim_get_current_buf()
   local line_count = vim.api.nvim_buf_line_count(buf)
