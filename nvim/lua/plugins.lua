@@ -136,25 +136,7 @@ return {
   {
     'MeanderingProgrammer/markdown.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('render-markdown').setup({
-        heading = {
-          icons = {'# ', '## ', '### ', '#### ', '##### ', '###### '},
-          backgrounds = { 'ColorColumn' },
-        },
-        checkbox = {
-          unchecked = {
-            highlight = "Normal"
-          },
-          checked = {
-            highlight = "SpecialComment"
-          },
-        },
-        code = {
-          style = "normal"
-        },
-      })
-    end
+    config = function() require('config/markdown') end,
   },
 
   -- highlight urls
