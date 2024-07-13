@@ -134,10 +134,26 @@ return {
 
   -- markdown headings etc
   {
-    'lukas-reineke/headlines.nvim',
+    'MeanderingProgrammer/markdown.nvim',
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('headlines').setup({})
+      require('render-markdown').setup({
+        heading = {
+          icons = {'# ', '## ', '### ', '#### ', '##### ', '###### '},
+          backgrounds = { 'ColorColumn' },
+        },
+        checkbox = {
+          unchecked = {
+            highlight = "Normal"
+          },
+          checked = {
+            highlight = "SpecialComment"
+          },
+        },
+        code = {
+          style = "normal"
+        },
+      })
     end
   },
 
