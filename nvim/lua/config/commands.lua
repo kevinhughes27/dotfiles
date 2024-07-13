@@ -13,6 +13,15 @@ end, {
   desc = 'Start FzfLua live_grep'
 })
 
+-- copy current file path
+create('CopyPath', function()
+  vim.api.nvim_exec('let @+=@%', true)
+  require('osc52').copy_register('+')
+end, {
+  nargs = 0,
+  desc = 'Copy the path of the current file to clipboard',
+})
+
 -- notes push
 create('Np', function()
   local cwd = vim.fn.getcwd()
@@ -121,26 +130,4 @@ create('NotesRebase', function()
 end, {
   nargs = 0,
   desc = 'Helper for rebasing my notes to rollup commits',
-})
-
--- copy current file path
-create('CopyPath', function()
-  vim.api.nvim_exec('let @+=@%', true)
-  require('osc52').copy_register('+')
-end, {
-  nargs = 0,
-  desc = 'Copy the path of the current file to clipboard',
-})
-
--- copy link to current file on github
-create('GH', function()
-  require('gitlinker').get_buf_range_url('n', {
-    action_callback = function(url)
-      vim.api.nvim_command('let @+ = \'' .. url .. '\'')
-      require('osc52').copy_register('+')
-    end,
-  })
-end, {
-  nargs = 0,
-  desc = 'Copy the link to the file on GitHub'
 })

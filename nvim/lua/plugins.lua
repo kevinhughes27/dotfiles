@@ -196,12 +196,12 @@ return {
     end
   },
 
-  -- github link copy :GH
+  -- github link copy :GitLink
   {
-    'ruifm/gitlinker.nvim',
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
+    'linrongbin16/gitlinker.nvim',
+    config = function()
+      require('gitlinker').setup({})
+    end
   },
 
   -- remember cursor position
