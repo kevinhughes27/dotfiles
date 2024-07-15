@@ -48,29 +48,7 @@ vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
   end,
 })
 
--- automatically update note timestamps
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = '*.md',
-  callback = function()
-    local cwd = vim.fn.getcwd()
-    local notesdir = os.getenv('HOME') .. '/notes'
-    local is_notes = string.find(cwd, notesdir)
-
-    if is_notes then
-      -- update frontmatter timestamp
-      -- needed for sort in GitJournal on Android
-      vim.api.nvim_exec([[
-        let save_cursor = getpos(".")
-        keepjumps exe '1,' . 's/^modified: .*/modified: ' . strftime('%Y-%m-%dT%H:%M:%S%z') . '/e'
-        call histdel('search', -1)
-        call setpos('.', save_cursor)
-        exec ':noh'
-      ]], true)
-    end
-  end
-})
-
-  -- automatically source when config is saved
+-- automatically source when config is saved
 local cf_group = vim.api.nvim_create_augroup('Config', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePost', {
