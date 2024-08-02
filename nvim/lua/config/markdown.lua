@@ -1,6 +1,6 @@
 require('render-markdown').setup({
   heading = {
-    icons = {'# ', '## ', '### ', '#### ', '##### ', '###### '},
+    icons = {},
     backgrounds = { 'ColorColumn' },
   },
   checkbox = {
@@ -12,6 +12,9 @@ require('render-markdown').setup({
     },
   },
   code = {
-    style = 'normal'
+    style = 'normal',
+    width = 'block',
+    left_pad = 2,
+    right_pad = 2,
   },
 })
