@@ -1,6 +1,11 @@
 require('render-markdown').setup({
+  anti_conceal = {
+    enabled = false
+  },
   heading = {
     icons = {},
+    border = true,
+    left_pad = 1,
     backgrounds = { 'ColorColumn' },
   },
   checkbox = {
@@ -12,7 +17,7 @@ require('render-markdown').setup({
     },
   },
   code = {
-    style = 'normal',
+    style = 'full',
     width = 'block',
     left_pad = 2,
     right_pad = 2,
