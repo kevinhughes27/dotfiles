@@ -4,7 +4,8 @@ $directory\
 $hostname\
 ${custom.toolbox}\
 $git_branch\
-${custom.dirty}
+${custom.dirty}\
+$line_break\
 $character"""
 
 # newline is in my format string
