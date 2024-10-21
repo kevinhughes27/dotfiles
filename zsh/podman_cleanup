@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+podman_cleanup() {
+  podman images --format "{{.ID}} {{.Repository}}:{{.Tag}}" | fzf --multi | awk '{print $1}' | xargs -r podman rmi --force
+}
