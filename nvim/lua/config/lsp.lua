@@ -7,6 +7,7 @@
 require('mason').setup()
 
 local servers = {
+  gopls = {},
   pylsp = {},
   ts_ls = {},
   lua_ls = {
