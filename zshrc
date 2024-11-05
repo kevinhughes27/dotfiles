@@ -43,6 +43,7 @@ alias gpff='git p -f --no-verify'
 alias bi='bundle install'
 alias bx='bundle exec'
 alias rw='tmux rename-window'
+alias tf='terraform'
 
 # autoload
 for file in ~/dotfiles/zsh/*; do
