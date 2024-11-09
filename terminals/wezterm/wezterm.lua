@@ -2,9 +2,9 @@ local wezterm = require 'wezterm'
 
 local _success, stdout, _stderr = wezterm.run_child_process { 'uname' }
 
-local font_size = 11
+local font_size = 10
 if string.match(stdout, 'Darwin') then
-  font_size = 14
+  font_size = 13
 end
 
 return {
