@@ -2,6 +2,9 @@ require('render-markdown').setup({
   anti_conceal = {
     enabled = false
   },
+  latex = {
+    enabled = false
+  },
   heading = {
     icons = {},
     border = true,
