@@ -4,6 +4,8 @@
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/lsp.md#you-might-not-need-lsp-zero
 -- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua#L405
 --
+-- pylsp requires `python3-venv` package and fails with an unclear message without it
+--
 require('mason').setup()
 
 local servers = {
