@@ -10,16 +10,30 @@
     "description": "Create implicitly all the code at the top level using the __name__ special variable."
   },
 
+
   "File Read": {
     "prefix": "fileread",
     "body": "f = open(\"demofile.txt\", \"r\")\nprint(f.read())",
-    "description": "read the contents of a file"
+    "description": "read file"
   },
   "File Write": {
     "prefix": "filewrite",
     "body": "f = open(\"demofile2.txt\", \"a\")\nf.write(\"Now the file has more content!\")\nf.close()",
-    "description": "write to file"
+    "description": "write file"
   },
+
+
+  "Temp File": {
+    "prefix": "tmpfile",
+    "body": "with tempfile.TemporaryFile() as tmpfile:\n\t",
+    "description": "temp file"
+  },
+  "Temp Dir": {
+    "prefix": "tmpdir",
+    "body": "with tempfile.TemporaryDirectory() as tmpdir:\n\t",
+    "description": "temp directory"
+  },
+
 
   "List comprehension": {
     "prefix": "lc",
@@ -37,6 +51,7 @@
     "description" : "List comprehension for creating a list based on existing lists, with conditional if statement."
   },
 
+
   "Dictionary comprehension": {
     "prefix": "dc",
     "body": "{${1:key}: ${2:value} for ${3:key}, ${4:value} in ${5:iterable}}$0",
@@ -48,6 +63,7 @@
     "description" : "Handy and faster way to create dictories based on existing dictionaries, with conditional if statement."
   },
 
+
   "Set comprehension": {
     "prefix": "sc",
     "body": "{${1:value} for ${2:value} in ${3:iterable}}$0",
@@ -58,6 +74,7 @@
     "body": "{${1:value} for ${2:value} in ${3:iterable} if ${4:condition}}$0",
     "description" : "Create a set based on existing iterables, with condition if statement."
   },
+
 
   "Generator comprehension": {
     "prefix": "gc",
