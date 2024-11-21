@@ -12,15 +12,10 @@
       "It can be useful if you aren't aware of the absolute path or don't want to search for it.\n"
     ]
   },
-  "echo": {
-    "prefix": "echo",
-    "body": "echo \"${0:message}\"",
-    "description": "Echo a message."
-  },
-  "read": {
-    "prefix": "read",
-    "body": "read -r ${0:VAR}",
-    "description": "Read input of ${VAR}."
+  "heredoc": {
+    "prefix": "heredoc",
+    "body": "cat << EOF > filename\n\t${1}\nEOF",
+    "description": "heredoc to file"
   },
   "if": {
     "prefix": "if",
@@ -76,18 +71,5 @@
       "case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac\n",
       "A case command first expands word, and tries to match it against each pattern in turn."
     ]
-  },
-  "break": {
-    "prefix": "break",
-    "body": "break ${0}",
-    "description": [
-      "The break command tells Bash to leave the loop straight away.\n",
-      "Enter the break or break (n) where n=number of loops."
-    ]
-  },
-  "expr": {
-    "prefix": "expr",
-    "body": "expr ${0:1 + 1}",
-    "description": "Calculate numbers with Bash."
   }
 }
