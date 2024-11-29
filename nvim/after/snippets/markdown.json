@@ -8,5 +8,10 @@
     "prefix": "img",
     "body": ["![${1}](${2}) ${0}"],
     "description": "Add images"
+  },
+  "collapsible section": {
+    "prefix": "collapsible",
+    "body": "<details>\n<summary>Click me</summary>\n${1}\n</details>",
+    "description": "collapsible section in markdown. ref: https://gist.github.com/pierrejoubert73/902cc94d79424356a8d20be2b382e1ab"
   }
 }
