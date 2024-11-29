@@ -6,7 +6,9 @@
 --
 -- pylsp requires `python3-venv` package and fails with an unclear message without it
 --
-require('mason').setup()
+require('mason').setup({
+  PATH = 'append',
+})
 
 local servers = {
   gopls = {},

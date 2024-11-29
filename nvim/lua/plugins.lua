@@ -180,6 +180,17 @@ return {
     }
   },
 
+  -- golang
+  -- https://github.com/crispgm/nvim-go
+  {
+    'crispgm/nvim-go',
+    config = function()
+      require('go').setup({
+        lint_prompt_style = "vt"
+      })
+    end
+  },
+
   -- gitsigns
   {
     'lewis6991/gitsigns.nvim',
