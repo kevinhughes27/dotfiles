@@ -6,6 +6,8 @@ ${custom.toolbox}\
 $git_branch\
 ${custom.dirty}\
 $line_break\
+$aws\
+$terraform\
 $character"""
 
 # newline is in my format string
@@ -32,6 +34,14 @@ style = "bold blue"
 [custom.dirty]
 when = "(git rev-parse --is-inside-work-tree >/dev/null 2>&1) && (! git diff --no-ext-diff --quiet --exit-code)"
 format = "[*](red)"
+
+[aws]
+format = ' [$symbol ($profile )(\($region\))]($style)'
+style = 'bold blue'
+symbol = 'aws'
+
+[terraform]
+format = ' [tf $workspace]($style)'
 
 [character]
 success_symbol = "[❯](bold blue)"
