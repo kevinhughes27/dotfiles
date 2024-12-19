@@ -4,10 +4,18 @@ local create = vim.api.nvim_create_user_command
 local job = require('plenary.job')
 
 -- ripgrep shortened command
+-- no arg resumes previous search
 create('Rg', function(opts)
+  local fzf_lua = require('fzf-lua')
   local grep_opts = {}
+
   grep_opts.search = opts.fargs[1]
-  require('fzf-lua').live_grep(grep_opts)
+
+  if grep_opts.search == nil then
+    fzf_lua.live_grep({resume = true})
+  else
+    fzf_lua.live_grep(grep_opts)
+  end
 end, {
   nargs = '?',
   desc = 'Start FzfLua live_grep'
