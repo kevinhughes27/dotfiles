@@ -12,6 +12,9 @@ fzf.setup({
     stat_file = true, -- verify files exist on disk
     include_current_session = true, -- include bufs from current session
   },
+  grep = {
+    rg_opts = "--column --line-number --no-heading --hidden --color=always --smart-case --max-columns=4096 -e", -- defaults + hidden
+  },
   actions = {
     files = {
       ['default'] = actions.file_edit_or_qf,
