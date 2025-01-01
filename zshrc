@@ -44,6 +44,7 @@ alias bi='bundle install'
 alias bx='bundle exec'
 alias rw='tmux rename-window'
 alias tf='terraform'
+alias dev='./dev'
 
 # autoload
 for file in ~/dotfiles/zsh/*; do
