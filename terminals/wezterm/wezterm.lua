@@ -132,7 +132,7 @@ config.window_padding = {
 config.window_background_opacity = 1.0
 
 -- tmux style prefix key
-config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
+-- config.leader = { key = 'b', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
   {
@@ -145,40 +145,40 @@ config.keys = {
     action = wezterm.action.PasteFrom 'Clipboard'
   },
   {
-    mods = 'LEADER',
+    mods = 'ALT',
     key = 't',
     action = wezterm.action.SpawnTab 'CurrentPaneDomain'
   },
-  {
-    mods   = 'LEADER',
-    key    = '\\',
-    action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }
-  },
-  {
-    mods   = 'LEADER',
-    key    = '-',
-    action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }
-  },
-  {
-    mods   = 'LEADER',
-    key    = 'LeftArrow',
-    action = wezterm.action.ActivatePaneDirection 'Left',
-  },
-  {
-    mods   = 'LEADER',
-    key    = 'RightArrow',
-    action = wezterm.action.ActivatePaneDirection 'Right',
-  },
-  {
-    mods   = 'LEADER',
-    key    = 'UpArrow',
-    action = wezterm.action.ActivatePaneDirection 'Up',
-  },
-  {
-    mods   = 'LEADER',
-    key    = 'DownArrow',
-    action = wezterm.action.ActivatePaneDirection 'Down',
-  }
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = '\\',
+  --   action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' }
+  -- },
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = '-',
+  --   action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' }
+  -- },
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = 'LeftArrow',
+  --   action = wezterm.action.ActivatePaneDirection 'Left',
+  -- },
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = 'RightArrow',
+  --   action = wezterm.action.ActivatePaneDirection 'Right',
+  -- },
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = 'UpArrow',
+  --   action = wezterm.action.ActivatePaneDirection 'Up',
+  -- },
+  -- {
+  --   mods   = 'LEADER',
+  --   key    = 'DownArrow',
+  --   action = wezterm.action.ActivatePaneDirection 'Down',
+  -- }
 }
 
 config.mouse_bindings = {
