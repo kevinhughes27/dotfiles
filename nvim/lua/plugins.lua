@@ -79,31 +79,35 @@ return {
   },
 
   -- seamless split/tmux navigation
-  {
-    'christoomey/vim-tmux-navigator',
-    init = function()
-      vim.g.tmux_navigator_no_mappings = 1
-      vim.g.tmux_navigator_save_on_switch = 2
-    end,
-    lazy = false,
-    keys = {
-      { '<C-Left>',  ':TmuxNavigateLeft<CR>',  silent = true },
-      { '<C-Down>',  ':TmuxNavigateDown<CR>',  silent = true },
-      { '<C-Up>',    ':TmuxNavigateUp<CR>',    silent = true },
-      { '<C-Right>', ':TmuxNavigateRight<CR>', silent = true },
-    }
-  },
+  -- {
+  --   'christoomey/vim-tmux-navigator',
+  --   init = function()
+  --     vim.g.tmux_navigator_no_mappings = 1
+  --     vim.g.tmux_navigator_save_on_switch = 2
+  --   end,
+  --   lazy = false,
+  --   keys = {
+  --     { '<C-Left>',  ':TmuxNavigateLeft<CR>',  silent = true },
+  --     { '<C-Down>',  ':TmuxNavigateDown<CR>',  silent = true },
+  --     { '<C-Up>',    ':TmuxNavigateUp<CR>',    silent = true },
+  --     { '<C-Right>', ':TmuxNavigateRight<CR>', silent = true },
+  --   }
+  -- },
 
-  -- smart split resize
+  -- seamless smart split/tmux navigation and resize
   {
     'mrjones2014/smart-splits.nvim',
     config = function() require('smart-splits').setup({}) end,
     lazy = false,
     keys = {
-      { '<A-Left>',  ':SmartResizeLeft  5<CR>' },
-      { '<A-Right>', ':SmartResizeRight 5<CR>' },
-      { '<A-Up>',    ':SmartResizeUp    5<CR>' },
-      { '<A-Down>',  ':SmartResizeDown  5<CR>' },
+      { '<C-Left>',  ':SmartCursorMoveLeft<CR>',  silent = true },
+      { '<C-Down>',  ':SmartCursorMoveDown<CR>',  silent = true },
+      { '<C-Up>',    ':SmartCursorMoveUp<CR>',    silent = true },
+      { '<C-Right>', ':SmartCursorMoveRight<CR>', silent = true },
+      { '<A-Left>',  ':SmartResizeLeft  5<CR>',   silent = true },
+      { '<A-Right>', ':SmartResizeRight 5<CR>',   silent = true },
+      { '<A-Up>',    ':SmartResizeUp    5<CR>',   silent = true },
+      { '<A-Down>',  ':SmartResizeDown  5<CR>',   silent = true },
     }
   },
 
@@ -152,27 +156,33 @@ return {
     config = function() require('config/lsp') end,
   },
 
+  -- golang
+  -- https://github.com/crispgm/nvim-go
+  {
+    'crispgm/nvim-go',
+    config = function()
+      require('go').setup({
+        lint_prompt_style = 'vt'
+      })
+    end
+  },
+
+  -- neovim
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {},
+  },
+
   -- completion
   {
-    'hrsh7th/nvim-cmp',
+    'saghen/blink.cmp',
     dependencies = {
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-emoji',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
-      'onsails/lspkind-nvim',
-      {
-        'L3MON4D3/LuaSnip',
-        config = function()
-          require('luasnip.loaders.from_vscode').lazy_load({
-            paths = { '~/dotfiles/nvim/after/snippets' }
-          })
-        end
-      },
+      'moyiz/blink-emoji.nvim',
+      'L3MON4D3/LuaSnip',
     },
-    config = function() require('config/nvim-cmp') end,
+    version = '*',
+    config = function() require('config/cmp') end,
     lazy = true,
     event = {
       'InsertEnter',
@@ -180,16 +190,25 @@ return {
     }
   },
 
-  -- golang
-  -- https://github.com/crispgm/nvim-go
-  {
-    'crispgm/nvim-go',
-    config = function()
-      require('go').setup({
-        lint_prompt_style = "vt"
-      })
-    end
-  },
+  -- {
+  --   'hrsh7th/nvim-cmp',
+  --   dependencies = {
+  --     'hrsh7th/cmp-path',
+  --     'hrsh7th/cmp-emoji',
+  --     'hrsh7th/cmp-buffer',
+  --     'hrsh7th/cmp-cmdline',
+  --     'hrsh7th/cmp-nvim-lsp',
+  --     'saadparwaiz1/cmp_luasnip',
+  --     'onsails/lspkind-nvim',
+--       'L3MON4D3/LuaSnip',
+  --   },
+  --   config = function() require('config/cmp') end,
+  --   lazy = true,
+  --   event = {
+  --     'InsertEnter',
+  --     'CmdlineEnter'
+  --   }
+  -- },
 
   -- gitsigns
   {
