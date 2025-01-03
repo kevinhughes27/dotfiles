@@ -18,8 +18,13 @@ export FZF_DEFAULT_OPTS="--reverse --height=50%
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # then run ~/.fzf/install to create this file.
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -f ~/.fzf.zsh ]; then
+  source ~/.fzf.zsh
+fi
 
 # source fzf-tab
 # git clone --depth 1 https://github.com/Aloxaf/fzf-tab ~/.fzf-tab
-[ -d ~/.fzf-tab ] && source ~/.fzf-tab/fzf-tab.plugin.zsh
+if [ -d ~/.fzf-tab ]; then
+  zstyle ':fzf-tab:*' use-fzf-default-opts yes
+  source ~/.fzf-tab/fzf-tab.plugin.zsh
+fi
