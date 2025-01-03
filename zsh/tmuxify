@@ -4,37 +4,44 @@ tmuxify() {
   # tmux is available
   if hash tmux &> /dev/null; then
 
-    # tmux is running (has sessions)
-    if tmux ls &> /dev/null; then
+    # .tmuxify is present
+    if [ -e "$HOME/.tmuxify" ]; then
 
-      # tmux is not attached
-      if tmux ls | grep -v '(attached)'; then
-        tmux attach
+      # tmux is running (has sessions)
+      if tmux ls &> /dev/null; then
+
+        # tmux is not attached
+        if tmux ls | grep -v '(attached)'; then
+          tmux attach
+        fi
+
+      # tmux is not running (no sessions)
+      else
+        _default_tmux_session
       fi
-
-    # tmux is not running (no sessions)
-    else
-      _default_tmux_session
     fi
   fi
 }
 
+tmuxify-init() {
+if [ -e "$HOME/.tmuxify" ]; then
+  echo "$HOME/.tmuxify exists"
+else
+  cat << EOF > $HOME/.tmuxify
+  tmux new-window -t $session -n dots  -c $HOME/dotfiles nvim +NvimTreeOpen
+  tmux new-window -t $session -n notes -c $HOME/notes 'git pull; nvim ToDo.md +NvimTreeOpen'
+
+  # kill the default blank window. then select notes
+  tmux kill-window -t $session:1
+  tmux select-window -t $session:2
+EOF
+  echo "$HOME/.tmuxify create"
+fi
+}
+
 _default_tmux_session() {
   local session="main"
-
   tmux new-session -s $session -d
-
-  # default windows
-  if [ -e "$HOME/.tmuxify" ]; then
-    source "$HOME/.tmuxify" # can and should use $session inside
-  else
-    tmux new-window -t $session -n dots  -c $HOME/dotfiles nvim +NvimTreeOpen
-    tmux new-window -t $session -n notes -c $HOME/notes 'git pull; nvim ToDo.md +NvimTreeOpen'
-
-    # kill the default blank window. then select notes
-    tmux kill-window -t $session:1
-    tmux select-window -t $session:2
-  fi
-
+  source "$HOME/.tmuxify" # can and should use $session inside
   tmux attach -t $session
 }
