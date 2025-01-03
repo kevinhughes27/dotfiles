@@ -22,7 +22,7 @@ ssh_only = true
 format =  "in [$hostname](bold red) "
 
 [custom.toolbox]
-when = "hostname | grep 'toolbox'"
+when = "hostname | grep 'toolbx'"
 command = "cat /run/.containerenv | grep 'name' | cut -d \\= -f2 | sed 's/\"//g'"
 format = "in [󱁤 $output](yellow) "
 
