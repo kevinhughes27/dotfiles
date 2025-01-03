@@ -104,8 +104,19 @@ function toolbox-shell() {
     container="${container}-${suffix}"
   fi
   local args=( -r "${release}" -c "${container}" )
+
   toolbox run "${args[@]}" $(basename $SHELL)
 }
+
+# example of defining toolbox only aliases in .localrc
+# if [[ $(hostname) == "toolbx" ]]; then
+#   toolbox only
+# fi
+#
+# you can also further define custum aliases for specific toolboxes with
+# if cat "/run/.containerenv" | grep "name=" | grep "prod" &> /dev/null; then
+#   specific toolbox only
+# fi
 
 # toolbox shell alias
 alias ts='toolbox-shell'
