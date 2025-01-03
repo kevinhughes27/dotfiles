@@ -1,0 +1,111 @@
+#!/bin/zsh
+
+# a set of helpers for creating and managing Fedora toolboxes
+# https://github.com/containers/toolbox
+
+# usage:
+# toolbox-create <fedora_version> <suffix>
+# suffix is optional. it allows multiple toolboxes
+function toolbox-create() {(
+  if [[ $# -eq 0 ]]; then
+    echo "fedora_version required"
+    return
+  fi
+
+  set -e
+  local prefix=${TOOLBOX_PREFIX:-tlbx}
+  local release="$1"
+  local container="${prefix}-f${release}"
+  if [[ $# -eq 2 ]]; then
+    local suffix="${2}"
+    container="${container}-${suffix}"
+  fi
+
+  local args=( --release "${release}" --container "${container}" )
+  toolbox --assumeyes create "${args[@]}"
+  _toolbox-setup $container
+)}
+
+function _toolbox-setup() {(
+  local container=$1
+  local name="$(whoami | sed 's/\./ /g' | sed 's/\b\(.\)/\u\1/g')"
+
+  setup=$(mktemp)
+  tee ${setup} <<EOF
+    # set value for GECOS field
+    sudo usermod -c "$(getent passwd \${USER} | cut -d ":" -f 5)" ${USER}
+
+    # add fullname in /etc/passwd
+    sudo usermod -c "${name}" ${USER}
+
+    # dnf cache
+    echo "keepcache=true" | sudo tee -a /etc/dnf/dnf.conf
+    echo "cachedir="\${HOME}"/.cache/dnf" | sudo tee -a /etc/dnf/dnf.conf
+
+    # basic deps
+    sudo dnf install -y \
+      zsh \
+      bash \
+      make \
+      git \
+      vim \
+      pwgen
+
+    # prompt
+    curl -sS https://starship.rs/install.sh | sh
+EOF
+
+  toolbox run --container "$container" bash $setup
+  rm $setup
+)}
+
+
+# usage:
+# toolbox-clear <fedora_version> <suffix>
+function toolbox-clear() {(
+  if [[ $# -eq 0 ]]; then
+    echo "fedora_version required"
+    return
+  fi
+
+  set -e
+  local prefix=${TOOLBOX_PREFIX:-tlbx}
+  local release="$1"
+  local container="${prefix}-f${release}"
+  if [[ $# -eq 2 ]]; then
+    local suffix="${2}"
+    container="${container}-${suffix}"
+  fi
+
+  read "response?Are you sure you want to clear ${container}? [y/N] "
+
+  if [[ "$response" =~ ^(yes|y)$ ]]; then
+    podman stop "${container}" || :
+    toolbox rm "${container}"
+  else
+    echo "Toolbox clear aborted"
+  fi
+)}
+
+
+# usage:
+# toolbox-shell <fedora_version> <suffix>
+function toolbox-shell() {
+  if [[ $# -eq 0 ]]; then
+    echo "fedora_version required"
+    return
+  fi
+
+  local prefix=${TOOLBOX_PREFIX:-tlbx}
+  local release="$1"
+  local container="${prefix}-f${release}"
+  if [[ $# -eq 2 ]]; then
+    local suffix="${2}"
+    container="${container}-${suffix}"
+  fi
+  local args=( -r "${release}" -c "${container}" )
+  toolbox run "${args[@]}" $(basename $SHELL)
+}
+
+# toolbox shell alias
+alias ts='toolbox-shell'
