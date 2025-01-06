@@ -1,6 +1,12 @@
+# colors
 theme = "OneHalfDark"
+foreground = "#abb2bf"
+
+# font
 font-family = "Hack Nerd Font Mono"
+
 copy-on-select = true
 
+# keybindings
 keybind = ctrl+v=paste_from_clipboard
 keybind = alt+t=new_tab
