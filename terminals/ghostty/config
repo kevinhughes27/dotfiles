@@ -1,0 +1,6 @@
+theme = "OneHalfDark"
+font-family = "Hack Nerd Font Mono"
+copy-on-select = true
+
+keybind = ctrl+v=paste_from_clipboard
+keybind = alt+t=new_tab

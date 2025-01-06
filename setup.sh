@@ -65,6 +65,7 @@ function setup() {
   mkdir -p ~/.config
   link ~/dotfiles/starship.toml ~/.config/starship.toml
   link ~/dotfiles/terminals/wezterm ~/.config/wezterm
+  link ~/dotfiles/terminals/ghostty/ ~/.config/ghostty
   link ~/dotfiles/terminals/alacritty ~/.config/alacritty
   link ~/dotfiles/terminals/kitty ~/.config/kitty
   link ~/dotfiles/nvim ~/.config/nvim
