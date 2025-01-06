@@ -14,10 +14,12 @@ tmuxify() {
         if tmux ls | grep -v '(attached)'; then
           tmux attach
         fi
+        # tmux is attached.
+        # this is a new terminal. do nothing
 
       # tmux is not running (no sessions)
       else
-        _default_tmux_session
+        _start_default_tmux_session
       fi
     fi
   fi
@@ -39,7 +41,7 @@ EOF
 fi
 }
 
-_default_tmux_session() {
+_start_default_tmux_session() {
   local session="main"
   tmux new-session -s $session -d
   source "$HOME/.tmuxify" # can and should use $session inside
