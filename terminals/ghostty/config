@@ -5,8 +5,11 @@ foreground = "#abb2bf"
 # font
 font-family = "Hack Nerd Font Mono"
 
-copy-on-select = true
+# fix macos shell cursor
+shell-integration-features = no-cursor
 
 # keybindings
 keybind = ctrl+v=paste_from_clipboard
 keybind = alt+t=new_tab
+
+copy-on-select = true
