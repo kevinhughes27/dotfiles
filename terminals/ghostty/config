@@ -8,6 +8,9 @@ font-family = "Hack Nerd Font Mono"
 # fix macos shell cursor
 shell-integration-features = no-cursor
 
+# cmd shift click to open links
+# https://github.com/ghostty-org/ghostty/issues/1040#issuecomment-2132414329
+
 # keybindings
 keybind = ctrl+v=paste_from_clipboard
 keybind = alt+t=new_tab
