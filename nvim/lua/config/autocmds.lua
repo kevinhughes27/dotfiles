@@ -16,9 +16,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     -- copy to system clipboard using osc52 escape code
     require('osc52').copy_register('+')
-
-    -- highlight copied text
-    vim.highlight.on_yank({ higroup='YankPost', timeout=500 })
   end
 })
 

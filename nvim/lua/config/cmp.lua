@@ -43,6 +43,7 @@ blink.setup({
       emoji = {
         module = 'blink-emoji',
         name = 'Emoji',
+        min_keyword_length = 3,
       },
       buffer = {
         max_items = 2,
