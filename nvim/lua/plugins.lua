@@ -146,21 +146,6 @@ return {
   -- highlight urls
   {'itchyny/vim-highlighturl'},
 
-  -- highlight yank
-  {
-    'rachartier/tiny-glimmer.nvim',
-    event = 'TextYankPost',
-    opts = {
-      default_animation = 'fade',
-      transparency_color = '#61afef', -- blue
-      animations = {
-        fade = {
-          max_duration = 250,
-        },
-      },
-    },
-  },
-
   -- lsp
   {
     'neovim/nvim-lspconfig',
