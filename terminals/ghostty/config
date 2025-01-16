@@ -4,6 +4,7 @@ foreground = "#abb2bf"
 
 # font
 font-family = "Hack Nerd Font Mono"
+font-size = 10
 
 # fix macos shell cursor
 shell-integration-features = no-cursor
@@ -14,5 +15,11 @@ shell-integration-features = no-cursor
 # keybindings
 keybind = ctrl+v=paste_from_clipboard
 keybind = alt+t=new_tab
+
+keybind = f11=toggle_fullscreen
+
+# linux only. fullscreen then toggle off for true fullscreen
+window-decoration = true
+keybind = f12=toggle_window_decorations
 
 copy-on-select = true
