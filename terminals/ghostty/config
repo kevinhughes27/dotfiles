@@ -18,8 +18,4 @@ keybind = alt+t=new_tab
 
 keybind = f11=toggle_fullscreen
 
-# linux only. fullscreen then toggle off for true fullscreen
-window-decoration = true
-keybind = f12=toggle_window_decorations
-
 copy-on-select = true
