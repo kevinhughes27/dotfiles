@@ -9,6 +9,11 @@ font-size = 10
 # fix macos shell cursor
 shell-integration-features = no-cursor
 
+macos-option-as-alt = true
+# https://github.com/ghostty-org/ghostty/discussions/3681
+keybind = alt+left=unbind
+keybind = alt+right=unbind
+
 # cmd shift click to open links
 # https://github.com/ghostty-org/ghostty/issues/1040#issuecomment-2132414329
 
@@ -19,3 +24,7 @@ keybind = alt+t=new_tab
 keybind = f11=toggle_fullscreen
 
 copy-on-select = true
+
+# local overrides
+# mac fonts need to be bigger
+config-file = ?../../.ghostty
