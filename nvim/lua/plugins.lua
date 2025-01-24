@@ -78,22 +78,6 @@ return {
     }
   },
 
-  -- seamless split/tmux navigation
-  -- {
-  --   'christoomey/vim-tmux-navigator',
-  --   init = function()
-  --     vim.g.tmux_navigator_no_mappings = 1
-  --     vim.g.tmux_navigator_save_on_switch = 2
-  --   end,
-  --   lazy = false,
-  --   keys = {
-  --     { '<C-Left>',  ':TmuxNavigateLeft<CR>',  silent = true },
-  --     { '<C-Down>',  ':TmuxNavigateDown<CR>',  silent = true },
-  --     { '<C-Up>',    ':TmuxNavigateUp<CR>',    silent = true },
-  --     { '<C-Right>', ':TmuxNavigateRight<CR>', silent = true },
-  --   }
-  -- },
-
   -- seamless smart split/tmux navigation and resize
   {
     'mrjones2014/smart-splits.nvim',
