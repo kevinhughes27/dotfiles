@@ -3,6 +3,8 @@
 clipboard() {
   if type xclip &>/dev/null; then
     cat "$@" | xclip -selection clipboard
+  elif type pbcopy &> /dev/null; then
+    pbcopy "$@"
   else
     copy_osc52 "$@"
   fi
@@ -11,6 +13,8 @@ clipboard() {
 paste() {
   if type xclip &>/dev/null; then
     xclip -selection clipboard -o
+  elif type pbcopy &> /dev/null; then
+    pbpaste
   else
     echo "not supported"
     # paste_osc52
