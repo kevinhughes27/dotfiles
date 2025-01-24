@@ -5,7 +5,7 @@ local actions = require('fzf-lua.actions')
 fzf.setup({
   fzf_bin = 'fzf-tmux',
   fzf_opts = { ['--border'] = 'rounded' },
-  fzf_tmux_opts = { ['-p'] = '90%,90%' },
+  fzf_tmux_opts = { ['-p'] = '90%,92%' },
   winopts = { preview = { default = 'bat', layout = 'horizontal' } },
   oldfiles = {
     cwd_only = true,
