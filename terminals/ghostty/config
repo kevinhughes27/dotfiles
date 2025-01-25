@@ -6,9 +6,15 @@ foreground = "#abb2bf"
 font-family = "Hack Nerd Font Mono"
 font-size = 10
 
+# disable copy notifications
+# https://github.com/ghostty-org/ghostty/pull/4185
+# https://github.com/ghostty-org/ghostty/pull/5332
+app-notifications = no-clipboard-copy
+
 # fix macos shell cursor
 shell-integration-features = no-cursor
 
+# fix alt bindings
 macos-option-as-alt = true
 # https://github.com/ghostty-org/ghostty/discussions/3681
 keybind = alt+left=unbind
