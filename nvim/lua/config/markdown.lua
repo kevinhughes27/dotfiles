@@ -12,11 +12,9 @@ require('render-markdown').setup({
     backgrounds = { 'ColorColumn' },
   },
   checkbox = {
-    unchecked = {
-      highlight = 'Normal'
-    },
+    position = 'overlay',
     checked = {
-      highlight = 'SpecialComment'
+      scope_highlight = '@markup.strikethrough'
     },
   },
   code = {
@@ -26,3 +24,5 @@ require('render-markdown').setup({
     right_pad = 2,
   },
 })
+
+vim.api.nvim_set_hl(0, '@markup.strikethrough', {fg='#546178', strikethrough=true})

@@ -15,3 +15,9 @@ truecolor_test() {
       printf "\n";
   }'
 }
+
+strikethough_test() {
+  printf "\e[9m"
+  printf "strikethrough"
+  printf "\e[m\n"
+}
