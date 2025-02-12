@@ -50,13 +50,13 @@ return {
           },
           override_by_filename = {
             ['bashrc'] = {
-              icon = '',
+              icon = '',
               color = '#89e051',
               cterm_color = '113',
               name = 'Bashrc',
             },
             ['gitconfig'] = {
-              icon = '',
+              icon = '',
               color = '#41535b',
               cterm_color = '239',
               name = 'GitConfig',
@@ -74,7 +74,7 @@ return {
               name = 'GitIgnore'
             },
             ['zshrc'] = {
-              icon = '',
+              icon = '',
               color = '#89e051',
               cterm_color = '113',
               name = 'Zshrc',
