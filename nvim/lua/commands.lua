@@ -23,7 +23,7 @@ end, {
 
 -- copy current file path
 create('CopyPath', function()
-  vim.api.nvim_exec('let @+=@%', true)
+  vim.api.nvim_exec2('let @+=@%', {})
   require('osc52').copy_register('+')
 end, {
   nargs = 0,
@@ -41,7 +41,7 @@ create('Np', function()
     job:new({ command = 'git', args = {'add', '.'}, cwd = cwd, }):sync()
 
     -- update view
-    vim.api.nvim_exec('Gitsigns refresh', true)
+    vim.api.nvim_exec2('Gitsigns refresh', {})
 
     -- commit and push
     local git_commit = 'git commit -m "Updated Notes"'
