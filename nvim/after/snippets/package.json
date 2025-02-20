@@ -41,6 +41,7 @@
           "shellscript",
           "shell",
           "bash",
+          "zsh",
           "sh"
         ],
         "path": "./shell.json"

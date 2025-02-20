@@ -17,6 +17,11 @@
     "body": "cat << EOF > filename\n\t${1}\nEOF",
     "description": "heredoc to file"
   },
+  "darwin": {
+    "prefix": "darwin",
+    "body": "if [ \"$(uname)\" = \"Darwin\" ]; then\n\t${1}\nfi",
+    "description": "if mac os condition"
+  },
   "if": {
     "prefix": "if",
     "body": "if [[ ${0:condition} ]]; then\n\t${1}\nfi",
@@ -66,7 +71,7 @@
   },
   "case": {
     "prefix": "case",
-    "body": "case \"$${0:VAR}\" in\n\t${1:1}) echo 1\n\t;;\n\t${2:2|3}) echo 2 or 3\n\t;;\n\t*) echo default\n\t;;\nesac\n",
+    "body": "case \"$${0:VAR}\" in\n\t${1:1})\n\t\techo 1\n\t;;\n\t${2:2|3})\n\t\techo 2 or 3\n\t;;\n\t*)\n\t\techo default\n\t;;\nesac\n",
     "description": [
       "case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac\n",
       "A case command first expands word, and tries to match it against each pattern in turn."
