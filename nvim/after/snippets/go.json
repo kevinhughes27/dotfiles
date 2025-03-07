@@ -13,5 +13,10 @@
     "prefix": "map",
     "body": "map[${1:type}]${2:type}",
     "description": "Snippet for a map"
+  },
+    "switch statement": {
+    "prefix": "switch",
+    "body": "switch ${1:expression} {\ncase ${2:condition}:\n\t$0\n}",
+    "description": "Snippet for switch statement"
   }
 }
