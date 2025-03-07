@@ -38,6 +38,12 @@ return {
       -- disable visual-multi-mappings
       -- (it binds to ctrl up/down which I use for navigation)
       vim.g.VM_default_mappings = 0
+
+      -- fix overwriting a mapping issue with blink.cmp
+      -- https://github.com/Saghen/blink.cmp/issues/406
+      vim.g.VM_maps = {
+        ["I Return"] = "<S-CR>",
+      }
     end,
     lazy = true,
     keys = {
