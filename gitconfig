@@ -118,13 +118,13 @@ ls = "!fzf_git_log() { \
 # [B]ranch [D]elete
 bd = "!f() { git branch | fzf --multi | xargs git branch -D; }; f"
 
-# [F]resh switch to master/main and pull
+# git'Fresh switch to master/main and pull
 fr = "!f() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   git checkout $mainbranch && git pull --autostash; \
 }; f"
 
-# [N]ew [B]ranch". `git nb foo` will create a new branch named `foo` based off the latest master/main.
+# [N]ew [B]ranch. `git nb foo` will create a new branch named `foo` based off the latest master/main.
 nb = "!f() { \
   local mainbranch=`git remote show origin | grep 'HEAD branch' | cut -d' ' -f5`; \
   git checkout $mainbranch && git pull && git checkout -b $1; \
