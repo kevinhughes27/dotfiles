@@ -30,6 +30,19 @@ end, {
   desc = 'Copy the path of the current file to clipboard',
 })
 
+-- ruff
+create('Ruff', function()
+  vim.lsp.buf.code_action {
+    context = {
+      only = { 'source.fixAll.ruff' }
+    },
+    apply = true,
+  }
+  vim.lsp.buf.format { async = true }
+end, {
+  desc = "Reformat python with ruff"
+})
+
 -- notes push
 create('Np', function()
   local cwd = vim.fn.getcwd()

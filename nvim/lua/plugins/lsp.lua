@@ -20,6 +20,7 @@ return {
       local servers = {
         gopls = {},
         pylsp = {},
+        ruff = {},
         ts_ls = {},
         lua_ls = {
           Lua = {
@@ -29,7 +30,12 @@ return {
         },
       }
 
-      local on_attach = function(_, bufnr)
+      local on_attach = function(client, bufnr)
+        if client.name == 'ruff' then
+          -- disable hover in favor of pylsp
+          client.server_capabilities.hoverProvider = false
+        end
+
         local opts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
         vim.keymap.set('n', 'ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
