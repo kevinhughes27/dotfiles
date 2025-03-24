@@ -22,7 +22,7 @@ if [[ -d "$HOME/.fzf" ]]; then
 
   # setup fzf
   if [[ ! "$PATH" == "*$HOME/.fzf/bin*" ]]; then
-    PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
+    export PATH="$HOME/.fzf/bin:$PATH"
   fi
 
   # auto-completion
