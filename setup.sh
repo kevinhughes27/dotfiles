@@ -85,6 +85,7 @@ function setup() {
 # Back up the original remote bashrc first.
 function setup-remote() {
   remote="$1"
+  thisdir="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 
   # backup original bashrc
   backup_check='grep "fzf" .bashrc &> /dev/null;'
@@ -92,9 +93,9 @@ function setup-remote() {
   ssh $remote "${backup_check} ${backup_cmd}"
 
   # copy configuration
-  scp bashrc $remote:~/.bashrc
-  scp vimrc $remote:~/.vimrc
-  scp gitconfig $remote:~/.gitconfig
+  scp $thisdir/bashrc $remote:~/.bashrc
+  scp $thisdir/vimrc $remote:~/.vimrc
+  scp $thisdir/gitconfig $remote:~/.gitconfig
 
   # setup fzf
   ssh $remote "mkdir -p ~/.fzf/shell;"
