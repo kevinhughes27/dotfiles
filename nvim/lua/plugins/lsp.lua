@@ -41,14 +41,14 @@ return {
         vim.keymap.set('n', 'ca', '<Cmd>lua vim.lsp.buf.code_action()<CR>', opts)
         vim.keymap.set('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
         vim.keymap.set('n', '<RightMouse>', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+
+        vim.diagnostic.config({virtual_text = true})
       end
 
       local lspconfig = require('lspconfig')
       local mason_lspconfig = require('mason-lspconfig')
 
-      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
       capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
       mason_lspconfig.setup {
