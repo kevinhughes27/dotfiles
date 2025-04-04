@@ -6,6 +6,7 @@ ${custom.toolbox}\
 $git_branch\
 ${custom.dirty}\
 $line_break\
+$aws\
 $character"""
 
 # newline is in my format string
@@ -35,11 +36,11 @@ format = "[*](red)"
 
 # after the line_break
 
-# [aws]
-# format = ' [$symbol ($profile )(\($region\))]($style)'
-# style = 'bold blue'
-# symbol = 'aws'
-#
+[aws]
+format = ' [$symbol ($profile )(\($region\))]($style)'
+style = 'bold blue'
+symbol = 'aws'
+
 # [terraform]
 # format = ' [tf $workspace]($style)'
 
