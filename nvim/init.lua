@@ -1,6 +1,13 @@
 require 'bootstrap'
 require 'settings'
-require('lazy').setup('plugins')
+require('lazy').setup({
+  spec = {
+    import = 'plugins'
+  },
+  rocks = {
+    enabled = false
+  }
+})
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'VeryLazy',
