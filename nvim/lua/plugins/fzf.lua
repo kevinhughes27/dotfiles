@@ -12,10 +12,16 @@ return {
       local actions = require('fzf-lua.actions')
 
       fzf.setup({
-        fzf_bin = 'fzf-tmux',
-        fzf_opts = { ['--border'] = 'rounded' },
-        fzf_tmux_opts = { ['-p'] = '90%,92%' },
-        winopts = { preview = { default = 'bat', layout = 'horizontal' } },
+        fzf_opts = {
+          ['--tmux'] = 'center,90%,92%',
+          ['--border'] = 'rounded'
+        },
+        winopts = {
+          preview = {
+            default = 'bat',
+            layout = 'horizontal'
+          }
+        },
         oldfiles = {
           cwd_only = true,
           stat_file = true, -- verify files exist on disk
