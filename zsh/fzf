@@ -9,11 +9,18 @@ magenta="#c678dd"
 # fzf configuration
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="--reverse --height=50%
---color=dark
---color=fg:-1,bg:-1,hl:$magenta
---color=fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
---color=info:$green,prompt:$blue,pointer:$magenta
---color=marker:$yellow,spinner:$blue,header:$blue,gutter:-1"
+--color='dark
+  fg:-1 fg+:#ffffff
+  bg:-1 bg+:#4b5263
+  hl:$magenta
+  hl+:#d858fe info:$green
+  prompt:$blue
+  pointer:$magenta
+  marker:$yellow
+  spinner:$blue
+  header:$blue
+  gutter:-1'
+"
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
