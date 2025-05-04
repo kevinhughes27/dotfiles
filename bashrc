@@ -38,11 +38,17 @@ if [[ -d "$HOME/.fzf" ]]; then
   magenta="#c678dd"
 
   export FZF_DEFAULT_OPTS="--reverse --height=50%
-    --color=dark
-    --color=fg:-1,bg:-1,hl:$magenta
-    --color=fg+:#ffffff,bg+:#4b5263,hl+:#d858fe
-    --color=info:$green,prompt:$blue,pointer:$magenta
-    --color=marker:$yellow,spinner:$blue,header:$blue,gutter:-1"
+  --color='dark
+    fg:-1 bg:-1 hl:$magenta
+    fg+:#ffffff bg+:#4b5263 hl+:#d858fe
+    info:$green
+    prompt:$blue
+    pointer:$magenta
+    marker:$yellow
+    spinner:$blue
+    header:$blue
+    gutter:-1'
+  "
 fi
 
 # aliases
