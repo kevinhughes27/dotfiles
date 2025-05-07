@@ -75,6 +75,7 @@ function setup() {
   link ~/dotfiles/tools/bottom ~/.config/bottom
   link ~/dotfiles/tools/ulauncher ~/.config/ulauncher
   link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle
+  link ~/dotfiles/tools/go/revive.toml ~/revive.toml
 
   echo ""
   echo "All done."
