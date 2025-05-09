@@ -1,5 +1,7 @@
 require 'bootstrap'
 require 'settings'
+require 'lsp'
+
 require('lazy').setup({
   spec = {
     import = 'plugins'
