@@ -30,8 +30,8 @@ if [ -e "$HOME/.tmuxify" ]; then
   echo "$HOME/.tmuxify exists"
 else
   cat << EOF > $HOME/.tmuxify
-  tmux new-window -t \$session -n dots  -c \$HOME/dotfiles nvim +NvimTreeOpen
-  tmux new-window -t \$session -n notes -c \$HOME/notes 'git pull; nvim ToDo.md +NvimTreeOpen'
+  tmux new-window -t \$session -n dots  -c \$HOME/dotfiles 'nvim +NvimTreeOpen ; exec $SHELL'
+  tmux new-window -t \$session -n notes -c \$HOME/notes 'git pull; nvim ToDo.md +NvimTreeOpen ; exec $SHELL'
 
   # kill the default blank window. then select notes
   tmux kill-window -t \$session:1
