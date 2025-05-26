@@ -25,6 +25,9 @@ return {
       -- pylsp requires `python3-venv` package and fails with an unclear message without it
       vim.lsp.config('pylsp', {
         cmd = { 'pylsp' },
+        cmd_env = {
+          VIRTUAL_ENV = '.venv',
+        },
         root_markers = { 'pyproject.toml', 'requirements.txt', '.git' },
         filetypes = { 'python' },
       })
