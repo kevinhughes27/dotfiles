@@ -4,12 +4,8 @@ return {
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     config = function()
       require('render-markdown').setup({
-        anti_conceal = {
-          enabled = false
-        },
-        latex = {
-          enabled = false
-        },
+        anti_conceal = { enabled = false },
+        latex = { enabled = false },
         heading = {
           icons = {},
           border = true,
@@ -17,7 +13,6 @@ return {
           backgrounds = { 'ColorColumn' },
         },
         checkbox = {
-          position = 'overlay',
           checked = {
             scope_highlight = '@markup.strikethrough'
           },
@@ -27,6 +22,7 @@ return {
           width = 'block',
           left_pad = 2,
           right_pad = 2,
+          border = 'thick',
         },
       })
 
