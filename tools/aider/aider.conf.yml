@@ -1,0 +1,15 @@
+# ~/.aider.conf.yml
+
+user-input-color: "#abb2bf" # foreground
+
+tool-output-color: "#828997" # WHITE
+tool-error-color: "#e06c75" # RED
+tool-warning-color: "#e5c07b" # YELLOW
+assistant-output-color: "#98c379" # GREEN
+
+completion-menu-color: "#abb2bf" # foreground
+completion-menu-bg-color: "#282c34" # background
+completion-menu-current-color: "#31353F" # BLACK
+completion-menu-current-bg-color: "#61afef" # BLUE
+
+code-theme: "one-dark"

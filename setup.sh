@@ -76,6 +76,7 @@ function setup() {
   link ~/dotfiles/tools/ulauncher ~/.config/ulauncher
   link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle
   link ~/dotfiles/tools/go/revive.toml ~/revive.toml
+  link ~/dotfiles/tools/aider/aider.conf.yml ~/.aider.conf.yml
 
   echo ""
   echo "All done."
