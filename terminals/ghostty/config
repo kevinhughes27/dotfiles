@@ -29,6 +29,10 @@ keybind = alt+t=new_tab
 
 keybind = f11=toggle_fullscreen
 
+# toggle gtk bar which takes up valuable space
+# use case is split screen with a browser
+keybind = f12=toggle_window_decorations
+
 copy-on-select = true
 
 # local overrides
