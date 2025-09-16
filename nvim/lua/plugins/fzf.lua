@@ -12,6 +12,7 @@ return {
       local actions = require('fzf-lua.actions')
 
       fzf.setup({
+        'fzf-native',
         fzf_opts = {
           ['--tmux'] = 'center,90%,92%',
           ['--border'] = 'rounded'
