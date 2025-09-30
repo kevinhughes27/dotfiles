@@ -29,15 +29,6 @@ opt('o', 'foldcolumn', '1')           -- always show foldcolumn
 opt('o', 'undofile', true)            -- enable undofile
 opt('o', 'updatetime', 100)           -- update frequency
 
--- copy into clipboard by default
-local os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '')
-
-if os == 'Darwin' then
-  opt('o', 'clipboard', 'unnamed')
-else
-  opt('o', 'clipboard', 'unnamedplus')
-end
-
 -- fold settings
 opt('o', 'fillchars', 'fold: ,foldopen:,foldsep: ,foldclose:')
 function _G.custom_fold_text()
@@ -45,29 +36,3 @@ function _G.custom_fold_text()
   return line_count .. " lines"
 end
 vim.opt.foldtext = 'v:lua.custom_fold_text()'
-
--- disable builtins
--- they will still show in a --startuptime output but the times will be much faster
--- because it is short-circuited to not load here
-local builtins = {
-  'gzip',
-  '2html_plugin',
-  'getscript',
-  'getscriptPlugin',
-  'logiPat',
-  'netrw',
-  'netrwFileHandlers',
-  'netrwPlugin',
-  'netrwSettings',
-  'rrhelper',
-  'tar',
-  'tarPlugin',
-  'vimball',
-  'vimballPlugin',
-  'zip',
-  'zipPlugin',
-}
-
-for _, plugin in ipairs(builtins) do
-  vim.g['loaded_' .. plugin] = 1
-end

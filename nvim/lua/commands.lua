@@ -24,7 +24,6 @@ end, {
 -- copy current file path
 create('CopyPath', function()
   vim.api.nvim_exec2('let @+=@%', {})
-  require('osc52').copy_register('+')
 end, {
   nargs = 0,
   desc = 'Copy the path of the current file to clipboard',

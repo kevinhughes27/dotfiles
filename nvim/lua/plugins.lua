@@ -15,11 +15,21 @@ return {
     opts = {},
   },
 
-  -- remote copy
+  -- smartyank
   {
-    'ojroques/nvim-osc52',
+    'ibhagwan/smartyank.nvim',
     config = function()
-      require('osc52').setup({ silent = true, tmux_passthrough = true })
+      require('smartyank').setup({
+        highlight = {
+          enabled = true,
+          higroup = 'YankPost',
+          timeout = 500,
+        },
+        osc52 = {
+          enabled = true,
+          escseq = 'tmux'
+        }
+      })
     end
   },
 
