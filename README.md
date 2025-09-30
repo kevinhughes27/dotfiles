@@ -1,6 +1,6 @@
 # dotfiles
 
-My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell with `starship.rs` for the prompt and `tmux` for window managment. For my terminal I am currently using `wezterm` but I keep configuration for `alacritty` and `kitty` handy. `bashrc`, `vimrc` and `gitconfig` are standalone and can be copied to remote hosts if I need.
+My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell with `starship.rs` for the prompt and `tmux` for window managment. For my terminal I am currently using `ghostty` but I keep configuration for `wezterm`, `alacritty` and `kitty` handy. `bashrc`, `vimrc` and `gitconfig` are standalone and can be copied to remote hosts.
 
 ![screenshot](https://user-images.githubusercontent.com/1965489/210177151-84c27c26-2c4f-4e78-a644-7f4bb86e7d45.png)
 
@@ -14,6 +14,7 @@ The `setup` script will do most of the work but there are a few dependencies tha
   * `neovim` (greater than 0.8, prefer nightly)
   * `bat` / `batcat`
   * `rg` / `ripgrep`
+  * LSP servers
 
 Fonts also need to be configured on the base host (the system that runs the terminal). I haven't automated this because terminal installation is also manual:
 
