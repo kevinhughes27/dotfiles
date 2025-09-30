@@ -1,2 +1,15 @@
-[package-comments]
-Disabled = true
+# https://revive.run/docs/configuring-revive
+
+severity = "warning"
+confidence = 0.8
+errorCode = 0
+warningCode = 0
+
+# [rule.package-comments]
+# disable = true
+#
+# [rule.exported]
+# disable = true
+#
+# [rule.var-naming]
+# disable = true
