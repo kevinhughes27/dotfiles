@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     -- Configure diagnostics
     vim.diagnostic.config({
       virtual_text = {
-        severity = vim.diagnostic.severity.WARN,
+        severity = vim.diagnostic.severity.ERROR,
         format = function(diagnostic)
           return string.format("%s: %s", diagnostic.source, diagnostic.message)
         end,
