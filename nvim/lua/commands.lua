@@ -42,6 +42,29 @@ end, {
   desc = "Reformat python with ruff"
 })
 
+-- LSP restart
+create('LspRestart', function()
+  local clients = vim.lsp.get_clients()
+  if #clients == 0 then
+    print("No LSP clients found")
+    return
+  end
+
+  -- Stop all clients using the correct API
+  for _, client in ipairs(clients) do
+    vim.lsp.client.stop(client)
+  end
+
+  -- Wait a moment then restart by reloading the buffer
+  vim.defer_fn(function()
+    vim.cmd('edit')
+  end, 100)
+
+  print("Restarted " .. #clients .. " LSP client(s)")
+end, {
+  desc = "Restart all LSP clients"
+})
+
 -- notes push
 create('Np', function()
   local cwd = vim.fn.getcwd()
