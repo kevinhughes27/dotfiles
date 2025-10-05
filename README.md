@@ -10,8 +10,8 @@ My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell wi
 The `setup` script will do most of the work but there are a few dependencies that need to be installed manually with the system package manager or built from source. `cargo` can be used for the rust dependencies:
 
   * `zsh`
-  * `tmux` (greater than 3.2a, prefer head)
-  * `neovim` (greater than 0.8, prefer nightly)
+  * `tmux` (3.4)
+  * `neovim` (0.12)
   * `bat` / `batcat`
   * `rg` / `ripgrep`
   * LSP servers
@@ -25,7 +25,7 @@ else
   FONT_DIR="$HOME/.local/share/fonts"
 fi
 
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Hack.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hack.zip
 mkdir -p $FONT_DIR
 unzip Hack.zip -d $FONT_DIR
 ```
