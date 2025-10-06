@@ -77,6 +77,7 @@ function setup() {
   link ~/dotfiles/tools/pylsp/pycodestyle ~/.config/pycodestyle
   link ~/dotfiles/tools/go/revive.toml ~/revive.toml
   link ~/dotfiles/tools/aider/aider.conf.yml ~/.aider.conf.yml
+  link ~/dotfiles/tools/opencode ~/.config/opencode
 
   echo ""
   echo "All done."
