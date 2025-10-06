@@ -1,0 +1,32 @@
+#!/bin/zsh
+
+# Interactive JSON filtering with fzf and jq
+# Use [enter] to apply the current jq query or [escape] to exit without output
+
+jqpreview() {
+  local input json temp selected
+
+  if [[ -n "$1" ]]; then
+    input="$1"
+  else
+    input="/dev/stdin"
+  fi
+
+  # Read JSON input
+  json=$(cat "$input")
+
+  # Create temp file for jq input
+  temp=$(mktemp)
+  echo "$json" > "$temp"
+
+  # Use fzf for interactive query building with live preview
+  selected=$(echo "." | fzf --query "." --print-query --preview "jq -r '{q}' '$temp' 2>/dev/null || echo 'Invalid jq query'")
+
+  # Output the filtered JSON if a query was selected
+  if [[ -n "$selected" ]]; then
+    echo "$json" | jq -r "$selected"
+  fi
+
+  # Clean up
+  rm "$temp"
+}
