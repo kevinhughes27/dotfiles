@@ -12,6 +12,11 @@
       "It can be useful if you aren't aware of the absolute path or don't want to search for it.\n"
     ]
   },
+  "seteuo": {
+    "prefix": "sete",
+    "body": "set -euo pipefail",
+    "description": "standard strict script"
+  },
   "heredoc": {
     "prefix": "heredoc",
     "body": "cat << EOF > filename\n\t${1}\nEOF",
