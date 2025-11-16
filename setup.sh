@@ -108,6 +108,18 @@ function setup-remote() {
   ssh $remote '~/.fzf/install --bin'
 }
 
+function update() {
+  echo "update starship"
+  sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- --yes > /dev/null
+
+  echo "updating fzf"
+  (cd ~/.fzf && git pull)
+  ~/.fzf/install --key-bindings --completion --no-update-rc --no-bash > /dev/null
+
+  echo "updating fzf-tab"
+  (cd ~/.fzf-tab && git pull)
+}
+
 
 # Usage
 # noargs        full local setup
@@ -115,10 +127,13 @@ function setup-remote() {
 if [[ $# -eq 0 ]] ; then
   setup
 else
-  while getopts 'r:' OPTION; do
+  while getopts 'r:u' OPTION; do
     case "$OPTION" in
       r)
         setup-remote "$OPTARG"
+        ;;
+      u)
+        update
         ;;
     esac
   done
