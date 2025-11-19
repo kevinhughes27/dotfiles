@@ -2,6 +2,8 @@ return {
   {
     'navarasu/onedark.nvim',
     priority=100,
+    -- comment coloring broken in newer commits
+    commit = 'de495fabe171d48aed5525f002d14414efcecbb2',
     config = function()
       require('onedark').setup({
         transparent = true,
