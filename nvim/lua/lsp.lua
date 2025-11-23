@@ -32,6 +32,7 @@ vim.lsp.config("pylsp", {
   filetypes = { "python" },
 })
 
+-- Ruff
 vim.lsp.config("ruff", {
   cmd = { "ruff", "server" },
   root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
@@ -45,11 +46,20 @@ vim.lsp.config("gopls", {
   filetypes = { "go" },
 })
 
+-- Typescript
+-- npm install -g typescript-language-server
+vim.lsp.config("tsserver", {
+  cmd = { "typescript-language-server", "--stdio" },
+  root_markers = { "package.json", ".git" },
+  filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+})
+
 -- enable
 vim.lsp.enable({
   'lua_ls',
   'pylsp',
   'ruff',
+  'tsserver',
   'gopls',
 })
 
