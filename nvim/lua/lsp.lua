@@ -3,6 +3,8 @@
 --
 
 -- Lua LSP
+-- download github release and place on PATH
+-- export PATH="$PATH:$HOME/src/lua-language-server/bin"
 vim.lsp.config("lua_ls", {
   cmd = { "lua-language-server" },
   root_markers = { ".git" },
