@@ -25,16 +25,15 @@ vim.lsp.config("lua_ls", {
 })
 
 -- Python LSP
-vim.lsp.config("pylsp", {
-  cmd = { "pylsp" },
-  cmd_env = {
-    VIRTUAL_ENV = ".venv",
-  },
-  root_markers = { "pyproject.toml", "requirements.txt", ".git" },
+-- uv tool install ty@latest
+vim.lsp.config("ty", {
+  cmd = { "ty", "server" },
   filetypes = { "python" },
+  root_markers = { "ty.toml", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
 })
 
 -- Ruff
+-- uv tool install ruff@latest
 vim.lsp.config("ruff", {
   cmd = { "ruff", "server" },
   root_markers = { "pyproject.toml", "ruff.toml", ".ruff.toml", ".git" },
@@ -42,6 +41,7 @@ vim.lsp.config("ruff", {
 })
 
 -- Go LSP
+-- go install golang.org/x/tools/gopls@latest
 vim.lsp.config("gopls", {
   cmd = { "gopls" },
   root_markers = { "go.mod", ".git" },
@@ -59,7 +59,7 @@ vim.lsp.config("tsserver", {
 -- enable
 vim.lsp.enable({
   'lua_ls',
-  'pylsp',
+  'ty',
   'ruff',
   'tsserver',
   'gopls',
