@@ -19,6 +19,10 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 
+# make up and down respect what has been typed already
+bindkey "^[OA" up-line-or-search
+bindkey "^[OB" down-line-or-search
+
 # fix home, end and delete
 bindkey "^[[1~" beginning-of-line
 bindkey "^[[3~" delete-char
