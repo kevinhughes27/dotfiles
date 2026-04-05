@@ -1,0 +1,204 @@
+#!/bin/zsh
+
+function _sandbox_linux() {
+  while [[ $# -gt 0 ]]; do
+    case $1 in
+      --with-podman)
+        PODMAN=true
+        shift
+        ;;
+      *)
+        break
+        ;;
+    esac
+  done
+
+  BWRAP_ARGS=(
+    # read-only binds
+    --ro-bind /usr /usr
+    --ro-bind /bin /bin
+    --ro-bind /lib /lib
+    --ro-bind /lib64 /lib64
+    --ro-bind /etc/resolv.conf /etc/resolv.conf
+
+    # sandbox gets its own /tmp and /var
+    --tmpfs /tmp
+    --tmpfs /run
+
+    # minimal access to system processes and devices
+    --proc /proc
+    --dev /dev
+
+    # disconnects the sandbox from all system resources (network, shared memory, mount points, etc.
+    --unshare-all
+
+    # reshare network
+    --share-net
+
+    # --die-with-parent kills the sandbox if your main terminal closes
+    --die-with-parent
+  )
+
+  # expose opencode
+  BWRAP_ARGS+=(
+    --bind-try "$HOME/.opencode" "$HOME/.opencode"
+    --bind-try "$HOME/.config/opencode" "$HOME/.config/opencode"
+    --bind-try "$HOME/.local/share/opencode" "$HOME/.local/share/opencode"
+    --bind-try "$HOME/.local/state/opencode" "$HOME/.local/state/opencode"
+  )
+
+  # uv and playwright from $HOME
+  BWRAP_ARGS+=(
+    --bind-try "$HOME/.local/bin" "$HOME/.local/bin"
+    --bind-try "$HOME/.cache/ms-playwright" "$HOME/.cache/ms-playwright"
+  )
+
+  # expose podman socket
+  # be careful with this. it is a hole...
+  #
+  # the podman socket can effectively elevate back to my user's permissions
+  # podman can mount an arbitrary volume and circumvent the sandbox
+  #
+  # e.g. `sandbox podman run --volume $HOME:/full-home -it busybox ls /full-home`
+  #
+  # but I do allow list my agent commands so I would see it...
+  #
+  # if [ -n "$PODMAN" ]; then
+  #   PODMAN_SOCKET="/run/user/$(id -u)/podman/podman.sock"
+  #   BWRAP_ARGS+=(
+  #     --bind-try "$PODMAN_SOCKET" "$PODMAN_SOCKET"
+  #     --setenv CONTAINER_HOST "unix://$PODMAN_SOCKET"
+  #   )
+  # fi
+
+  # podman proxy
+  if [ -n "$PODMAN" ]; then
+    SANDBOX_TMP=$(mktemp -d)
+    PROXY_SOCK="$SANDBOX_TMP/podman.sock"
+
+    # Start the Python Guard Proxy in background
+    # Restricts volumes to the current $PWD
+    echo "Starting Podman Guard..."
+    python3 "$HOME/dotfiles/tools/podman_proxy.py" "$PROXY_SOCK" "$PWD" &
+    PROXY_PID=$!
+
+    # Wait for socket to appear
+    while [ ! -S "$PROXY_SOCK" ]; do sleep 0.1; done
+
+    # Cleanup trap to kill proxy when script exits
+    trap "kill $PROXY_PID 2>/dev/null; rm -rf $SANDBOX_TMP" EXIT
+
+    local INNER_SOCKET="/run/user/$(id -u)/podman/podman.sock"
+
+    BWRAP_ARGS+=(
+      --bind "$PROXY_SOCK" "$INNER_SOCKET"
+      --setenv CONTAINER_HOST "unix://$INNER_SOCKET"
+    )
+  fi
+
+  # expose podman
+  # I think it has to be the socket... this way leads to madness
+#   local CONF_DIR=$(mktemp -d)
+#
+#     cat <<EOF > "$CONF_DIR/containers.conf"
+# [containers]
+# netns="host"
+# userns="host"
+# utsns="host"
+# cgroup_manager="cgroupfs"
+# events_backend="file"
+#
+# [engine]
+# cgroup_manager="cgroupfs"
+# events_backend="file"
+# helper_binaries_dir=["/usr/bin"]
+#
+# [storage]
+# driver="overlay"
+# graphroot="$HOME/.local/share/containers/storage"
+# runroot="/run/user/1000/containers"
+# [storage.options]
+# mount_program="/usr/bin/fuse-overlayfs"
+# EOF
+#
+#   BWRAP_ARGS+=(
+#     # --ro-bind /etc/ld.so.cache /etc/ld.so.cache
+#     # --ro-bind /etc/containers /etc/containers
+#     --ro-bind /etc/subuid /etc/subuid
+#     --ro-bind /etc/subgid /etc/subgid
+#     --ro-bind /etc/passwd /etc/passwd
+#     --ro-bind /sys /sys
+#
+#     --ro-bind "$CONF_DIR/containers.conf" /etc/containers/containers.conf
+#     --setenv CONTAINERS_CONF /etc/containers/containers.conf
+#
+#     # ephemeral container storage
+#     --dir "$HOME/.local/share/containers"
+#
+#     # mask userns helpers to force single-uid mode
+#     --ro-bind /dev/null /usr/bin/newuidmap
+#     --ro-bind /dev/null /usr/bin/newgidmap
+#
+#     # force simple cgroups and logging
+#     # --setenv _CONTAINERS_USERNS_CONFIGURED "done"
+#     # --setenv CONTAINERS_CGROUP_MANAGER "cgroupfs"
+#     # --setenv CONTAINERS_EVENTS_BACKEND "file"
+#     # --setenv STORAGE_DRIVER "overlay"
+#     # --setenv STORAGE_OPTS "overlay.mount_program=/usr/bin/fuse-overlayfs"
+#
+#     # --bind-try "$HOME/.config/containers" "$HOME/.config/containers"
+#     # --bind-try "$HOME/.local/share/containers" "$HOME/.local/share/containers"
+#
+#     # runtime
+#     --uid 0 --gid 0
+#     --dir "/run/user/$(id -u)"
+#     --setenv XDG_RUNTIME_DIR "/run/user/$(id -u)"
+#   )
+
+  # expose current dir
+  BWRAP_ARGS+=(
+    --bind "$PWD" "$PWD" \
+    --chdir "$PWD" \
+  )
+
+  # set -x
+  bwrap \
+    "${BWRAP_ARGS[@]}" \
+    "$@"
+}
+
+function _sandbox_macos() {
+  # macOS "Seatbelt" profile
+  # (allow default) lets tools work as usual
+  # (deny file-read* ...) blocks sensitive files
+  # (allow file-read* (subpath ...)) whitelists your agent configs
+  # local profile="(version 1)
+  #   (allow default)
+  #   (deny file-read* (home-relative-path \"/.ssh\"))
+  #   (deny file-read* (home-relative-path \"/.aws\"))
+  #   (allow file-read* (home-relative-path \"/.config/opencode\"))
+  #   (allow file-write* (home-relative-path \"/.config/opencode\"))"
+  #
+  # sandbox-exec -p "$profile" "$@"
+  echo "Not implemented / verified"
+  exit 1
+}
+
+function sandbox() {
+  if [[ $# -eq 0 ]]; then
+    echo "Usage: sandbox [command]"
+    return 1
+  fi
+
+  case "$(uname -s)" in
+    Linux)
+      _sandbox_linux "$@"
+      ;;
+    Darwin)
+      _sandbox_macos "$@"
+      ;;
+    *)
+      echo "OS not supported";
+      return 1 ;;
+  esac
+}
