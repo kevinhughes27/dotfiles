@@ -30,7 +30,6 @@ require('blink.cmp').setup({
 
   sources = {
     default = {
-      'lazydev',
       'lsp',
       'snippets',
       'buffer',
@@ -50,11 +49,6 @@ require('blink.cmp').setup({
       },
       cmdline = {
         min_keyword_length = 2,
-      },
-      lazydev = {
-        name = 'LazyDev',
-        module = 'lazydev.integrations.blink',
-        score_offset = 100,
       },
     },
   },
