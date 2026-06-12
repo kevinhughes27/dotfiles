@@ -1,9 +1,8 @@
 -- Plugins
 --
 -- vim.pack never auto-updates. Manual maintenance:
---   :lua vim.pack.update()              update everything
---   :lua vim.print(vim.pack.get())      inspect what's installed
---   :lua vim.pack.del({ 'name' })       remove a plugin
+--   :packupdate            update everything
+--   :packdel 'name'        remove a plugin
 
 -- globals that must be set before plugins load
 do
