@@ -1,0 +1,98 @@
+{
+  "plugins": {
+    "LuaSnip": {
+      "rev": "0abc8f390b278c3b4aabc4c004ac8a088b65cf24",
+      "src": "https://github.com/L3MON4D3/LuaSnip"
+    },
+    "blink-emoji.nvim": {
+      "rev": "dff709139ad5389fb55ebab026e75278a12b325a",
+      "src": "https://github.com/moyiz/blink-emoji.nvim"
+    },
+    "blink.cmp": {
+      "rev": "78336bc89ee5365633bcf754d93df01678b5c08f",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "'v1.10.2'"
+    },
+    "fzf-lua": {
+      "rev": "988416cc782dfe28bff3f0da9b8c943b236cd86a",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "gitlinker.nvim": {
+      "rev": "a1b74070bbd5e50128190c85b09f1431ea5fbd83",
+      "src": "https://github.com/linrongbin16/gitlinker.nvim"
+    },
+    "gitsigns.nvim": {
+      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "lualine.nvim": {
+      "rev": "221ce6b2d999187044529f49da6554a92f740a96",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "nvim-go": {
+      "rev": "d06df0cd6d8a7847a3edd40d1f150adde1e05980",
+      "src": "https://github.com/crispgm/nvim-go"
+    },
+    "nvim-tree.lua": {
+      "rev": "82f58063d67defc620e1ef8be606fc62a7b5dc1e",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua"
+    },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "nvim-web-devicons": {
+      "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "onedark.nvim": {
+      "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "remember.nvim": {
+      "rev": "e73350b07afdd4242a57e2e7c2b7cd38fce31d59",
+      "src": "https://github.com/vladdoster/remember.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "5adf0895310c1904e5abfaad40a2baad7fe44a07",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+    },
+    "smart-splits.nvim": {
+      "rev": "6806149fd36d1c5e797debe3e18b2c07219b685a",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "smartyank.nvim": {
+      "rev": "c4e53e0d9316ca790a6f5d78aad73206a763873b",
+      "src": "https://github.com/ibhagwan/smartyank.nvim"
+    },
+    "statuscol.nvim": {
+      "rev": "c46172d0911aa5d49ba5f39f4351d1bb7aa289cc",
+      "src": "https://github.com/luukvbaal/statuscol.nvim"
+    },
+    "tabline-framework.nvim": {
+      "rev": "f0d229cc2c103bbc356d26c928eff02be40b230f",
+      "src": "https://github.com/rafcamlet/tabline-framework.nvim"
+    },
+    "tiny-devicons-auto-colors.nvim": {
+      "rev": "3b0c0174f4ed9120b6bea00d77e179ed5c46dcfb",
+      "src": "https://github.com/rachartier/tiny-devicons-auto-colors.nvim"
+    },
+    "vim-highlighturl": {
+      "rev": "7179156ccc68168e7ef8f1eae28edf36911f5a3c",
+      "src": "https://github.com/itchyny/vim-highlighturl"
+    },
+    "vim-test": {
+      "rev": "2676d84c6901e484df00b5d728bd6a345d47ee12",
+      "src": "https://github.com/vim-test/vim-test"
+    },
+    "vim-visual-multi": {
+      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
+      "src": "https://github.com/mg979/vim-visual-multi"
+    },
+    "vimux": {
+      "rev": "d6cb7f63a8bb428ffc27060b7f83c77fb115589c",
+      "src": "https://github.com/preservim/vimux"
+    }
+  }
+}
