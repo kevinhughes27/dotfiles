@@ -65,11 +65,8 @@ vim.lsp.enable({
   'gopls',
 })
 
--- Configure inlay hints
+-- configure inlay hints
 vim.lsp.inlay_hint.enable(true)
-
--- Global LSP settings
-vim.lsp.set_log_level("warn")
 
 -- on attach
 vim.api.nvim_create_autocmd("LspAttach", {
