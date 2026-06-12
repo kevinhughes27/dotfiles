@@ -16,9 +16,6 @@ end
 
 -- order matters: dependencies and shared palettes before consumers.
 vim.pack.add({
-  -- shared lua utils (also used by commands.lua)
-  { src = 'https://github.com/nvim-lua/plenary.nvim' },
-
   -- colorscheme, load early so its palette/highlights exist for everything else
   { src = 'https://github.com/navarasu/onedark.nvim' },
 

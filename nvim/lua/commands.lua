@@ -1,7 +1,6 @@
 -- Commands
 --
 local create = vim.api.nvim_create_user_command
-local job = require('plenary.job')
 
 -- ripgrep shortened command
 -- no arg resumes previous search
@@ -72,8 +71,8 @@ create('Np', function()
   local is_notes = string.find(cwd, notesdir)
 
   if is_notes then
-    -- git add
-    job:new({ command = 'git', args = {'add', '.'}, cwd = cwd, }):sync()
+    -- git add (synchronous wait)
+    vim.system({ 'git', 'add', '.' }, { cwd = cwd }):wait()
 
     -- update view
     vim.api.nvim_exec2('Gitsigns refresh', {})
@@ -83,24 +82,19 @@ create('Np', function()
     local git_push = 'git push origin master'
     local cmd = git_commit .. ' && ' .. git_push
 
-    local nothing_to_commit = function(result)
-      return string.find(table.concat(result, ""), "nothing to commit")
-    end
-
-    job:new({
-      command = 'sh',
-      args = {'-c', cmd},
-      cwd = cwd,
-      on_exit = function(j, return_val)
-        if return_val == 0 then
+    -- async system call
+    vim.system({ 'sh', '-c', cmd }, { cwd = cwd }, function(out)
+      -- Schedule prints to the main event loop
+      vim.schedule(function()
+        if out.code == 0 then
           print('[Notes] pushed!')
-        elseif nothing_to_commit(j:result()) then
+        elseif out.stdout:find('nothing to commit') or (out.stderr and out.stderr:find('nothing to commit')) then
           print('[Notes] nothing to commit')
         else
           print('[Notes] [WARN] push failed!')
         end
-      end,
-    }):start()
+      end)
+    end)
   end
 end, {
   nargs = 0,

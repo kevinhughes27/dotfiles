@@ -50,10 +50,6 @@
       "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
       "src": "https://github.com/navarasu/onedark.nvim"
     },
-    "plenary.nvim": {
-      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
-    },
     "remember.nvim": {
       "rev": "e73350b07afdd4242a57e2e7c2b7cd38fce31d59",
       "src": "https://github.com/vladdoster/remember.nvim"
