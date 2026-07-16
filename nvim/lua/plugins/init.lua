@@ -1,8 +1,9 @@
 -- Plugins
 --
 -- vim.pack never auto-updates. Manual maintenance:
---   :packupdate            update everything
---   :packdel 'name'        remove a plugin
+--   :packupdate          update everything
+--   :packupdate name     update a plugin, write file to apply
+--   :packdel name        remove a plugin
 
 -- globals that must be set before plugins load
 do
