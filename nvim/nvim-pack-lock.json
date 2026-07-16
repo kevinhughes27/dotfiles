@@ -29,10 +29,6 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "nvim-go": {
-      "rev": "d06df0cd6d8a7847a3edd40d1f150adde1e05980",
-      "src": "https://github.com/crispgm/nvim-go"
-    },
     "nvim-tree.lua": {
       "rev": "82f58063d67defc620e1ef8be606fc62a7b5dc1e",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"

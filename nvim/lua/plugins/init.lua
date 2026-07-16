@@ -4,6 +4,7 @@
 --   :packupdate          update everything
 --   :packupdate name     update a plugin, write file to apply
 --   :packdel name        remove a plugin
+--
 
 -- globals that must be set before plugins load
 do
@@ -55,9 +56,6 @@ vim.pack.add({
   { src = 'https://github.com/vim-test/vim-test' },
   { src = 'https://github.com/preservim/vimux' },
 
-  -- go
-  { src = 'https://github.com/crispgm/nvim-go' },
-
   -- editing niceties
   { src = 'https://github.com/itchyny/vim-highlighturl' },
   { src = 'https://github.com/ibhagwan/smartyank.nvim' },
@@ -80,7 +78,6 @@ for _, m in ipairs({
   'nvim-tree',
   'splits',
   'vim-test',
-  'golang',
   'smartyank',
   'remember',
   'visual-multi',
