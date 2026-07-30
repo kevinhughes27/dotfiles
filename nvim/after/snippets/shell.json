@@ -17,10 +17,15 @@
     "body": "set -euo pipefail",
     "description": "standard strict script"
   },
-  "heredoc": {
-    "prefix": "heredoc",
+  "heredoc_file": {
+    "prefix": "heredoc_to_file",
     "body": "cat << EOF > filename\n\t${1}\nEOF",
     "description": "heredoc to file"
+  },
+  "heredoc_var": {
+    "prefix": "heredoc_to_var",
+    "body": "MY_VAR=$(cat << 'EOF'\n${1}\nEOF\n)",
+    "description": "heredoc to var"
   },
   "darwin": {
     "prefix": "darwin",
