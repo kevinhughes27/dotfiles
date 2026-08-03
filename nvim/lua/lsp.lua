@@ -50,6 +50,7 @@ vim.lsp.config("gopls", {
 
 -- Typescript
 -- npm install -g typescript-language-server
+-- note this needs a project level typescript installed
 vim.lsp.config("tsserver", {
   cmd = { "typescript-language-server", "--stdio" },
   root_markers = { "package.json", ".git" },
