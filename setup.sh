@@ -79,6 +79,11 @@ function setup() {
   link ~/dotfiles/tools/aider/aider.conf.yml ~/.aider.conf.yml
   link ~/dotfiles/tools/opencode ~/.config/opencode
 
+  mkdir -p ~/.pi/agent
+  link ~/dotfiles/tools/pi/settings.json ~/.pi/agent/settings.json
+  link ~/dotfiles/tools/pi/AGENTS.md ~/.pi/agent/AGENTS.md
+  link ~/dotfiles/tools/pi/themes ~/.pi/agent/themes
+
   echo ""
   echo "All done."
 }
