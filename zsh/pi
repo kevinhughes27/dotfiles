@@ -1,0 +1,54 @@
+#!/bin/zsh
+
+PI_CONTAINER="pi-sandbox"
+PI_CONTAINERFILE=$(cat << 'EOF'
+FROM node:24-bookworm-slim
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    bash \
+    ca-certificates \
+    curl \
+    git \
+    jq \
+    python3 \
+    ripgrep \
+  && rm -rf /var/lib/apt/lists/*
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+RUN npm install -g --ignore-scripts @earendil-works/pi-coding-agent
+
+WORKDIR /workspace
+EOF
+)
+
+function pi() {
+  # tag the image with a hash of the Containerfile so edits trigger a rebuild.
+  local hash=$(echo "$PI_CONTAINERFILE" | sha256sum | cut -c1-12)
+  local image="$PI_CONTAINER:$hash"
+
+  if ! podman image exists "$image"; then
+    podman build -t "$image" -f <(echo "$PI_CONTAINERFILE") || return 1
+
+    # prune superseded pi-sandbox tags
+    podman images --format '{{.Repository}}:{{.Tag}}' \
+      | grep "$PI_CONTAINER:" | grep -v ":$hash$" \
+      | xargs -r podman rmi &> /dev/null
+  fi
+
+  cmd="pi"
+  if [ $# -gt 0 ]; then cmd="$@" fi
+
+  # if a session ends up with a bunch of useful state outside of pi and the workdir
+  # you can commit the container to an image to preserve it. not sure how common
+  # which is why there is no tooling around it yet. the agent could also be explicitly
+  # told that a resume may wipe its environment if it doesn't just figure it out on
+  # its own which I suspect it easily would.
+  podman run --rm -it \
+    --name "pi-$(basename $PWD)" \
+    --env COLORTERM \
+    --volume "$PWD:/workspace" \
+    --volume "$HOME/dotfiles/tools/pi:$HOME/dotfiles/tools/pi" \
+    --volume "$HOME/.pi/agent:/root/.pi/agent" \
+    "$image" \
+    $cmd
+}
