@@ -27,7 +27,7 @@ function pi() {
   local image="$PI_CONTAINER:$hash"
 
   if ! podman image exists "$image"; then
-    podman build -t "$image" -f <(echo "$PI_CONTAINERFILE") || return 1
+    echo "$PI_CONTAINERFILE" | podman build -t "$image" -f - . || return 1
 
     # prune superseded pi-sandbox tags
     podman images --format '{{.Repository}}:{{.Tag}}' \
@@ -36,7 +36,7 @@ function pi() {
   fi
 
   cmd="pi"
-  if [ $# -gt 0 ]; then cmd="$@" fi
+  if [ $# -gt 0 ]; then cmd="$@"; fi
 
   # if a session ends up with a bunch of useful state outside of pi and the workdir
   # you can commit the container to an image to preserve it. not sure how common
