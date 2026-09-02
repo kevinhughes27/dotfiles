@@ -4,7 +4,7 @@ clipboard() {
   if type xclip &>/dev/null; then
     cat "$@" | xclip -selection clipboard
   elif type pbcopy &> /dev/null; then
-    pbcopy "$@"
+    cat "$@" | pbcopy
   else
     copy_osc52 "$@"
   fi
