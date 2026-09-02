@@ -26,10 +26,42 @@ vim.lsp.config("lua_ls", {
 
 -- Python LSP
 -- uv tool install ty@latest
+
+-- fix for aiven-core monorepo. The `avn` is a namespace package split across every
+-- py/*/src dir; feed them to ty via extra-paths so first-party imports resolve.
+-- Mutate config.settings in place -- neovim captures it by reference at client
+-- creation, so reassigning it would be silently ignored.
+local function ty_aiven_monorepo_paths(_, config)
+  local root = config.root_dir or vim.fs.root(0, { ".git" })
+  if not root then
+    return
+  end
+  local paths = vim.fn.glob(root .. '/py/*/src', true, true)
+  table.insert(paths, root)
+  config.settings.ty.configuration = {
+    environment = {
+      ["extra-paths"] = paths,
+      -- python = root .. "/.venv",  -- point ty at the venv if 3rd-party deps don't resolve
+    },
+  }
+end
+
 vim.lsp.config("ty", {
   cmd = { "ty", "server" },
+  init_options = {
+    logFile = '~/ty.log',
+  },
   filetypes = { "python" },
   root_markers = { "ty.toml", "pyproject.toml", "setup.py", "setup.cfg", "requirements.txt", ".git" },
+  settings = {
+    ty = {
+      inlayHints = {
+        variableTypes = false,
+        callArgumentNames = false,
+      },
+    },
+  },
+  before_init = ty_aiven_monorepo_paths,
 })
 
 -- Ruff
