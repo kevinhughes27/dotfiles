@@ -82,10 +82,6 @@
       "rev": "2676d84c6901e484df00b5d728bd6a345d47ee12",
       "src": "https://github.com/vim-test/vim-test"
     },
-    "vim-visual-multi": {
-      "rev": "a6975e7c1ee157615bbc80fc25e4392f71c344d4",
-      "src": "https://github.com/mg979/vim-visual-multi"
-    },
     "vimux": {
       "rev": "d6cb7f63a8bb428ffc27060b7f83c77fb115589c",
       "src": "https://github.com/preservim/vimux"
