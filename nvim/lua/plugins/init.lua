@@ -6,15 +6,6 @@
 --   :packdel name        remove a plugin
 --
 
--- globals that must be set before plugins load
-do
-  -- vim-visual-multi: disable default mappings (it grabs ctrl up/down which I
-  -- use for window navigation) and fix a blink.cmp <CR> clash.
-  -- https://github.com/Saghen/blink.cmp/issues/406
-  vim.g.VM_default_mappings = 0
-  vim.g.VM_maps = { ['I Return'] = '<S-CR>' }
-end
-
 -- order matters: dependencies and shared palettes before consumers.
 vim.pack.add({
   -- colorscheme, load early so its palette/highlights exist for everything else
@@ -60,7 +51,6 @@ vim.pack.add({
   { src = 'https://github.com/itchyny/vim-highlighturl' },
   { src = 'https://github.com/ibhagwan/smartyank.nvim' },
   { src = 'https://github.com/vladdoster/remember.nvim' },
-  { src = 'https://github.com/mg979/vim-visual-multi' },
 })
 
 -- only plugins that need configuring are listed
@@ -80,7 +70,6 @@ for _, m in ipairs({
   'vim-test',
   'smartyank',
   'remember',
-  'visual-multi',
 }) do
   require('plugins.' .. m)
 end
