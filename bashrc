@@ -49,6 +49,8 @@ if [[ -d "$HOME/.fzf" ]]; then
     header:$blue
     gutter:-1'
   "
+  # collapse the multi-line value to one line (fzf treats newlines as separators)
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS//$'\n'/ }"
 fi
 
 # aliases

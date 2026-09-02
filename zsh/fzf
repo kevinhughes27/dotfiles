@@ -20,6 +20,8 @@ export FZF_DEFAULT_OPTS="--reverse --height=50%
   header:$blue
   gutter:-1'
 "
+# collapse the multi-line value to one line (fzf treats newlines as separators)
+export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS//$'\n'/ }"
 
 # source fzf
 # git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
