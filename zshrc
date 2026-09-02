@@ -12,9 +12,8 @@ zstyle ':completion:*' list-colors ''
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
-HIST_STAMPS='yyyy-mm-dd'
+setopt EXTENDED_HISTORY
 setopt SHARE_HISTORY
-setopt APPEND_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
