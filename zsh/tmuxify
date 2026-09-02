@@ -11,7 +11,7 @@ tmuxify() {
       if tmux ls &> /dev/null; then
 
         # tmux is not attached
-        if tmux ls | grep -v '(attached)'; then
+        if tmux ls | grep -v '(attached)' &> /dev/null; then
           tmux attach
         fi
         # tmux is attached.
