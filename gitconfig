@@ -91,7 +91,7 @@ br = branch
 su = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
 
 # [S]tash pull
-spull = git stash && git pull && git stash pop
+spull = "!git stash && git pull && git stash pop"
 
 # shorten log commands
 l = log
