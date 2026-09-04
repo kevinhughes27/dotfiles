@@ -10,8 +10,8 @@ My personal toolkit. Locally I use `neovim` for my editor, `zsh` for my shell wi
 The `setup` script will do most of the work but there are a few dependencies that need to be installed manually with the system package manager or built from source. `cargo` can be used for the rust dependencies:
 
   * `zsh`
-  * `tmux` (3.4)
-  * `neovim` (0.12)
+  * `tmux`
+  * `neovim` (0.13)
   * `bat` / `batcat`
   * `rg` / `ripgrep`
   * LSP servers
