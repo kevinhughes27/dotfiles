@@ -16,8 +16,28 @@ truecolor_test() {
   }'
 }
 
-strikethough_test() {
-  printf "\e[9m"
-  printf "strikethrough"
-  printf "\e[m\n"
+# Strikethrough is easy to lose without noticing: neovim only emits SGR 9 when
+# the terminfo entry for $TERM has the extended `smxx` cap, and tmux only
+# forwards it when it believes the outer terminal supports it. This prints a
+# raw sample plus the state of each link in that chain. See the README.
+strikethrough_test() {
+  printf "\e[9mstrikethrough\e[m  <- struck through?\n\n"
+
+  printf "TERM             %s\n" "$TERM"
+  if infocmp -x "$TERM" 2> /dev/null | grep -q "smxx"; then
+    printf "smxx in terminfo yes (nvim will emit SGR 9)\n"
+  else
+    printf "smxx in terminfo NO - nvim cannot emit strikethrough with this TERM\n"
+  fi
+
+  if [ -v TMUX ]; then
+    printf "tmux             yes, outer terminal is %s\n" "$(tmux display -p '#{client_termname}')"
+    if tmux display -p '#{client_termfeatures}' | grep -q "strikethrough"; then
+      printf "tmux feature     strikethrough (tmux will forward SGR 9)\n"
+    else
+      printf "tmux feature     NO strikethrough - tmux is stripping SGR 9\n"
+    fi
+  else
+    printf "tmux             no (run again inside tmux to test that path too)\n"
+  fi
 }

@@ -44,6 +44,21 @@ cd ~/dotfiles
 From a configured system `./setup.sh -r <remote>` can be used to copy my standalone `bashrc`, `vimrc` and `gitconfig` to a remote host. `fzf` will also be copied.
 
 
+## terminfo
+
+`tmux.conf` sets `default-terminal` to `tmux-256color`, so that is the terminfo entry `neovim` reads inside `tmux`. Some systems (notably macOS) ship a terminfo database old enough that its `tmux-256color` entry lacks the extended `smxx` capability. `neovim` never synthesizes `smxx`, it only emits the strikethrough attribute (SGR 9) when terminfo advertises it, so the whole thing fails silently: colours and keys keep working and only strikethrough (markdown `~~text~~`, checked checkboxes) disappears.
+
+Run `strikethrough_test` to check each link in the chain. If `smxx` is missing, install a current entry into `~/.terminfo`:
+
+```sh
+curl -fsSL https://invisible-island.net/datafiles/current/terminfo.src.gz | gunzip > /tmp/terminfo.src
+tic -x -o ~/.terminfo -e tmux-256color /tmp/terminfo.src
+tmux kill-server
+```
+
+The outer terminal needs `smxx` too, otherwise `tmux` strips SGR 9 on the way out. Terminals that ship their own terminfo (`ghostty`, `kitty`, `wezterm`) have it, and `tmux.conf` advertises the `strikethrough` feature for everything else.
+
+
 ## .localrc
 
 My `zshrc` will source a `~/.localrc` file if it exists for any system or work specific settings. This lets me maintain one set of dotfiles while still having flexability. It is pretty common for programs to automatically add config to your dotfiles and when that happens I can see the changes in git and move them to localrc.
