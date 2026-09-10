@@ -1,10 +1,180 @@
 #!/bin/zsh
+#
+# keepass (kp)
+#
+# a self-bootstrapping wrapper for keepassxc-fzf.
+# synchronizes a KeePass database with a Dropbox App Folder via rclone,
+# tracking local modifications to push changes back automatically.
 
-# show output of "ps aux", use [tab] to select one or multiple entries
-# press [enter] to kill selected processes or press [escape] to exit completely.
+# exit immediately if a command exits with a non-zero status,
+# treat unset variables as an error, and catch pipeline failures.
+set -euo pipefail
 
-fuzzy_kill_process() {
-  ps aux | fzf --multi --header='[kill:process]' | awk {'print$2'} | xargs kill -9
+# ==============================================================================
+# Configuration
+# ==============================================================================
+
+# file paths
+DB_NAME="passwords.kdbx"
+LOCAL_DIR="$HOME/.local/share/keepass"
+LOCAL_DB="$LOCAL_DIR/$DB_NAME"
+
+# Rclone remote (Scoped Dropbox App folders treat the app directory as root)
+REMOTE_NAME="dropbox-kp"
+REMOTE_FILE="${REMOTE_NAME}:${DB_NAME}"
+
+# keepassxc-fzf binary details
+BIN_DIR="$HOME/.local/bin"
+KPFZF_BIN="$BIN_DIR/keepassxc-fzf"
+KPFZF_URL="https://raw.githubusercontent.com/creusvictor/keepassxc-fzf/master/keepassxc-fzf"
+KPFZF_SHA256="EXPECTED_SHA256_HASH_HERE" # TODO: Update with actual hash
+
+
+# ==============================================================================
+# Functions
+# ==============================================================================
+
+log_info() {
+    echo -e "[\033[1;34mINFO\033[0m] $1"
 }
 
-alias kp='fuzzy_kill_process'
+log_success() {
+    echo -e "[\033[1;32mSUCCESS\033[0m] $1"
+}
+
+log_error() {
+    echo -e "[\033[1;31mERROR\033[0m] $1" >&2
+}
+
+# ------------------------------------------------------------------------------
+# Dependency Management
+# ------------------------------------------------------------------------------
+
+check_system_dependencies() {
+    local deps=("curl" "sha256sum" "rclone")
+    for cmd in "${deps[@]}"; do
+        if ! command -v "$cmd" >/dev/null 2>&1; then
+            log_error "Missing required system dependency: $cmd"
+            exit 1
+        fi
+    done
+}
+
+ensure_keepassxc_fzf() {
+    if [ ! -x "$KPFZF_BIN" ]; then
+        log_info "keepassxc-fzf not found. Downloading..."
+        mkdir -p "$BIN_DIR"
+
+        curl -sL "$KPFZF_URL" -o "$KPFZF_BIN"
+
+        # verify the file against our known hash
+        if ! echo "$KPFZF_SHA256  $KPFZF_BIN" | sha256sum --check --status; then
+            log_error "Checksum verification failed! The downloaded file has changed."
+            rm -f "$KPFZF_BIN"
+            exit 1
+        fi
+
+        chmod +x "$KPFZF_BIN"
+        log_success "keepassxc-fzf installed"
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# Rclone Just-In-Time Setup
+# ------------------------------------------------------------------------------
+
+ensure_rclone_config() {
+    # Check if our specific remote name exists in the rclone config
+    if ! rclone listremotes | grep -q "^${REMOTE_NAME}:"; then
+        echo ""
+        echo "======================================================="
+        echo " Setup Required: Dropbox App Folder Configuration"
+        echo "======================================================="
+        echo " rclone is not configured for this machine yet."
+        echo " Please have your Dropbox App key and secret ready."
+        echo " (From: https://www.dropbox.com/developers/apps)"
+        echo ""
+
+        read -r -p " Enter your App key (client_id): " CLIENT_ID
+        read -r -s -p " Enter your App secret (client_secret): " CLIENT_SECRET
+        echo -e "\n\n Authorizing... Your browser will open shortly."
+        echo " Please click 'Allow' when prompted by Dropbox."
+        echo ""
+
+        # Create config non-interactively; this triggers the browser OAuth flow
+        rclone config create "$REMOTE_NAME" dropbox \
+            client_id "$CLIENT_ID" \
+            client_secret "$CLIENT_SECRET"
+
+        log_success "Rclone configured successfully."
+        echo "======================================================="
+        echo ""
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# Synchronization
+# ------------------------------------------------------------------------------
+
+sync_down() {
+    log_info "Pulling latest database from Dropbox..."
+    mkdir -p "$LOCAL_DIR"
+
+    # We use 'copy' instead of 'sync' to safely pull without deleting local anomalies
+    if rclone copy "$REMOTE_FILE" "$LOCAL_DIR/"; then
+        log_success "Database pulled successfully."
+    else
+        log_error "Failed to pull database. Check your network or rclone config."
+        exit 1
+    fi
+}
+
+# returns the SHA256 hash of the local database, or "none" if it doesn't exist
+get_db_hash() {
+    if [ -f "$LOCAL_DB" ]; then
+        sha256sum "$LOCAL_DB" | awk '{print $1}'
+    else
+        echo "none"
+    fi
+}
+
+sync_up_if_changed() {
+    local before_hash=$1
+    local after_hash
+
+    after_hash=$(get_db_hash)
+
+    if [ "$before_hash" != "$after_hash" ]; then
+        log_info "Database modifications detected. Pushing to Dropbox..."
+        if rclone copy "$LOCAL_DB" "${REMOTE_NAME}:"; then
+            log_success "Changes pushed successfully."
+        else
+            log_error "Failed to push changes to Dropbox!"
+            exit 1
+        fi
+    else
+        log_info "No changes made to the database. Skipping upload."
+    fi
+}
+
+# ------------------------------------------------------------------------------
+# Main
+# ------------------------------------------------------------------------------
+
+main() {
+    check_system_dependencies
+    ensure_keepassxc_fzf
+    ensure_rclone_config
+
+    sync_down
+
+    # capture state before launching the interface
+    local initial_hash
+    initial_hash=$(get_db_hash)
+
+    # run the interactive password manager
+    "$KPFZF_BIN" "$LOCAL_DB"
+
+    # check for modifications and upload if necessary
+    sync_up_if_changed "$initial_hash"
+}

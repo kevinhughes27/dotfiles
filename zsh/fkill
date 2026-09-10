@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# show output of "ps aux", use [tab] to select one or multiple entries
+# press [enter] to kill selected processes or press [escape] to exit completely.
+
+fuzzy_kill_process() {
+  ps aux | fzf --multi --header='[kill:process]' | awk {'print$2'} | xargs kill -9
+}
+
+alias fkill='fuzzy_kill_process'
