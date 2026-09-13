@@ -84,21 +84,32 @@ create('Np', function()
 
     -- async system call
     vim.system({ 'sh', '-c', cmd }, { cwd = cwd }, function(out)
-      -- Schedule prints to the main event loop
+
+      -- schedule prints to the main event loop
       vim.schedule(function()
+
+        local function clear_msg()
+          vim.defer_fn(function()
+            vim.cmd('echo ""')
+          end, 2000) -- 2000 ms = 2 seconds
+        end
+
         if out.code == 0 then
-          print('[Notes] pushed!')
+          vim.api.nvim_echo({ { ' Notes pushed! ', 'DiagnosticOk' } }, false, {})
+          clear_msg()
         elseif out.stdout:find('nothing to commit') or (out.stderr and out.stderr:find('nothing to commit')) then
-          print('[Notes] nothing to commit')
+          vim.api.nvim_echo({ { ' Nothing to commit ' } }, false, {})
+          clear_msg()
         else
-          print('[Notes] [WARN] push failed!')
+          vim.api.nvim_echo({ { ' WARNING Notes push failed! ', 'DiagnosticError' } }, false, {})
+          clear_msg()
         end
       end)
     end)
   end
 end, {
   nargs = 0,
-  desc = 'Save current buffer. commit and push notes',
+  desc = 'commit and push notes',
 })
 
 -- NotesRebase
