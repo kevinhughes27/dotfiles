@@ -22,6 +22,14 @@ EOF
 )
 
 function pi() {
+  # --update drops the existing sandbox image(s) and rebuilds from scratch
+  # which picks up a new base image and the latest pi release.
+  # layer cache could prevent this but I haven't seen that happen
+  if [[ "$1" == "--update" ]]; then
+    shift
+    podman images -q "$PI_CONTAINER" | xargs -r podman rmi -f &> /dev/null
+  fi
+
   # tag the image with a hash of the Containerfile so edits trigger a rebuild.
   local hash=$(echo "$PI_CONTAINERFILE" | sha256sum | cut -c1-12)
   local image="$PI_CONTAINER:$hash"
@@ -31,7 +39,7 @@ function pi() {
 
     # prune superseded pi-sandbox tags
     podman images --format '{{.Repository}}:{{.Tag}}' \
-      | grep "$PI_CONTAINER:" | grep -v ":$hash$" \
+      | grep "^$PI_CONTAINER:" | grep -v ":$hash$" \
       | xargs -r podman rmi &> /dev/null
   fi
 
