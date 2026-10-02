@@ -45,5 +45,9 @@ paste_osc52() {
 print_osc52() {
   local oscOpen="\x1b]52;c;"
   local oscClose="\a"
-  printf "$oscOpen $@ $oscClose"
+  printf "${oscOpen}%s${oscClose}" "$1"
+}
+
+test_osc52() {
+  print_osc52 "$(printf 'osc52-works' | base64 | tr -d '\r\n')"; paste
 }

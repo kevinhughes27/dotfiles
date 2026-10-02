@@ -51,9 +51,14 @@ function pi() {
   # which is why there is no tooling around it yet. the agent could also be explicitly
   # told that a resume may wipe its environment if it doesn't just figure it out on
   # its own which I suspect it easily would.
+  #
+  # TMUX is forwarded for detection only (the socket path it holds is not valid in
+  # the container): pi uses it to pick lighter mouse tracking and to skip inline
+  # image protocols that tmux cannot pass through.
   podman run --rm -it \
     --name "pi-$(basename $PWD)" \
     --env COLORTERM \
+    --env TMUX \
     --volume "$PWD:/workspace" \
     --volume "$HOME/dotfiles/tools/pi:$HOME/dotfiles/tools/pi" \
     --volume "$HOME/.pi/agent:/root/.pi/agent" \
