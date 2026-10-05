@@ -21,6 +21,11 @@ Installed: `node`/`npm` (pi installed globally with `--ignore-scripts`), `python
 - Message: short subject, then a body with the context (the why, and what was rejected). Batch commits are fine and encouraged when a direction naturally splits into several.
 - When the work is ready for review, stop and summarize: name the commit range and how to read it (`git log <base>..HEAD`, `git show <sha>`), and give the host command to sign the range and take authorship (author dates reset to now): `git rebase -i <last-signed-commit> --exec 'git commit --amend -S --no-edit --reset-author'`.
 
+## Commenting
+
+- Write comments and docs for the future reader, not for the current conversation. Omit path-dependent content: references to how we got here, what was tried and rejected mid-session, what a thing used to be, or who asked for it. If the history matters it belongs in the commit message, not the code.
+- This applies to READMEs and docs too — describe what the thing *is*, not the process that produced it.
+
 ## Safety
 
 - The container is the security boundary: work freely in `/workspace`, never touch host paths outside the mounts.
