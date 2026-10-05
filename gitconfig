@@ -7,6 +7,9 @@ signingkey = ABDAFEE7
 [include]
 path = ~/.gituser
 
+[init]
+defaultBranch = main
+
 [commit]
 gpgsign = true
 
