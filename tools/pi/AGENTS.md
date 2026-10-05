@@ -15,6 +15,12 @@ Installed: `node`/`npm` (pi installed globally with `--ignore-scripts`), `python
 - `settings.json` and `themes/` under `/root/.pi/agent` are symlinks into the host dotfiles repo (`$HOME/dotfiles/tools/pi`, also bind-mounted). Editing them edits the real dotfiles — expected, but treat as repo changes.
 - You run as root; rootless Podman maps this to the host user, so host file ownership stays correct.
 
+## Git
+
+- No gpg here, so commits are unsigned. Commit as `pi.agent` without touching the repo's git config: `git -c user.name='pi.agent' -c user.email='pi.agent@localhost' commit -m ...`
+- Message: short subject, then a body with the context (the why, and what was rejected). Batch commits are fine and encouraged when a direction naturally splits into several.
+- When the work is ready for review, stop and summarize: name the commit range and how to read it (`git log <base>..HEAD`, `git show <sha>`), and give the host command to sign the range and take authorship (author dates reset to now): `git rebase -i <last-signed-commit> --exec 'git commit --amend -S --no-edit --reset-author'`.
+
 ## Safety
 
 - The container is the security boundary: work freely in `/workspace`, never touch host paths outside the mounts.
